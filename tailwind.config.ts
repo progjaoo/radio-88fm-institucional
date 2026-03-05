@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Montserrat", "sans-serif"],
-        body: ["Archivo", "sans-serif"],
+        display: ["Oswald", "sans-serif"],
+        body: ["Open Sans", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
