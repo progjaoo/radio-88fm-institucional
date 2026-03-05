@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import LocutorCard from "@/components/LocutorCard";
+import logo from "@/assets/logo-88fm.png";
 import podcastBanner from "@/assets/podcast-banner.jpg";
 import locutor1 from "@/assets/locutor-1.png";
 import locutor2 from "@/assets/locutor-2.png";
@@ -179,25 +180,37 @@ const Index = () => {
       </section>
 
       {/* Locutores */}
-      <section className="radio-gradient py-8 md:py-12">
+      <section className="py-12 bg-background">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 mb-6">
-            {locutores.map((loc) => (
-              <LocutorCard key={loc.name + loc.programa} {...loc} />
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div>
-              <p className="text-primary-foreground text-xs uppercase tracking-wider mb-1">Programação o dia todo</p>
-              <p className="font-display text-xl md:text-2xl font-extrabold text-radio-yellow leading-tight">
-                PARA ESTAR<br />SEMPRE COM VOCÊ!
-              </p>
+          <div className="relative border-4 border-black rounded-[2.5rem] p-4 md:p-8 pt-12 md:pt-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-4">
+              {locutores.map((loc) => (
+                <LocutorCard key={loc.name + loc.programa} {...loc} />
+              ))}
             </div>
-            <div>
-              <h3 className="font-display text-xl font-extrabold text-primary-foreground">FATO POPULAR</h3>
-              <ul className="text-primary-foreground/80 text-sm space-y-1 mt-2">
-                <li className="font-bold text-primary-foreground">BOM DIA 88</li>
+            {/* Logo in the corner of the border */}
+            <div className="absolute -right-2 -bottom-2 md:-right-4 md:-bottom-4 bg-background p-2">
+               <img src={logo} alt="88FM" className="h-16 md:h-28 object-contain grayscale brightness-0" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Programming Section */}
+      <section className="bg-radio-blue py-16 md:py-20">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="text-white">
+              <h2 className="font-display text-3xl md:text-5xl font-extrabold leading-tight">
+                PROGRAMAÇÃO O DIA<br />
+                TODO <span className="text-white">PARA ESTAR</span><br />
+                <span className="text-white">SEMPRE COM VOCÊ!</span>
+              </h2>
+            </div>
+            <div className="text-white">
+              <h3 className="font-display text-3xl md:text-5xl font-extrabold mb-6">FATO POPULAR</h3>
+              <ul className="text-white/70 font-display text-2xl md:text-4xl font-extrabold space-y-2">
+                <li className="text-white">BOM DIA 88</li>
                 <li>TEMPERATURA GOSPEL</li>
                 <li>FAVORITO</li>
               </ul>
@@ -211,23 +224,31 @@ const Index = () => {
         <div className="container">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-1 h-8 bg-radio-blue rounded-full" />
-            <h2 className="font-display text-2xl font-extrabold text-foreground">PORTAL 88 FM</h2>
+            <h2 className="font-display text-2xl font-extrabold text-foreground uppercase">PORTAL 88 FM</h2>
           </div>
 
-          {/* Grid: 1 large left + 3 small right (top row) */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 auto-rows-[180px] md:auto-rows-[200px]">
-            {/* Large card spanning 2 rows */}
-            <div className="md:row-span-2">
+          {/* Grid: 1 large left + 4 small right (2x2) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Large card spanning 2 rows on the left */}
+            <div className="md:col-span-1 md:row-span-2 h-[380px] md:h-[500px]">
               <PortalNewsCard {...portalNews[0]} large />
             </div>
-            {/* 3 small cards on the right */}
-            <PortalNewsCard {...portalNews[1]} />
-            <PortalNewsCard {...portalNews[2]} />
-            <PortalNewsCard {...portalNews[3]} />
-            {/* Bottom row: 3 small cards */}
-            <PortalNewsCard {...portalNews[4]} />
-            <PortalNewsCard {...portalNews[5]} />
-            <PortalNewsCard {...portalNews[6]} />
+
+            {/* Right side: 2x2 grid for 4 small cards */}
+            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="h-[180px] md:h-[242px]">
+                <PortalNewsCard {...portalNews[1]} />
+              </div>
+              <div className="h-[180px] md:h-[242px]">
+                <PortalNewsCard {...portalNews[2]} />
+              </div>
+              <div className="h-[180px] md:h-[242px]">
+                <PortalNewsCard {...portalNews[3]} />
+              </div>
+              <div className="h-[180px] md:h-[242px]">
+                <PortalNewsCard {...portalNews[4]} />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -235,25 +256,33 @@ const Index = () => {
       {/* Fato Popular News - Layout: 1 large left + 4 small right */}
       <section className="py-10 bg-muted">
         <div className="container">
-          <div className="bg-card rounded-xl p-6 shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 auto-rows-[180px] md:auto-rows-[190px]">
-              {/* Large card spanning 2 rows */}
-              <div className="md:row-span-2">
-                <PortalNewsCard {...fatoPopularNews[0]} large />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Large card on the left */}
+            <div className="md:col-span-1 md:row-span-2 h-[380px] md:h-[500px]">
+              <PortalNewsCard {...fatoPopularNews[0]} large />
+            </div>
+            {/* 4 small cards on the right (2x2) */}
+            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="h-[180px] md:h-[242px]">
+                <PortalNewsCard {...fatoPopularNews[1]} />
               </div>
-              {/* 4 small cards on the right in 2x2 */}
-              <PortalNewsCard {...fatoPopularNews[1]} />
-              <PortalNewsCard {...fatoPopularNews[2]} />
-              <PortalNewsCard {...fatoPopularNews[3]} />
-              <PortalNewsCard {...fatoPopularNews[4]} />
+              <div className="h-[180px] md:h-[242px]">
+                <PortalNewsCard {...fatoPopularNews[2]} />
+              </div>
+              <div className="h-[180px] md:h-[242px]">
+                <PortalNewsCard {...fatoPopularNews[3]} />
+              </div>
+              <div className="h-[180px] md:h-[242px]">
+                <PortalNewsCard {...fatoPopularNews[4]} />
+              </div>
             </div>
           </div>
-          <div className="mt-6">
+          <div className="mt-10 max-w-sm mx-auto">
             <a
               href="http://localhost:8082/fatopopular"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center radio-gradient font-display font-bold text-primary-foreground py-3 rounded-lg hover:opacity-90 transition-opacity"
+              className="block w-full text-center bg-radio-blue font-display font-bold text-white py-4 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg"
             >
               Ver mais
             </a>
