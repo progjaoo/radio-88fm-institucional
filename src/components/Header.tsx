@@ -16,10 +16,10 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
+    <header className="sticky top-0 z-50 bg-black border-b border-white/10 shadow-sm">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Rádio 88 FM" className="h-10 w-10 object-contain" />
+          <img src={logo} alt="Rádio 88 FM" className="h-10 w-10 object-contain invert brightness-0" />
         </Link>
 
         {/* Desktop Nav */}
@@ -31,7 +31,7 @@ const Header = () => {
                 href={item.path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-display text-sm font-semibold tracking-wide text-foreground hover:text-primary transition-colors"
+                className="font-display text-sm font-semibold tracking-wide text-white hover:text-primary transition-colors"
               >
                 {item.label}
               </a>
@@ -40,7 +40,7 @@ const Header = () => {
                 key={item.label}
                 to={item.path}
                 className={`font-display text-sm font-semibold tracking-wide transition-colors ${
-                  location.pathname === item.path ? "text-primary" : "text-foreground hover:text-primary"
+                  location.pathname === item.path ? "text-primary" : "text-white hover:text-primary"
                 }`}
               >
                 {item.label}
@@ -52,14 +52,14 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-2">
           <Link
             to="/ouvir"
-            className="radio-gradient-accent font-display font-bold text-sm px-4 py-2 rounded-full text-accent-foreground flex items-center gap-1.5 hover:opacity-90 transition-opacity"
+            className="bg-radio-red font-display font-bold text-sm px-4 py-2 rounded-full text-white flex items-center gap-1.5 hover:opacity-90 transition-opacity"
           >
-            <span className="w-2 h-2 rounded-full bg-destructive animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
             OUVIR AO VIVO
           </Link>
           <Link
             to="/assistir"
-            className="radio-gradient font-display font-bold text-sm px-4 py-2 rounded-full text-primary-foreground flex items-center gap-1.5 hover:opacity-90 transition-opacity"
+            className="bg-radio-yellow font-display font-bold text-sm px-4 py-2 rounded-full text-black flex items-center gap-1.5 hover:opacity-90 transition-opacity"
           >
             🎥 Assistir
           </Link>
@@ -68,7 +68,7 @@ const Header = () => {
         {/* Mobile menu toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-foreground"
+          className="md:hidden text-white"
           aria-label="Menu"
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -77,7 +77,7 @@ const Header = () => {
 
       {/* Mobile Nav */}
       {menuOpen && (
-        <div className="md:hidden bg-background border-t border-border pb-4">
+        <div className="md:hidden bg-black border-t border-white/10 pb-4">
           <nav className="flex flex-col gap-2 px-4 pt-2">
             {navItems.map((item) =>
               item.external ? (
@@ -86,7 +86,7 @@ const Header = () => {
                   href={item.path}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-display text-sm font-semibold py-2 text-foreground"
+                  className="font-display text-sm font-semibold py-2 text-white"
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.label}
@@ -95,7 +95,7 @@ const Header = () => {
                 <Link
                   key={item.label}
                   to={item.path}
-                  className="font-display text-sm font-semibold py-2 text-foreground"
+                  className="font-display text-sm font-semibold py-2 text-white"
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.label}
@@ -105,14 +105,14 @@ const Header = () => {
             <div className="flex gap-2 mt-2">
               <Link
                 to="/ouvir"
-                className="radio-gradient-accent font-display font-bold text-xs px-3 py-2 rounded-full text-accent-foreground"
+                className="bg-radio-red font-display font-bold text-xs px-3 py-2 rounded-full text-white"
                 onClick={() => setMenuOpen(false)}
               >
                 OUVIR AO VIVO
               </Link>
               <Link
                 to="/assistir"
-                className="radio-gradient font-display font-bold text-xs px-3 py-2 rounded-full text-primary-foreground"
+                className="bg-radio-yellow font-display font-bold text-xs px-3 py-2 rounded-full text-black"
                 onClick={() => setMenuOpen(false)}
               >
                 🎥 Assistir
