@@ -1,47 +1,68 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import LocutorCard from "@/components/LocutorCard";
-import NewsCard from "@/components/NewsCard";
 import podcastBanner from "@/assets/podcast-banner.jpg";
-import locutor1 from "@/assets/locutor-1.jpg";
-import locutor2 from "@/assets/locutor-2.jpg";
-import locutor3 from "@/assets/locutor-3.jpg";
-import locutor4 from "@/assets/locutor-4.jpg";
-import locutor5 from "@/assets/locutor-5.jpg";
-import locutor6 from "@/assets/locutor-6.jpg";
+import locutor1 from "@/assets/locutor-1.png";
+import locutor2 from "@/assets/locutor-2.png";
+import locutor3 from "@/assets/locutor-3.png";
+import locutor4 from "@/assets/locutor-4.png";
+import locutor5 from "@/assets/locutor-5.png";
+import locutor6 from "@/assets/locutor-6.png";
+import locutor7 from "@/assets/locutor-7.png";
+import locutor8 from "@/assets/locutor-8.png";
 
 const locutores = [
-  { name: "Edson Albertassi", image: locutor1, programa: "Bom Dia 88" },
-  { name: "Ana Paula", image: locutor2, programa: "Temperatura Gospel" },
-  { name: "Pastor Marcos", image: locutor3, programa: "Fato Popular" },
-  { name: "DJ Samuel", image: locutor4, programa: "Favorito" },
-  { name: "Cintia Souza", image: locutor5, programa: "Receitas da Cintia" },
-  { name: "Roberto Silva", image: locutor6, programa: "Programa Especial" },
+  { name: "Locutora", image: locutor1, programa: "Programa 88 FM" },
+  { name: "Locutor", image: locutor2, programa: "Bom Dia 88" },
+  { name: "Locutor", image: locutor3, programa: "Fato Popular" },
+  { name: "Locutor", image: locutor4, programa: "Temperatura Gospel" },
+  { name: "Locutor", image: locutor5, programa: "Favorito" },
+  { name: "Locutor", image: locutor6, programa: "Programa Especial" },
+  { name: "Locutora", image: locutor7, programa: "Receitas da Cintia" },
+  { name: "Locutor", image: locutor8, programa: "Programa 88 FM" },
 ];
 
 const portalNews = [
   {
+    title: "Como interpretar a Bíblia de forma correta. Dicas para um aprendizado a partir delas.",
+    image: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=600&h=600&fit=crop",
+    category: "ENQUETE",
+    link: "http://localhost:8082/radio88fm",
+  },
+  {
     title: "Luto na música gospel: cantor Ron Kenoly morre aos 81 anos",
     image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
-    category: "RECEITAS DA CINTIA",
+    category: "RECEITAS DA CINTHIA",
     link: "http://localhost:8082/radio88fm",
   },
   {
     title: "The Send reúne 300 mil pessoas em cinco capitais brasileiras",
     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop",
-    category: "RECEITAS DA CINTIA",
+    category: "RECEITAS DA CINTHIA",
     link: "http://localhost:8082/radio88fm",
   },
   {
     title: "'Minha Casa' para renda de até R$ 12 mil começa em maio, diz ministro",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop",
-    category: "RECEITAS DA CINTIA",
+    category: "RECEITAS DA CINTHIA",
     link: "http://localhost:8082/radio88fm",
   },
   {
-    title: "Como interpretar a Bíblia de forma correta. Dicas para um aprendizado a partir delas.",
-    image: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=400&h=300&fit=crop",
-    category: "ENQUETE",
+    title: "Letra, ritmo e uso de termos populares levaram parte do público gospel a questionar a canção Aue",
+    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=300&fit=crop",
+    category: "RECEITAS DA CINTHIA",
+    link: "http://localhost:8082/radio88fm",
+  },
+  {
+    title: "Torta de limão é a pedida mais rápida e prática para esse feriado de calor",
+    image: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400&h=300&fit=crop",
+    category: "RECEITAS DA CINTHIA",
+    link: "http://localhost:8082/radio88fm",
+  },
+  {
+    title: "'Minha Casa' para renda de até R$ 12 mil começa em maio, diz ministro",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop",
+    category: "RECEITAS DA CINTHIA",
     link: "http://localhost:8082/radio88fm",
   },
 ];
@@ -49,7 +70,7 @@ const portalNews = [
 const fatoPopularNews = [
   {
     title: "Dólar sobe 3% e Ibovespa cai 3% após retaliação da China a tarifaço de Trump",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=600&fit=crop",
     category: "NEGÓCIOS",
     link: "http://localhost:8082/fatopopular",
   },
@@ -62,6 +83,12 @@ const fatoPopularNews = [
   {
     title: "PIX: BC vai disponibilizar parcelado em setembro e sistema para devolução",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
+    category: "NEGÓCIOS",
+    link: "http://localhost:8082/fatopopular",
+  },
+  {
+    title: "'Minha Casa' para renda de até R$ 12 mil começa em maio, diz ministro",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop",
     category: "NEGÓCIOS",
     link: "http://localhost:8082/fatopopular",
   },
@@ -79,6 +106,29 @@ const socialLinks = [
   { icon: Youtube, href: "https://www.youtube.com/@radio88oficial", label: "YouTube" },
   { icon: Linkedin, href: "https://www.linkedin.com/company/radio-88-fm", label: "LinkedIn" },
 ];
+
+const PortalNewsCard = ({ title, image, category, link, large = false }: { title: string; image: string; category: string; link: string; large?: boolean }) => (
+  <a
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`group relative block overflow-hidden rounded-lg ${large ? "row-span-2" : ""}`}
+  >
+    <img
+      src={image}
+      alt={title}
+      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 absolute inset-0"
+    />
+    <div className="relative z-10 flex flex-col justify-end h-full bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4">
+      <span className="self-start bg-radio-blue text-white text-[10px] font-bold px-2 py-0.5 rounded mb-2 uppercase tracking-wide">
+        {category}
+      </span>
+      <h3 className={`font-display font-bold text-white leading-tight ${large ? "text-lg md:text-xl" : "text-sm"}`}>
+        {title}
+      </h3>
+    </div>
+  </a>
+);
 
 const Index = () => {
   return (
@@ -131,9 +181,9 @@ const Index = () => {
       {/* Locutores */}
       <section className="radio-gradient py-8 md:py-12">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 mb-6">
             {locutores.map((loc) => (
-              <LocutorCard key={loc.name} {...loc} />
+              <LocutorCard key={loc.name + loc.programa} {...loc} />
             ))}
           </div>
 
@@ -156,39 +206,46 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Portal 88 FM */}
+      {/* Portal 88 FM - Layout like reference */}
       <section className="py-10">
         <div className="container">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-1 h-8 bg-radio-blue rounded-full" />
             <h2 className="font-display text-2xl font-extrabold text-foreground">PORTAL 88 FM</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {portalNews.map((news, i) => (
-              <NewsCard key={i} {...news} />
-            ))}
-          </div>
-          <div className="mt-6">
-            <a
-              href="http://localhost:8082/radio88fm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-center radio-gradient font-display font-bold text-primary-foreground py-3 rounded-lg hover:opacity-90 transition-opacity"
-            >
-              Ver mais
-            </a>
+
+          {/* Grid: 1 large left + 3 small right (top row) */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 auto-rows-[180px] md:auto-rows-[200px]">
+            {/* Large card spanning 2 rows */}
+            <div className="md:row-span-2">
+              <PortalNewsCard {...portalNews[0]} large />
+            </div>
+            {/* 3 small cards on the right */}
+            <PortalNewsCard {...portalNews[1]} />
+            <PortalNewsCard {...portalNews[2]} />
+            <PortalNewsCard {...portalNews[3]} />
+            {/* Bottom row: 3 small cards */}
+            <PortalNewsCard {...portalNews[4]} />
+            <PortalNewsCard {...portalNews[5]} />
+            <PortalNewsCard {...portalNews[6]} />
           </div>
         </div>
       </section>
 
-      {/* Fato Popular News */}
+      {/* Fato Popular News - Layout: 1 large left + 4 small right */}
       <section className="py-10 bg-muted">
         <div className="container">
           <div className="bg-card rounded-xl p-6 shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {fatoPopularNews.map((news, i) => (
-                <NewsCard key={i} {...news} />
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 auto-rows-[180px] md:auto-rows-[190px]">
+              {/* Large card spanning 2 rows */}
+              <div className="md:row-span-2">
+                <PortalNewsCard {...fatoPopularNews[0]} large />
+              </div>
+              {/* 4 small cards on the right in 2x2 */}
+              <PortalNewsCard {...fatoPopularNews[1]} />
+              <PortalNewsCard {...fatoPopularNews[2]} />
+              <PortalNewsCard {...fatoPopularNews[3]} />
+              <PortalNewsCard {...fatoPopularNews[4]} />
             </div>
           </div>
           <div className="mt-6">
@@ -196,7 +253,7 @@ const Index = () => {
               href="http://localhost:8082/fatopopular"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center radio-gradient-accent font-display font-bold text-accent-foreground py-3 rounded-lg hover:opacity-90 transition-opacity"
+              className="block w-full text-center radio-gradient font-display font-bold text-primary-foreground py-3 rounded-lg hover:opacity-90 transition-opacity"
             >
               Ver mais
             </a>
