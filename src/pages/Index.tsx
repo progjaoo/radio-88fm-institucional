@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import LocutorCard from "@/components/LocutorCard";
-import logo from "@/assets/logo-88fm.png";
+import logo from "@/assets/logosvg.svg";
+import fundolocutores from "@/assets/fundolocutores.png";
 import podcastBanner from "@/assets/podcast-banner.jpg";
+import locutor14 from "@/assets/locutor-14.png";
+import locutor15 from "@/assets/locutor-15.png";
+import locutor16 from "@/assets/locutor-16.png";
 import locutor1 from "@/assets/locutor-1.png";
 import locutor2 from "@/assets/locutor-2.png";
 import locutor3 from "@/assets/locutor-3.png";
@@ -11,16 +15,30 @@ import locutor5 from "@/assets/locutor-5.png";
 import locutor6 from "@/assets/locutor-6.png";
 import locutor7 from "@/assets/locutor-7.png";
 import locutor8 from "@/assets/locutor-8.png";
+import locutor9 from "@/assets/locutor-9.png";
+import locutor10 from "@/assets/locutor-10.png";
+import locutor11 from "@/assets/locutor-11.png";
+import locutor12 from "@/assets/locutor-12.png";
+import locutor13 from "@/assets/locutor-13.png";
+
 
 const locutores = [
-  { name: "Locutora", image: locutor1, programa: "Programa 88 FM" },
-  { name: "Locutor", image: locutor2, programa: "Bom Dia 88" },
-  { name: "Locutor", image: locutor3, programa: "Fato Popular" },
-  { name: "Locutor", image: locutor4, programa: "Temperatura Gospel" },
-  { name: "Locutor", image: locutor5, programa: "Favorito" },
-  { name: "Locutor", image: locutor6, programa: "Programa Especial" },
-  { name: "Locutora", image: locutor7, programa: "Receitas da Cintia" },
-  { name: "Locutor", image: locutor8, programa: "Programa 88 FM" },
+  { image: locutor14},
+  { image: locutor15 },
+  { image: locutor16   },
+  { image: locutor1 },
+  { image: locutor2},
+  { image: locutor3 },
+  { image: locutor4},
+  { image: locutor5},
+  { image: locutor6},
+  { image: locutor7},
+  { image: locutor8 },
+  { image: locutor9},
+  { image: locutor10 },
+  { image: locutor11 },
+  { image: locutor12 },
+  { image: locutor13 },
 ];
 
 const portalNews = [
@@ -169,7 +187,7 @@ const Index = () => {
       </section>
 
       {/* Carousel placeholder - managed by CMS */}
-      <section className="bg-secondary py-2">
+{/*       <section className="bg-secondary py-2">
         <div className="container">
           <div className="bg-radio-dark rounded-lg overflow-hidden border-2 border-radio-yellow h-20 md:h-24 flex items-center justify-center">
             <p className="text-primary-foreground font-display text-sm text-center px-4">
@@ -177,24 +195,34 @@ const Index = () => {
             </p>
           </div>
         </div>
-      </section>
-
+      </section> */}      
       {/* Locutores */}
-      <section className="py-12 bg-background">
-        <div className="container">
-          <div className="relative border-4 border-black rounded-[2.5rem] p-4 md:p-8 pt-12 md:pt-16">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-4">
-              {locutores.map((loc) => (
-                <LocutorCard key={loc.name + loc.programa} {...loc} />
-              ))}
+          <section className="py-16 bg-background">
+            <div className="container">
+
+              <div className="relative">
+
+                {/* FAIXA DOS LOCUTORES */}
+               <div className="absolute -top-[92px] left-0 w-110 z-10">
+                <div className="flex items-end justify-center overflow-hidden">
+                  {locutores.map((loc, i) => (
+                    <LocutorCard key={i} image={loc.image} />
+                  ))}
+                </div>
+              </div>
+
+                <div className="relative mt-20">
+                  <img
+                    src={fundolocutores}
+                    alt="88FM"
+                    className="w-full object-contain"
+                  />
+                </div>
+
+              </div>
+
             </div>
-            {/* Logo in the corner of the border */}
-            <div className="absolute -right-2 -bottom-2 md:-right-4 md:-bottom-4 bg-background p-2">
-               <img src={logo} alt="88FM" className="h-16 md:h-28 object-contain grayscale brightness-0" />
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
       {/* Programming Section */}
       <section className="bg-radio-blue py-16 md:py-20">
