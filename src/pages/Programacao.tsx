@@ -13,7 +13,7 @@ const programasEstaticos: Programa[] = [
   { nome: "Fato Popular", horario: "04:00 - 09:00", descricao: "Notícias do Brasil e do mundo com análise e opinião.", locutor: "Carlos Alberto Albertassi e Betinho Albertassi" },
   { nome: "Bom Dia 88", horario: "09:00 - 12:00", descricao: "Comece o dia com os melhores louvores e enquetes para abençoar sua manhã.", locutor: "Dário Ferreira e Letícia Dantas" },
   { nome: "Temperatura Gospel", horario: "13:00 - 15:00", descricao: "As músicas gospel mais quentes do momento com uma programação especial.", locutor: "Luciana Alves" },
-  { nome: "Favorito", horario: "15:00 - 17:00", descricao: "Seus louvores favoritos em sequência, sem parar. Humor e diversão!", locutor: "Régias e Cinthia Miranda" },
+  { nome: "Favorito", horario: "15:00 - 17:00", descricao: "Seus louvores favoritos em sequência, sem parar. Humor e diversão!", locutor: "Régis e Cintia Miranda" },
 ];
 
 // TODO: Substituir pela URL real da API quando disponível

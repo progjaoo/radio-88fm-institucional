@@ -183,7 +183,7 @@ const Index = () => {
         </div>
       </section>
 
-{/* --- SEÇÃO PORTAL 88 FM --- */}
+      {/* --- SEÇÃO PORTAL 88 FM --- */}
       <section className="py-10">
         <div className="container">
           <div className="flex items-center gap-2 mb-6">
@@ -201,12 +201,12 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-8 max-w-sm mx-auto">
+          <div className="mt-8 max-lg mx-auto">
             <a
               href="http://localhost:8082/radio88fm"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center bg-radio-blue font-display font-bold text-white py-4 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg"
+              className="block w-full text-center bg-radio-blue font-display font-bold text-white py-2 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg"
             >
               Ver mais
             </a>
@@ -214,7 +214,7 @@ const Index = () => {
         </div>
       </section>
 
-{/* --- SEÇÃO FATO POPULAR --- */}
+      {/* --- SEÇÃO FATO POPULAR --- */}
       <section className="py-10 bg-muted">
         <div className="container">
           <div className="flex items-center gap-2 mb-6">
@@ -232,12 +232,12 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-8 max-w-sm mx-auto">
+          <div className="mt-8 max-lg mx-auto">
             <a
               href="http://localhost:8082/fatopopular"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center bg-radio-blue font-display font-bold text-white py-4 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg"
+              className="block w-full text-center bg-radio-blue font-display font-bold text-white py-2 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg"
             >
               Ver mais
             </a>
