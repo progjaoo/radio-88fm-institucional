@@ -16,7 +16,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="font-display text-lg font-bold mb-4 text-radio-yellow">CONTATO</h3>
+            <h3 className="font-display text-lg font-bold mb-4 text-radio-blue">CONTATO</h3>
             <div className="space-y-3 text-sm">
               <a
                 href="https://www.google.com/maps?q=Rua+Moacyr+de+Paula+Lobo,+104,+Limoeiro+-+Volta+Redonda+-+RJ"
@@ -48,7 +48,7 @@ const Footer = () => {
 
           {/* Links */}
           <div>
-            <h3 className="font-display text-lg font-bold mb-4 text-radio-yellow">REDES SOCIAIS</h3>
+            <h3 className="font-display text-lg font-bold mb-4 text-radio-blue">REDES SOCIAIS</h3>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/radio88oficial/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Facebook</a>
               <a href="https://www.instagram.com/radio88fm" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>

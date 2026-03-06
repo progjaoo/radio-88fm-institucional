@@ -12,6 +12,7 @@ import Anuncie from "./pages/Anuncie";
 import Ouvir from "./pages/Ouvir";
 import Assistir from "./pages/Assistir";
 import NotFound from "./pages/NotFound";
+import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <FloatingWhatsAppButton />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

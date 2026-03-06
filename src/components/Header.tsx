@@ -23,7 +23,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-5 ml-60">
           {navItems.map((item) =>
             item.external ? (
               <a
@@ -49,10 +49,10 @@ const Header = () => {
           )}
         </nav>
 
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-4">
           <Link
             to="/ouvir"
-            className="bg-radio-red font-display font-bold text-sm px-4 py-2 rounded-full text-white flex items-center gap-1.5 hover:opacity-90 transition-opacity"
+            className="bg-red-600 font-display font-bold text-sm px-4 py-2 rounded-full text-white flex items-center gap-1.5 hover:opacity-90 transition-opacity"
           >
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
             OUVIR AO VIVO

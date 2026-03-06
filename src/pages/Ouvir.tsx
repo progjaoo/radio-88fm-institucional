@@ -111,7 +111,7 @@ const Ouvir = () => {
         </div>
 
         <p className="text-muted-foreground text-xs mt-8">
-          {streamData?.status === "Ligado" ? "🟢 Transmissão ao vivo" : "⚪ Verificando conexão..."}
+          {streamData?.status === "Ligado" ? "🟢  Ouvindo ao vivo" : "⚪ Verificando conexão..."}
         </p>
       </div>
     </div>
