@@ -49,6 +49,8 @@ const portalNews = [
   { id: 3, title: "The Send reúne 300 mil pessoas em cinco capitais brasileiras", image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
   { id: 4, title: "'Minha Casa' para renda de até R$ 12 mil começa em maio, diz ministro", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
   { id: 5, title: "Letra, ritmo e uso de termos populares levaram parte do público gospel a questionar a canção Aue", image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
+  { id: 11, title: "Torta de limão é a pedida mais rápida e prática para esse feriado de calor", image: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
+  { id: 12, title: "'Minha Casa' para renda de até R$ 12 mil começa em maio, diz ministro", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
 ];
 
 const fatoPopularNews = [
@@ -66,28 +68,30 @@ const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/company/radio-88-fm", label: "LinkedIn" },
 ];
 
-const PortalNewsCard = ({ title, image, category, link, large = false }: { title: string; image: string; category: string; link: string; large?: boolean }) => (
-  <a
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={`group relative block overflow-hidden rounded-lg ${large ? "row-span-2" : ""}`}
-  >
-    <img
-      src={image}
-      alt={title}
-      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 absolute inset-0"
-    />
-    <div className="relative z-10 flex flex-col justify-end h-full bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4">
-      <span className="self-start bg-radio-blue text-white text-[10px] font-bold px-2 py-0.5 rounded mb-2 uppercase tracking-wide">
-        {category}
-      </span>
-      <h3 className={`font-display font-bold text-white leading-tight ${large ? "text-lg md:text-xl" : "text-sm"}`}>
-        {title}
-      </h3>
-    </div>
-  </a>
-);
+const PortalNewsCard = ({ title, image, category, link, large = false }: { title: string; image: string; category: string; link: string; large?: boolean }) => {
+  if (large) {
+    return (
+      <a href={link} target="_blank" rel="noopener noreferrer" className="group relative block overflow-hidden rounded-lg h-full">
+        <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 absolute inset-0" />
+        <div className="relative z-10 flex flex-col justify-end h-full bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4">
+          <span className="self-start bg-radio-blue text-white text-[10px] font-bold px-2 py-0.5 rounded mb-2 uppercase tracking-wide">{category}</span>
+          <h3 className="font-display font-bold text-white leading-tight text-lg md:text-xl">{title}</h3>
+        </div>
+      </a>
+    );
+  }
+  return (
+    <a href={link} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden rounded-lg bg-card shadow-sm hover:shadow-md transition-shadow">
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        <span className="absolute bottom-2 left-2 bg-radio-blue text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wide">{category}</span>
+      </div>
+      <div className="p-3">
+        <h3 className="font-display text-sm font-bold leading-tight text-foreground line-clamp-3 group-hover:text-primary transition-colors">{title}</h3>
+      </div>
+    </a>
+  );
+};
 
 const Index = () => {
   return (
@@ -187,29 +191,25 @@ const Index = () => {
             <h2 className="font-display text-2xl font-extrabold text-foreground uppercase">PORTAL 88 FM</h2>
           </div>
 
-          {/* Grid Principal: 3 colunas (1 para o grande, 2 para o bloco dos pequenos) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            {/* 1. CARD GRANDE (Coluna 1, Ocupa 2 linhas) */}
-            <div className="md:col-span-1 md:row-span-2 h-[380px] md:h-[520px]">
+          {/* Grid 4 colunas: 1 grande (2 rows) + 3 cols x 2 rows = 6 pequenos */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="md:row-span-2">
               <PortalNewsCard {...portalNews[0]} large />
             </div>
+            {portalNews.slice(1).map((news) => (
+              <PortalNewsCard key={news.id} {...news} />
+            ))}
+          </div>
 
-            {/* 2. CONTAINER DOS 4 CARDS PEQUENOS (Colunas 2 e 3) */}
-            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="h-[252px]">
-                <PortalNewsCard {...portalNews[1]} />
-              </div>
-              <div className="h-[252px]">
-                <PortalNewsCard {...portalNews[2]} />
-              </div>
-              <div className="h-[252px]">
-                <PortalNewsCard {...portalNews[3]} />
-              </div>
-              <div className="h-[252px]">
-                <PortalNewsCard {...portalNews[4]} />
-              </div>
-            </div>
+          <div className="mt-8 max-w-sm mx-auto">
+            <a
+              href="http://localhost:8082/radio88fm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-radio-blue font-display font-bold text-white py-4 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg"
+            >
+              Ver mais
+            </a>
           </div>
         </div>
       </section>
@@ -220,37 +220,30 @@ const Index = () => {
           <div className="flex items-center gap-2 mb-6">
             <div className="w-1 h-8 bg-radio-blue rounded-full" />
             <h2 className="font-display text-2xl font-extrabold text-foreground uppercase">FATO POPULAR</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Coluna Esquerda: Card Grande */}
-          <div className="md:col-span-1 md:row-span-2 h-[380px] md:h-[520px]">
-            <PortalNewsCard {...fatoPopularNews[0]} large />
           </div>
 
-          {/* Coluna Direita: Grid 2x2 para 4 cards */}
-          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Grid 3 colunas: 1 grande (2 rows) + 2 cols x 2 rows = 4 pequenos */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:row-span-2">
+              <PortalNewsCard {...fatoPopularNews[0]} large />
+            </div>
             {fatoPopularNews.slice(1).map((news) => (
-              <div key={news.id} className="h-[252px]">
-                <PortalNewsCard {...news} />
-              </div>
+              <PortalNewsCard key={news.id} {...news} />
             ))}
           </div>
+
+          <div className="mt-8 max-w-sm mx-auto">
+            <a
+              href="http://localhost:8082/fatopopular"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-radio-blue font-display font-bold text-white py-4 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg"
+            >
+              Ver mais
+            </a>
+          </div>
         </div>
-
-        {/* Botão Ver Mais */}
-            <div className="mt-10 max-w-sm mx-auto">
-              <a
-                href="http://localhost:8082/fatopopular"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center bg-radio-blue font-display font-bold text-white py-4 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg">
-                  Ver mais
-                </a>
-              </div>
-            </div>
-
-        </section>
+      </section>
 
       {/* Podcast Banner */}
         <section className="relative overflow-hidden">
