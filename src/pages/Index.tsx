@@ -191,29 +191,25 @@ const Index = () => {
             <h2 className="font-display text-2xl font-extrabold text-foreground uppercase">PORTAL 88 FM</h2>
           </div>
 
-          {/* Grid Principal: 3 colunas (1 para o grande, 2 para o bloco dos pequenos) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            {/* 1. CARD GRANDE (Coluna 1, Ocupa 2 linhas) */}
-            <div className="md:col-span-1 md:row-span-2 h-[380px] md:h-[520px]">
+          {/* Grid 4 colunas: 1 grande (2 rows) + 3 cols x 2 rows = 6 pequenos */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="md:row-span-2">
               <PortalNewsCard {...portalNews[0]} large />
             </div>
+            {portalNews.slice(1).map((news) => (
+              <PortalNewsCard key={news.id} {...news} />
+            ))}
+          </div>
 
-            {/* 2. CONTAINER DOS 4 CARDS PEQUENOS (Colunas 2 e 3) */}
-            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="h-[252px]">
-                <PortalNewsCard {...portalNews[1]} />
-              </div>
-              <div className="h-[252px]">
-                <PortalNewsCard {...portalNews[2]} />
-              </div>
-              <div className="h-[252px]">
-                <PortalNewsCard {...portalNews[3]} />
-              </div>
-              <div className="h-[252px]">
-                <PortalNewsCard {...portalNews[4]} />
-              </div>
-            </div>
+          <div className="mt-8 max-w-sm mx-auto">
+            <a
+              href="http://localhost:8082/radio88fm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-radio-blue font-display font-bold text-white py-4 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg"
+            >
+              Ver mais
+            </a>
           </div>
         </div>
       </section>
@@ -224,37 +220,30 @@ const Index = () => {
           <div className="flex items-center gap-2 mb-6">
             <div className="w-1 h-8 bg-radio-blue rounded-full" />
             <h2 className="font-display text-2xl font-extrabold text-foreground uppercase">FATO POPULAR</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Coluna Esquerda: Card Grande */}
-          <div className="md:col-span-1 md:row-span-2 h-[380px] md:h-[520px]">
-            <PortalNewsCard {...fatoPopularNews[0]} large />
           </div>
 
-          {/* Coluna Direita: Grid 2x2 para 4 cards */}
-          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Grid 3 colunas: 1 grande (2 rows) + 2 cols x 2 rows = 4 pequenos */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:row-span-2">
+              <PortalNewsCard {...fatoPopularNews[0]} large />
+            </div>
             {fatoPopularNews.slice(1).map((news) => (
-              <div key={news.id} className="h-[252px]">
-                <PortalNewsCard {...news} />
-              </div>
+              <PortalNewsCard key={news.id} {...news} />
             ))}
           </div>
+
+          <div className="mt-8 max-w-sm mx-auto">
+            <a
+              href="http://localhost:8082/fatopopular"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-radio-blue font-display font-bold text-white py-4 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg"
+            >
+              Ver mais
+            </a>
+          </div>
         </div>
-
-        {/* Botão Ver Mais */}
-            <div className="mt-10 max-w-sm mx-auto">
-              <a
-                href="http://localhost:8082/fatopopular"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center bg-radio-blue font-display font-bold text-white py-4 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg">
-                  Ver mais
-                </a>
-              </div>
-            </div>
-
-        </section>
+      </section>
 
       {/* Podcast Banner */}
         <section className="relative overflow-hidden">
