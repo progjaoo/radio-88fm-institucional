@@ -49,6 +49,8 @@ const portalNews = [
   { id: 3, title: "The Send reúne 300 mil pessoas em cinco capitais brasileiras", image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
   { id: 4, title: "'Minha Casa' para renda de até R$ 12 mil começa em maio, diz ministro", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
   { id: 5, title: "Letra, ritmo e uso de termos populares levaram parte do público gospel a questionar a canção Aue", image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
+  { id: 11, title: "Torta de limão é a pedida mais rápida e prática para esse feriado de calor", image: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
+  { id: 12, title: "'Minha Casa' para renda de até R$ 12 mil começa em maio, diz ministro", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop", category: "RECEITAS DA CINTHIA", link: "#" },
 ];
 
 const fatoPopularNews = [
