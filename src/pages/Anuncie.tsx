@@ -26,7 +26,7 @@ const planos = [
 const Anuncie = () => {
   return (
     <div>
-      <section className="radio-gradient py-16">
+      <section className="radio-gradient py-16 mt-5">
         <div className="container text-center">
           <h1 className="font-display text-4xl md:text-5xl font-extrabold text-primary-foreground">ANUNCIE NA 88 FM</h1>
           <p className="text-primary-foreground/80 mt-2 max-w-lg mx-auto">
@@ -52,7 +52,7 @@ const Anuncie = () => {
               href="https://wa.me/5524998680088"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block radio-gradient-accent font-display font-bold text-accent-foreground px-10 py-4 rounded-full text-lg hover:opacity-90 transition-opacity"
+              className="inline-block radio-gradient-accent font-display font-bold text-white px-10 py-4 rounded-full text-lg hover:opacity-90 transition-opacity"
             >
               FALAR COM O COMERCIAL
             </a>

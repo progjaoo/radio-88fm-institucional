@@ -1,22 +1,18 @@
 import { Clock } from "lucide-react";
 
 const programas = [
-  { nome: "Bom Dia 88", horario: "06:00 - 09:00", descricao: "Comece o dia com as melhores notícias e louvores para abençoar sua manhã.", locutor: "Edson Albertassi" },
-  { nome: "Temperatura Gospel", horario: "09:00 - 12:00", descricao: "As músicas gospel mais quentes do momento com uma programação especial.", locutor: "Ana Paula" },
-  { nome: "Fato Popular", horario: "12:00 - 14:00", descricao: "Notícias do Brasil e do mundo com análise e opinião.", locutor: "Pastor Marcos" },
-  { nome: "Favorito", horario: "14:00 - 17:00", descricao: "Seus louvores favoritos em sequência, sem parar. Peça a sua música!", locutor: "DJ Samuel" },
-  { nome: "Receitas da Cintia", horario: "17:00 - 18:00", descricao: "Dicas de receitas deliciosas para o dia a dia da família.", locutor: "Cintia Souza" },
-  { nome: "Programa Especial", horario: "18:00 - 20:00", descricao: "Programação especial com os melhores momentos do dia.", locutor: "Roberto Silva" },
-  { nome: "Louvor da Noite", horario: "20:00 - 00:00", descricao: "Louvores para encerrar o dia com paz e gratidão.", locutor: "Programação Automática" },
-  { nome: "Madrugada com Deus", horario: "00:00 - 06:00", descricao: "Música e meditação para as horas da madrugada.", locutor: "Programação Automática" },
+  { nome: "Fato Popular", horario: "04:00 - 09:00", descricao: "Notícias do Brasil e do mundo com análise e opinião.", locutor: "Carlos Alberto Albertassi e Betinho Albertassi" },
+  { nome: "Bom Dia 88", horario: "09:00 - 12:00", descricao: "Comece o dia com os melhores louvores e enquetes para abençoar sua manhã.", locutor: "Dário Ferreira e Letícia Dantas" },
+  { nome: "Temperatura Gospel", horario: "13:00 - 15:00", descricao: "As músicas gospel mais quentes do momento com uma programação especial.", locutor: "Luciana Alves" },
+  { nome: "Favorito", horario: "15:00 - 17:00", descricao: "Seus louvores favoritos em sequência, sem parar. Humor e diversão!", locutor: "Régias e Cinthia Miranda" },
 ];
 
 const Programacao = () => {
   return (
     <div>
-      <section className="radio-gradient py-16">
+      <section className="radio-gradient py-16 mt-5">
         <div className="container text-center">
-          <h1 className="font-display text-4xl md:text-5xl font-extrabold text-primary-foreground">PROGRAMAÇÃO</h1>
+          <h1 className="font-display text-4xl md:text-5xlnt-extrabold text-primary-foreground">PROGRAMAÇÃO</h1>
           <p className="text-primary-foreground/80 mt-2">Programação completa da Rádio 88 FM</p>
         </div>
       </section>

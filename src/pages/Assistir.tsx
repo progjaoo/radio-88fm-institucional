@@ -2,10 +2,10 @@ const VIDEO_URL = "https://playerv.srvstm.com/video/radioenergia4369//true/false
 
 const Assistir = () => {
   return (
-    <div className="min-h-[80vh] bg-radio-dark flex flex-col">
+    <div className="min-h-[80vh] bg-white flex flex-col">
       <section className="py-8">
         <div className="container text-center">
-          <h1 className="font-display text-3xl md:text-4xl font-extrabold text-primary-foreground mb-2">
+          <h1 className="font-display text-3xl md:text-4xl font-extrabold text-black mb-2">
             ASSISTA AO VIVO
           </h1>
           <p className="text-muted-foreground text-sm">Rádio 88 FM - A rádio que toca o som do céu</p>

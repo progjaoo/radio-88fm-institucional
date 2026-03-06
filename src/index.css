@@ -104,7 +104,7 @@
   }
 
   .radio-gradient-accent {
-    background: linear-gradient(135deg, hsl(var(--radio-yellow)) 0%, hsl(var(--radio-orange)) 100%);
+    background: linear-gradient(135deg, hsl(var(--radio-blue)) 0%, hsl(var(--radio-blue-dark)) 100%);
   }
 
   .text-radio-blue {

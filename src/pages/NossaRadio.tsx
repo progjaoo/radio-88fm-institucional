@@ -2,7 +2,7 @@ const NossaRadio = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="radio-gradient py-16 md:py-24">
+      <section className="radio-gradient py-16 md:py-24 mt-5">
         <div className="container text-center">
           <h1 className="font-display text-4xl md:text-5xl font-extrabold text-primary-foreground mb-4">NOSSA RÁDIO</h1>
           <p className="font-display text-lg text-radio-yellow italic">

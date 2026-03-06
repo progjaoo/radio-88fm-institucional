@@ -61,7 +61,7 @@ const Ouvir = () => {
   })();
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-radio-dark">
+    <div className="min-h-[80vh] flex items-center justify-center bg-white">
       <div className="container max-w-md text-center">
         {/* Album art */}
         <div className="relative w-64 h-64 mx-auto mb-8 rounded-2xl overflow-hidden shadow-2xl">

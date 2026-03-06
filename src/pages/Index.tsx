@@ -96,7 +96,7 @@ const Index = () => {
       <section className="bg-background text-center py-12 md:py-16">
         <div className="container">
           <h1 className="font-display text-3xl md:text-5xl font-extrabold leading-tight text-foreground mb-2">
-            VOCÊ ESTÁ NA <span className="text-radio-yellow">88FM</span>,
+            VOCÊ ESTÁ NA <span className="text-radio-blue">88FM</span>,
           </h1>
           <p className="font-display text-2xl md:text-4xl font-extrabold text-foreground">
             A RÁDIO QUE TOCA<br />O SOM DO CÉU!
@@ -104,8 +104,8 @@ const Index = () => {
 
           <p className="mt-6 text-muted-foreground text-sm">
             Ou baixe nosso App para{" "}
-            <a href="#" className="underline text-foreground">Android</a> ou para{" "}
-            <a href="#" className="underline text-foreground">IOS</a>
+            <a href="https://play.google.com/store/apps/details?id=com.radio88fm&hl=pt_BR&pli=1" target="_blank" rel="noopener noreferrer" className="underline text-foreground">Android</a> ou para{" "}
+            <a href="https://apps.apple.com/br/app/r%C3%A1dio-88-fm-o-som-do-c%C3%A9u/id1587595590?l=en-GB" target="_blank" rel="noopener noreferrer" className="underline text-foreground">IOS</a>
           </p>
 
           {/* Social Links */}
@@ -157,22 +157,22 @@ const Index = () => {
           </section>
 
       {/* Programming Section */}
-      <section className="bg-radio-blue py-16 md:py-20">
+      <section className="bg-radio-blue py-14 md:py-5 rounded-[40px] top-0 z-50 mx-4 xl:mx-140 max-w-[2400px] mb-14">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-40 items-center">
             <div className="text-white">
-              <h2 className="font-display text-3xl md:text-5xl font-extrabold leading-tight">
-                PROGRAMAÇÃO O DIA<br />
-                TODO <span className="text-white">PARA ESTAR</span><br />
-                <span className="text-white">SEMPRE COM VOCÊ!</span>
+              <h2 className="font-display text-3xl md:text-4xl leading-tight">
+                PROGRAMAÇÃO O DIA TODO<br />
+                 <span className="text-white font-bold">PARA ESTAR</span><br />
+                <span className="text-white font-bold">SEMPRE COM VOCÊ!</span>
               </h2>
             </div>
             <div className="text-white">
               <h3 className="font-display text-3xl md:text-5xl font-extrabold mb-6">FATO POPULAR</h3>
-              <ul className="text-white/70 font-display text-2xl md:text-4xl font-extrabold space-y-2">
-                <li className="text-white">BOM DIA 88</li>
-                <li>TEMPERATURA GOSPEL</li>
-                <li>FAVORITO</li>
+              <ul className="text-white/70 font-display text-2xl md:text-4xl space-y-2">
+                <li className="text-white opacity-90">BOM DIA 88</li>
+                <li className="text-white opacity-60">TEMPERATURA GOSPEL</li>
+                <li className="text-white opacity-40">FAVORITO</li>
               </ul>
             </div>
           </div>
@@ -269,7 +269,7 @@ const Index = () => {
                 href="https://wa.me/5524998680088"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-6 radio-gradient-accent font-display font-bold text-accent-foreground px-8 py-3 rounded-full hover:opacity-90 transition-opacity"
+                className="inline-block mt-6 radio-gradient-accent font-display text-white font-bold text-accent-foreground px-8 py-3 rounded-full hover:opacity-90 transition-opacity"
               >
                 FALE CONOSCO NO WHATSAPP
               </a>
