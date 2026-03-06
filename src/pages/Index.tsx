@@ -68,28 +68,30 @@ const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/company/radio-88-fm", label: "LinkedIn" },
 ];
 
-const PortalNewsCard = ({ title, image, category, link, large = false }: { title: string; image: string; category: string; link: string; large?: boolean }) => (
-  <a
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={`group relative block overflow-hidden rounded-lg ${large ? "row-span-2" : ""}`}
-  >
-    <img
-      src={image}
-      alt={title}
-      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 absolute inset-0"
-    />
-    <div className="relative z-10 flex flex-col justify-end h-full bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4">
-      <span className="self-start bg-radio-blue text-white text-[10px] font-bold px-2 py-0.5 rounded mb-2 uppercase tracking-wide">
-        {category}
-      </span>
-      <h3 className={`font-display font-bold text-white leading-tight ${large ? "text-lg md:text-xl" : "text-sm"}`}>
-        {title}
-      </h3>
-    </div>
-  </a>
-);
+const PortalNewsCard = ({ title, image, category, link, large = false }: { title: string; image: string; category: string; link: string; large?: boolean }) => {
+  if (large) {
+    return (
+      <a href={link} target="_blank" rel="noopener noreferrer" className="group relative block overflow-hidden rounded-lg h-full">
+        <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 absolute inset-0" />
+        <div className="relative z-10 flex flex-col justify-end h-full bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4">
+          <span className="self-start bg-radio-blue text-white text-[10px] font-bold px-2 py-0.5 rounded mb-2 uppercase tracking-wide">{category}</span>
+          <h3 className="font-display font-bold text-white leading-tight text-lg md:text-xl">{title}</h3>
+        </div>
+      </a>
+    );
+  }
+  return (
+    <a href={link} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden rounded-lg bg-card shadow-sm hover:shadow-md transition-shadow">
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        <span className="absolute bottom-2 left-2 bg-radio-blue text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wide">{category}</span>
+      </div>
+      <div className="p-3">
+        <h3 className="font-display text-sm font-bold leading-tight text-foreground line-clamp-3 group-hover:text-primary transition-colors">{title}</h3>
+      </div>
+    </a>
+  );
+};
 
 const Index = () => {
   return (
