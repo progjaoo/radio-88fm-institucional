@@ -82,7 +82,7 @@ const Ouvir = () => {
         </div>
 
         {/* Track info */}
-        <h2 className="font-display text-xl font-bold text-primary-foreground mb-1">{displayName}</h2>
+        <h2 className="font-display text-xl font-bold text-black mb-1">{displayName}</h2>
         {streamData?.ouvintes_conectados && (
           <p className="text-muted-foreground text-sm mb-6">
             🎧 {streamData.ouvintes_conectados} ouvintes conectados
@@ -101,7 +101,7 @@ const Ouvir = () => {
 
           <button
             onClick={togglePlay}
-            className="w-20 h-20 rounded-full radio-gradient-accent flex items-center justify-center text-accent-foreground hover:opacity-90 transition-opacity shadow-lg"
+            className="w-20 h-20 rounded-full radio-gradient-accent flex items-center justify-center text-white hover:opacity-90 transition-opacity shadow-lg"
             aria-label={isPlaying ? "Pausar" : "Reproduzir"}
           >
             {isPlaying ? <Pause size={32} /> : <Play size={32} className="ml-1" />}
