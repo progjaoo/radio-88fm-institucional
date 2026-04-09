@@ -122,6 +122,9 @@
   .bg-radio-yellow {
     background-color: hsl(var(--radio-yellow));
   }
+    .bg-radio-red {
+    background-color: hsl(var(--radio-red));
+  }
 
   .text-radio-yellow {
     color: hsl(var(--radio-yellow));

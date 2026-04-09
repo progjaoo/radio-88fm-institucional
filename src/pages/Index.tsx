@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Facebook, Instagram, Youtube, Linkedin, Radio, Video, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import LocutorCard from "@/components/LocutorCard";
 import fundolocutores from "@/assets/fundolocutores.png";
 
@@ -39,6 +40,10 @@ interface BannerInstitucional {
   posicao: string;
   ordem: number;
 }
+
+type HeroSlide =
+  | { type: "static"; id: "hero-static" }
+  | ({ type: "banner" } & BannerInstitucional);
 
 interface ProgramaCard {
   id: number;
@@ -117,6 +122,10 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   const formatarHora = (hora: string) => hora?.substring(0, 5) || "--:--";
+  const heroSlides = useMemo<HeroSlide[]>(
+    () => [{ type: "static", id: "hero-static" }, ...banners.map((banner) => ({ ...banner, type: "banner" as const }))],
+    [banners]
+  );
 
   useEffect(() => {
     const loadData = async () => {
@@ -145,85 +154,176 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    if (banners.length <= 1) return;
+    if (heroSlides.length <= 1) return;
 
     const interval = window.setInterval(() => {
-      setActiveBanner((current) => (current + 1) % banners.length);
+      setActiveBanner((current) => (current + 1) % heroSlides.length);
     }, 5000);
 
     return () => window.clearInterval(interval);
-  }, [banners]);
+  }, [heroSlides]);
 
-  const currentBanner = banners[activeBanner];
+  useEffect(() => {
+    if (activeBanner <= heroSlides.length - 1) return;
+    setActiveBanner(0);
+  }, [activeBanner, heroSlides.length]);
+
+  const currentSlide = heroSlides[activeBanner];
+  const previousSlide = heroSlides[(activeBanner - 1 + heroSlides.length) % heroSlides.length];
+  const nextSlide = heroSlides[(activeBanner + 1) % heroSlides.length];
+
+  const renderHeroSlide = (slide: HeroSlide) => {
+    if (slide.type === "static") {
+      return (
+        <div className="relative min-h-[500px] bg-white px-6 py-14 md:min-h-[560px] md:px-12 lg:px-20">
+          <div className="relative mx-auto flex min-h-[410px] max-w-4xl flex-col items-center justify-center text-center">
+            <p className="font-display text-[clamp(2.75rem,7vw,4.8rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground">
+              VOCÊ ESTÁ NA <span className="font-extrabold">88FM</span>,
+            </p>
+            <p className="mt-2 font-display text-[clamp(2.8rem,7.5vw,5.2rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground">
+              A RÁDIO QUE TOCA
+              <br />
+              O SOM DO CÉU!
+            </p>
+
+            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
+              <Link
+                to="/ouvir"
+                className="inline-flex items-center gap-3 rounded-full bg-radio-red px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-white transition-transform hover:scale-[1.02]"
+              >
+                <Radio size={18} />
+                Ouvir ao vivo
+              </Link>
+              <Link
+                to="/assistir"
+                className="inline-flex items-center gap-3 rounded-full bg-radio-yellow px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-radio-dark transition-transform hover:scale-[1.02]"
+              >
+                <Video size={18} />
+                Assistir ao vivo
+              </Link>
+            </div>
+
+            <p className="mt-10 text-lg text-foreground/85 md:text-xl">
+              Ou baixe nosso App para{" "}
+              <a href="#" className="font-semibold underline underline-offset-4">Android</a> ou para{" "}
+              <a href="#" className="font-semibold underline underline-offset-4">Apple</a>
+            </p>
+
+            <div className="mt-6 flex items-center gap-4">
+              {socialLinks.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-white text-foreground shadow-sm transition-colors hover:border-radio-blue hover:text-radio-blue"
+                  aria-label={label}
+                >
+                  <Icon size={21} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const bannerImage = (
+      <div className="relative min-h-[600px] bg-muted md:min-h-[560px]">
+        <img
+          src={slide.midiaUrl || podcastBanner}
+          alt={slide.titulo || "Carrossel institucional"}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+    );
+
+    if (slide.linkUrl) {
+      return (
+        <a
+          href={slide.linkUrl}
+          target={slide.novaAba ? "_blank" : "_self"}
+          rel="noreferrer"
+          className="block h-full w-full"
+          aria-label={slide.titulo || "Banner institucional"}
+        >
+          {bannerImage}
+        </a>
+      );
+    }
+
+    return bannerImage;
+  };
+
+  const renderHeroPeek = (slide: HeroSlide, side: "left" | "right") => {
+    if (slide.type === "static") {
+      return <div className="h-full w-full bg-white" />;
+    }
+
+    return (
+      <img
+        src={slide.midiaUrl || podcastBanner}
+        alt={slide.titulo || "Prévia do carrossel"}
+        className="h-full w-full object-cover"
+        style={{ objectPosition: side === "left" ? "right center" : "left center" }}
+      />
+    );
+  };
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-background py-12 md:py-14">
+      <section className="bg-background py-8 md:py-12">
         <div className="container">
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_820px]">
-            <div className="text-center lg:text-left">
-              <h1 className="font-display text-3xl md:text-5xl font-extrabold leading-tight text-foreground mb-2">
-                VOCÊ ESTÁ NA <span className="text-radio-blue">88FM</span>,
-              </h1>
-              <p className="font-display text-2xl md:text-4xl font-extrabold text-foreground">
-                A RÁDIO QUE TOCA<br />O SOM DO CÉU!
-              </p>
-              <p className="mt-6 text-muted-foreground text-sm md:text-base">
-                Ou baixe nosso App para{" "}
-                <a href="#" className="underline text-foreground">Android</a> ou para{" "}
-                <a href="#" className="underline text-foreground">IOS</a>
-              </p>
-              <div className="mt-4 flex justify-center gap-4 lg:justify-start">
-                {socialLinks.map(({ icon: Icon, href, label }) => (
-                  <a key={label} href={href} target="_blank" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors">
-                    <Icon size={18} />
-                  </a>
-                ))}
-              </div>
+          <div className="relative min-h-[500px] md:min-h-[560px]">
+            <div className="absolute inset-y-0 left-0 z-0 hidden w-[120px] overflow-hidden rounded-r-[40px] lg:block xl:w-[160px]">
+              {renderHeroPeek(previousSlide, "left")}
             </div>
 
-            <div className="relative">
-              <div className="overflow-hidden rounded-[24px] border border-border bg-card shadow-sm">
-                <div className="relative aspect-[18/11] bg-muted">
-                  <img
-                    src={currentBanner?.midiaUrl || podcastBanner}
-                    alt={currentBanner?.titulo || "Carrossel institucional"}
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-6">
-                    <h2 className="font-display text-2xl font-extrabold leading-tight text-white">
-                      {currentBanner?.titulo || "Acompanhe as novidades da Rádio 88 FM"}
-                    </h2>
-                    {currentBanner?.linkUrl && (
-                      <a
-                        href={currentBanner.linkUrl}
-                        target={currentBanner.novaAba ? "_blank" : "_self"}
-                        rel="noreferrer"
-                        className="mt-4 inline-flex items-center rounded-full bg-radio-yellow px-6 py-2.5 font-display text-sm font-bold text-radio-dark transition-opacity hover:opacity-90"
-                      >
-                        SAIBA MAIS
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+            <div className="absolute inset-y-0 right-0 z-0 hidden w-[120px] overflow-hidden rounded-l-[40px] lg:block xl:w-[160px]">
+              {renderHeroPeek(nextSlide, "right")}
+            </div>
 
-              {banners.length > 1 && (
-                <div className="mt-4 flex items-center justify-center gap-2 lg:justify-start">
-                  {banners.map((banner, index) => (
-                    <button
-                      key={banner.id}
-                      type="button"
-                      onClick={() => setActiveBanner(index)}
-                      className={`h-2.5 rounded-full transition-all ${index === activeBanner ? "w-8 bg-radio-blue" : "w-2.5 bg-border"}`}
-                      aria-label={`Ir para slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
+            <div className="relative z-10 overflow-hidden rounded-[28px] bg-white lg:mx-[70px] xl:mx-[70px]">
+              {renderHeroSlide(currentSlide)}
+
+              {heroSlides.length > 1 && (
+                <>
+                  {/* <button
+                    type="button"
+                    onClick={() => setActiveBanner((activeBanner - 1 + heroSlides.length) % heroSlides.length)}
+                    className="absolute left-5 top-1/2 hidden h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-black/18 text-white transition-colors hover:bg-black/28 lg:flex"
+                    aria-label="Mostrar slide anterior"
+                  >
+                    <ChevronLeft size={34} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveBanner((activeBanner + 1) % heroSlides.length)}
+                    className="absolute right-5 top-1/2 hidden h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-black/18 text-white transition-colors hover:bg-black/28 lg:flex"
+                    aria-label="Mostrar próximo slide"
+                  >
+                    <ChevronRight size={34} />
+                  </button> */}
+                </>
               )}
             </div>
+
+            {heroSlides.length > 1 && (
+              <div className="mt-5 flex items-center justify-center gap-2">
+                {heroSlides.map((slide, index) => (
+                  <button
+                    key={slide.type === "static" ? slide.id : slide.id}
+                    type="button"
+                    onClick={() => setActiveBanner(index)}
+                    className={`h-2.5 rounded-full transition-all ${
+                      index === activeBanner ? "w-8 bg-radio-blue" : "w-2.5 bg-border"
+                    }`}
+                    aria-label={`Ir para slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
