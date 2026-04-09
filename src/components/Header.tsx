@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo-88fm.png";
+import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
+import logoHeaderwhite from "@/assets/logoheadsvg.svg";
+import logo from "@/assets/logoheadsvg.svg";
+import { useTheme } from "next-themes";
 
 const navItems = [
   { label: "NOSSA RÁDIO", path: "/nossa-radio" },
-
   { label: "PROGRAMAÇÃO", path: "/programacao" },
   { label: "NOTÍCIAS", path: "http://localhost:8082/fatopopular", external: true },
   { label: "ANUNCIE", path: "/anuncie" },
@@ -14,12 +16,20 @@ const navItems = [
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-
+  
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <header className="sticky top-0 z-50 mx-4 xl:mx-140 max-w-[2400px] bg-black border border-white/20 rounded-b-[35px] shadow-lg backdrop-blur-md">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Rádio 88 FM" className="h-10 w-10 object-contain invert brightness-0" />
+          <img 
+            src={isHovered ? logoHeaderColor : logoHeaderwhite} 
+            alt="Rádio 88 FM" 
+            // 3. Removemos as classes 'invert brightness-0' quando estiver em hover
+            className={`h-10 w-10 object-contain transition-all duration-300 ${!isHovered ? "invert brightness-0" : ""}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          />
         </Link>
 
         {/* Desktop Nav */}

@@ -1,14 +1,24 @@
 import { MapPin, Phone, Mail } from "lucide-react";
-import logo from "@/assets/logo-88fm.png";
+import { useState } from "react";
+import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
+import logoHeaderwhite from "@/assets/logoheadsvg.svg";
 
 const Footer = () => {
+
+  const [isHovered, setIsHovered] = useState(false);
+  
   return (
     <footer className="bg-radio-dark text-primary-foreground">
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo & About */}
           <div>
-            <img src={logo} alt="Rádio 88 FM" className="h-16 w-16 mb-4" />
+            <img  src={isHovered ? logoHeaderColor : logoHeaderwhite} 
+            alt="Rádio 88 FM"  className={`h-16 w-16 object-contain cursor-pointer transition-all duration-300 ${!isHovered ? "invert brightness-0" : ""}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}/>
+
+          
             <p className="text-sm text-muted-foreground leading-relaxed">
               A Rádio que toca o som do céu! Desde 1986 levando amor e paz através da música e da palavra.
             </p>

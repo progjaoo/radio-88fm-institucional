@@ -19,5 +19,4 @@ const FloatingWhatsAppButton = () => {
     </a>
   );
 };
-
 export default FloatingWhatsAppButton;
