@@ -19,7 +19,7 @@ const Header = () => {
   
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <header className="sticky top-0 z-50 mx-4 xl:mx-140 max-w-[2400px] bg-black border border-white/20 rounded-b-[35px] shadow-lg backdrop-blur-md">
+    <header className="sticky top-0 z-50 mx-4 xl:mx-140 max-w-[2400px] bg-black border border-white/20 rounded-b-[20px] shadow-lg backdrop-blur-md">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2">
           <img 
@@ -71,7 +71,7 @@ const Header = () => {
             to="/assistir"
             className="bg-radio-yellow font-display font-bold text-sm px-4 py-2 rounded-full text-black flex items-center gap-1.5 hover:opacity-90 transition-opacity"
           >
-            🎥 Assistir
+            🎥 ASSISTIR
           </Link>
         </div>
 

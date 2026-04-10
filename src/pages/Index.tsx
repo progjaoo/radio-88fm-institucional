@@ -158,7 +158,7 @@ const Index = () => {
 
     const interval = window.setInterval(() => {
       setActiveBanner((current) => (current + 1) % heroSlides.length);
-    }, 5000);
+    }, 3000);
 
     return () => window.clearInterval(interval);
   }, [heroSlides]);
@@ -261,52 +261,48 @@ const Index = () => {
     }
 
     return (
-      <img
-        src={slide.midiaUrl || podcastBanner}
-        alt={slide.titulo || "Prévia do carrossel"}
-        className="h-full w-full object-cover"
-        style={{ objectPosition: side === "left" ? "right center" : "left center" }}
-      />
+      <div className="relative h-full w-full bg-muted">
+        <img
+          src={slide.midiaUrl || podcastBanner}
+          alt={slide.titulo || "Prévia do carrossel"}
+          className="h-full w-full object-cover"
+          style={{ objectPosition: side === "left" ? "center center" : "center center" }}
+        />
+      </div>
     );
   };
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-background py-8 md:py-12">
+      <section className="bg-background py-8 md:py-8">
         <div className="container">
           <div className="relative min-h-[500px] md:min-h-[560px]">
-            <div className="absolute inset-y-0 left-0 z-0 hidden w-[120px] overflow-hidden rounded-r-[40px] lg:block xl:w-[160px]">
-              {renderHeroPeek(previousSlide, "left")}
+            <div className="pointer-events-none absolute inset-y-0 -left-40 z-0 hidden w-[540px] -translate-x-[500px] overflow-hidden rounded-[20px] lg:block xl:w-[520px] xl:-translate-x-[500px]">
+              <div
+                key={`peek-left-${previousSlide.type === "static" ? previousSlide.id : previousSlide.id}`}
+                className="h-full w-full animate-in fade-in duration-400 ease-out"
+              >
+                {renderHeroPeek(previousSlide, "left")}
+              </div>
             </div>
 
-            <div className="absolute inset-y-0 right-0 z-0 hidden w-[120px] overflow-hidden rounded-l-[40px] lg:block xl:w-[160px]">
-              {renderHeroPeek(nextSlide, "right")}
+            <div className="pointer-events-none absolute inset-y-0 -right-40 z-0 hidden w-[540px] translate-x-[500px] overflow-hidden rounded-[20px] lg:block xl:w-[520px] xl:translate-x-[500px]">
+              <div
+                key={`peek-right-${nextSlide.type === "static" ? nextSlide.id : nextSlide.id}`}
+                className="h-full w-full animate-in fade-in duration-400 ease-out"
+              >
+                {renderHeroPeek(nextSlide, "right")}
+              </div>
             </div>
 
-            <div className="relative z-10 overflow-hidden rounded-[28px] bg-white lg:mx-[70px] xl:mx-[70px]">
-              {renderHeroSlide(currentSlide)}
-
-              {heroSlides.length > 1 && (
-                <>
-                  {/* <button
-                    type="button"
-                    onClick={() => setActiveBanner((activeBanner - 1 + heroSlides.length) % heroSlides.length)}
-                    className="absolute left-5 top-1/2 hidden h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-black/18 text-white transition-colors hover:bg-black/28 lg:flex"
-                    aria-label="Mostrar slide anterior"
-                  >
-                    <ChevronLeft size={34} />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveBanner((activeBanner + 1) % heroSlides.length)}
-                    className="absolute right-5 top-1/2 hidden h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-black/18 text-white transition-colors hover:bg-black/28 lg:flex"
-                    aria-label="Mostrar próximo slide"
-                  >
-                    <ChevronRight size={34} />
-                  </button> */}
-                </>
-              )}
+            <div className="relative z-10 overflow-hidden rounded-[18px] bg-white lg:mx-[90px] xl:mx-[0px]">
+              <div
+                key={`hero-center-${currentSlide.type === "static" ? currentSlide.id : currentSlide.id}`}
+                className="animate-in fade-in duration-500 ease-out"
+              >
+                {renderHeroSlide(currentSlide)}
+              </div>
             </div>
 
             {heroSlides.length > 1 && (
@@ -329,7 +325,7 @@ const Index = () => {
       </section>
 
       {/* Locutores */}
-      <section className="py-16 bg-background">
+      <section className="py-20 bg-background">
         <div className="container">
           <div className="relative">
             <div className="absolute -top-[145px] left-0 w-full z-10">
@@ -478,7 +474,7 @@ const Index = () => {
           <div className="container">
             <div className="container">
               <h2 className="font-display ml-8 text-3xl md:text-4xl font-extrabold text-primary-foreground leading-tight">
-                VEM FAZER SEU<br /><span className="text-radio-yellow">PODCAST</span> COM<br />A GENTE!
+                VENHA FAZER SEU<br /><span className="text-radio-yellow">PODCAST</span> COM<br />A GENTE!
               </h2>
               <a href="https://wa.me/5524998680088" target="_blank" className="inline-block mt-6 radio-gradient-accent font-display text-white font-bold px-8 py-3 rounded-full hover:opacity-90 transition-opacity">
                 FALE CONOSCO NO WHATSAPP

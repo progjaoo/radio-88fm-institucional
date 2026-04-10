@@ -84,16 +84,14 @@ const Ouvir = () => {
         {/* Track info */}
         <h2 className="font-display text-xl font-bold text-black mb-1">{displayName}</h2>
         {streamData?.ouvintes_conectados && (
-          <p className="text-muted-foreground text-sm mb-6">
-            🎧 {streamData.ouvintes_conectados} ouvintes conectados
-          </p>
+          <p className="text-muted-foreground text-sm mb-6"></p>
         )}
 
         {/* Controls */}
         <div className="flex items-center justify-center gap-6">
           <button
             onClick={toggleMute}
-            className="text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+            className="text-primary/100 hover:text-primary transition-colors"
             aria-label={isMuted ? "Ativar som" : "Mutar"}
           >
             {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
@@ -110,9 +108,7 @@ const Ouvir = () => {
           <div className="w-6" /> {/* spacer */}
         </div>
 
-        <p className="text-muted-foreground text-xs mt-8">
-          {streamData?.status === "Ligado" ? "🟢  Ouvindo ao vivo" : "⚪ Verificando conexão..."}
-        </p>
+        
       </div>
     </div>
   );
