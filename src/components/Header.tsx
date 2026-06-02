@@ -6,10 +6,12 @@ import logoHeaderwhite from "@/assets/logoheadsvg.svg";
 import logo from "@/assets/logoheadsvg.svg";
 import { useTheme } from "next-themes";
 
+const NEWS_URL = import.meta.env.VITE_NEWS_URL || "http://localhost:8082/fatopopular";
+
 const navItems = [
   { label: "NOSSA RÁDIO", path: "/nossa-radio" },
   { label: "PROGRAMAÇÃO", path: "/programacao" },
-  { label: "NOTÍCIAS", path: "http://localhost:8082/fatopopular", external: true },
+  { label: "NOTÍCIAS", path: NEWS_URL, external: true },
   { label: "ANUNCIE", path: "/anuncie" },
 ];
 

@@ -22,7 +22,6 @@ const Programacao = () => {
   const [loading, setLoading] = useState(true);
 
   const formatarHora = (hora: string) => hora.substring(0, 5);
-
   useEffect(() => {
     const fetchProgramas = async () => {
       try {
@@ -77,17 +76,6 @@ const Programacao = () => {
                   </span>
                 </div>
               </div>
-
-              {/* {prog.imagem && (
-                <div className="hidden md:block w-16 h-16 rounded-lg overflow-hidden border border-border">
-                  <img
-                    src={`${API_BASE_URL}${prog.imagem}`}
-                    alt={prog.nomePrograma}
-                    className="w-full h-full object-cover"
-                    onError={(e) => (e.currentTarget.style.display = 'none')}
-                  />
-                </div>
-              )} */}
             </div>
           ))}
             </div>
@@ -97,5 +85,4 @@ const Programacao = () => {
     </div>
   );
 };
-
 export default Programacao;
