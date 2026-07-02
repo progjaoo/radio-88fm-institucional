@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import NossaRadio from "./pages/NossaRadio";
-import Equipe from "./pages/Equipe";
 import Programacao from "./pages/Programacao";
 import Anuncie from "./pages/Anuncie";
 import Ouvir from "./pages/Ouvir";
@@ -26,7 +25,6 @@ const App = () => (
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
             <Route path="/nossa-radio" element={<NossaRadio />} />
-            <Route path="/equipe" element={<Equipe />} />
             <Route path="/programacao" element={<Programacao />} />
             <Route path="/anuncie" element={<Anuncie />} />
             <Route path="/ouvir" element={<Ouvir />} />

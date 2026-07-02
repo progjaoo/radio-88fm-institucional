@@ -5,22 +5,21 @@ import LocutorCard from "@/components/LocutorCard";
 import fundolocutores from "@/assets/fundolocutores.png";
 
 import podcastBanner from "@/assets/podcastbanner.jpg";
-import uelison from "@/assets/locutores/uelison.png";
-import jose from "@/assets/locutores/jose.png";
-import geraldo from "@/assets/locutores/geraldo.png";
-import favorito from "@/assets/locutores/favorito1.png";
-import favorito2 from "@/assets/locutores/favorito2.png";
-import leandro from "@/assets/locutores/leandro.png";
-import miq from "@/assets/locutores/miqueias.png";
-import geraldoalb from "@/assets/locutores/geraldoalbert.png";
-import betin from "@/assets/locutores/betinho.png";
-import leticia from "@/assets/locutores/leticia.png";
-import dario from "@/assets/locutores/dario.png";
-import lualves from "@/assets/locutores/lualves.png";
-import fato1 from "@/assets/locutores/fato1.png";
-import fato2 from "@/assets/locutores/fato2.png";
-import fato3 from "@/assets/locutores/fato3.png";
-import fato4 from "@/assets/locutores/fato4.png";
+import uelison from "@/assets/locutores-atual/uelison.png";
+import jose from "@/assets/locutores-atual/geraldoejose.png";
+import favorito from "@/assets/locutores-atual/cintia.png";
+import favorito2 from "@/assets/locutores-atual/regis.png";
+import leandro from "@/assets/locutores-atual/leandro.png";
+import miq from "@/assets/locutores-atual/miqueias.png";
+import geraldoalb from "@/assets/locutores-atual/geraldoalb.png";
+import betin from "@/assets/locutores-atual/betinho.png";
+import leticia from "@/assets/locutores-atual/leticia.png";
+import dario from "@/assets/locutores-atual/dario.png";
+import lualves from "@/assets/locutores-atual/lualves.png";
+import fato1 from "@/assets/locutores-atual/amado.png";
+import fato2 from "@/assets/locutores-atual/vogel.png";
+import fato3 from "@/assets/locutores-atual/teko.png";
+import fato4 from "@/assets/locutores-atual/marli.png";
 
 interface PostDestaque {
   id: number;
@@ -58,7 +57,7 @@ interface ProgramaCard {
 }
 
 const locutores = [
-  { image: uelison }, { image: jose }, { image: geraldo }, { image: favorito },
+  { image: uelison }, { image: jose },  { image: favorito },
   { image: favorito2 }, { image: leandro }, { image: miq }, { image: geraldoalb },
   { image: betin }, { image: leticia }, { image: dario }, { image: lualves },
   { image: fato1 }, { image: fato2 }, { image: fato3 }, { image: fato4 },
@@ -328,7 +327,7 @@ const Index = () => {
       <section className="py-20 bg-background">
         <div className="container">
           <div className="relative">
-            <div className="absolute -top-[145px] left-0 w-full z-10">
+            <div className="absolute -top-[145px] left-6 w-full z-10">
               <div className="flex items-end justify-start overflow-hidden -space-x-10"> 
                 {locutores.map((loc, i) => (
                   <LocutorCard key={i} image={loc.image} />
