@@ -64,14 +64,14 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-4">
           <Link
             to="/ouvir"
-            className="bg-red-600 font-display font-bold text-sm px-4 py-2 rounded-full text-white flex items-center gap-1.5 hover:opacity-90 transition-opacity"
+            className="bg-red-600 font-display font-bold text-sm px-4 py-2 rounded-md text-white flex items-center gap-1.5 hover:opacity-90 transition-opacity"
           >
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
             OUVIR AO VIVO
           </Link>
           <Link
             to="/assistir"
-            className="bg-radio-yellow font-display font-bold text-sm px-4 py-2 rounded-full text-black flex items-center gap-1.5 hover:opacity-90 transition-opacity"
+            className="bg-radio-yellow font-display font-bold text-sm px-4 py-2 rounded-md text-black flex items-center gap-1.5 hover:opacity-90 transition-opacity"
           >
             🎥 ASSISTIR
           </Link>
@@ -117,14 +117,14 @@ const Header = () => {
             <div className="flex gap-2 mt-2">
               <Link
                 to="/ouvir"
-                className="bg-radio-red font-display font-bold text-xs px-3 py-2 rounded-full text-white"
+                className="bg-radio-red font-display font-bold text-xs px-3 py-2 rounded-md text-white"
                 onClick={() => setMenuOpen(false)}
               >
                 OUVIR AO VIVO
               </Link>
               <Link
                 to="/assistir"
-                className="bg-radio-yellow font-display font-bold text-xs px-3 py-2 rounded-full text-black"
+                className="bg-radio-yellow font-display font-bold text-xs px-3 py-2 rounded-md text-black"
                 onClick={() => setMenuOpen(false)}
               >
                 🎥 Assistir

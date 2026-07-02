@@ -189,14 +189,14 @@ const Index = () => {
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
               <Link
                 to="/ouvir"
-                className="inline-flex items-center gap-3 rounded-full bg-radio-red px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-white transition-transform hover:scale-[1.02]"
+                className="inline-flex items-center gap-3 rounded-md bg-radio-red px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-white transition-transform hover:scale-[1.02]"
               >
                 <Radio size={18} />
                 Ouvir ao vivo
               </Link>
               <Link
                 to="/assistir"
-                className="inline-flex items-center gap-3 rounded-full bg-radio-yellow px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-radio-dark transition-transform hover:scale-[1.02]"
+                className="inline-flex items-center gap-3 rounded-md bg-radio-yellow px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-radio-dark transition-transform hover:scale-[1.02]"
               >
                 <Video size={18} />
                 Assistir ao vivo
@@ -306,20 +306,22 @@ const Index = () => {
             </div>
 
             {heroSlides.length > 1 && (
-              <div className="mt-5 flex items-center justify-center gap-2">
-                {heroSlides.map((slide, index) => (
-                  <button
-                    key={slide.type === "static" ? slide.id : slide.id}
-                    type="button"
-                    onClick={() => setActiveBanner(index)}
-                    className={`h-2.5 rounded-full transition-all ${
-                      index === activeBanner ? "w-8 bg-radio-blue" : "w-2.5 bg-border"
-                    }`}
-                    aria-label={`Ir para slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-            )}
+            <div className="mt-5 flex items-center justify-center gap-2">
+              {heroSlides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  type="button"
+                  onClick={() => setActiveBanner(index)}
+                  className={`h-1.5 transition-all duration-300 ${
+                  index === activeBanner
+                    ? "w-8 rounded-sm bg-radio-blue"
+                    : "w-4 rounded-sm bg-border"
+                }`}
+                  aria-label={`Ir para slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
           </div>
         </div>
       </section>
@@ -382,7 +384,7 @@ const Index = () => {
                   ))}
                   <a
                     href="/programacao"
-                    className="inline-flex items-center rounded-full border border-white/30 px-5 py-2 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-radio-blue"
+                    className="inline-flex items-center rounded-md border border-white/30 px-5 py-2 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-radio-blue"
                   >
                     Ver programação completa
                   </a>
@@ -423,7 +425,7 @@ const Index = () => {
           </div>
 
           <div className="mt-8 max-w-lg mx-auto">
-            <a href="http://localhost:8082/radio88fm" target="_blank" className="block w-full text-center bg-radio-blue font-display font-bold text-white py-2 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg">
+            <a href="http://localhost:8082/radio88fm" target="_blank" className="block w-full text-center bg-radio-blue font-display font-bold text-white py-2 rounded-md hover:opacity-90 transition-opacity uppercase tracking-widest text-lg">
               Ver mais
             </a>
           </div>
@@ -456,7 +458,7 @@ const Index = () => {
           </div>
 
           <div className="mt-8 max-w-lg mx-auto">
-            <a href="http://localhost:8082/fatopopular" target="_blank" className="block w-full text-center bg-radio-blue font-display font-bold text-white py-2 rounded-lg hover:opacity-90 transition-opacity uppercase tracking-widest text-lg">
+            <a href="http://localhost:8082/fatopopular" target="_blank" className="block w-full text-center bg-radio-blue font-display font-bold text-white py-2 rounded-md hover:opacity-90 transition-opacity uppercase tracking-widest text-lg">
               Ver mais
             </a>
           </div>
@@ -476,7 +478,7 @@ const Index = () => {
               <h2 className="font-display ml-8 text-3xl md:text-4xl font-extrabold text-primary-foreground leading-tight">
                 VENHA FAZER SEU<br /><span className="text-radio-yellow">PODCAST</span> COM<br />A GENTE!
               </h2>
-              <a href="https://wa.me/5524998680088" target="_blank" className="inline-block mt-6 radio-gradient-accent font-display text-white font-bold px-8 py-3 rounded-full hover:opacity-90 transition-opacity">
+              <a href="https://wa.me/5524998680088" target="_blank" className="inline-block mt-6 radio-gradient-accent font-display text-white font-bold px-8 py-3 rounded-md hover:opacity-90 transition-opacity">
                 FALE CONOSCO NO WHATSAPP
               </a>
             </div>

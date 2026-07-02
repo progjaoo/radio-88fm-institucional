@@ -60,7 +60,7 @@ const NossaRadio = () => {
             {gallery.map((item) => (
               <div
                 key={item.alt}
-                className={`overflow-hidden rounded-[10px] bg-radio-blue ${
+                className={`overflow-hidden rounded-[10px] ${
                   item.wide ? "col-span-2 aspect-[823/507]" : "aspect-[406/507]"
                 }`}
               >
