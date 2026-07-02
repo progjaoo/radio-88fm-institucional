@@ -6,7 +6,8 @@ import fundolocutores from "@/assets/fundolocutores.png";
 
 import podcastBanner from "@/assets/podcastbanner.jpg";
 import uelison from "@/assets/locutores-atual/uelison.png";
-import jose from "@/assets/locutores-atual/geraldoejose.png";
+import jose from "@/assets/locutores-atual/geraldojose1.png";
+import jose2 from "@/assets/locutores-atual/geraldojose2.png";
 import favorito from "@/assets/locutores-atual/cintia.png";
 import favorito2 from "@/assets/locutores-atual/regis.png";
 import leandro from "@/assets/locutores-atual/leandro.png";
@@ -57,7 +58,7 @@ interface ProgramaCard {
 }
 
 const locutores = [
-  { image: uelison }, { image: jose },  { image: favorito },
+  { image: uelison }, { image: jose }, { image: jose2 }, { image: favorito },
   { image: favorito2 }, { image: leandro }, { image: miq }, { image: geraldoalb },
   { image: betin }, { image: leticia }, { image: dario }, { image: lualves },
   { image: fato1 }, { image: fato2 }, { image: fato3 }, { image: fato4 },
@@ -327,7 +328,7 @@ const Index = () => {
       <section className="py-20 bg-background">
         <div className="container">
           <div className="relative">
-            <div className="absolute -top-[145px] left-6 w-full z-10">
+            <div className="absolute -top-[145px] left-0 w-full z-10">
               <div className="flex items-end justify-start overflow-hidden -space-x-10"> 
                 {locutores.map((loc, i) => (
                   <LocutorCard key={i} image={loc.image} />
