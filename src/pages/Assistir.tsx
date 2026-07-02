@@ -1,6 +1,15 @@
+import { useEffect } from "react";
+import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
+
 const VIDEO_URL = "https://playerv.srvstm.com/video/radioenergia4369//true/false/V1hwT1UyUkhVbkZTV0ZacVRUQnZlVmw2VGxOa1JYaDBWRzVhYVZWVU1Eaz0rUg==/16:9/YUhSMGNITTZMeTl5WVdScGJ6ZzRabTB1WTI5dEwzZGhiR3h3WVhCbGNuTXZkMkZzYkhCaGNHVnlYemc0WDI1dmRtRXVhbkJuK0Q=/nao/nao";
 
 const Assistir = () => {
+  const { isPlaying, pause } = useAudioPlayer();
+
+  useEffect(() => {
+    if (isPlaying) pause();
+  }, [isPlaying, pause]);
+
   return (
     <div className="min-h-[80vh] bg-white flex flex-col">
       <section className="py-8">

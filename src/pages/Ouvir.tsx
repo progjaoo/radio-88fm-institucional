@@ -1,64 +1,10 @@
-import { useState, useEffect, useRef } from "react";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
-
-const STREAM_URL = "https://stm39.srvstm.com:9776/stream";
-const API_URL = "https://radiovox.conectastm.com/api-json/VkRGU2FrMHdOVzVRVkRBOStS";
-
-interface StreamData {
-  musica_atual: string;
-  capa_musica: string;
-  ouvintes_conectados: string;
-  status: string;
-}
+import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
+import { getDisplayName } from "@/lib/streamUtils";
 
 const Ouvir = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [streamData, setStreamData] = useState<StreamData | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    const fetchData = () => {
-      fetch(API_URL)
-        .then((r) => r.json())
-        .then((data) => setStreamData(data))
-        .catch(console.error);
-    };
-    fetchData();
-    const interval = setInterval(fetchData, 15000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const togglePlay = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio(STREAM_URL);
-    }
-    if (isPlaying) {
-      audioRef.current.pause();
-      audioRef.current.src = "";
-      audioRef.current = null;
-    } else {
-      audioRef.current = new Audio(STREAM_URL);
-      audioRef.current.play().catch(console.error);
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const toggleMute = () => {
-    if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
-    }
-    setIsMuted(!isMuted);
-  };
-
-  const displayName = (() => {
-    if (!streamData?.musica_atual) return "Rádio 88 FM";
-    const m = streamData.musica_atual;
-    if (m.toLowerCase().includes("radio fm 88") || m.toLowerCase().includes("radio fm88")) {
-      return "Rádio 88 FM";
-    }
-    return m;
-  })();
+  const { isPlaying, isMuted, streamData, togglePlay, toggleMute } = useAudioPlayer();
+  const displayName = getDisplayName(streamData?.musica_atual);
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-white">

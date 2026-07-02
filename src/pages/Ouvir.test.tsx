@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { AudioPlayerProvider } from "@/contexts/AudioPlayerContext";
 import Ouvir from "./Ouvir";
 
 class MockAudio {
@@ -8,12 +9,21 @@ class MockAudio {
   muted = false;
   play = vi.fn().mockResolvedValue(undefined);
   pause = vi.fn();
+  addEventListener = vi.fn();
+  removeEventListener = vi.fn();
 
   constructor(src = "") {
     this.src = src;
     MockAudio.instances.push(this);
   }
 }
+
+const renderOuvir = () =>
+  render(
+    <AudioPlayerProvider>
+      <Ouvir />
+    </AudioPlayerProvider>
+  );
 
 describe("Ouvir", () => {
   beforeEach(() => {
@@ -38,7 +48,7 @@ describe("Ouvir", () => {
   });
 
   it("loads stream metadata and normalizes the station name", async () => {
-    render(<Ouvir />);
+    renderOuvir();
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledTimes(1);
@@ -49,26 +59,26 @@ describe("Ouvir", () => {
   });
 
   it("plays, pauses and mutes the audio stream", async () => {
-    render(<Ouvir />);
+    renderOuvir();
 
     await act(async () => {
       fireEvent.click(screen.getByRole("button", { name: /reproduzir/i }));
     });
 
-    expect(MockAudio.instances).toHaveLength(2);
-    expect(MockAudio.instances[1].play).toHaveBeenCalledTimes(1);
+    expect(MockAudio.instances).toHaveLength(1);
+    expect(MockAudio.instances[0].play).toHaveBeenCalledTimes(1);
     expect(screen.getByRole("button", { name: /pausar/i })).toBeInTheDocument();
 
     const muteButton = screen.getByRole("button", { name: /mutar/i });
     fireEvent.click(muteButton);
-    expect(MockAudio.instances[1].muted).toBe(true);
+    expect(MockAudio.instances[0].muted).toBe(true);
     expect(screen.getByRole("button", { name: /ativar som/i })).toBeInTheDocument();
 
     await act(async () => {
       fireEvent.click(screen.getByRole("button", { name: /pausar/i }));
     });
 
-    expect(MockAudio.instances[1].pause).toHaveBeenCalledTimes(1);
+    expect(MockAudio.instances[0].pause).toHaveBeenCalledTimes(1);
     expect(screen.getByRole("button", { name: /reproduzir/i })).toBeInTheDocument();
   });
 });

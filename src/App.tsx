@@ -12,6 +12,7 @@ import Ouvir from "./pages/Ouvir";
 import Assistir from "./pages/Assistir";
 import NotFound from "./pages/NotFound";
 import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton";
+import { AudioPlayerProvider } from "./contexts/AudioPlayerContext";
 
 const queryClient = new QueryClient();
 
@@ -20,20 +21,22 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Index />} />
-            <Route path="/nossa-radio" element={<NossaRadio />} />
-            <Route path="/programacao" element={<Programacao />} />
-            <Route path="/anuncie" element={<Anuncie />} />
-            <Route path="/ouvir" element={<Ouvir />} />
-            <Route path="/assistir" element={<Assistir />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <FloatingWhatsAppButton />
-      </BrowserRouter>
+      <AudioPlayerProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Index />} />
+              <Route path="/nossa-radio" element={<NossaRadio />} />
+              <Route path="/programacao" element={<Programacao />} />
+              <Route path="/anuncie" element={<Anuncie />} />
+              <Route path="/ouvir" element={<Ouvir />} />
+              <Route path="/assistir" element={<Assistir />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <FloatingWhatsAppButton />
+        </BrowserRouter>
+      </AudioPlayerProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
