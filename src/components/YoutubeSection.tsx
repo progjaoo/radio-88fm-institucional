@@ -71,7 +71,7 @@ const YoutubeSection = ({ videos, shorts, loading, moreHref }: YoutubeSectionPro
             href={moreHref}
             target="_blank"
             rel="noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-md bg-radio-red py-3 text-center font-display text-lg font-extrabold uppercase tracking-widest text-white transition-opacity hover:opacity-90"
+            className="flex w-full items-center justify-center gap-2 rounded-md bg-radio-red py-2.5 text-center font-display text-sm font-extrabold uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-90 sm:py-3 sm:text-lg sm:tracking-widest"
           >
             Ver mais
             <ExternalLink size={19} />

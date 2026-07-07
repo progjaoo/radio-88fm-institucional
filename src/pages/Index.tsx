@@ -6,8 +6,10 @@ import YoutubeSection from "@/components/YoutubeSection";
 import fundolocutores from "@/assets/fundolocutores.png";
 import { useYoutubeContent } from "@/hooks/useYoutubeContent";
 import podcastbanner from "@/assets/podcastbanner.png";
+import podcastBannerMobile from "@/assets/podcastbannermobile.png";
 import podcastBanner from "@/assets/podcastbanner.jpg";
 import programacaoImg from "@/assets/programacao.png";
+import programacaoMobileImg from "@/assets/programacaomobile.png";
 import uelison from "@/assets/locutores-atual/uelison.png";
 import jose from "@/assets/locutores-atual/geraldojose1.png";
 import jose2 from "@/assets/locutores-atual/geraldojose2.png";
@@ -361,7 +363,13 @@ const Index = () => {
           <img
             src={programacaoImg}
             alt="Programacao o dia todo para estar sempre com voce"
-            className="h-auto w-full rounded-[18px] object-cover sm:rounded-[28px]"
+            className="hidden h-auto w-full rounded-[28px] object-cover sm:block"
+            loading="lazy"
+          />
+          <img
+            src={programacaoMobileImg}
+            alt="Programacao o dia todo para estar sempre com voce"
+            className="h-auto w-full rounded-[18px] object-cover sm:hidden"
             loading="lazy"
           />
         </div>
@@ -529,8 +537,14 @@ const Index = () => {
           >
             <img
               src={podcastbanner}
-              alt="Programação o dia todo para estar sempre com você"
-              className="h-auto w-full cursor-pointer rounded-[18px] object-cover sm:rounded-[28px]"
+              alt="Venha fazer seu podcast com a gente"
+              className="hidden h-auto w-full cursor-pointer rounded-[28px] object-cover sm:block"
+              loading="lazy"
+            />
+            <img
+              src={podcastBannerMobile}
+              alt="Venha fazer seu podcast com a gente"
+              className="h-auto w-full cursor-pointer rounded-[18px] object-cover sm:hidden"
               loading="lazy"
             />
           </a>
