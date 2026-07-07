@@ -2,9 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { Facebook, Instagram, Youtube, Linkedin, Radio, Video, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import LocutorCard from "@/components/LocutorCard";
+import YoutubeSection from "@/components/YoutubeSection";
 import fundolocutores from "@/assets/fundolocutores.png";
-
+import { useYoutubeContent } from "@/hooks/useYoutubeContent";
+import podcastbanner from "@/assets/podcastbanner.png";
 import podcastBanner from "@/assets/podcastbanner.jpg";
+import programacaoImg from "@/assets/programacao.png";
 import uelison from "@/assets/locutores-atual/uelison.png";
 import jose from "@/assets/locutores-atual/geraldojose1.png";
 import jose2 from "@/assets/locutores-atual/geraldojose2.png";
@@ -114,14 +117,22 @@ const PortalNewsCard = ({ titulo, imagemCapaUrl, editorial, id, large = false }:
 };
 
 const Index = () => {
-  const [portalNews, setPortalNews] = useState<PostDestaque[]>([]);
-  const [fatoPopularNews, setFatoPopularNews] = useState<PostDestaque[]>([]);
+  // Substituído por YouTubeCarouselSection. Manter para rollback se necessário.
+  // const [portalNews, setPortalNews] = useState<PostDestaque[]>([]);
+  // const [fatoPopularNews, setFatoPopularNews] = useState<PostDestaque[]>([]);
   const [banners, setBanners] = useState<BannerInstitucional[]>([]);
-  const [programas, setProgramas] = useState<ProgramaCard[]>([]);
+  // Programacao dinamica preservada para rollback futuro da secao via API.
+  // const [programas, setProgramas] = useState<ProgramaCard[]>([]);
   const [activeBanner, setActiveBanner] = useState(0);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+  const {
+    videos: youtubeVideos,
+    shorts: youtubeShorts,
+    loading: youtubeLoading,
+    error: youtubeError,
+  } = useYoutubeContent(6);
 
-  const formatarHora = (hora: string) => hora?.substring(0, 5) || "--:--";
+  // const formatarHora = (hora: string) => hora?.substring(0, 5) || "--:--";
   const heroSlides = useMemo<HeroSlide[]>(
     () => [{ type: "static", id: "hero-static" }, ...banners.map((banner) => ({ ...banner, type: "banner" as const }))],
     [banners]
@@ -130,28 +141,28 @@ const Index = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [res88, resFato, resBanners, resProgramacao] = await Promise.all([
-          fetch("http://localhost:5091/api/posts/destaques88fm"),
-          fetch("http://localhost:5091/api/posts/destaquesFatoPopular"),
-          fetch("http://localhost:5091/api/banner-institucional/ativos?emissoraId=1&posicao=home"),
-          fetch("http://localhost:5091/api/programacao/emissora/1/buscarTodos"),
-        ]);
+        const resBanners = await fetch("http://localhost:5091/api/banner-institucional/ativos?emissoraId=1&posicao=home");
 
-        if (res88.ok) setPortalNews(await res88.json());
-        if (resFato.ok) setFatoPopularNews(await resFato.json());
         if (resBanners.ok) setBanners(await resBanners.json());
-        if (resProgramacao.ok) {
-          const data: ProgramaCard[] = await resProgramacao.json();
-          setProgramas(data.filter((programa) => programa.ativo !== false).slice(0, 3));
-        }
+        // Programacao dinamica substituida temporariamente por imagem estatica do Designer.
+        // Para rollback, reativar o state `programas`, `formatarHora`, este fetch e a secao JSX preservada abaixo.
+        // const resProgramacao = await fetch("http://localhost:5091/api/programacao/emissora/1/buscarTodos");
+        // if (resProgramacao.ok) {
+        //   const data: ProgramaCard[] = await resProgramacao.json();
+        //   setProgramas(data.filter((programa) => programa.ativo !== false).slice(0, 3));
+        // }
       } catch (error) {
-        console.error("Erro ao buscar notícias:", error);
-      } finally {
-        setLoading(false);
+        console.error("Erro ao buscar dados institucionais:", error);
       }
     };
     loadData();
   }, []);
+
+  useEffect(() => {
+    if (youtubeError) {
+      console.warn("Erro ao carregar vídeos do YouTube:", youtubeError);
+    }
+  }, [youtubeError]);
 
   useEffect(() => {
     if (heroSlides.length <= 1) return;
@@ -175,48 +186,48 @@ const Index = () => {
   const renderHeroSlide = (slide: HeroSlide) => {
     if (slide.type === "static") {
       return (
-        <div className="relative min-h-[500px] bg-white px-6 py-14 md:min-h-[560px] md:px-12 lg:px-20">
-          <div className="relative mx-auto flex min-h-[410px] max-w-4xl flex-col items-center justify-center text-center">
-            <p className="font-display text-[clamp(2.75rem,7vw,4.8rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground">
+        <div className="relative min-h-[420px] bg-white px-4 py-10 md:min-h-[560px] md:px-12 md:py-14 lg:px-20">
+          <div className="relative mx-auto flex min-h-[340px] max-w-4xl flex-col items-center justify-center text-center md:min-h-[410px]">
+            <p className="font-display text-[clamp(2.1rem,12vw,4.8rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground">
               VOCÊ ESTÁ NA <span className="font-extrabold">88FM</span>,
             </p>
-            <p className="mt-2 font-display text-[clamp(2.8rem,7.5vw,5.2rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground">
+            <p className="mt-2 font-display text-[clamp(2.15rem,12.5vw,5.2rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground">
               A RÁDIO QUE TOCA
               <br />
               O SOM DO CÉU!
             </p>
 
-            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
+            <div className="mt-7 flex w-full max-w-sm flex-col items-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:gap-4 md:mt-8">
               <Link
                 to="/ouvir"
-                className="inline-flex items-center gap-3 rounded-md bg-radio-red px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-white transition-transform hover:scale-[1.02]"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-md bg-radio-red px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-white transition-transform hover:scale-[1.02] sm:w-auto"
               >
                 <Radio size={18} />
                 Ouvir ao vivo
               </Link>
               <Link
                 to="/assistir"
-                className="inline-flex items-center gap-3 rounded-md bg-radio-yellow px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-radio-dark transition-transform hover:scale-[1.02]"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-md bg-radio-yellow px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-radio-dark transition-transform hover:scale-[1.02] sm:w-auto"
               >
                 <Video size={18} />
                 Assistir ao vivo
               </Link>
             </div>
 
-            <p className="mt-10 text-lg text-foreground/85 md:text-xl">
+            <p className="mt-8 text-base text-foreground/85 md:mt-10 md:text-xl">
               Ou baixe nosso App para{" "}
               <a href="#" className="font-semibold underline underline-offset-4">Android</a> ou para{" "}
               <a href="#" className="font-semibold underline underline-offset-4">Apple</a>
             </p>
 
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-5 flex items-center gap-3 md:mt-6 md:gap-4">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-white text-foreground shadow-sm transition-colors hover:border-radio-blue hover:text-radio-blue"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-white text-foreground shadow-sm transition-colors hover:border-radio-blue hover:text-radio-blue md:h-12 md:w-12 md:rounded-2xl"
                   aria-label={label}
                 >
                   <Icon size={21} />
@@ -229,7 +240,7 @@ const Index = () => {
     }
 
     const bannerImage = (
-      <div className="relative min-h-[600px] bg-muted md:min-h-[560px]">
+      <div className="relative min-h-[420px] bg-muted md:min-h-[560px]">
         <img
           src={slide.midiaUrl || podcastBanner}
           alt={slide.titulo || "Carrossel institucional"}
@@ -273,11 +284,11 @@ const Index = () => {
   };
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       {/* Hero Section */}
-      <section className="bg-background py-8 md:py-8">
+      <section className="overflow-x-hidden bg-background py-4 md:py-8">
         <div className="container">
-          <div className="relative min-h-[500px] md:min-h-[560px]">
+          <div className="relative min-h-[420px] md:min-h-[560px]">
             <div className="pointer-events-none absolute inset-y-0 -left-40 z-0 hidden w-[540px] -translate-x-[500px] overflow-hidden rounded-[20px] lg:block xl:w-[520px] xl:-translate-x-[500px]">
               <div
                 key={`peek-left-${previousSlide.type === "static" ? previousSlide.id : previousSlide.id}`}
@@ -327,7 +338,7 @@ const Index = () => {
       </section>
 
       {/* Locutores */}
-      <section className="py-20 bg-background">
+      <section className="hidden bg-background py-1 lg:block">
         <div className="container">
           <div className="relative">
             <div className="absolute -top-[145px] left-0 w-full z-10">
@@ -344,7 +355,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Programming Section */}
+      {/* Programming Section - substituida por imagem estatica do Designer */}
+      <section className="py-5 md:py-10">
+        <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10 xl:px-12">
+          <img
+            src={programacaoImg}
+            alt="Programacao o dia todo para estar sempre com voce"
+            className="h-auto w-full rounded-[18px] object-cover sm:rounded-[28px]"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      {/* Programming Section dinamica preservada para rollback.
+          Foi substituida temporariamente por imagem estatica do Designer.
+          Quando a programacao voltar a ser gerenciada pela API, reativar este bloco e a logica relacionada.
       <section className="bg-radio-blue py-14 md:py-5 rounded-[40px] mx-4 xl:mx-140 max-w-[2400px] mb-14">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
@@ -398,8 +423,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+      */}
 
-      {/* --- SEÇÃO PORTAL 88 FM --- */}
+      {/* --- SEÇÃO PORTAL 88 FM antiga, substituída por YouTube Data API v3. Mantida para rollback.
       <section className="py-10">
         <div className="container">
           <div className="flex items-center gap-2 mb-6">
@@ -431,8 +457,8 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* --- SEÇÃO FATO POPULAR --- */}
+      */}
+      {/* --- SEÇÃO FATO POPULAR antiga, substituída por Shorts do YouTube. Mantida para rollback.
       <section className="py-10 bg-muted">
         <div className="container">
           <div className="flex items-center gap-2 mb-6">
@@ -464,9 +490,16 @@ const Index = () => {
           </div>
         </div>
       </section>
+      */}
+      <YoutubeSection
+        videos={youtubeVideos}
+        shorts={youtubeShorts}
+        loading={youtubeLoading}
+        moreHref="https://www.youtube.com/@radio88oficial"
+      />
 
       {/* Podcast Banner */}
-      <section className="relative overflow-hidden">
+      {/* <section className="relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center brightness-50"
           style={{ backgroundImage: `url(${podcastBanner})` }}
@@ -483,6 +516,24 @@ const Index = () => {
               </a>
             </div>
           </div>
+        </div>
+      </section> */}
+      <section className="py-5 md:py-10">
+        <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10 xl:px-12">
+          <a
+            href="https://wa.me/5524998680088"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Fale conosco no WhatsApp"
+            className="block"
+          >
+            <img
+              src={podcastbanner}
+              alt="Programação o dia todo para estar sempre com você"
+              className="h-auto w-full cursor-pointer rounded-[18px] object-cover sm:rounded-[28px]"
+              loading="lazy"
+            />
+          </a>
         </div>
       </section>
     </div>

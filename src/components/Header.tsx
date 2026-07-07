@@ -8,10 +8,20 @@ import { useTheme } from "next-themes";
 
 const NEWS_URL = import.meta.env.VITE_NEWS_URL || "http://localhost:8082/fatopopular";
 
-const navItems = [
+type NavItem = {
+  label: string;
+  path: string;
+  external?: boolean;
+};
+
+const navItems: NavItem[] = [
   { label: "NOSSA RÁDIO", path: "/nossa-radio" },
-  { label: "PROGRAMAÇÃO", path: "/programacao" },
-  { label: "NOTÍCIAS", path: NEWS_URL, external: true },
+  { label: "EQUIPE", path: "/equipe" },
+
+/*   { label: "PROGRAMAÇÃO", path: "/programacao" },
+ */  
+/* { label: "NOTÍCIAS", path: NEWS_URL, external: true }, */
+  
   { label: "ANUNCIE", path: "/anuncie" },
 ];
 
@@ -21,7 +31,7 @@ const Header = () => {
   
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <header className="sticky top-0 z-50 mx-4 xl:mx-140 max-w-[2400px] bg-black border border-white/20 rounded-b-[20px] shadow-lg backdrop-blur-md">
+    <header className="sticky top-0 z-50 mx-3 max-w-[2400px] rounded-b-[16px] border border-white/20 bg-black shadow-lg backdrop-blur-md sm:mx-4 sm:rounded-b-[20px] xl:mx-140">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2">
           <img 
@@ -35,7 +45,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-5 ml-60">
+        <nav className="hidden items-center gap-5 lg:flex lg:ml-20 xl:ml-60">
           {navItems.map((item) =>
             item.external ? (
               <a
@@ -61,7 +71,7 @@ const Header = () => {
           )}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden items-center gap-4 lg:flex">
           <Link
             to="/ouvir"
             className="bg-red-600 font-display font-bold text-sm px-4 py-2 rounded-md text-white flex items-center gap-1.5 hover:opacity-90 transition-opacity"
@@ -80,7 +90,7 @@ const Header = () => {
         {/* Mobile menu toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-white"
+          className="text-white lg:hidden"
           aria-label="Menu"
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -89,7 +99,7 @@ const Header = () => {
 
       {/* Mobile Nav */}
       {menuOpen && (
-        <div className="md:hidden bg-black border-t border-white/10 pb-4">
+        <div className="bg-black border-t border-white/10 pb-4 lg:hidden">
           <nav className="flex flex-col gap-2 px-4 pt-2">
             {navItems.map((item) =>
               item.external ? (
@@ -114,17 +124,17 @@ const Header = () => {
                 </Link>
               )
             )}
-            <div className="flex gap-2 mt-2">
+            <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
               <Link
                 to="/ouvir"
-                className="bg-radio-red font-display font-bold text-xs px-3 py-2 rounded-md text-white"
+                className="flex w-full items-center justify-center rounded-md bg-radio-red px-3 py-2 font-display text-xs font-bold text-white"
                 onClick={() => setMenuOpen(false)}
               >
                 OUVIR AO VIVO
               </Link>
               <Link
                 to="/assistir"
-                className="bg-radio-yellow font-display font-bold text-xs px-3 py-2 rounded-md text-black"
+                className="flex w-full items-center justify-center rounded-md bg-radio-yellow px-3 py-2 font-display text-xs font-bold text-black"
                 onClick={() => setMenuOpen(false)}
               >
                 🎥 Assistir

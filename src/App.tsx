@@ -13,6 +13,7 @@ import Assistir from "./pages/Assistir";
 import NotFound from "./pages/NotFound";
 import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton";
 import { AudioPlayerProvider } from "./contexts/AudioPlayerContext";
+import Equipe from "./pages/Equipe";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route element={<Layout />}>
               <Route path="/" element={<Index />} />
               <Route path="/nossa-radio" element={<NossaRadio />} />
+               <Route path="/equipe" element={<Equipe />} />
               <Route path="/programacao" element={<Programacao />} />
               <Route path="/anuncie" element={<Anuncie />} />
               <Route path="/ouvir" element={<Ouvir />} />
