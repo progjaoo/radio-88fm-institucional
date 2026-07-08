@@ -1,6 +1,6 @@
 import HistoryTimeline from "@/components/HistoryTimeline";
 import { historicoLogos } from "@/data/historicoLogos";
-import edsonAlbertassi from "@/assets/nossa-radio/edsonalbertassi.png";
+import edsonAlbertassi from "@/assets/nossa-radio/edson.jpeg";
 const pageContainer = "mx-auto w-full max-w-[1500px] px-6 sm:px-6 lg:px-10 xl:px-12";
 
 const NossaRadio = () => {

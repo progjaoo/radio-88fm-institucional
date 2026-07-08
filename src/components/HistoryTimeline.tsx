@@ -16,7 +16,9 @@ interface HistoryTimelineProps {
 const getVersionLabel = (index: number) => `${index + 1}ª versão`;
 
 // Aumente/diminua este valor para controlar a velocidade do carrossel continuo.
-// 0.2 = bem lento, 0.35 = recomendado, 0.5 = medio.
+// 0.2 = bem lento, 0.35 = recomendado, 0.5 = medio. 
+// 0.3 = lento
+//1.0 = rápido
 const LOGO_CAROUSEL_SPEED = 0.7;
 
 const HistoryTimeline = ({ items }: HistoryTimelineProps) => {
