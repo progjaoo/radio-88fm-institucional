@@ -1,4 +1,5 @@
 import { YoutubeItem, YoutubeVariant } from "@/lib/youtube";
+import { Analytics } from "@/services/analytics/analytics";
 
 interface YoutubeVideoCardProps {
   item: YoutubeItem;
@@ -13,6 +14,13 @@ const YoutubeVideoCard = ({ item, variant }: YoutubeVideoCardProps) => {
       href={item.url}
       target="_blank"
       rel="noreferrer"
+      onClick={() =>
+        Analytics.track(isShort ? "short_open" : "video_open", {
+          video_title: item.title,
+          video_id: item.id,
+          ...(isShort ? {} : { section: "home" }),
+        })
+      }
       className="group block h-full overflow-hidden rounded-2xl bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.08]"
     >
       <div className={`relative overflow-hidden bg-white/10 ${isShort ? "aspect-[9/16]" : "aspect-video"}`}>

@@ -5,6 +5,7 @@ import LocutorCard from "@/components/LocutorCard";
 import YoutubeSection from "@/components/YoutubeSection";
 import fundolocutores from "@/assets/fundolocutores.png";
 import { useYoutubeContent } from "@/hooks/useYoutubeContent";
+import { Analytics } from "@/services/analytics/analytics";
 import podcastbanner from "@/assets/podcastbanner.png";
 import podcastBannerMobile from "@/assets/podcastbannermobile.png";
 import podcastBanner from "@/assets/podcastbanner.jpg";
@@ -218,8 +219,22 @@ const Index = () => {
 
             <p className="mt-8 text-base text-foreground/85 md:mt-10 md:text-xl">
               Ou baixe nosso App para{" "}
-              <a href="#" className="font-semibold underline underline-offset-4">Android</a> ou para{" "}
-              <a href="#" className="font-semibold underline underline-offset-4">Apple</a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.sentinel4.radio88&hl=pt_BR"
+                onClick={() => Analytics.track("download_app", { platform: "android", location: "hero" })}
+                className="font-semibold underline underline-offset-4"
+                target="_blank"
+              >
+                Android
+              </a> ou para{" "}
+              <a
+                href="https://apps.apple.com/br/app/r%C3%A1dio-88-fm-o-som-do-c%C3%A9u/id1587595590"
+                onClick={() => Analytics.track("download_app", { platform: "ios", location: "hero" })}
+                className="font-semibold underline underline-offset-4"
+                target="_blank"
+              >
+                Apple
+              </a>
             </p>
 
             <div className="mt-5 flex items-center gap-3 md:mt-6 md:gap-4">
@@ -257,6 +272,12 @@ const Index = () => {
           href={slide.linkUrl}
           target={slide.novaAba ? "_blank" : "_self"}
           rel="noreferrer"
+          onClick={() =>
+            Analytics.track("hero_banner_click", {
+              banner_id: slide.id,
+              banner_title: slide.titulo,
+            })
+          }
           className="block h-full w-full"
           aria-label={slide.titulo || "Banner institucional"}
         >
@@ -533,6 +554,7 @@ const Index = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Fale conosco no WhatsApp"
+            onClick={() => Analytics.track("podcast_click", { location: "home" })}
             className="block"
           >
             <img

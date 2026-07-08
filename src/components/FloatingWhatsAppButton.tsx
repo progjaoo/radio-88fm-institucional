@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
+import { Analytics } from "@/services/analytics/analytics";
 
 const FloatingWhatsAppButton = () => {
   const { isPlaying } = useAudioPlayer();
@@ -11,6 +12,12 @@ const FloatingWhatsAppButton = () => {
       href="https://wa.me/5524998680088" // Seu número de contato
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() =>
+        Analytics.track("whatsapp_click", {
+          location: "float_button",
+          current_page: location.pathname,
+        })
+      }
       className={`fixed right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-[#20ba58] ${
         hasMiniPlayer ? "bottom-24" : "bottom-6"
       }`}

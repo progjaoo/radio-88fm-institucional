@@ -1,8 +1,10 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import type { StreamData } from "@/types/stream";
+import { Analytics } from "@/services/analytics/analytics";
 
 const STREAM_URL = "https://stm39.srvstm.com:9776/stream";
 const API_URL = "https://radiovox.conectastm.com/api-json/VkRGU2FrMHdOVzVRVkRBOStS";
+const LISTENING_MILESTONES = [30, 60, 300, 600];
 
 interface AudioPlayerContextValue {
   isPlaying: boolean;
@@ -21,6 +23,9 @@ interface AudioPlayerProviderProps {
 
 export const AudioPlayerProvider = ({ children }: AudioPlayerProviderProps) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const listeningIntervalRef = useRef<number | null>(null);
+  const listeningSecondsRef = useRef(0);
+  const listeningMilestonesRef = useRef<Set<number>>(new Set());
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [streamData, setStreamData] = useState<StreamData | null>(null);
@@ -37,8 +42,42 @@ export const AudioPlayerProvider = ({ children }: AudioPlayerProviderProps) => {
   useEffect(() => {
     const audio = getAudio();
 
-    const handlePlay = () => setIsPlaying(true);
-    const handlePause = () => setIsPlaying(false);
+    const stopListeningTimer = () => {
+      if (listeningIntervalRef.current !== null) {
+        window.clearInterval(listeningIntervalRef.current);
+        listeningIntervalRef.current = null;
+      }
+    };
+
+    const startListeningTimer = () => {
+      if (listeningIntervalRef.current !== null) return;
+
+      listeningIntervalRef.current = window.setInterval(() => {
+        listeningSecondsRef.current += 1;
+
+        for (const milestone of LISTENING_MILESTONES) {
+          if (
+            listeningSecondsRef.current >= milestone &&
+            !listeningMilestonesRef.current.has(milestone)
+          ) {
+            listeningMilestonesRef.current.add(milestone);
+            Analytics.track("radio_listening_time", { seconds: milestone });
+          }
+        }
+      }, 1000);
+    };
+
+    const handlePlay = () => {
+      setIsPlaying(true);
+      Analytics.track("radio_play");
+      startListeningTimer();
+    };
+
+    const handlePause = () => {
+      setIsPlaying(false);
+      Analytics.track("radio_pause");
+      stopListeningTimer();
+    };
 
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
@@ -46,6 +85,7 @@ export const AudioPlayerProvider = ({ children }: AudioPlayerProviderProps) => {
 
     return () => {
       audio.pause();
+      stopListeningTimer();
       audio.removeEventListener("play", handlePlay);
       audio.removeEventListener("pause", handlePause);
       audio.removeEventListener("ended", handlePause);

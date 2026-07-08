@@ -1,22 +1,22 @@
-import fotoinicial from "@/assets/fotos-nossaradio/fotoinicial.png";
-import leticia from "@/assets/fotos-nossaradio/leticia.png";
-import dario from "@/assets/fotos-nossaradio/dario.png";
-import miqueias from "@/assets/fotos-nossaradio/miqueias.svg";
-import lualves from "@/assets/fotos-nossaradio/lualves.svg";
-import regiscintia from "@/assets/fotos-nossaradio/regiscintia.png";
-import geraldojose from "@/assets/fotos-nossaradio/geraldojose.png";
-import proposito from "@/assets/fotos-nossaradio/proposito.png";
-import geraldoalbertassi from "@/assets/fotos-nossaradio/geraldoalbertassi.png";
-import cristoemnos from "@/assets/fotos-nossaradio/cristoemnos.png";
-import betinhoalb from "@/assets/fotos-nossaradio/betinhoalb.svg";
-import teko from "@/assets/fotos-nossaradio/teko.svg";
-import somdoceu from "@/assets/fotos-nossaradio/somdoceu.png";
-import amado from "@/assets/fotos-nossaradio/amado.svg";
-import leandro from "@/assets/fotos-nossaradio/leandro.svg";
-import vogel from "@/assets/fotos-nossaradio/vogel.svg";
-import familiafato from "@/assets/fotos-nossaradio/familiafato.svg";
-import lugomes from "@/assets/fotos-nossaradio/lugomes.svg";
-import radio88final from "@/assets/fotos-nossaradio/radio88final.svg";
+import fotoinicial from "@/assets/fotos-equipe/fotoinicial.png";
+import leticia from "@/assets/fotos-equipe/leticia.png";
+import dario from "@/assets/fotos-equipe/dario.png";
+import miqueias from "@/assets/fotos-equipe/miqueias.svg";
+import lualves from "@/assets/fotos-equipe/lualves.svg";
+import regiscintia from "@/assets/fotos-equipe/regiscintia.png";
+import geraldojose from "@/assets/fotos-equipe/geraldojose.png";
+import proposito from "@/assets/fotos-equipe/proposito.png";
+import geraldoalbertassi from "@/assets/fotos-equipe/geraldoalbertassi.png";
+import cristoemnos from "@/assets/fotos-equipe/cristoemnos.png";
+import betinhoalb from "@/assets/fotos-equipe/betinhoalb.svg";
+import teko from "@/assets/fotos-equipe/teko.svg";
+import somdoceu from "@/assets/fotos-equipe/somdoceu.png";
+import amado from "@/assets/fotos-equipe/amado.svg";
+import leandro from "@/assets/fotos-equipe/leandro.svg";
+import vogel from "@/assets/fotos-equipe/vogel.svg";
+import familiafato from "@/assets/fotos-equipe/familiafato.svg";
+import lugomes from "@/assets/fotos-equipe/lugomes.svg";
+import radio88final from "@/assets/fotos-equipe/radio88final.svg";
 
 interface EquipeCard {
   src: string;
@@ -60,11 +60,15 @@ const Equipe = () => {
             {gallery.map((item) => (
               <div
                 key={item.alt}
-                className={`overflow-hidden rounded-[10px] ${
+                className={`transform-gpu overflow-hidden rounded-[10px] transition-all duration-300 ease-out motion-reduce:transition-none hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)] md:hover:-translate-y-1.5 ${
                   item.wide ? "col-span-2 aspect-[823/507]" : "aspect-[406/507]"
                 }`}
               >
-                <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="h-full w-full object-cover transition-transform duration-300 ease-out motion-reduce:transition-none"
+                />
               </div>
             ))}
           </div>

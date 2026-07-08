@@ -2,6 +2,7 @@ import { ExternalLink, PlaySquare } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { YoutubeItem, YoutubeVariant } from "@/lib/youtube";
 import YoutubeVideoCard from "@/components/YoutubeVideoCard";
+import { Analytics } from "@/services/analytics/analytics";
 
 interface YoutubeSectionProps {
   videos: YoutubeItem[];
@@ -71,6 +72,7 @@ const YoutubeSection = ({ videos, shorts, loading, moreHref }: YoutubeSectionPro
             href={moreHref}
             target="_blank"
             rel="noreferrer"
+            onClick={() => Analytics.track("videos_view_more", { section: "videos" })}
             className="flex w-full items-center justify-center gap-2 rounded-md bg-radio-red py-2.5 text-center font-display text-sm font-extrabold uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-90 sm:py-3 sm:text-lg sm:tracking-widest"
           >
             Ver mais

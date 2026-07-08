@@ -1,76 +1,75 @@
-import fotoinicial from "@/assets/fotos-nossaradio/fotoinicial.png";
-import leticia from "@/assets/fotos-nossaradio/leticia.png";
-import dario from "@/assets/fotos-nossaradio/dario.png";
-import miqueias from "@/assets/fotos-nossaradio/miqueias.svg";
-import lualves from "@/assets/fotos-nossaradio/lualves.svg";
-import regiscintia from "@/assets/fotos-nossaradio/regiscintia.png";
-import geraldojose from "@/assets/fotos-nossaradio/geraldojose.png";
-import proposito from "@/assets/fotos-nossaradio/proposito.png";
-import geraldoalbertassi from "@/assets/fotos-nossaradio/geraldoalbertassi.png";
-import cristoemnos from "@/assets/fotos-nossaradio/cristoemnos.png";
-import betinhoalb from "@/assets/fotos-nossaradio/betinhoalb.svg";
-import teko from "@/assets/fotos-nossaradio/teko.svg";
-import somdoceu from "@/assets/fotos-nossaradio/somdoceu.png";
-import amado from "@/assets/fotos-nossaradio/amado.svg";
-import leandro from "@/assets/fotos-nossaradio/leandro.svg";
-import vogel from "@/assets/fotos-nossaradio/vogel.svg";
-import familiafato from "@/assets/fotos-nossaradio/familiafato.svg";
-import lugomes from "@/assets/fotos-nossaradio/lugomes.svg";
-import radio88final from "@/assets/fotos-nossaradio/radio88final.svg";
-
-interface NossaRadioCard {
-  src: string;
-  alt: string;
-  wide?: boolean;
-}
-
-const gallery: NossaRadioCard[] = [
-  { src: leticia, alt: "Leticia" },
-  { src: dario, alt: "Dario" },
-  { src: miqueias, alt: "Miqueias" },
-  { src: lualves, alt: "Lu Alves" },
-  { src: regiscintia, alt: "Regis e Cintia" },
-  { src: geraldojose, alt: "Geraldo e Jose" },
-  { src: proposito, alt: "O proposito que nos une", wide: true },
-  { src: geraldoalbertassi, alt: "Geraldo Albertassi" },
-  { src: cristoemnos, alt: "Cristo em nos" },
-  { src: betinhoalb, alt: "Betinho Albertassi" },
-  { src: teko, alt: "Teko" },
-  { src: somdoceu, alt: "O som do ceu", wide: true },
-  { src: amado, alt: "Amado" },
-  { src: leandro, alt: "Leandro" },
-  { src: vogel, alt: "Vogel" },
-  { src: familiafato, alt: "Familia Fato" },
-  { src: lugomes, alt: "Lu Gomes" },
-  { src: radio88final, alt: "Radio 88 FM" },
-];
+import HistoryTimeline from "@/components/HistoryTimeline";
+import { historicoLogos } from "@/data/historicoLogos";
+import edsonAlbertassi from "@/assets/nossa-radio/edsonalbertassi.png";
+const pageContainer = "mx-auto w-full max-w-[1500px] px-6 sm:px-6 lg:px-10 xl:px-12";
 
 const NossaRadio = () => {
   return (
-    <div className="bg-white">
-      <section className="py-8 md:py-12">
-        <div className="mx-auto w-full max-w-[1300px] px-4">
-          <img
-            src={fotoinicial}
-            alt="Conheca todos que fazem da nossa radio um lugar unico"
-            className="block w-full left-2 rounded-[28px]"
-          />
+    <main className="bg-white text-foreground">
+        {/* TIMELINE */}
+       <section className="py-10 md:py-16">
+        <div className={pageContainer}>
+          <div className="mb-8 max-w-3xl md:mb-10">
+            <p className="font-display text-sm font-extrabold uppercase tracking-[0.28em] text-radio-blue">
+              Linha do tempo
+            </p>
+            <h2 className="mt-4 font-display text-4xl font-extrabold uppercase leading-none text-radio-dark md:text-6xl">
+              As marcas que contam a nossa história
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-muted-foreground">
+              Cinco identidades visuais registram fases importantes da Rádio 88 FM. As datas ainda
+              aguardam confirmação editorial.
+            </p>
+          </div>
 
-          <div className="mt-5 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
-            {gallery.map((item) => (
-              <div
-                key={item.alt}
-                className={`overflow-hidden rounded-[10px] ${
-                  item.wide ? "col-span-2 aspect-[823/507]" : "aspect-[406/507]"
-                }`}
-              >
-                <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />
-              </div>
-            ))}
+          <HistoryTimeline items={historicoLogos} />
+        </div>
+      </section>
+      {/* HISTÓRIA */}
+      <section className="pb-10 md:pb-14">
+        <div className={pageContainer}>
+          <div className="mx-auto max-w-[860px]">
+            <p className="font-display text-xl font-extrabold uppercase leading-tight text-radio-blue md:text-2xl">
+              "Damos graças a Deus pelo que passou pelo dia de hoje e pelo dia que virá."
+            </p>
+            {/* TODO: confirmar com a equipe se atualiza "30 anos" para "32 anos" ou mantem o texto historico original. */}
+            <p className="mt-7 text-lg leading-8 text-foreground/78 md:text-xl md:leading-9">
+              A Rádio 88 FM foi fundada em 1986, em Volta Redonda, porém, a história da emissora
+              começou, de fato, em primeiro de agosto de 1994, quando passou a ser administrada pelo
+              então operador de áudio Edson Albertassi, se tornou genuinamente evangélica e passou a
+              transmitir canções e palavras de amor e paz. Em 30 anos de existência, a emissora
+              cresceu, conquistando a maior audiência do Sul do Estado. A 88 FM é hoje referência em
+              qualidade de programação e responsabilidade social.
+            </p>
           </div>
         </div>
       </section>
-    </div>
+    {/* IDEALIZADOR */}
+      <section className="py-8 md:py-12">
+        <div className={pageContainer}>
+          <div className="grid items-center gap-8 rounded-[28px] bg-[#F5F8FC] p-6 md:grid-cols-[260px_1fr] md:p-10 lg:p-12">
+            <img
+              src={edsonAlbertassi}
+              alt="Edson Albertassi, idealizador da Rádio 88 FM"
+              className="mx-auto w-full max-w-[260px] rounded-[28px]"
+            />
+            <div>
+              <p className="font-display text-sm font-extrabold uppercase tracking-[0.26em] text-radio-red">
+                Nosso Idealizador
+              </p>
+              <h2 className="mt-3 font-display text-4xl font-extrabold leading-none text-radio-dark md:text-6xl">
+                Edson Albertassi
+              </h2>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-foreground/72">
+                Em 1994, assumiu a administração da emissora e conduziu a transformação que marcou a
+                identidade evangélica da Rádio 88 FM, levando canções e palavras de amor e paz ao Sul
+                do Estado.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

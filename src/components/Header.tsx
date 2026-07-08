@@ -5,6 +5,7 @@ import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
 import logoHeaderwhite from "@/assets/logoheadsvg.svg";
 import logo from "@/assets/logoheadsvg.svg";
 import { useTheme } from "next-themes";
+import { Analytics } from "@/services/analytics/analytics";
 
 const NEWS_URL = import.meta.env.VITE_NEWS_URL || "http://localhost:8082/fatopopular";
 
@@ -53,6 +54,7 @@ const Header = () => {
                 href={item.path}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => Analytics.track("menu_navigation", { destination: item.label })}
                 className="font-display text-sm font-semibold tracking-wide text-white hover:text-primary transition-colors"
               >
                 {item.label}
@@ -61,6 +63,7 @@ const Header = () => {
               <Link
                 key={item.label}
                 to={item.path}
+                onClick={() => Analytics.track("menu_navigation", { destination: item.label })}
                 className={`font-display text-sm font-semibold tracking-wide transition-colors ${
                   location.pathname === item.path ? "text-primary" : "text-white hover:text-primary"
                 }`}
@@ -74,6 +77,7 @@ const Header = () => {
         <div className="hidden items-center gap-4 lg:flex">
           <Link
             to="/ouvir"
+            onClick={() => Analytics.track("menu_navigation", { destination: "Ouvir Ao Vivo" })}
             className="bg-red-600 font-display font-bold text-sm px-4 py-2 rounded-md text-white flex items-center gap-1.5 hover:opacity-90 transition-opacity"
           >
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
@@ -81,6 +85,7 @@ const Header = () => {
           </Link>
           <Link
             to="/assistir"
+            onClick={() => Analytics.track("menu_navigation", { destination: "Assistir Ao Vivo" })}
             className="bg-radio-yellow font-display font-bold text-sm px-4 py-2 rounded-md text-black flex items-center gap-1.5 hover:opacity-90 transition-opacity"
           >
             🎥 ASSISTIR
@@ -109,7 +114,10 @@ const Header = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-display text-sm font-semibold py-2 text-white"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => {
+                    Analytics.track("menu_navigation", { destination: item.label });
+                    setMenuOpen(false);
+                  }}
                 >
                   {item.label}
                 </a>
@@ -118,7 +126,10 @@ const Header = () => {
                   key={item.label}
                   to={item.path}
                   className="font-display text-sm font-semibold py-2 text-white"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => {
+                    Analytics.track("menu_navigation", { destination: item.label });
+                    setMenuOpen(false);
+                  }}
                 >
                   {item.label}
                 </Link>
@@ -128,14 +139,20 @@ const Header = () => {
               <Link
                 to="/ouvir"
                 className="flex w-full items-center justify-center rounded-md bg-radio-red px-3 py-2 font-display text-xs font-bold text-white"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  Analytics.track("menu_navigation", { destination: "Ouvir Ao Vivo" });
+                  setMenuOpen(false);
+                }}
               >
                 OUVIR AO VIVO
               </Link>
               <Link
                 to="/assistir"
                 className="flex w-full items-center justify-center rounded-md bg-radio-yellow px-3 py-2 font-display text-xs font-bold text-black"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  Analytics.track("menu_navigation", { destination: "Assistir Ao Vivo" });
+                  setMenuOpen(false);
+                }}
               >
                 🎥 Assistir
               </Link>
