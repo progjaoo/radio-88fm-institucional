@@ -17,8 +17,7 @@ const NossaRadio = () => {
               As marcas que contam a nossa história
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Cinco identidades visuais registram fases importantes da Rádio 88 FM. As datas ainda
-              aguardam confirmação editorial.
+              Cinco identidades visuais registram fases importantes da Rádio 88 FM.
             </p>
           </div>
 
