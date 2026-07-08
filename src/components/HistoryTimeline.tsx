@@ -17,7 +17,7 @@ const getVersionLabel = (index: number) => `${index + 1}ª versão`;
 
 // Aumente/diminua este valor para controlar a velocidade do carrossel continuo.
 // 0.2 = bem lento, 0.35 = recomendado, 0.5 = medio.
-const LOGO_CAROUSEL_SPEED = 0.5;
+const LOGO_CAROUSEL_SPEED = 0.7;
 
 const HistoryTimeline = ({ items }: HistoryTimelineProps) => {
   const [api, setApi] = useState<CarouselApi>();
