@@ -32,7 +32,7 @@ const Header = () => {
   
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <header className="sticky top-0 z-50 mx-3 max-w-[2400px] rounded-b-[16px] border border-white/20 bg-black shadow-lg backdrop-blur-md sm:mx-4 sm:rounded-b-[20px] xl:mx-140">
+    <header className="fixed left-3 right-3 top-0 z-[100] mx-auto max-w-[2400px] rounded-b-[16px] border border-white/20 bg-black shadow-lg backdrop-blur-md sm:left-4 sm:right-4 sm:rounded-b-[20px]">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2">
           <img 
