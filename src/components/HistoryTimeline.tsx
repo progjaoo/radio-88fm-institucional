@@ -34,7 +34,7 @@ const HistoryTimeline = ({ items }: HistoryTimelineProps) => {
     const animate = () => {
       const engine = api.internalEngine();
 
-      engine.location.add(LOGO_CAROUSEL_SPEED);
+      engine.location.add(-LOGO_CAROUSEL_SPEED);
       engine.target.set(engine.location);
       engine.scrollLooper.loop(-1);
       engine.slideLooper.loop();
