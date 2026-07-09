@@ -233,7 +233,7 @@ const Index = () => {
                 className="font-semibold underline underline-offset-4"
                 target="_blank"
               >
-                Apple
+                iOS
               </a>
             </p>
 
