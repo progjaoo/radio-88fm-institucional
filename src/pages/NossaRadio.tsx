@@ -29,7 +29,7 @@ const NossaRadio = () => {
         <div className={pageContainer}>
           <div className="mx-auto max-w-[860px]">
             <p className="font-display text-xl font-extrabold uppercase leading-tight text-radio-blue md:text-2xl">
-              "Damos graças a Deus pelo que passou pelo dia de hoje e pelo dia que virá."
+              "Damos graças a Deus pelo que passou, pelo dia de hoje e pelo dia que virá."
             </p>
             {/* TODO: confirmar com a equipe se atualiza "30 anos" para "32 anos" ou mantem o texto historico original. */}
             <p className="mt-7 text-lg leading-8 text-foreground/78 md:text-xl md:leading-9">

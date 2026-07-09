@@ -20,7 +20,7 @@ const Footer = () => {
 
           
             <p className="text-sm text-muted-foreground leading-relaxed">
-              A Rádio que toca o som do céu! Desde 1994levando amor e paz através da música e da palavra.
+              A Rádio que toca o som do céu! Desde 1994 levando amor e paz através da música e da palavra.
             </p>
           </div>
 
