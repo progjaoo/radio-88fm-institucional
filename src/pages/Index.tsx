@@ -9,6 +9,7 @@ import { Analytics } from "@/services/analytics/analytics";
 import podcastbanner from "@/assets/podcastbanner.png";
 import podcastBannerMobile from "@/assets/podcastbannermobile.png";
 import podcastBanner from "@/assets/podcastbanner.jpg";
+import heroBannerPlaceholder from "@/assets/podcast-banner.jpg";
 import programacaoImg from "@/assets/programacao.png";
 import programacaoMobileImg from "@/assets/programacaomobile.png";
 import uelison from "@/assets/locutores-atual/uelison.png";
@@ -77,6 +78,58 @@ const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/company/radio-88-fm", label: "LinkedIn" },
 ];
 
+// TODO: quando o GIF final for entregue, importar o arquivo e trocar este valor.
+// Exemplo: import hero88Gif from "@/assets/hero-88fm-color.gif"; const hero88GifSrc = hero88Gif;
+const hero88GifSrc = "";
+
+const staticHeroBanners: BannerInstitucional[] = [
+  {
+    id: 1,
+    titulo: "Banner institucional 1",
+    midiaUrl: heroBannerPlaceholder,
+    linkUrl: "",
+    novaAba: false,
+    posicao: "home",
+    ordem: 1,
+  },
+  {
+    id: 2,
+    titulo: "Banner institucional 2",
+    midiaUrl: heroBannerPlaceholder,
+    linkUrl: "",
+    novaAba: false,
+    posicao: "home",
+    ordem: 2,
+  },
+  {
+    id: 3,
+    titulo: "Banner institucional 3",
+    midiaUrl: heroBannerPlaceholder,
+    linkUrl: "",
+    novaAba: false,
+    posicao: "home",
+    ordem: 3,
+  },
+];
+
+const Hero88Mark = () => {
+  if (!hero88GifSrc) {
+    return <span className="font-extrabold">88FM</span>;
+  }
+
+  return (
+    <span className="inline-flex align-baseline">
+      <span className="sr-only">88FM</span>
+      <img
+        src={hero88GifSrc}
+        alt=""
+        aria-hidden="true"
+        className="inline-block h-[0.78em] w-auto translate-y-[0.06em] object-contain md:h-[0.82em]"
+      />
+    </span>
+  );
+};
+
 // Componente de Card Ajustado para os campos da API
 const PortalNewsCard = ({ titulo, imagemCapaUrl, editorial, id, large = false }: { titulo: string; imagemCapaUrl: string; editorial: string; id: number; large?: boolean }) => {
   const content = (
@@ -123,7 +176,8 @@ const Index = () => {
   // Substituído por YouTubeCarouselSection. Manter para rollback se necessário.
   // const [portalNews, setPortalNews] = useState<PostDestaque[]>([]);
   // const [fatoPopularNews, setFatoPopularNews] = useState<PostDestaque[]>([]);
-  const [banners, setBanners] = useState<BannerInstitucional[]>([]);
+  // Banners dinâmicos via PortalGtf/CMS preservados para rollback futuro.
+  // const [banners, setBanners] = useState<BannerInstitucional[]>([]);
   // Programacao dinamica preservada para rollback futuro da secao via API.
   // const [programas, setProgramas] = useState<ProgramaCard[]>([]);
   const [activeBanner, setActiveBanner] = useState(0);
@@ -137,29 +191,31 @@ const Index = () => {
 
   // const formatarHora = (hora: string) => hora?.substring(0, 5) || "--:--";
   const heroSlides = useMemo<HeroSlide[]>(
-    () => [{ type: "static", id: "hero-static" }, ...banners.map((banner) => ({ ...banner, type: "banner" as const }))],
-    [banners]
+    () => [{ type: "static", id: "hero-static" }, ...staticHeroBanners.map((banner) => ({ ...banner, type: "banner" as const }))],
+    []
   );
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const resBanners = await fetch("http://localhost:5091/api/banner-institucional/ativos?emissoraId=1&posicao=home");
-
-        if (resBanners.ok) setBanners(await resBanners.json());
-        // Programacao dinamica substituida temporariamente por imagem estatica do Designer.
-        // Para rollback, reativar o state `programas`, `formatarHora`, este fetch e a secao JSX preservada abaixo.
-        // const resProgramacao = await fetch("http://localhost:5091/api/programacao/emissora/1/buscarTodos");
-        // if (resProgramacao.ok) {
-        //   const data: ProgramaCard[] = await resProgramacao.json();
-        //   setProgramas(data.filter((programa) => programa.ativo !== false).slice(0, 3));
-        // }
-      } catch (error) {
-        console.error("Erro ao buscar dados institucionais:", error);
-      }
-    };
-    loadData();
-  }, []);
+  // Integração dinâmica via PortalGtf/CMS preservada para rollback futuro.
+  // Reativar quando os banners voltarem a ser gerenciados pelo cms-feitoamao.
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     try {
+  //       const resBanners = await fetch("http://localhost:5091/api/banner-institucional/ativos?emissoraId=1&posicao=home");
+  //
+  //       if (resBanners.ok) setBanners(await resBanners.json());
+  //       // Programacao dinamica substituida temporariamente por imagem estatica do Designer.
+  //       // Para rollback, reativar o state `programas`, `formatarHora`, este fetch e a secao JSX preservada abaixo.
+  //       // const resProgramacao = await fetch("http://localhost:5091/api/programacao/emissora/1/buscarTodos");
+  //       // if (resProgramacao.ok) {
+  //       //   const data: ProgramaCard[] = await resProgramacao.json();
+  //       //   setProgramas(data.filter((programa) => programa.ativo !== false).slice(0, 3));
+  //       // }
+  //     } catch (error) {
+  //       console.error("Erro ao buscar dados institucionais:", error);
+  //     }
+  //   };
+  //   loadData();
+  // }, []);
 
   useEffect(() => {
     if (youtubeError) {
@@ -192,7 +248,7 @@ const Index = () => {
         <div className="relative min-h-[420px] bg-white px-4 py-10 md:min-h-[560px] md:px-12 md:py-14 lg:px-20">
           <div className="relative mx-auto flex min-h-[340px] max-w-4xl flex-col items-center justify-center text-center md:min-h-[410px]">
             <p className="font-display text-[clamp(2.1rem,12vw,4.8rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground">
-              VOCÊ ESTÁ NA <span className="font-extrabold">88FM</span>,
+              VOCÊ ESTÁ NA <Hero88Mark />,
             </p>
             <p className="mt-2 font-display text-[clamp(2.15rem,12.5vw,5.2rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground">
               A RÁDIO QUE TOCA

@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Youtube } from "lucide-react";
 import { useState } from "react";
 import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
 import logoHeaderwhite from "@/assets/logoheadsvg.svg";
@@ -6,6 +6,12 @@ import logoHeaderwhite from "@/assets/logoheadsvg.svg";
 const Footer = () => {
 
   const [isHovered, setIsHovered] = useState(false);
+  const socialLinks = [
+    { icon: Facebook, href: "https://www.facebook.com/radio88oficial/", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/radio88fm", label: "Instagram" },
+    { icon: Youtube, href: "https://www.youtube.com/@radio88oficial", label: "YouTube" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/radio-88-fm", label: "LinkedIn" },
+  ];
   
   return (
     <footer className="bg-radio-dark text-primary-foreground">
@@ -59,11 +65,21 @@ const Footer = () => {
           {/* Links */}
           <div>
             <h3 className="font-display text-lg font-bold mb-4 text-radio-blue">REDES SOCIAIS</h3>
-            <div className="flex gap-4">
-              <a href="https://www.facebook.com/radio88oficial/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Facebook</a>
-              <a href="https://www.instagram.com/radio88fm" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
-              <a href="https://www.youtube.com/@radio88oficial" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">YouTube</a>
-              <a href="https://www.linkedin.com/company/radio-88-fm" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
+            <div className="flex flex-col gap-3 text-sm">
+              {socialLinks.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-white"
+                >
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-radio-blue transition-all duration-300 group-hover:scale-110 group-hover:bg-radio-brand-blue group-hover:text-white">
+                    <Icon size={16} />
+                  </span>
+                  <span>{label}</span>
+                </a>
+              ))}
             </div>
           </div>
         </div>

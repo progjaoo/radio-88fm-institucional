@@ -38,6 +38,8 @@
 
     --radio-blue: 204 97% 45%;
     --radio-blue-dark: 204 100% 30%;
+    --radio-brand-blue: #1360E8;
+    --radio-brand-blue-hsl: 218 85% 49%;
     --radio-yellow: 46 100% 50%;
     --radio-orange: 25 100% 50%;
     --radio-red: 6 81% 53%;
@@ -73,6 +75,8 @@
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 204 97% 45%;
+    --radio-brand-blue: #1360E8;
+    --radio-brand-blue-hsl: 218 85% 49%;
     --sidebar-background: 0 0% 8%;
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 204 97% 45%;
@@ -119,6 +123,14 @@
 
   .bg-radio-blue {
     background-color: hsl(var(--radio-blue));
+  }
+
+  .bg-radio-brand-blue {
+    background-color: var(--radio-brand-blue);
+  }
+
+  .text-radio-brand-blue {
+    color: var(--radio-brand-blue);
   }
 
   .bg-radio-dark {
