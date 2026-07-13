@@ -8,7 +8,7 @@ const Assistir = () => {
 
   useEffect(() => {
     if (isPlaying) pause();
-  }, [isPlaying, pause]);
+  }, [isPlaying, pause]); 
 
   return (
     <div className="min-h-[80vh] bg-radio-brand-blue flex flex-col">

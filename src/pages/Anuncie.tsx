@@ -2,8 +2,8 @@ import { Radio, Mic, Clock, Users } from "lucide-react";
 
 const planos = [
   {
-    nome: "Spot 30s",
-    descricao: "Veiculação de spot de 30 segundos em horários estratégicos da programação.",
+    nome: "Spots",
+    descricao: "Veiculação de spot em horários estratégicos da programação.",
     icon: Radio,
   },
   {
