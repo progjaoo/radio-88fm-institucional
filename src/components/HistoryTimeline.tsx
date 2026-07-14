@@ -1,5 +1,6 @@
-import type { CSSProperties } from "react";
+import { useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import type { LogoHistoricoItem } from "@/data/historicoLogos";
+import { cn } from "@/lib/utils";
 
 interface HistoryTimelineProps {
   items: LogoHistoricoItem[];
@@ -11,9 +12,53 @@ const getVersionLabel = (index: number) => `${index + 1}ª versão`;
 const LOGO_MARQUEE_DURATION_SECONDS = 34;
 
 const HistoryTimeline = ({ items }: HistoryTimelineProps) => {
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const dragStartXRef = useRef(0);
+  const activePointerIdRef = useRef<number | null>(null);
+
   const marqueeStyle = {
     "--history-logo-marquee-duration": `${LOGO_MARQUEE_DURATION_SECONDS}s`,
+    "--history-logo-drag-offset": `${dragOffset}px`,
   } as CSSProperties;
+
+  const resetDrag = (target?: EventTarget | null) => {
+    if (target instanceof HTMLElement && activePointerIdRef.current !== null) {
+      try {
+        target.releasePointerCapture(activePointerIdRef.current);
+      } catch {
+        // Pointer capture may already be released by the browser.
+      }
+    }
+
+    activePointerIdRef.current = null;
+    dragStartXRef.current = 0;
+    setIsDragging(false);
+    setDragOffset(0);
+  };
+
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.button !== 0 && event.pointerType === "mouse") return;
+
+    event.preventDefault();
+    activePointerIdRef.current = event.pointerId;
+    dragStartXRef.current = event.clientX;
+    setIsDragging(true);
+    setDragOffset(0);
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging || activePointerIdRef.current !== event.pointerId) return;
+
+    event.preventDefault();
+    setDragOffset(event.clientX - dragStartXRef.current);
+  };
+
+  const handlePointerEnd = (event: PointerEvent<HTMLDivElement>) => {
+    if (activePointerIdRef.current !== event.pointerId) return;
+    resetDrag(event.currentTarget);
+  };
 
   const renderLogo = (item: LogoHistoricoItem, index: number, isDuplicate = false) => (
     <div
@@ -27,6 +72,7 @@ const HistoryTimeline = ({ items }: HistoryTimelineProps) => {
       <img
         src={item.logoSrc}
         alt={isDuplicate ? "" : item.alt}
+        draggable={false}
         className="max-h-48 max-w-full object-contain transition-transform duration-300 ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04] motion-reduce:transform-none md:max-h-56"
       />
     </div>
@@ -38,9 +84,13 @@ const HistoryTimeline = ({ items }: HistoryTimelineProps) => {
 
   return (
     <div
-      className="history-logo-marquee mx-auto w-full max-w-[1180px]"
+      className={cn("history-logo-marquee mx-auto w-full max-w-[1180px]", isDragging && "history-logo-marquee--dragging")}
       style={marqueeStyle}
       aria-label="Carrossel de logos históricas da Rádio 88 FM"
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerEnd}
+      onPointerCancel={handlePointerEnd}
     >
       <div className="history-logo-marquee-track flex w-max flex-nowrap py-5">
         <div className="flex shrink-0 gap-5 pr-5">{items.map((item, index) => renderLogo(item, index))}</div>

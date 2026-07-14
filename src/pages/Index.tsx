@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Facebook, Instagram, Youtube, Linkedin, Radio, Video, ChevronLeft, ChevronRight } from "lucide-react";
+import { Facebook, Instagram, Youtube, Linkedin, Radio, Video } from "lucide-react";
 import { Link } from "react-router-dom";
 import LocutorCard from "@/components/LocutorCard";
 import YoutubeSection from "@/components/YoutubeSection";
@@ -9,7 +9,6 @@ import { Analytics } from "@/services/analytics/analytics";
 import podcastbanner from "@/assets/podcastbanner.png";
 import podcastBannerMobile from "@/assets/podcastbannermobile.png";
 import podcastBanner from "@/assets/podcastbanner.jpg";
-import heroBannerPlaceholder from "@/assets/podcast-banner.jpg";
 import programacaoImg from "@/assets/programacao.png";
 import programacaoMobileImg from "@/assets/programacaomobile.png";
 import uelison from "@/assets/locutores-atual/uelison.png";
@@ -28,6 +27,9 @@ import fato1 from "@/assets/locutores-atual/amado.png";
 import fato2 from "@/assets/locutores-atual/vogel.png";
 import fato3 from "@/assets/locutores-atual/teko.png";
 import fato4 from "@/assets/locutores-atual/marli.png";
+import hero88Gif from "@/assets/logogif.png";
+import banner001 from "@/assets/banner001.svg";
+import banner002 from "@/assets/banner002.svg";
 
 interface PostDestaque {
   id: number;
@@ -80,13 +82,14 @@ const socialLinks = [
 
 // TODO: quando o GIF final for entregue, importar o arquivo e trocar este valor.
 // Exemplo: import hero88Gif from "@/assets/hero-88fm-color.gif"; const hero88GifSrc = hero88Gif;
-const hero88GifSrc = "";
+const hero88GifSrc = hero88Gif;
+const HERO_BANNER_INTERVAL_MS = 4500;
 
 const staticHeroBanners: BannerInstitucional[] = [
   {
     id: 1,
     titulo: "Banner institucional 1",
-    midiaUrl: heroBannerPlaceholder,
+    midiaUrl: banner001,
     linkUrl: "",
     novaAba: false,
     posicao: "home",
@@ -95,21 +98,12 @@ const staticHeroBanners: BannerInstitucional[] = [
   {
     id: 2,
     titulo: "Banner institucional 2",
-    midiaUrl: heroBannerPlaceholder,
+    midiaUrl: banner002,
     linkUrl: "",
     novaAba: false,
     posicao: "home",
     ordem: 2,
-  },
-  {
-    id: 3,
-    titulo: "Banner institucional 3",
-    midiaUrl: heroBannerPlaceholder,
-    linkUrl: "",
-    novaAba: false,
-    posicao: "home",
-    ordem: 3,
-  },
+  }
 ];
 
 const Hero88Mark = () => {
@@ -124,7 +118,7 @@ const Hero88Mark = () => {
         src={hero88GifSrc}
         alt=""
         aria-hidden="true"
-        className="inline-block h-[0.78em] w-auto translate-y-[0.06em] object-contain md:h-[0.82em]"
+        className="inline-block h-[0.80em] w-auto translate-y-[0.06em] object-contain md:h-[0.82em]"
       />
     </span>
   );
@@ -181,6 +175,8 @@ const Index = () => {
   // Programacao dinamica preservada para rollback futuro da secao via API.
   // const [programas, setProgramas] = useState<ProgramaCard[]>([]);
   const [activeBanner, setActiveBanner] = useState(0);
+  const [heroTrackIndex, setHeroTrackIndex] = useState(0);
+  const [heroTransitionEnabled, setHeroTransitionEnabled] = useState(true);
   // const [loading, setLoading] = useState(true);
   const {
     videos: youtubeVideos,
@@ -193,6 +189,10 @@ const Index = () => {
   const heroSlides = useMemo<HeroSlide[]>(
     () => [{ type: "static", id: "hero-static" }, ...staticHeroBanners.map((banner) => ({ ...banner, type: "banner" as const }))],
     []
+  );
+  const heroTrackSlides = useMemo<HeroSlide[]>(
+    () => (heroSlides.length > 0 ? [...heroSlides, heroSlides[0]] : []),
+    [heroSlides]
   );
 
   // Integração dinâmica via PortalGtf/CMS preservada para rollback futuro.
@@ -227,18 +227,19 @@ const Index = () => {
     if (heroSlides.length <= 1) return;
 
     const interval = window.setInterval(() => {
+      setHeroTransitionEnabled(true);
+      setHeroTrackIndex((current) => current + 1);
       setActiveBanner((current) => (current + 1) % heroSlides.length);
-    }, 3000);
+    }, HERO_BANNER_INTERVAL_MS);
 
     return () => window.clearInterval(interval);
-  }, [heroSlides]);
+  }, [heroSlides.length]);
 
   useEffect(() => {
     if (activeBanner <= heroSlides.length - 1) return;
     setActiveBanner(0);
   }, [activeBanner, heroSlides.length]);
 
-  const currentSlide = heroSlides[activeBanner];
   const previousSlide = heroSlides[(activeBanner - 1 + heroSlides.length) % heroSlides.length];
   const nextSlide = heroSlides[(activeBanner + 1) % heroSlides.length];
 
@@ -356,7 +357,7 @@ const Index = () => {
           src={slide.midiaUrl || podcastBanner}
           alt={slide.titulo || "Prévia do carrossel"}
           className="h-full w-full object-cover"
-          style={{ objectPosition: side === "left" ? "center center" : "center center" }}
+          style={{ objectPosition: side === "left" ? "right center" : "left center" }}
         />
       </div>
     );
@@ -366,52 +367,78 @@ const Index = () => {
     <div className="overflow-x-hidden">
       {/* Hero Section */}
       <section className="overflow-x-hidden bg-background py-4 md:py-8">
-        <div className="container">
+        <div className="mx-auto w-full max-w-[2400px] px-3 sm:px-4">
           <div className="relative min-h-[420px] md:min-h-[560px]">
-            <div className="pointer-events-none absolute inset-y-0 -left-40 z-0 hidden w-[540px] -translate-x-[500px] overflow-hidden rounded-[20px] lg:block xl:w-[520px] xl:-translate-x-[500px]">
+            
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[24vw] max-w-[620px] -translate-x-[66%] overflow-hidden rounded-[18px] opacity-95 shadow-sm lg:block">
               <div
                 key={`peek-left-${previousSlide.type === "static" ? previousSlide.id : previousSlide.id}`}
-                className="h-full w-full animate-in fade-in duration-400 ease-out"
+                className="h-full w-full animate-in fade-in slide-in-from-right-3 duration-500 ease-out"
               >
                 {renderHeroPeek(previousSlide, "left")}
               </div>
             </div>
 
-            <div className="pointer-events-none absolute inset-y-0 -right-40 z-0 hidden w-[540px] translate-x-[500px] overflow-hidden rounded-[20px] lg:block xl:w-[520px] xl:translate-x-[500px]">
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[24vw] max-w-[620px] translate-x-[66%] overflow-hidden rounded-[18px] opacity-95 shadow-sm lg:block">
               <div
                 key={`peek-right-${nextSlide.type === "static" ? nextSlide.id : nextSlide.id}`}
-                className="h-full w-full animate-in fade-in duration-400 ease-out"
+                className="h-full w-full animate-in fade-in slide-in-from-left-3 duration-500 ease-out"
               >
                 {renderHeroPeek(nextSlide, "right")}
               </div>
             </div>
 
-            <div className="relative z-10 overflow-hidden rounded-[18px] bg-white lg:mx-[90px] xl:mx-[0px]">
+            <div className="relative z-10 mx-auto w-full overflow-hidden rounded-[18px] bg-white lg:w-[84vw] xl:w-[72vw] 2xl:max-w-[1560px]">
               <div
-                key={`hero-center-${currentSlide.type === "static" ? currentSlide.id : currentSlide.id}`}
-                className="animate-in fade-in duration-500 ease-out"
+                className={`flex ${
+                  heroTransitionEnabled
+                    ? "transition-transform duration-700 ease-in-out"
+                    : "transition-none"
+                }`}
+                style={{ transform: `translateX(-${heroTrackIndex * 100}%)` }}
+                onTransitionEnd={(event) => {
+                  if (event.propertyName !== "transform" || heroTrackIndex !== heroSlides.length) return;
+
+                  setHeroTransitionEnabled(false);
+                  setHeroTrackIndex(0);
+
+                  window.requestAnimationFrame(() => {
+                    window.requestAnimationFrame(() => setHeroTransitionEnabled(true));
+                  });
+                }}
               >
-                {renderHeroSlide(currentSlide)}
+                {heroTrackSlides.map((slide, index) => (
+                  <div
+                    key={`${slide.type === "static" ? slide.id : slide.id}-${index}`}
+                    className="w-full flex-shrink-0"
+                  >
+                    {renderHeroSlide(slide)}
+                  </div>
+                ))}
               </div>
             </div>
 
             {heroSlides.length > 1 && (
-            <div className="mt-5 flex items-center justify-center gap-2">
-              {heroSlides.map((slide, index) => (
-                <button
-                  key={slide.id}
-                  type="button"
-                  onClick={() => setActiveBanner(index)}
-                  className={`h-1.5 transition-all duration-300 ${
-                  index === activeBanner
-                    ? "w-8 rounded-sm bg-radio-blue"
-                    : "w-4 rounded-sm bg-border"
-                }`}
-                  aria-label={`Ir para slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          )}
+              <div className="mt-5 flex items-center justify-center gap-2">
+                {heroSlides.map((slide, index) => (
+                  <button
+                    key={slide.type === "static" ? slide.id : slide.id}
+                    type="button"
+                    onClick={() => {
+                      setHeroTransitionEnabled(true);
+                      setActiveBanner(index);
+                      setHeroTrackIndex(index);
+                    }}
+                    className={`h-1.5 transition-all duration-300 ${
+                      index === activeBanner
+                        ? "w-8 rounded-sm bg-radio-blue"
+                        : "w-4 rounded-sm bg-border"
+                    }`}
+                    aria-label={`Ir para slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -420,8 +447,8 @@ const Index = () => {
       <section className="hidden bg-background py-1 lg:block">
         <div className="container">
           <div className="relative">
-            <div className="absolute -top-[145px] left-0 w-full z-10">
-              <div className="flex items-end justify-start overflow-hidden -space-x-10"> 
+            <div className="absolute -top-[145px] -right-[10px] w-full z-10">
+              <div className="flex items-end justify-start overflow-hidden -space-x-11"> 
                 {locutores.map((loc, i) => (
                   <LocutorCard key={i} image={loc.image} />
                 ))}

@@ -45,18 +45,20 @@ const gallery: EquipeCard[] = [
   { src: radio88final, alt: "Radio 88 FM" },
 ];
 
+const pageContainer = "mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10 xl:px-12";
+
 const Equipe = () => {
   return (
     <div className="bg-white">
-      <section className="py-8 md:py-12">
-        <div className="mx-auto w-full max-w-[1300px] px-4">
+      <section className="pt-24 pb-10 md:pt-28 md:pb-14">
+        <div className={pageContainer}>
           <img
             src={fotoinicial}
             alt="Conheca todos que fazem da nossa radio um lugar unico"
-            className="block w-full left-2 rounded-[28px]"
+            className="block w-full rounded-[28px]"
           />
 
-          <div className="mt-5 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
+          <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
             {gallery.map((item) => (
               <div
                 key={item.alt}
