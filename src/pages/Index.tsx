@@ -453,7 +453,7 @@ const Index = () => {
                   <LocutorCard key={i} image={loc.image} />
                 ))}
               </div>
-            </div>
+            </div> 
             <div className="relative mt-10">
               <img src={fundolocutores} alt="88FM" className="w-full object-contain" />
             </div>
