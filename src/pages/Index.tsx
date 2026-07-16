@@ -1,8 +1,17 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { FocusEvent } from "react";
 import { Facebook, Instagram, Youtube, Linkedin, Radio, Video } from "lucide-react";
 import { Link } from "react-router-dom";
 import LocutorCard from "@/components/LocutorCard";
 import YoutubeSection from "@/components/YoutubeSection";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import fundolocutores from "@/assets/fundolocutores.png";
 import { useYoutubeContent } from "@/hooks/useYoutubeContent";
 import { Analytics } from "@/services/analytics/analytics";
@@ -27,7 +36,7 @@ import fato1 from "@/assets/locutores-atual/amado.png";
 import fato2 from "@/assets/locutores-atual/vogel.png";
 import fato3 from "@/assets/locutores-atual/teko.png";
 import fato4 from "@/assets/locutores-atual/marli.png";
-import hero88Gif from "@/assets/logogif.png";
+import hero88Gif from "@/assets/logoheadsvgcolor.svg";
 import banner001 from "@/assets/banner001.svg";
 import banner002 from "@/assets/banner002.svg";
 
@@ -67,10 +76,22 @@ interface ProgramaCard {
 }
 
 const locutores = [
-  { image: uelison }, { image: jose }, { image: jose2 }, { image: favorito },
-  { image: favorito2 }, { image: leandro }, { image: miq }, { image: geraldoalb },
-  { image: betin }, { image: leticia }, { image: dario }, { image: lualves },
-  { image: fato1 }, { image: fato2 }, { image: fato3 }, { image: fato4 },
+  { image: uelison, name: "Uelisson", program: "Programa Cristo em Nós" },
+  { image: jose, name: "Geraldo e José", program: "Programa Raízes" },
+  { image: jose2, name: "Geraldo e José", program: "Programa Raízes" },
+  { image: favorito, name: "Cintia", program: "Programa Favorito" },
+  { image: favorito2, name: "Régis", program: "Programa Favorito" },
+  { image: leandro, name: "Leandro Batista", program: "Programa Fato Popular" },
+  { image: miq, name: "Miquéias Nechaeff", program: "Programa Bom dia 88" },
+  { image: geraldoalb, name: "Geraldo Albertassi", program: "Programa Clamor das Nações" },
+  { image: betin, name: "Betinho Albertassi", program: "Programa Fato Popular" },
+  { image: leticia, name: "Letícia Dantas", program: "Programa Bom dia 88" },
+  { image: dario, name: "Dário Ferreira", program: "Programa Bom dia 88" },
+  { image: lualves, name: "Luciana Alves", program: "Programa Temperatura Gospel" },
+  { image: fato1, name: "Johnata Amado", program: "Programa Fato Popular" },
+  { image: fato2, name: "Gilberto Vogel", program: "Programa Fato Popular" },
+  { image: fato3, name: "Teko Albertassi", program: "Programa Fato Popular" },
+  { image: fato4, name: "Marli", program: "Programa Fato Popular" },
 ];
 
 const socialLinks = [
@@ -83,7 +104,11 @@ const socialLinks = [
 // TODO: quando o GIF final for entregue, importar o arquivo e trocar este valor.
 // Exemplo: import hero88Gif from "@/assets/hero-88fm-color.gif"; const hero88GifSrc = hero88Gif;
 const hero88GifSrc = hero88Gif;
-const HERO_BANNER_INTERVAL_MS = 4500;
+const HERO_TRANSITION_SECONDS = 0.95;
+const HERO_DEFAULT_DWELL_SECONDS = 4;
+const HERO_WHITE_DWELL_SECONDS = 4;
+
+const secondsToMilliseconds = (seconds: number) => Math.round(seconds * 1000);
 
 const staticHeroBanners: BannerInstitucional[] = [
   {
@@ -118,7 +143,7 @@ const Hero88Mark = () => {
         src={hero88GifSrc}
         alt=""
         aria-hidden="true"
-        className="inline-block h-[0.80em] w-auto translate-y-[0.06em] object-contain md:h-[0.82em]"
+        className="inline-block h-[1.02em] w-auto translate-y-[0.10em] object-contain md:h-[1.70em]"
       />
     </span>
   );
@@ -175,8 +200,17 @@ const Index = () => {
   // Programacao dinamica preservada para rollback futuro da secao via API.
   // const [programas, setProgramas] = useState<ProgramaCard[]>([]);
   const [activeBanner, setActiveBanner] = useState(0);
-  const [heroTrackIndex, setHeroTrackIndex] = useState(0);
-  const [heroTransitionEnabled, setHeroTransitionEnabled] = useState(true);
+  const activeBannerRef = useRef(0);
+  const [heroApi, setHeroApi] = useState<CarouselApi>();
+  const [isHeroInteractionPaused, setIsHeroInteractionPaused] = useState(false);
+  const [isPageVisible, setIsPageVisible] = useState(() =>
+    typeof document === "undefined" ? true : document.visibilityState === "visible"
+  );
+  const [shouldReduceMotion, setShouldReduceMotion] = useState(() =>
+    typeof window === "undefined" || typeof window.matchMedia !== "function"
+      ? false
+      : window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
   // const [loading, setLoading] = useState(true);
   const {
     videos: youtubeVideos,
@@ -189,10 +223,6 @@ const Index = () => {
   const heroSlides = useMemo<HeroSlide[]>(
     () => [{ type: "static", id: "hero-static" }, ...staticHeroBanners.map((banner) => ({ ...banner, type: "banner" as const }))],
     []
-  );
-  const heroTrackSlides = useMemo<HeroSlide[]>(
-    () => (heroSlides.length > 0 ? [...heroSlides, heroSlides[0]] : []),
-    [heroSlides]
   );
 
   // Integração dinâmica via PortalGtf/CMS preservada para rollback futuro.
@@ -224,30 +254,95 @@ const Index = () => {
   }, [youtubeError]);
 
   useEffect(() => {
+    activeBannerRef.current = activeBanner;
+  }, [activeBanner]);
+
+  const advanceHero = useCallback(() => {
     if (heroSlides.length <= 1) return;
-
-    const interval = window.setInterval(() => {
-      setHeroTransitionEnabled(true);
-      setHeroTrackIndex((current) => current + 1);
-      setActiveBanner((current) => (current + 1) % heroSlides.length);
-    }, HERO_BANNER_INTERVAL_MS);
-
-    return () => window.clearInterval(interval);
-  }, [heroSlides.length]);
+    heroApi?.scrollNext();
+  }, [heroApi, heroSlides.length]);
 
   useEffect(() => {
-    if (activeBanner <= heroSlides.length - 1) return;
-    setActiveBanner(0);
-  }, [activeBanner, heroSlides.length]);
+    if (!heroApi) return;
 
-  const previousSlide = heroSlides[(activeBanner - 1 + heroSlides.length) % heroSlides.length];
-  const nextSlide = heroSlides[(activeBanner + 1) % heroSlides.length];
+    const syncActiveBanner = () => {
+      const selected = heroApi.selectedScrollSnap();
+      setActiveBanner(selected);
+      activeBannerRef.current = selected;
+    };
+
+    syncActiveBanner();
+    heroApi.on("select", syncActiveBanner);
+    heroApi.on("reInit", syncActiveBanner);
+
+    return () => {
+      heroApi.off("select", syncActiveBanner);
+      heroApi.off("reInit", syncActiveBanner);
+    };
+  }, [heroApi]);
+
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") return;
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleMotionPreference = () => setShouldReduceMotion(mediaQuery.matches);
+
+    handleMotionPreference();
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleMotionPreference);
+    } else {
+      mediaQuery.addListener(handleMotionPreference);
+    }
+
+    return () => {
+      if (typeof mediaQuery.removeEventListener === "function") {
+        mediaQuery.removeEventListener("change", handleMotionPreference);
+      } else {
+        mediaQuery.removeListener(handleMotionPreference);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const visible = document.visibilityState === "visible";
+      setIsPageVisible(visible);
+
+      if (visible) {
+        heroApi?.scrollTo(activeBannerRef.current, true);
+      }
+    };
+
+    handleVisibilityChange();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [heroApi]);
+
+  useEffect(() => {
+    if (!heroApi || heroSlides.length <= 1 || isHeroInteractionPaused || !isPageVisible || shouldReduceMotion) return;
+
+    const currentSlide = heroSlides[activeBanner];
+    const dwellTime =
+      currentSlide?.type === "static"
+        ? secondsToMilliseconds(HERO_WHITE_DWELL_SECONDS)
+        : secondsToMilliseconds(HERO_DEFAULT_DWELL_SECONDS);
+    const timeoutId = window.setTimeout(advanceHero, dwellTime);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [activeBanner, advanceHero, heroApi, heroSlides, isHeroInteractionPaused, isPageVisible, shouldReduceMotion]);
+
+  const handleHeroBlur = (event: FocusEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+      setIsHeroInteractionPaused(false);
+    }
+  };
 
   const renderHeroSlide = (slide: HeroSlide) => {
     if (slide.type === "static") {
       return (
-        <div className="relative min-h-[420px] bg-white px-4 py-10 md:min-h-[560px] md:px-12 md:py-14 lg:px-20">
-          <div className="relative mx-auto flex min-h-[340px] max-w-4xl flex-col items-center justify-center text-center md:min-h-[410px]">
+        <div className="relative h-full bg-white px-4 py-10 md:px-12 md:py-14 lg:px-20">
+          <div className="relative mx-auto flex h-full max-w-4xl flex-col items-center justify-center text-center">
             <p className="font-display text-[clamp(2.1rem,12vw,4.8rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground">
               VOCÊ ESTÁ NA <Hero88Mark />,
             </p>
@@ -314,7 +409,7 @@ const Index = () => {
     }
 
     const bannerImage = (
-      <div className="relative min-h-[420px] bg-muted md:min-h-[560px]">
+      <div className="relative h-full bg-muted">
         <img
           src={slide.midiaUrl || podcastBanner}
           alt={slide.titulo || "Carrossel institucional"}
@@ -346,111 +441,79 @@ const Index = () => {
     return bannerImage;
   };
 
-  const renderHeroPeek = (slide: HeroSlide, side: "left" | "right") => {
-    if (slide.type === "static") {
-      return <div className="h-full w-full bg-white" />;
-    }
-
-    return (
-      <div className="relative h-full w-full bg-muted">
-        <img
-          src={slide.midiaUrl || podcastBanner}
-          alt={slide.titulo || "Prévia do carrossel"}
-          className="h-full w-full object-cover"
-          style={{ objectPosition: side === "left" ? "right center" : "left center" }}
-        />
-      </div>
-    );
-  };
-
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section */}
       <section className="overflow-x-hidden bg-background py-4 md:py-8">
-        <div className="mx-auto w-full max-w-[2400px] px-3 sm:px-4">
-          <div className="relative min-h-[420px] md:min-h-[560px]">
-            
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[24vw] max-w-[620px] -translate-x-[66%] overflow-hidden rounded-[18px] opacity-95 shadow-sm lg:block">
-              <div
-                key={`peek-left-${previousSlide.type === "static" ? previousSlide.id : previousSlide.id}`}
-                className="h-full w-full animate-in fade-in slide-in-from-right-3 duration-500 ease-out"
-              >
-                {renderHeroPeek(previousSlide, "left")}
-              </div>
-            </div>
-
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[24vw] max-w-[620px] translate-x-[66%] overflow-hidden rounded-[18px] opacity-95 shadow-sm lg:block">
-              <div
-                key={`peek-right-${nextSlide.type === "static" ? nextSlide.id : nextSlide.id}`}
-                className="h-full w-full animate-in fade-in slide-in-from-left-3 duration-500 ease-out"
-              >
-                {renderHeroPeek(nextSlide, "right")}
-              </div>
-            </div>
-
-            <div className="relative z-10 mx-auto w-full overflow-hidden rounded-[18px] bg-white lg:w-[84vw] xl:w-[72vw] 2xl:max-w-[1560px]">
-              <div
-                className={`flex ${
-                  heroTransitionEnabled
-                    ? "transition-transform duration-700 ease-in-out"
-                    : "transition-none"
-                }`}
-                style={{ transform: `translateX(-${heroTrackIndex * 100}%)` }}
-                onTransitionEnd={(event) => {
-                  if (event.propertyName !== "transform" || heroTrackIndex !== heroSlides.length) return;
-
-                  setHeroTransitionEnabled(false);
-                  setHeroTrackIndex(0);
-
-                  window.requestAnimationFrame(() => {
-                    window.requestAnimationFrame(() => setHeroTransitionEnabled(true));
-                  });
-                }}
-              >
-                {heroTrackSlides.map((slide, index) => (
-                  <div
-                    key={`${slide.type === "static" ? slide.id : slide.id}-${index}`}
-                    className="w-full flex-shrink-0"
-                  >
-                    {renderHeroSlide(slide)}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {heroSlides.length > 1 && (
-              <div className="mt-5 flex items-center justify-center gap-2">
-                {heroSlides.map((slide, index) => (
-                  <button
+        <div className="mx-auto w-full max-w-[2400px] px-0">
+          <div
+            className="relative"
+            onMouseEnter={() => setIsHeroInteractionPaused(true)}
+            onMouseLeave={() => setIsHeroInteractionPaused(false)}
+            onFocusCapture={() => setIsHeroInteractionPaused(true)}
+            onBlurCapture={handleHeroBlur}
+          >
+            <Carousel
+              opts={{
+                align: "center",
+                loop: heroSlides.length > 1,
+                duration: Math.round(HERO_TRANSITION_SECONDS * 34),
+                startIndex: 0,
+              }}
+              setApi={setHeroApi}
+              className="mx-auto w-full"
+              aria-label="Carrossel principal da Rádio 88 FM"
+            >
+              <CarouselContent className="-ml-4 md:-ml-8 lg:-ml-12 xl:-ml-14">
+                {heroSlides.map((slide) => (
+                  <CarouselItem
                     key={slide.type === "static" ? slide.id : slide.id}
-                    type="button"
-                    onClick={() => {
-                      setHeroTransitionEnabled(true);
-                      setActiveBanner(index);
-                      setHeroTrackIndex(index);
-                    }}
-                    className={`h-1.5 transition-all duration-300 ${
-                      index === activeBanner
-                        ? "w-8 rounded-sm bg-radio-blue"
-                        : "w-4 rounded-sm bg-border"
-                    }`}
-                    aria-label={`Ir para slide ${index + 1}`}
-                  />
+                    className="basis-[92%] pl-4 sm:basis-[88%] md:pl-8 lg:basis-[76%] lg:pl-12 xl:basis-[72%] xl:pl-14 2xl:basis-[68%]"
+                  >
+                    <div className="h-[420px] overflow-hidden rounded-[18px] bg-white shadow-sm md:h-[540px]">
+                      {renderHeroSlide(slide)}
+                    </div>
+                  </CarouselItem>
                 ))}
-              </div>
-            )}
+              </CarouselContent>
+
+              {heroSlides.length > 1 && (
+                <div className="mt-5 flex items-center justify-center gap-3">
+                  <CarouselPrevious
+                    className="static h-10 w-10 translate-y-0 border border-border bg-white text-radio-dark shadow-sm transition-colors hover:border-radio-blue hover:bg-radio-blue hover:text-white"
+                    aria-label="Mostrar banner anterior"
+                  />
+                  <CarouselNext
+                    className="static h-10 w-10 translate-y-0 border border-border bg-white text-radio-dark shadow-sm transition-colors hover:border-radio-blue hover:bg-radio-blue hover:text-white"
+                    aria-label="Mostrar próximo banner"
+                  />
+                </div>
+              )}
+            </Carousel>
+
+            {/* Ajustes manuais:
+                - Permanencia: HERO_WHITE_DWELL_SECONDS e HERO_DEFAULT_DWELL_SECONDS.
+                - Transicao: HERO_TRANSITION_SECONDS.
+                - Largura do current/previews: basis-* em CarouselItem.
+                - Espacamento entre slides: -ml-* em CarouselContent e pl-* em CarouselItem.
+                - Posicao das setas: wrapper `mt-5 flex justify-center` abaixo do CarouselContent. */}
           </div>
         </div>
       </section>
 
       {/* Locutores */}
-      <section className="hidden bg-background py-1 lg:block">
+      <section className="hidden bg-background py-20 lg:block">
         <div className="container">
           <div className="relative">
             <div className="absolute -top-[145px] -right-[10px] w-full z-10">
               <div className="flex items-end justify-start overflow-hidden -space-x-11"> 
                 {locutores.map((loc, i) => (
-                  <LocutorCard key={i} image={loc.image} />
+                  <LocutorCard
+                    key={`${loc.name}-${i}`}
+                    image={loc.image}
+                    name={loc.name}
+                    program={loc.program}
+                  />
                 ))}
               </div>
             </div> 
@@ -462,7 +525,7 @@ const Index = () => {
       </section>
 
       {/* Programming Section - substituida por imagem estatica do Designer */}
-      <section className="py-5 md:py-10">
+      <section className="py-4 md:py-1">
         <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10 xl:px-12">
           <img
             src={programacaoImg}

@@ -16,6 +16,7 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
+  { label: "INÍCIO", path: "/" },
   { label: "NOSSA RÁDIO", path: "/nossa-radio" },
   { label: "EQUIPE", path: "/equipe" },
 

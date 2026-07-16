@@ -11,6 +11,7 @@ describe("Header", () => {
     );
 
     expect(screen.getByRole("link", { name: /rádio 88 fm/i })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: "INÍCIO" })).toHaveAttribute("href", "/");
     expect(screen.getByRole("link", { name: "NOSSA RÁDIO" })).toHaveAttribute("href", "/nossa-radio");
     expect(screen.getByRole("link", { name: "EQUIPE" })).toHaveAttribute("href", "/equipe");
     expect(screen.getByRole("link", { name: "ANUNCIE" })).toHaveAttribute("href", "/anuncie");
