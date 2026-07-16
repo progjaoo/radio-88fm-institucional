@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/carousel";
 import fundolocutores from "@/assets/fundolocutores.png";
 import { useYoutubeContent } from "@/hooks/useYoutubeContent";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Analytics } from "@/services/analytics/analytics";
 import podcastbanner from "@/assets/podcastbanner.png";
 import podcastBannerMobile from "@/assets/podcastbannermobile.png";
@@ -206,11 +207,7 @@ const Index = () => {
   const [isPageVisible, setIsPageVisible] = useState(() =>
     typeof document === "undefined" ? true : document.visibilityState === "visible"
   );
-  const [shouldReduceMotion, setShouldReduceMotion] = useState(() =>
-    typeof window === "undefined" || typeof window.matchMedia !== "function"
-      ? false
-      : window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  );
+  const shouldReduceMotion = usePrefersReducedMotion();
   // const [loading, setLoading] = useState(true);
   const {
     videos: youtubeVideos,
@@ -282,28 +279,6 @@ const Index = () => {
   }, [heroApi]);
 
   useEffect(() => {
-    if (typeof window.matchMedia !== "function") return;
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const handleMotionPreference = () => setShouldReduceMotion(mediaQuery.matches);
-
-    handleMotionPreference();
-    if (typeof mediaQuery.addEventListener === "function") {
-      mediaQuery.addEventListener("change", handleMotionPreference);
-    } else {
-      mediaQuery.addListener(handleMotionPreference);
-    }
-
-    return () => {
-      if (typeof mediaQuery.removeEventListener === "function") {
-        mediaQuery.removeEventListener("change", handleMotionPreference);
-      } else {
-        mediaQuery.removeListener(handleMotionPreference);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     const handleVisibilityChange = () => {
       const visible = document.visibilityState === "visible";
       setIsPageVisible(visible);
@@ -341,35 +316,35 @@ const Index = () => {
   const renderHeroSlide = (slide: HeroSlide) => {
     if (slide.type === "static") {
       return (
-        <div className="relative h-full bg-white px-4 py-10 md:px-12 md:py-14 lg:px-20">
+        <div className="relative h-full bg-white px-3 py-4 sm:px-5 sm:py-7 md:px-12 md:py-14 lg:px-20">
           <div className="relative mx-auto flex h-full max-w-4xl flex-col items-center justify-center text-center">
-            <p className="font-display text-[clamp(2.1rem,12vw,4.8rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground">
+            <p className="font-display text-[clamp(1.45rem,8vw,2.25rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground md:text-[clamp(2.1rem,12vw,4.8rem)]">
               VOCÊ ESTÁ NA <Hero88Mark />,
             </p>
-            <p className="mt-2 font-display text-[clamp(2.15rem,12.5vw,5.2rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground">
+            <p className="mt-1.5 font-display text-[clamp(1.6rem,8.8vw,2.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground md:mt-2 md:text-[clamp(2.15rem,12.5vw,5.2rem)]">
               A RÁDIO QUE TOCA
               <br />
               O SOM DO CÉU!
             </p>
 
-            <div className="mt-7 flex w-full max-w-sm flex-col items-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:gap-4 md:mt-8">
+            <div className="mt-4 grid w-full max-w-sm grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:w-auto sm:max-w-none md:mt-8 md:flex md:gap-4">
               <Link
                 to="/ouvir"
-                className="inline-flex w-full items-center justify-center gap-3 rounded-md bg-radio-red px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-white transition-transform hover:scale-[1.02] sm:w-auto"
+                className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-radio-red px-3 py-2 font-display text-[11px] font-extrabold uppercase tracking-wide text-white transition-transform hover:scale-[1.02] sm:px-4 sm:text-xs md:w-auto md:gap-3 md:px-7 md:py-3 md:text-sm"
               >
-                <Radio size={18} />
+                <Radio className="h-4 w-4 shrink-0 md:h-[18px] md:w-[18px]" />
                 Ouvir ao vivo
               </Link>
               <Link
                 to="/assistir"
-                className="inline-flex w-full items-center justify-center gap-3 rounded-md bg-radio-yellow px-7 py-3 font-display text-sm font-extrabold uppercase tracking-wide text-radio-dark transition-transform hover:scale-[1.02] sm:w-auto"
+                className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-radio-yellow px-3 py-2 font-display text-[11px] font-extrabold uppercase tracking-wide text-radio-dark transition-transform hover:scale-[1.02] sm:px-4 sm:text-xs md:w-auto md:gap-3 md:px-7 md:py-3 md:text-sm"
               >
-                <Video size={18} />
+                <Video className="h-4 w-4 shrink-0 md:h-[18px] md:w-[18px]" />
                 Assistir ao vivo
               </Link>
             </div>
 
-            <p className="mt-8 text-base text-foreground/85 md:mt-10 md:text-xl">
+            <p className="mt-4 text-xs leading-5 text-foreground/85 sm:text-sm md:mt-10 md:text-xl">
               Ou baixe nosso App para{" "}
               <a
                 href="https://play.google.com/store/apps/details?id=com.sentinel4.radio88&hl=pt_BR"
@@ -389,17 +364,17 @@ const Index = () => {
               </a>
             </p>
 
-            <div className="mt-5 flex items-center gap-3 md:mt-6 md:gap-4">
+            <div className="mt-3 flex items-center gap-2 md:mt-6 md:gap-4">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-white text-foreground shadow-sm transition-colors hover:border-radio-blue hover:text-radio-blue md:h-12 md:w-12 md:rounded-2xl"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-white text-foreground shadow-sm transition-colors hover:border-radio-blue hover:text-radio-blue md:h-12 md:w-12 md:rounded-2xl"
                   aria-label={label}
                 >
-                  <Icon size={21} />
+                  <Icon className="h-[18px] w-[18px] md:h-[21px] md:w-[21px]" />
                 </a>
               ))}
             </div>
@@ -409,11 +384,11 @@ const Index = () => {
     }
 
     const bannerImage = (
-      <div className="relative h-full bg-muted">
+      <div className="relative h-full bg-radio-brand-blue">
         <img
           src={slide.midiaUrl || podcastBanner}
           alt={slide.titulo || "Carrossel institucional"}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-contain md:object-cover"
         />
       </div>
     );
@@ -470,7 +445,11 @@ const Index = () => {
                     key={slide.type === "static" ? slide.id : slide.id}
                     className="basis-[92%] pl-4 sm:basis-[88%] md:pl-8 lg:basis-[76%] lg:pl-12 xl:basis-[72%] xl:pl-14 2xl:basis-[68%]"
                   >
-                    <div className="h-[420px] overflow-hidden rounded-[18px] bg-white shadow-sm md:h-[540px]">
+                    <div
+                      className={`h-[360px] overflow-hidden rounded-[18px] shadow-sm sm:h-[420px] md:h-[540px] ${
+                        slide.type === "static" ? "bg-white" : "bg-radio-brand-blue"
+                      }`}
+                    >
                       {renderHeroSlide(slide)}
                     </div>
                   </CarouselItem>
@@ -496,6 +475,8 @@ const Index = () => {
                 - Transicao: HERO_TRANSITION_SECONDS.
                 - Largura do current/previews: basis-* em CarouselItem.
                 - Espacamento entre slides: -ml-* em CarouselContent e pl-* em CarouselItem.
+                - Altura mobile: h-[360px] no wrapper de cada slide.
+                - Fit mobile dos banners: object-contain; desktop: md:object-cover.
                 - Posicao das setas: wrapper `mt-5 flex justify-center` abaixo do CarouselContent. */}
           </div>
         </div>

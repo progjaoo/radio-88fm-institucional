@@ -2,16 +2,25 @@ import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Youtube } from "luc
 import { useState } from "react";
 import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
 import logoHeaderwhite from "@/assets/logoheadsvg.svg";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const Footer = () => {
-
   const [isHovered, setIsHovered] = useState(false);
+  const shouldReduceMotion = usePrefersReducedMotion();
   const socialLinks = [
     { icon: Facebook, href: "https://www.facebook.com/radio88oficial/", label: "Facebook" },
     { icon: Instagram, href: "https://www.instagram.com/radio88fm", label: "Instagram" },
     { icon: Youtube, href: "https://www.youtube.com/@radio88oficial", label: "YouTube" },
     { icon: Linkedin, href: "https://www.linkedin.com/company/radio-88-fm", label: "LinkedIn" },
   ];
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: shouldReduceMotion ? "auto" : "smooth",
+    });
+  };
   
   return (
     <footer className="bg-radio-dark text-primary-foreground">
@@ -19,10 +28,20 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo & About */}
           <div>
-            <img  src={isHovered ? logoHeaderColor : logoHeaderwhite} 
-            alt="Rádio 88 FM"  className={`h-16 w-16 object-contain cursor-pointer transition-all duration-300 ${!isHovered ? "invert brightness-0" : ""}`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}/>
+            <button
+              type="button"
+              onClick={scrollToTop}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="mb-4 inline-flex rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-radio-blue focus-visible:ring-offset-2 focus-visible:ring-offset-radio-dark"
+              aria-label="Voltar ao topo da página"
+            >
+              <img
+                src={isHovered ? logoHeaderColor : logoHeaderwhite}
+                alt="Rádio 88 FM"
+                className={`h-16 w-16 object-contain transition-all duration-300 ${!isHovered ? "invert brightness-0" : ""}`}
+              />
+            </button>
 
           
             <p className="text-sm text-muted-foreground leading-relaxed">

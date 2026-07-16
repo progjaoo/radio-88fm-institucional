@@ -45,6 +45,12 @@ const YoutubeBlock = ({ title, items, variant, loading, withIcon = false }: Yout
               </CarouselItem>
             ))}
           </CarouselContent>
+          {variant === "video" && (
+            <CarouselNext
+              className="right-2 top-1/2 flex h-11 w-11 border-none bg-radio-red text-white shadow-lg hover:bg-radio-blue hover:text-white sm:hidden"
+              aria-label="Mostrar mais vídeos"
+            />
+          )}
           <CarouselPrevious className="left-2 hidden border-none bg-white/90 text-radio-dark shadow-md hover:bg-white sm:flex md:-left-4" />
           <CarouselNext className="right-2 hidden border-none bg-white/90 text-radio-dark shadow-md hover:bg-white sm:flex md:-right-4" />
         </Carousel>

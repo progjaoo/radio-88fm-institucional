@@ -17,6 +17,7 @@ import { AudioPlayerProvider } from "./contexts/AudioPlayerContext";
 import Equipe from "./pages/Equipe";
 import AnalyticsRouteTracker from "./services/analytics/AnalyticsRouteTracker";
 import AnalyticsErrorTracker from "./services/analytics/AnalyticsErrorTracker";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
         <Sonner />
         <AudioPlayerProvider>
           <BrowserRouter>
+            <ScrollToTop />
             <AnalyticsRouteTracker />
             <AnalyticsErrorTracker />
             <Routes>
