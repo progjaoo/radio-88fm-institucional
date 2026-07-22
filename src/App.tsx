@@ -11,6 +11,7 @@ import Programacao from "./pages/Programacao";
 import Anuncie from "./pages/Anuncie";
 import Ouvir from "./pages/Ouvir";
 import Assistir from "./pages/Assistir";
+import Privacidade from "./pages/Privacidade";
 import NotFound from "./pages/NotFound";
 import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton";
 import { AudioPlayerProvider } from "./contexts/AudioPlayerContext";
@@ -41,6 +42,7 @@ const App = () => (
                 <Route path="/anuncie" element={<Anuncie />} />
                 <Route path="/ouvir" element={<Ouvir />} />
                 <Route path="/assistir" element={<Assistir />} />
+                <Route path="/privacidade" element={<Privacidade />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -40,6 +40,11 @@ export const routeMetadata: Record<string, RouteMetadata> = {
     pageName: "assistir_ao_vivo",
     description: "Assista à Rádio 88 FM ao vivo.",
   },
+  "/privacidade": {
+    title: "Privacidade | Rádio 88 FM",
+    pageName: "privacidade",
+    description: "Aviso de privacidade do cadastro de ouvintes da Rádio 88 FM.",
+  },
 };
 
 export const notFoundMetadata: RouteMetadata = {

@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/carousel";
 import fundolocutores from "@/assets/fundolocutores.png";
 import { useYoutubeContent } from "@/hooks/useYoutubeContent";
+import { useInstitutionalBanners } from "@/hooks/useInstitutionalBanners";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Analytics } from "@/services/analytics/analytics";
 import podcastbanner from "@/assets/podcastbanner.png";
@@ -51,7 +52,7 @@ interface PostDestaque {
 }
 
 interface BannerInstitucional {
-  id: number;
+  id: string | number;
   titulo: string;
   midiaUrl: string;
   linkUrl: string;
@@ -208,6 +209,8 @@ const Index = () => {
     typeof document === "undefined" ? true : document.visibilityState === "visible"
   );
   const shouldReduceMotion = usePrefersReducedMotion();
+  const { banners: managedBanners, loading: bannersLoading, failed: bannersFailed } =
+    useInstitutionalBanners();
   // const [loading, setLoading] = useState(true);
   const {
     videos: youtubeVideos,
@@ -217,13 +220,29 @@ const Index = () => {
   } = useYoutubeContent(6);
 
   // const formatarHora = (hora: string) => hora?.substring(0, 5) || "--:--";
+  const promotionalBanners = useMemo<BannerInstitucional[]>(() => {
+    if (bannersLoading || bannersFailed || managedBanners.length === 0) return staticHeroBanners;
+    return managedBanners.map((banner) => ({
+      id: banner.id,
+      titulo: banner.title,
+      midiaUrl: banner.imageUrl,
+      linkUrl: banner.destinationUrl ?? "",
+      novaAba: banner.openInNewTab,
+      posicao: "home",
+      ordem: banner.order,
+    }));
+  }, [bannersFailed, bannersLoading, managedBanners]);
+
   const heroSlides = useMemo<HeroSlide[]>(
-    () => [{ type: "static", id: "hero-static" }, ...staticHeroBanners.map((banner) => ({ ...banner, type: "banner" as const }))],
-    []
+    () => [
+      { type: "static", id: "hero-static" },
+      ...promotionalBanners.map((banner) => ({ ...banner, type: "banner" as const })),
+    ],
+    [promotionalBanners],
   );
 
-  // Integração dinâmica via PortalGtf/CMS preservada para rollback futuro.
-  // Reativar quando os banners voltarem a ser gerenciados pelo cms-feitoamao.
+  // Integração legada PortalGtf/CMS preservada somente para consulta histórica.
+  // A fonte de verdade atual é a API do GestaoOuvintes com armazenamento R2.
   // useEffect(() => {
   //   const loadData = async () => {
   //     try {
