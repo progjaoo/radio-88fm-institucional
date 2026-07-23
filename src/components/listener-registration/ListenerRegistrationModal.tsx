@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2, Loader2, Radio, XCircle } from "lucide-react";
+import { CheckCircle2, Loader2, XCircle } from "lucide-react";
+import logoHeaderWhite from "@/assets/logoheadsvg.svg";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -249,8 +250,12 @@ export default function ListenerRegistrationModal() {
     [&>button>svg]:shrink-0
   ">
         <div className="bg-radio-brand-blue px-6 py-7 text-white sm:px-8">
-          <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15">
-            <Radio className="h-6 w-6" aria-hidden="true" />
+          <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 p-2">
+            <img
+              src={logoHeaderWhite}
+              alt="Rádio 88 FM"
+              className="h-full w-full object-contain"
+            />
           </div>
           <DialogHeader className="text-left">
             <DialogTitle className="font-display text-2xl font-extrabold leading-tight sm:text-3xl">
