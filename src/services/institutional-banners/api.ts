@@ -25,6 +25,8 @@ export async function fetchInstitutionalBanners(
   const data = (await response.json()) as PublicInstitutionalBannersResponse;
   return {
     ...data,
-    items: [...data.items].sort((first, second) => first.order - second.order),
+    items: data.items
+      .filter((item) => item.imageUrl && item.imageUrl.trim().length > 0)
+      .sort((first, second) => first.order - second.order),
   };
 }

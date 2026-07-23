@@ -19,7 +19,10 @@ interface ApiErrorBody {
 }
 
 function getApiBaseUrl() {
-  const value = import.meta.env.VITE_LISTENER_REGISTRATION_API_URL as string | undefined;
+  const value = (
+    import.meta.env.VITE_LISTENER_REGISTRATION_API_URL ||
+    import.meta.env.VITE_GESTAO_OUVINTES_API_URL
+  ) as string | undefined;
   const configuredUrl = value?.replace(/\/$/, "") ?? "";
 
   if (
@@ -90,7 +93,7 @@ function assertConfigured() {
     throw new ListenerRegistrationApiError(
       0,
       "API_URL_MISSING",
-      "Configure VITE_LISTENER_REGISTRATION_API_URL para carregar a campanha.",
+      "Configure VITE_LISTENER_REGISTRATION_API_URL ou VITE_GESTAO_OUVINTES_API_URL para carregar a campanha.",
     );
   }
 

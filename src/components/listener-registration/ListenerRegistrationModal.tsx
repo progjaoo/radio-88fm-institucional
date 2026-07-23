@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useListenerRegistrationCampaign } from "@/hooks/useListenerRegistrationCampaign";
+import { formatBrazilianPhone, isValidBrazilianPhone, onlyDigits } from "@/lib/phone";
 import { Analytics } from "@/services/analytics/analytics";
 import {
   createListenerRegistration,
@@ -40,7 +41,12 @@ const listenerRegistrationSchema = z.object({
   name: z.string().trim().min(2, "Informe seu nome.").max(160, "Use ate 160 caracteres."),
   neighborhood: z.string().trim().min(2, "Informe seu bairro.").max(120, "Use ate 120 caracteres."),
   city: z.string().trim().min(2, "Informe sua cidade.").max(120, "Use ate 120 caracteres."),
-  phone: z.string().trim().min(8, "Informe seu telefone.").max(30, "Use ate 30 caracteres."),
+  phone: z
+    .string()
+    .trim()
+    .min(1, "Informe seu telefone.")
+    .max(16, "Use ate 16 caracteres.")
+    .refine(isValidBrazilianPhone, "Informe um telefone com DDD."),
   privacyAcknowledged: z.boolean().refine((value) => value === true, "Confirme o aviso de privacidade para continuar."),
   marketingOptIn: z.boolean().default(false),
   website: z.string().max(0).optional(),
@@ -118,7 +124,7 @@ export default function ListenerRegistrationModal() {
         name: values.name,
         neighborhood: values.neighborhood,
         city: values.city,
-        phone: values.phone.trim(),
+        phone: onlyDigits(values.phone),
         submissionToken: getOrCreateSubmissionToken(campaign.slug),
         privacyNoticeVersion: campaign.privacyNoticeVersion,
         privacyAcknowledged: true,
@@ -133,7 +139,7 @@ export default function ListenerRegistrationModal() {
       Analytics.track("listener_registration_success", {
         campaign_slug: campaign?.slug,
         source: getSubmissionSource(),
-        has_phone: Boolean(values.phone?.trim()),
+        has_phone: isValidBrazilianPhone(values.phone),
         marketing_opt_in: values.marketingOptIn,
       });
       if (campaign) {
@@ -204,7 +210,7 @@ export default function ListenerRegistrationModal() {
   async function onSubmit(values: ListenerRegistrationFormValues) {
     Analytics.track("listener_registration_submit", {
       campaign_slug: campaign?.slug,
-      has_phone: Boolean(values.phone?.trim()),
+      has_phone: isValidBrazilianPhone(values.phone),
       marketing_opt_in: values.marketingOptIn,
     });
     await mutation.mutateAsync(values);
@@ -365,7 +371,16 @@ export default function ListenerRegistrationModal() {
                     <FormItem className="sm:col-span-2">
                       <FormLabel>Telefone</FormLabel>
                       <FormControl>
-                        <Input inputMode="tel" autoComplete="tel" placeholder="(24) 99999-9999" {...field} />
+                        <Input
+                          inputMode="tel"
+                          autoComplete="tel"
+                          placeholder="(24) 99999-9999"
+                          value={field.value}
+                          onChange={(event) => field.onChange(formatBrazilianPhone(event.target.value))}
+                          onBlur={field.onBlur}
+                          name={field.name}
+                          ref={field.ref}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
