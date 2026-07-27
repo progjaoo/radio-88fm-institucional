@@ -221,36 +221,9 @@ export default function ListenerRegistrationModal() {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="
-    max-h-[92svh]
-    overflow-y-auto
-    border-0
-    p-0
-    sm:max-w-[560px]
-    sm:rounded-[24px]
-    [&>button]:absolute
-    [&>button]:top-4
-    [&>button]:right-4
-    [&>button]:z-50
-    [&>button]:flex
-    [&>button]:items-center
-    [&>button]:justify-center
-    [&>button]:h-10
-    [&>button]:w-10
-    [&>button]:rounded-full
-    [&>button]:p-0
-    [&>button]:bg-white/20
-    [&>button]:text-white
-    [&>button]:opacity-100
-    [&>button]:transition-all
-    [&>button:hover]:bg-red-600
-    [&>button:hover]:scale-110
-    [&>button>svg]:h-5
-    [&>button>svg]:w-5
-    [&>button>svg]:shrink-0
-  ">
-        <div className="bg-radio-brand-blue px-6 py-7 text-white sm:px-8">
-          <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 p-2">
+      <DialogContent className="grid max-h-[calc(100svh-24px)] w-[calc(100vw-24px)] grid-rows-[auto_minmax(0,1fr)] gap-0 overflow-hidden border-0 p-0 sm:max-w-[560px] sm:rounded-[24px] md:max-w-[680px] [&>button]:absolute [&>button]:right-3 [&>button]:top-3 [&>button]:z-50 [&>button]:flex [&>button]:h-10 [&>button]:w-10 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-white/20 [&>button]:p-0 [&>button]:text-white [&>button]:opacity-100 [&>button]:transition-all [&>button:hover]:scale-110 [&>button:hover]:bg-red-600 [&>button>svg]:h-5 [&>button>svg]:w-5 [&>button>svg]:shrink-0">
+        <div className="bg-radio-brand-blue px-5 py-5 text-white sm:px-8 sm:py-7">
+          <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 p-2 sm:mb-5 sm:h-12 sm:w-12">
             <img
               src={logoHeaderWhite}
               alt="Rádio 88 FM"
@@ -258,17 +231,18 @@ export default function ListenerRegistrationModal() {
             />
           </div>
           <DialogHeader className="text-left">
-            <DialogTitle className="font-display text-2xl font-extrabold leading-tight sm:text-3xl">
+            <DialogTitle className="font-display text-[1.55rem] font-extrabold leading-[1.08] sm:text-3xl">
               {campaign.title}
             </DialogTitle>
-            <DialogDescription className="text-sm leading-6 text-white/82">
+            <DialogDescription className="mt-2 text-sm leading-5 text-white/85 sm:leading-6">
               {campaign.description}
             </DialogDescription>
           </DialogHeader>
         </div>
 
-        {submitted ? (
-          <div className="space-y-5 px-6 py-7 sm:px-8">
+        <div className="min-h-0 overflow-y-auto bg-white">
+          {submitted ? (
+          <div className="space-y-4 px-5 py-5 sm:space-y-5 sm:px-8 sm:py-7">
             <div className="flex items-start gap-3 rounded-2xl border border-radio-blue/20 bg-radio-blue/5 p-4">
               <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-radio-blue" aria-hidden="true" />
               <div>
@@ -283,7 +257,7 @@ export default function ListenerRegistrationModal() {
             </Button>
           </div>
         ) : experience === "known_listener_confirmation_required" ? (
-          <div className="space-y-5 px-6 py-7 sm:px-8">
+          <div className="space-y-4 px-5 py-5 sm:space-y-5 sm:px-8 sm:py-7">
             <div className="rounded-2xl bg-muted/55 p-4">
               <h3 className="font-display text-lg font-extrabold text-radio-dark">
                 Voce ja tem cadastro
@@ -325,16 +299,16 @@ export default function ListenerRegistrationModal() {
           </div>
         ) : (
           <Form {...form}>
-            <form className="space-y-5 px-6 py-7 sm:px-8" onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="grid gap-4 sm:grid-cols-2">
+            <form className="space-y-4 px-5 py-5 sm:space-y-5 sm:px-8 sm:py-7" onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="grid gap-4 md:grid-cols-2">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
-                    <FormItem className="sm:col-span-2">
+                    <FormItem className="md:col-span-2">
                       <FormLabel>Nome</FormLabel>
                       <FormControl>
-                        <Input autoComplete="name" placeholder="Seu nome" {...field} />
+                        <Input className="h-11 sm:h-12" autoComplete="name" placeholder="Seu nome" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -348,7 +322,7 @@ export default function ListenerRegistrationModal() {
                     <FormItem>
                       <FormLabel>Bairro</FormLabel>
                       <FormControl>
-                        <Input autoComplete="address-level3" placeholder="Seu bairro" {...field} />
+                        <Input className="h-11 sm:h-12" autoComplete="address-level3" placeholder="Seu bairro" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -362,7 +336,7 @@ export default function ListenerRegistrationModal() {
                     <FormItem>
                       <FormLabel>Cidade</FormLabel>
                       <FormControl>
-                        <Input autoComplete="address-level2" placeholder="Sua cidade" {...field} />
+                        <Input className="h-11 sm:h-12" autoComplete="address-level2" placeholder="Sua cidade" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -373,10 +347,11 @@ export default function ListenerRegistrationModal() {
                   control={form.control}
                   name="phone"
                   render={({ field }) => (
-                    <FormItem className="sm:col-span-2">
+                    <FormItem className="md:col-span-2">
                       <FormLabel>Telefone</FormLabel>
                       <FormControl>
                         <Input
+                          className="h-11 sm:h-12"
                           inputMode="tel"
                           autoComplete="tel"
                           placeholder="(24) 99999-9999"
@@ -414,7 +389,7 @@ export default function ListenerRegistrationModal() {
                     <FormItem className="space-y-0">
                       <div className="flex items-start gap-3">
                         <FormControl>
-                          <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                          <Checkbox className="mt-0.5 h-5 w-5 shrink-0" checked={field.value} onCheckedChange={field.onChange} />
                         </FormControl>
                         <FormLabel className="text-sm font-normal leading-5">
                           Li e aceito o{" "}
@@ -436,7 +411,7 @@ export default function ListenerRegistrationModal() {
                     <FormItem className="space-y-0">
                       <div className="flex items-start gap-3">
                         <FormControl>
-                          <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                          <Checkbox className="mt-0.5 h-5 w-5 shrink-0" checked={field.value} onCheckedChange={field.onChange} />
                         </FormControl>
                         <FormLabel className="text-sm font-normal leading-5">
                           Quero receber novidades e avisos da Rádio 88 FM.
@@ -454,10 +429,10 @@ export default function ListenerRegistrationModal() {
                 </div>
               )}
 
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="sticky bottom-0 -mx-5 flex flex-col gap-3 border-t border-border/70 bg-white px-5 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 sm:-mx-8 sm:flex-row sm:px-8">
                 <Button
                   type="submit"
-                  className="h-12 flex-1 rounded-full bg-radio-red font-display font-extrabold hover:bg-radio-red/90"
+                  className="h-11 flex-1 rounded-full bg-radio-red font-display font-extrabold hover:bg-radio-red/90 sm:h-12"
                   disabled={mutation.isPending}
                 >
                   {mutation.isPending && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
@@ -466,7 +441,7 @@ export default function ListenerRegistrationModal() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-12 rounded-full px-6 font-display font-extrabold"
+                  className="h-11 rounded-full px-6 font-display font-extrabold sm:h-12"
                   onClick={handleDismissButton}
                   disabled={mutation.isPending}
                 >
@@ -476,6 +451,7 @@ export default function ListenerRegistrationModal() {
             </form>
           </Form>
         )}
+        </div>
       </DialogContent>
     </Dialog>
   );

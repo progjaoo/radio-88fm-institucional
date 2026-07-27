@@ -18,7 +18,7 @@ const FloatingWhatsAppButton = () => {
           current_page: location.pathname,
         })
       }
-      className={`fixed right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-[#20ba58] ${
+      className={`fixed right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-[#20ba58] ${
         hasMiniPlayer ? "bottom-24" : "bottom-6"
       }`}
       aria-label="Fale conosco no WhatsApp"

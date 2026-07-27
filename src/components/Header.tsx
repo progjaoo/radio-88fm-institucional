@@ -94,10 +94,10 @@ const Header = () => {
   return (
     <header
       ref={headerRef}
-      className="fixed left-3 right-3 top-0 z-[100] mx-auto max-w-[2400px] rounded-b-[16px] border border-white/20 bg-black shadow-lg backdrop-blur-md sm:left-4 sm:right-4 sm:rounded-b-[20px]"
+      className="fixed left-3 right-3 top-0 z-40 mx-auto max-w-[2400px] rounded-b-[16px] border border-white/20 bg-black shadow-lg backdrop-blur-md sm:left-4 sm:right-4 sm:rounded-b-[20px]"
     >
-      <div className="container flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2" onClick={handleLogoClick}>
+      <div className="mx-auto grid h-16 w-full max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 sm:px-6 lg:px-8">
+        <Link to="/" className="flex items-center gap-2 justify-self-start" onClick={handleLogoClick}>
           <img 
             src={isHovered ? logoHeaderColor : logoHeaderwhite} 
             alt="Rádio 88 FM" 
@@ -109,7 +109,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-5 lg:flex lg:ml-20 xl:ml-60">
+        <nav className="hidden items-center justify-center gap-5 justify-self-center lg:flex">
           {navItems.map((item) =>
             item.external ? (
               <a
@@ -137,7 +137,7 @@ const Header = () => {
           )}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center justify-end gap-4 justify-self-end lg:flex">
           <Link
             to="/ouvir"
             onClick={(event) => handleInternalNavigation(event, "/ouvir", "Ouvir Ao Vivo")}
@@ -159,7 +159,7 @@ const Header = () => {
         <button
           type="button"
           onClick={() => setMenuOpen((isOpen) => !isOpen)}
-          className="flex h-11 w-11 items-center justify-center rounded-full text-white lg:hidden"
+          className="col-start-3 flex h-11 w-11 items-center justify-center justify-self-end rounded-full text-white lg:hidden"
           aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
