@@ -1,6 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2, XCircle } from "lucide-react";
-import logoHeaderWhite from "@/assets/logoheadsvg.svg";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -37,6 +36,7 @@ import {
 import { ListenerRegistrationApiError } from "@/services/listener-registration/types";
 import type { ListenerCampaignActive } from "@/services/listener-registration/types";
 import { useMutation } from "@tanstack/react-query";
+import { CampaignModalArtwork } from "./CampaignModalArtwork";
 
 const listenerRegistrationSchema = z.object({
   name: z.string().trim().min(2, "Informe seu nome.").max(160, "Use ate 160 caracteres."),
@@ -221,20 +221,15 @@ export default function ListenerRegistrationModal() {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="grid max-h-[calc(100svh-24px)] w-[calc(100vw-24px)] grid-rows-[auto_minmax(0,1fr)] gap-0 overflow-hidden border-0 p-0 sm:max-w-[560px] sm:rounded-[24px] md:max-w-[680px] [&>button]:absolute [&>button]:right-3 [&>button]:top-3 [&>button]:z-50 [&>button]:flex [&>button]:h-10 [&>button]:w-10 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-white/20 [&>button]:p-0 [&>button]:text-white [&>button]:opacity-100 [&>button]:transition-all [&>button:hover]:scale-110 [&>button:hover]:bg-red-600 [&>button>svg]:h-5 [&>button>svg]:w-5 [&>button>svg]:shrink-0">
-        <div className="bg-radio-brand-blue px-5 py-5 text-white sm:px-8 sm:py-7">
-          <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 p-2 sm:mb-5 sm:h-12 sm:w-12">
-            <img
-              src={logoHeaderWhite}
-              alt="Rádio 88 FM"
-              className="h-full w-full object-contain"
-            />
-          </div>
-          <DialogHeader className="text-left">
-            <DialogTitle className="font-display text-[1.55rem] font-extrabold leading-[1.08] sm:text-3xl">
-              {campaign.title}
-            </DialogTitle>
-            <DialogDescription className="mt-2 text-sm leading-5 text-white/85 sm:leading-6">
+      <DialogContent className="grid max-h-[calc(100svh-24px)] w-[calc(100vw-24px)] grid-rows-[auto_minmax(0,1fr)] gap-0 overflow-hidden border-0 p-0 sm:max-w-[560px] sm:rounded-[24px] md:max-w-[680px] [&>button]:absolute [&>button]:right-3 [&>button]:top-3 [&>button]:z-50 [&>button]:flex [&>button]:h-10 [&>button]:w-10 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-black/35 [&>button]:p-0 [&>button]:text-white [&>button]:opacity-100 [&>button]:transition-all [&>button:hover]:scale-110 [&>button:hover]:bg-red-600 [&>button>svg]:h-5 [&>button>svg]:w-5 [&>button>svg]:shrink-0">
+        <div className="relative">
+          <CampaignModalArtwork
+            title={campaign.title}
+            description={campaign.description}
+          />
+          <DialogHeader className="sr-only">
+            <DialogTitle>{campaign.title}</DialogTitle>
+            <DialogDescription data-dialog-description>
               {campaign.description}
             </DialogDescription>
           </DialogHeader>
