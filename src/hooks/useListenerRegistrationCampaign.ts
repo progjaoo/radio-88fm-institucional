@@ -111,6 +111,27 @@ export function useListenerRegistrationCampaign() {
     setOpen(false);
   }
 
+  async function requestOpen(
+    _source: "institutional_banner" | "manual",
+  ): Promise<boolean> {
+    if (!enabled) return false;
+
+    const refreshed = await refetchSession();
+    const nextCampaign = refreshed.data?.campaign ?? null;
+    const nextExperience = refreshed.data?.experience;
+    if (
+      !nextCampaign ||
+      nextExperience === "already_participating" ||
+      nextExperience === "campaign_unavailable"
+    ) {
+      return false;
+    }
+
+    setClosedCampaignSlug(null);
+    setOpen(true);
+    return true;
+  }
+
   return {
     campaign,
     enabled,
@@ -122,6 +143,7 @@ export function useListenerRegistrationCampaign() {
     setOpen,
     complete,
     dismiss,
+    requestOpen,
     refetchCampaign: refetchSession,
   };
 }

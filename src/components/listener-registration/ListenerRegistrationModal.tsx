@@ -22,7 +22,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useListenerRegistrationCampaign } from "@/hooks/useListenerRegistrationCampaign";
+import { useListenerRegistration } from "@/hooks/useListenerRegistration";
 import { formatBrazilianPhone, isValidBrazilianPhone, onlyDigits } from "@/lib/phone";
 import { Analytics } from "@/services/analytics/analytics";
 import {
@@ -37,6 +37,7 @@ import { ListenerRegistrationApiError } from "@/services/listener-registration/t
 import type { ListenerCampaignActive } from "@/services/listener-registration/types";
 import { useMutation } from "@tanstack/react-query";
 import { CampaignModalArtwork } from "./CampaignModalArtwork";
+import { getListenerRegistrationErrorMessage } from "./error-message";
 
 const listenerRegistrationSchema = z.object({
   name: z.string().trim().min(2, "Informe seu nome.").max(160, "Use ate 160 caracteres."),
@@ -86,26 +87,9 @@ function getPrivacyPath(campaign: ListenerCampaignActive) {
   return campaign.privacyNoticeUrl.startsWith("/") ? campaign.privacyNoticeUrl : "/privacidade";
 }
 
-function getErrorMessage(error: unknown) {
-  if (error instanceof ListenerRegistrationApiError) {
-    if (error.code === "RATE_LIMIT_EXCEEDED") {
-      return "Muitas tentativas. Aguarde um pouco antes de tentar novamente.";
-    }
-    if (error.code === "CAMPAIGN_CLOSED" || error.code === "CAMPAIGN_UNAVAILABLE") {
-      return "Este cadastro nao esta disponivel no momento.";
-    }
-    if (error.code === "PRIVACY_NOTICE_VERSION_MISMATCH") {
-      return "O aviso de privacidade foi atualizado. Feche e abra o site novamente antes de continuar.";
-    }
-    return error.message;
-  }
-
-  return "Nao foi possivel enviar agora. Verifique sua conexao e tente novamente.";
-}
-
 export default function ListenerRegistrationModal() {
   const { campaign, deviceToken, experience, open, setOpen, dismiss } =
-    useListenerRegistrationCampaign();
+    useListenerRegistration();
   const [submitted, setSubmitted] = useState(false);
 
   const form = useForm<ListenerRegistrationFormValues>({
@@ -418,9 +402,13 @@ export default function ListenerRegistrationModal() {
               </div>
 
               {mutation.error && (
-                <div className="flex items-start gap-3 rounded-2xl border border-destructive/20 bg-destructive/10 p-4 text-sm text-destructive">
+                <div
+                  className="flex items-start gap-3 rounded-2xl border border-destructive/20 bg-destructive/10 p-4 text-sm text-destructive"
+                  role="alert"
+                  aria-live="polite"
+                >
                   <XCircle className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
-                  <p>{getErrorMessage(mutation.error)}</p>
+                  <p>{getListenerRegistrationErrorMessage(mutation.error)}</p>
                 </div>
               )}
 

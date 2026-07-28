@@ -15,8 +15,11 @@ import {
 import fundolocutores from "@/assets/fundolocutores.png";
 import { useYoutubeContent } from "@/hooks/useYoutubeContent";
 import { useInstitutionalBanners } from "@/hooks/useInstitutionalBanners";
+import { useListenerRegistration } from "@/hooks/useListenerRegistration";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Analytics } from "@/services/analytics/analytics";
+import { resolvePublicInstitutionalBannerAction } from "@/services/institutional-banners/action";
+import type { InstitutionalBannerActionType } from "@/services/institutional-banners/types";
 import podcastbanner from "@/assets/podcastbanner.png";
 import podcastBannerMobile from "@/assets/podcastbannermobile.png";
 import podcastBanner from "@/assets/podcastbanner.jpg";
@@ -55,6 +58,7 @@ interface BannerInstitucional {
   id: string | number;
   titulo: string;
   midiaUrl: string;
+  actionType: InstitutionalBannerActionType;
   linkUrl: string;
   novaAba: boolean;
   posicao: string;
@@ -117,6 +121,7 @@ const staticHeroBanners: BannerInstitucional[] = [
     id: 1,
     titulo: "Banner institucional 1",
     midiaUrl: banner001,
+    actionType: "none",
     linkUrl: "",
     novaAba: false,
     posicao: "home",
@@ -126,6 +131,7 @@ const staticHeroBanners: BannerInstitucional[] = [
     id: 2,
     titulo: "Banner institucional 2",
     midiaUrl: banner002,
+    actionType: "none",
     linkUrl: "",
     novaAba: false,
     posicao: "home",
@@ -209,6 +215,8 @@ const Index = () => {
     typeof document === "undefined" ? true : document.visibilityState === "visible"
   );
   const shouldReduceMotion = usePrefersReducedMotion();
+  const { requestOpen: requestListenerRegistrationOpen } =
+    useListenerRegistration();
   const { banners: managedBanners, loading: bannersLoading, failed: bannersFailed } =
     useInstitutionalBanners();
   // const [loading, setLoading] = useState(true);
@@ -226,6 +234,7 @@ const Index = () => {
       id: banner.id,
       titulo: banner.title,
       midiaUrl: banner.imageUrl,
+      actionType: resolvePublicInstitutionalBannerAction(banner),
       linkUrl: banner.destinationUrl ?? "",
       novaAba: banner.openInNewTab,
       posicao: "home",
@@ -412,7 +421,30 @@ const Index = () => {
       </div>
     );
 
-    if (slide.linkUrl) {
+    if (slide.actionType === "listener_registration_modal") {
+      return (
+        <button
+          type="button"
+          onClick={async () => {
+            const opened = await requestListenerRegistrationOpen(
+              "institutional_banner",
+            );
+            Analytics.track("hero_banner_click", {
+              banner_id: slide.id,
+              banner_title: slide.titulo,
+              action: "listener_registration_modal",
+              modal_opened: opened,
+            });
+          }}
+          className="block h-full w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-radio-blue/70 focus-visible:ring-inset"
+          aria-label={`${slide.titulo || "Banner institucional"}: abrir cadastro do sorteio`}
+        >
+          {bannerImage}
+        </button>
+      );
+    }
+
+    if (slide.actionType === "external_url" && slide.linkUrl) {
       return (
         <a
           href={slide.linkUrl}
@@ -422,6 +454,7 @@ const Index = () => {
             Analytics.track("hero_banner_click", {
               banner_id: slide.id,
               banner_title: slide.titulo,
+              action: "external_url",
             })
           }
           className="block h-full w-full"

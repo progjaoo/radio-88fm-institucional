@@ -2,11 +2,13 @@ import { render, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router-dom";
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import { useListenerRegistrationCampaign } from "@/hooks/useListenerRegistrationCampaign";
+import { useListenerRegistration } from "@/hooks/useListenerRegistration";
+import { ListenerRegistrationApiError } from "@/services/listener-registration/types";
 import ListenerRegistrationModal from "./ListenerRegistrationModal";
+import { getListenerRegistrationErrorMessage } from "./error-message";
 
-vi.mock("@/hooks/useListenerRegistrationCampaign", () => ({
-  useListenerRegistrationCampaign: vi.fn(),
+vi.mock("@/hooks/useListenerRegistration", () => ({
+  useListenerRegistration: vi.fn(),
 }));
 
 vi.mock("@/services/analytics/analytics", () => ({
@@ -15,7 +17,7 @@ vi.mock("@/services/analytics/analytics", () => ({
   },
 }));
 
-const mockedUseCampaign = vi.mocked(useListenerRegistrationCampaign);
+const mockedUseCampaign = vi.mocked(useListenerRegistration);
 
 beforeAll(() => {
   vi.stubGlobal(
@@ -72,6 +74,10 @@ describe("ListenerRegistrationModal", () => {
       dismiss: vi.fn(),
       isLoading: false,
       error: null,
+      enabled: true,
+      complete: vi.fn(),
+      requestOpen: vi.fn(),
+      refetchCampaign: vi.fn(),
     });
   });
 
@@ -90,5 +96,17 @@ describe("ListenerRegistrationModal", () => {
     );
     expect(accessibleDescription?.closest(".sr-only")).not.toBeNull();
     expect(screen.getByLabelText("Nome")).toBeInTheDocument();
+  });
+
+  it("presents the campaign duplicate-phone response in clear language", () => {
+    const error = new ListenerRegistrationApiError(
+      409,
+      "PHONE_ALREADY_PARTICIPATING",
+      "Mensagem tecnica que nao deve substituir a regra.",
+    );
+
+    expect(getListenerRegistrationErrorMessage(error)).toBe(
+      "Você já está participando do sorteio.",
+    );
   });
 });

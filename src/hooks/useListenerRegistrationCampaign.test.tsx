@@ -85,4 +85,25 @@ describe("useListenerRegistrationCampaign", () => {
 
     await waitFor(() => expect(second.result.current.open).toBe(true));
   });
+
+  it("refaz a sessao e abre sob demanda ao clicar em um banner", async () => {
+    vi.stubEnv("VITE_LISTENER_REGISTRATION_OPEN_DELAY_MS", "60000");
+    const hook = renderHook(() => useListenerRegistrationCampaign(), {
+      wrapper: createWrapper(),
+    });
+
+    await waitFor(() =>
+      expect(hook.result.current.campaign?.slug).toBe("campanha-teste"),
+    );
+    expect(hook.result.current.open).toBe(false);
+
+    let opened = false;
+    await act(async () => {
+      opened = await hook.result.current.requestOpen("institutional_banner");
+    });
+
+    expect(opened).toBe(true);
+    expect(hook.result.current.open).toBe(true);
+    expect(fetch).toHaveBeenCalledTimes(2);
+  });
 });
