@@ -9,6 +9,7 @@ const Ouvir = () => {
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-radio-brand-blue">
       <div className="container max-w-md text-center">
+        <h1 className="sr-only">Ouvir Rádio 88 FM ao vivo</h1>
         {/* Album art */}
         <div className="relative w-64 h-64 mx-auto mb-8 rounded-2xl overflow-hidden shadow-2xl">
           {streamData?.capa_musica ? (

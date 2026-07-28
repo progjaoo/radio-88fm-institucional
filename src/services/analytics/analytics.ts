@@ -1,12 +1,13 @@
 import ReactGA from "react-ga4";
 import type { AnalyticsEventName, AnalyticsPagePayload, AnalyticsParams } from "./analytics.types";
-
-const DEFAULT_MEASUREMENT_ID = "G-44LQH4EW9P";
+import { getAnalyticsConsent } from "./consent";
+import { sanitizeEventParams } from "./eventCatalog";
 
 let initialized = false;
+let warnedMissingId = false;
 
-function isEnabled() {
-  return import.meta.env.VITE_GA_ENABLED !== "false";
+function isConfigured() {
+  return import.meta.env.VITE_GA_ENABLED === "true";
 }
 
 function isDebug() {
@@ -14,41 +15,59 @@ function isDebug() {
 }
 
 function getMeasurementId() {
-  return (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined) || DEFAULT_MEASUREMENT_ID;
+  return (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined)?.trim();
 }
 
 function debugLog(type: string, payload: unknown) {
-  if (isDebug()) {
-    console.info(`[analytics:${type}]`, payload);
-  }
+  if (isDebug()) console.info(`[analytics:${type}]`, payload);
 }
 
 function normalizeParams(params?: AnalyticsParams) {
   if (!params) return undefined;
-
   return Object.fromEntries(
-    Object.entries(params).filter(([, value]) => value !== undefined && value !== null)
+    Object.entries(params).filter(([, value]) => value !== undefined && value !== null),
+  );
+}
+
+function canCollect() {
+  return (
+    typeof window !== "undefined" &&
+    isConfigured() &&
+    getAnalyticsConsent() === "granted"
   );
 }
 
 export const Analytics = {
   init() {
-    if (initialized || !isEnabled() || typeof window === "undefined") return;
+    if (initialized) return true;
+    if (!canCollect()) return false;
 
     const measurementId = getMeasurementId();
+    if (!measurementId) {
+      if (import.meta.env.DEV && !warnedMissingId) {
+        warnedMissingId = true;
+        console.warn("VITE_GA_MEASUREMENT_ID não configurado; GA4 permanece desativado.");
+      }
+      return false;
+    }
+
     ReactGA.initialize(measurementId, {
-      gtagOptions: {
-        send_page_view: false,
-      },
+      gtagOptions: { send_page_view: false },
+    });
+    ReactGA.gtag("consent", "update", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
     });
     initialized = true;
     debugLog("init", { measurementId });
+    return true;
   },
 
   page(payload: AnalyticsPagePayload) {
-    if (!isEnabled() || typeof window === "undefined") return;
+    if (!this.init()) return false;
 
-    this.init();
     ReactGA.send({
       hitType: "pageview",
       page: payload.page_path,
@@ -57,22 +76,23 @@ export const Analytics = {
       page_name: payload.page_name,
     });
     debugLog("page", payload);
+    return true;
   },
 
   track(eventName: AnalyticsEventName, params?: AnalyticsParams) {
-    if (!isEnabled() || typeof window === "undefined") return;
+    if (!this.init()) return false;
 
-    this.init();
-    const payload = normalizeParams(params);
+    const payload = sanitizeEventParams(eventName, normalizeParams(params));
     ReactGA.event(eventName, payload);
     debugLog(eventName, payload || {});
+    return true;
   },
 
   setUserProperties(properties: AnalyticsParams) {
-    if (!isEnabled() || typeof window === "undefined") return;
+    if (!this.init()) return false;
 
-    this.init();
     ReactGA.gtag("set", "user_properties", normalizeParams(properties));
     debugLog("user_properties", properties);
+    return true;
   },
 };

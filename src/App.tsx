@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import NossaRadio from "./pages/NossaRadio";
@@ -20,16 +21,20 @@ import AnalyticsRouteTracker from "./services/analytics/AnalyticsRouteTracker";
 import AnalyticsErrorTracker from "./services/analytics/AnalyticsErrorTracker";
 import ScrollToTop from "./components/ScrollToTop";
 
-const queryClient = new QueryClient();
+interface AppContentProps {
+  helmetContext?: Record<string, unknown>;
+}
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <AudioPlayerProvider>
-          <BrowserRouter>
+export const AppContent = ({ helmetContext }: AppContentProps) => {
+  const [queryClient] = useState(() => new QueryClient());
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider context={helmetContext}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <AudioPlayerProvider>
             <ScrollToTop />
             <AnalyticsRouteTracker />
             <AnalyticsErrorTracker />
@@ -47,11 +52,17 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             <FloatingWhatsAppButton />
-          </BrowserRouter>
-        </AudioPlayerProvider>
-      </TooltipProvider>
-    </HelmetProvider>
-  </QueryClientProvider>
+          </AudioPlayerProvider>
+        </TooltipProvider>
+      </HelmetProvider>
+    </QueryClientProvider>
+  );
+};
+
+const App = () => (
+  <BrowserRouter>
+    <AppContent />
+  </BrowserRouter>
 );
 
 export default App;

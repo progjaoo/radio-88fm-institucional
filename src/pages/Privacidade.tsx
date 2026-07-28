@@ -1,18 +1,17 @@
-import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import { clearAnalyticsConsent, getAnalyticsConsent } from "@/services/analytics/consent";
 
 const pageContainer = "mx-auto w-full max-w-[1100px] px-6 sm:px-6 lg:px-10 xl:px-12";
 
 const Privacidade = () => {
-  return (
-    <main className="bg-white py-12 text-foreground md:py-16">
-      <Helmet>
-        <title>Privacidade | Rádio 88 FM</title>
-        <meta
-          name="description"
-          content="Aviso de privacidade da Rádio 88 FM para cadastro de ouvintes no site institucional."
-        />
-      </Helmet>
+  const [analyticsConsent, setAnalyticsConsentState] = useState(() => getAnalyticsConsent());
 
+  const revokeAnalytics = () => {
+    clearAnalyticsConsent();
+    setAnalyticsConsentState("unknown");
+  };
+  return (
+    <div className="bg-white py-12 text-foreground md:py-16">
       <div className={pageContainer}>
         <div className="max-w-3xl">
           <p className="font-display text-sm font-extrabold uppercase tracking-[0.28em] text-radio-blue">
@@ -63,6 +62,24 @@ const Privacidade = () => {
           </section>
 
           <section>
+            <h2 className="font-display text-2xl font-extrabold text-radio-dark">Google Analytics</h2>
+            <p className="mt-3">
+              Com sua autorização, coletamos métricas anônimas de páginas acessadas, interações e
+              desempenho para melhorar o site. Nome, telefone, bairro e cidade nunca são enviados ao
+              Google Analytics. Você pode revogar sua escolha a qualquer momento.
+            </p>
+            {analyticsConsent === "granted" && (
+              <button
+                type="button"
+                onClick={revokeAnalytics}
+                className="mt-4 rounded-md border border-radio-blue px-4 py-2 font-display text-sm font-bold text-radio-blue transition-colors hover:bg-radio-blue hover:text-white"
+              >
+                Revogar consentimento de analytics
+              </button>
+            )}
+          </section>
+
+          <section>
             <h2 className="font-display text-2xl font-extrabold text-radio-dark">Contato</h2>
             <p className="mt-3">
               Para solicitar informações sobre seus dados, entre em contato com a Rádio 88 FM pelos
@@ -71,7 +88,7 @@ const Privacidade = () => {
           </section>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

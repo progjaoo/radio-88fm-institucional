@@ -46,6 +46,9 @@ const Programacao = () => {
       {/* ... seu header ... */}
       <section className="py-12">
         <div className="container max-w-4xl">
+          <h1 className="mb-8 font-display text-3xl font-extrabold text-foreground md:text-4xl">
+            Programação da Rádio 88 FM
+          </h1>
           {loading ? (
             <div className="text-center text-muted-foreground py-10">Carregando programação...</div>
           ) : (

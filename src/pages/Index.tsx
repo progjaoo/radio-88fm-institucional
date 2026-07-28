@@ -470,6 +470,7 @@ const Index = () => {
 
   return (
     <div className="overflow-x-hidden">
+      <h1 className="sr-only">Você está na Rádio 88 FM, a rádio que toca o som do céu</h1>
       {/* Hero Section */}
       <section className="overflow-x-hidden bg-background py-4 md:py-8">
         <div className="mx-auto w-full max-w-[2400px] px-0">

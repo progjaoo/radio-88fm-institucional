@@ -1,54 +1,48 @@
-import { useEffect, useMemo, useRef } from "react";
-import { Helmet } from "react-helmet-async";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import SeoHead from "@/components/seo/SeoHead";
+import { buildCanonicalUrl } from "@/services/seo/url";
+import { getRouteSeoConfig, notFoundSeoConfig } from "@/services/seo/seoConfig";
 import { Analytics } from "./analytics";
-import { getRouteMetadata, notFoundMetadata } from "./routeMetadata";
+import { ANALYTICS_CONSENT_EVENT } from "./consent";
 import { useEngagementTracking } from "./useEngagementTracking";
 import { useScrollTracking } from "./useScrollTracking";
 
 const AnalyticsRouteTracker = () => {
   const location = useLocation();
-  const lastPageKeyRef = useRef<string | null>(null);
+  const lastTrackedPageKeyRef = useRef<string | null>(null);
   const pageKey = `${location.pathname}${location.search}`;
-  const metadata = useMemo(() => getRouteMetadata(location.pathname), [location.pathname]);
-  const canonicalUrl = typeof window !== "undefined" ? window.location.href : "";
+  const config = useMemo(() => getRouteSeoConfig(location.pathname), [location.pathname]);
 
-  useScrollTracking(pageKey);
-  useEngagementTracking(pageKey);
+  useScrollTracking(location.pathname);
+  useEngagementTracking(location.pathname);
 
-  useEffect(() => {
-    if (lastPageKeyRef.current === pageKey) return;
-    lastPageKeyRef.current = pageKey;
-
-    Analytics.page({
-      page_title: metadata.title,
+  const trackCurrentPage = useCallback(() => {
+    if (lastTrackedPageKeyRef.current === pageKey) return;
+    const sent = Analytics.page({
+      page_title: config.title,
       page_location: window.location.href,
       page_path: location.pathname,
-      page_name: metadata.pageName,
+      page_name: config.pageName,
     });
+    if (!sent) return;
 
-    if (metadata === notFoundMetadata) {
+    lastTrackedPageKeyRef.current = pageKey;
+    if (config === notFoundSeoConfig) {
       Analytics.track("not_found", {
         page_path: location.pathname,
+        canonical_url: buildCanonicalUrl(location.pathname),
       });
     }
-  }, [location.pathname, metadata, pageKey]);
+  }, [config, location.pathname, pageKey]);
 
-  return (
-    <Helmet>
-      <html lang="pt-BR" />
-      <title>{metadata.title}</title>
-      <meta name="description" content={metadata.description} />
-      <meta property="og:title" content={metadata.title} />
-      <meta property="og:description" content={metadata.description} />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={metadata.title} />
-      <meta name="twitter:description" content={metadata.description} />
-      <link rel="canonical" href={canonicalUrl} />
-    </Helmet>
-  );
+  useEffect(() => {
+    trackCurrentPage();
+    window.addEventListener(ANALYTICS_CONSENT_EVENT, trackCurrentPage);
+    return () => window.removeEventListener(ANALYTICS_CONSENT_EVENT, trackCurrentPage);
+  }, [trackCurrentPage]);
+
+  return <SeoHead config={config} pathname={location.pathname} />;
 };
 
 export default AnalyticsRouteTracker;

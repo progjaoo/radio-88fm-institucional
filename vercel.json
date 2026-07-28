@@ -1,8 +1,11 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/nossa-radio", "destination": "/nossa-radio/index.html" },
+    { "source": "/equipe", "destination": "/equipe/index.html" },
+    { "source": "/programacao", "destination": "/programacao/index.html" },
+    { "source": "/anuncie", "destination": "/anuncie/index.html" },
+    { "source": "/ouvir", "destination": "/ouvir/index.html" },
+    { "source": "/assistir", "destination": "/assistir/index.html" },
+    { "source": "/privacidade", "destination": "/privacidade/index.html" }
   ]
 }

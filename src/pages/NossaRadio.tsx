@@ -5,7 +5,7 @@ const pageContainer = "mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10 xl:px
 
 const NossaRadio = () => {
   return (
-    <main className="bg-white text-foreground">
+    <div className="bg-white text-foreground">
       {/* TIMELINE */}
       <section className="pt-24 pb-8 md:pt-28 md:pb-10">
         <div className={pageContainer}>
@@ -13,9 +13,9 @@ const NossaRadio = () => {
             <p className="font-display text-sm font-extrabold uppercase tracking-[0.28em] text-radio-blue">
               Linha do tempo
             </p>
-            <h2 className="mt-4 font-display text-4xl font-extrabold uppercase leading-none text-radio-dark md:text-6xl">
-              As marcas que contam a nossa história
-            </h2>
+            <h1 className="mt-4 font-display text-4xl font-extrabold uppercase leading-none text-radio-dark md:text-6xl">
+              Nossa história
+            </h1>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
               Cinco identidades visuais registram fases importantes da Rádio 88 FM.
             </p>
@@ -70,7 +70,7 @@ const NossaRadio = () => {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 

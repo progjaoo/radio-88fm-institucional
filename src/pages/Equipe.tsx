@@ -50,6 +50,7 @@ const pageContainer = "mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10 xl:px
 const Equipe = () => {
   return (
     <div className="bg-white">
+      <h1 className="sr-only">Equipe e locutores da Rádio 88 FM</h1>
       <section className="pt-24 pb-10 md:pt-28 md:pb-14">
         <div className={pageContainer}>
           <img

@@ -14,10 +14,12 @@ export type AnalyticsEventName =
   | "scroll_depth"
   | "engagement_time"
   | "javascript_error"
+  | "web_vital"
   | "not_found"
   | "listener_registration_modal_open"
   | "listener_registration_submit"
   | "listener_registration_success"
+  | "listener_registration_known_participation_success"
   | "listener_registration_error"
   | "listener_registration_dismiss";
 
