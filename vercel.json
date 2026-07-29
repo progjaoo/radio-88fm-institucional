@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/site/pages/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/site/pages/home/:path*",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/nossa-radio", "destination": "/nossa-radio/index.html" },
     { "source": "/equipe", "destination": "/equipe/index.html" },
