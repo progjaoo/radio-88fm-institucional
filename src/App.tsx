@@ -20,6 +20,7 @@ import Equipe from "./pages/Equipe";
 import AnalyticsRouteTracker from "./services/analytics/AnalyticsRouteTracker";
 import AnalyticsErrorTracker from "./services/analytics/AnalyticsErrorTracker";
 import ScrollToTop from "./components/ScrollToTop";
+import { Analytics } from "@vercel/analytics/react";
 
 interface AppContentProps {
   helmetContext?: Record<string, unknown>;
@@ -51,6 +52,7 @@ export const AppContent = ({ helmetContext }: AppContentProps) => {
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <Analytics />
             <FloatingWhatsAppButton />
           </AudioPlayerProvider>
         </TooltipProvider>
