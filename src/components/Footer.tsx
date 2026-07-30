@@ -1,5 +1,6 @@
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Youtube } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
 import { useState } from "react";
+import TikTokIcon from "@/components/icons/TikTokIcon";
 import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
 import logoHeaderwhite from "@/assets/logoheadsvg.svg";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -11,7 +12,7 @@ const Footer = () => {
     { icon: Facebook, href: "https://www.facebook.com/radio88oficial/", label: "Facebook" },
     { icon: Instagram, href: "https://www.instagram.com/radio88fm", label: "Instagram" },
     { icon: Youtube, href: "https://www.youtube.com/@radio88oficial", label: "YouTube" },
-    { icon: Linkedin, href: "https://www.linkedin.com/company/radio-88-fm", label: "LinkedIn" },
+    { icon: TikTokIcon, href: "https://www.tiktok.com/@radio88fm", label: "TikTok" },
   ];
 
   const scrollToTop = () => {

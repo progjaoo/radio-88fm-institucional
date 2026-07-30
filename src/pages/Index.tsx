@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { FocusEvent } from "react";
-import { Facebook, Instagram, Youtube, Linkedin, Radio, Video } from "lucide-react";
+import { Facebook, Instagram, Youtube, Radio, Video } from "lucide-react";
 import { Link } from "react-router-dom";
+import TikTokIcon from "@/components/icons/TikTokIcon";
 import LocutorCard from "@/components/LocutorCard";
 import YoutubeSection from "@/components/YoutubeSection";
 import {
@@ -104,7 +105,7 @@ const socialLinks = [
   { icon: Facebook, href: "https://www.facebook.com/radio88oficial/", label: "Facebook" },
   { icon: Instagram, href: "https://www.instagram.com/radio88fm", label: "Instagram" },
   { icon: Youtube, href: "https://www.youtube.com/@radio88oficial", label: "YouTube" },
-  { icon: Linkedin, href: "https://www.linkedin.com/company/radio-88-fm", label: "LinkedIn" },
+  { icon: TikTokIcon, href: "https://www.tiktok.com/@radio88fm", label: "TikTok" },
 ];
 
 // TODO: quando o GIF final for entregue, importar o arquivo e trocar este valor.

@@ -28,5 +28,5 @@ export const SITE_SOCIAL_PROFILES = [
   "https://www.facebook.com/radio88oficial/",
   "https://www.instagram.com/radio88fm",
   "https://www.youtube.com/@radio88oficial",
-  "https://www.linkedin.com/company/radio-88-fm",
+  "https://www.tiktok.com/@radio88fm",
 ] as const;
