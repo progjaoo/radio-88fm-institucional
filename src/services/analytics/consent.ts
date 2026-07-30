@@ -13,6 +13,15 @@ export function getAnalyticsConsent(): AnalyticsConsentState {
   return value === "granted" || value === "denied" ? value : "unknown";
 }
 
+export function canUseAnalyticsWithCurrentConsent() {
+  const consent = getAnalyticsConsent();
+  if (consent === "denied") return false;
+
+  // Com a faixa de consentimento comentada, mantemos GA4 basico ativo.
+  // Defina VITE_GA_REQUIRE_CONSENT=true se o banner voltar e exigir opt-in.
+  return consent === "granted" || import.meta.env.VITE_GA_REQUIRE_CONSENT !== "true";
+}
+
 function notifyConsentChanged() {
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent(ANALYTICS_CONSENT_EVENT));

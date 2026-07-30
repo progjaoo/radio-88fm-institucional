@@ -35,14 +35,22 @@ describe("AnalyticsRouteTracker", () => {
 
     await waitFor(() => expect(Analytics.page).toHaveBeenCalledTimes(1));
     expect(Analytics.page).toHaveBeenLastCalledWith(
-      expect.objectContaining({ page_path: "/", page_name: "home" }),
+      expect.objectContaining({
+        page_path: "/",
+        page_name: "home",
+        page_title: "Home | Rádio 88 FM",
+      }),
     );
 
     fireEvent.click(screen.getByRole("link", { name: "Equipe" }));
     await screen.findByText("Equipe carregada");
     await waitFor(() => expect(Analytics.page).toHaveBeenCalledTimes(2));
     expect(Analytics.page).toHaveBeenLastCalledWith(
-      expect.objectContaining({ page_path: "/equipe", page_name: "equipe" }),
+      expect.objectContaining({
+        page_path: "/equipe",
+        page_name: "equipe",
+        page_title: "Equipe | Rádio 88 FM",
+      }),
     );
   });
 });

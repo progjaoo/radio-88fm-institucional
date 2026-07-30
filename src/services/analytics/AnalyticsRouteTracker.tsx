@@ -20,7 +20,7 @@ const AnalyticsRouteTracker = () => {
   const trackCurrentPage = useCallback(() => {
     if (lastTrackedPageKeyRef.current === pageKey) return;
     const sent = Analytics.page({
-      page_title: config.title,
+      page_title: config.analyticsTitle,
       page_location: window.location.href,
       page_path: location.pathname,
       page_name: config.pageName,

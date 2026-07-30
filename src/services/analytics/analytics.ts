@@ -1,6 +1,6 @@
 import ReactGA from "react-ga4";
 import type { AnalyticsEventName, AnalyticsPagePayload, AnalyticsParams } from "./analytics.types";
-import { getAnalyticsConsent } from "./consent";
+import { canUseAnalyticsWithCurrentConsent } from "./consent";
 import { sanitizeEventParams } from "./eventCatalog";
 
 let initialized = false;
@@ -33,7 +33,7 @@ function canCollect() {
   return (
     typeof window !== "undefined" &&
     isConfigured() &&
-    getAnalyticsConsent() === "granted"
+    canUseAnalyticsWithCurrentConsent()
   );
 }
 

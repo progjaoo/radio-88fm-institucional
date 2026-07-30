@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  canUseAnalyticsWithCurrentConsent,
   clearAnalyticsConsent,
   getAnalyticsConsent,
   setAnalyticsConsent,
@@ -12,8 +13,16 @@ describe("analytics consent", () => {
 
   it("starts unknown and persists an explicit choice", () => {
     expect(getAnalyticsConsent()).toBe("unknown");
+    expect(canUseAnalyticsWithCurrentConsent()).toBe(true);
+
     setAnalyticsConsent("granted");
     expect(getAnalyticsConsent()).toBe("granted");
+    expect(canUseAnalyticsWithCurrentConsent()).toBe(true);
+  });
+
+  it("keeps explicit denial blocking analytics", () => {
+    setAnalyticsConsent("denied");
+    expect(canUseAnalyticsWithCurrentConsent()).toBe(false);
   });
 
   it("dispatches a change event and supports revocation", () => {
