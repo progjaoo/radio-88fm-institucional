@@ -26,7 +26,7 @@ const NossaRadio = () => {
       </section>
 
       {/* HISTÓRIA */}
-      <section className="py-8 md:py-10">
+      <section className="py-8 md:py-10 mb:8 md:mb-40">
         <div className={pageContainer}>
           <div className="mx-auto max-w-[900px]">
             <p className="font-display text-xl font-extrabold uppercase leading-tight text-radio-blue md:text-2xl">
@@ -46,7 +46,7 @@ const NossaRadio = () => {
       </section>
 
       {/* IDEALIZADOR */}
-      <section className="py-8 md:py-12">
+      {/* <section className="py-8 md:py-12">
         <div className={pageContainer}>
           <div className="grid items-center gap-8 rounded-[28px] bg-[#F5F8FC] p-6 shadow-sm md:grid-cols-[260px_1fr] md:p-10 lg:p-12">
             <img
@@ -69,7 +69,7 @@ const NossaRadio = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
