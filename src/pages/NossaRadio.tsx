@@ -32,14 +32,13 @@ const NossaRadio = () => {
             <p className="font-display text-xl font-extrabold uppercase leading-tight text-radio-blue md:text-2xl">
               "Damos graças a Deus pelo que passou, pelo dia de hoje e pelo dia que virá."
             </p>
-            {/* TODO: confirmar com a equipe se atualiza "30 anos" para "32 anos" ou mantem o texto historico original. */}
             <p className="mt-7 text-justify text-lg leading-8 text-foreground/78 md:text-xl md:leading-9">
-              A Rádio 88 FM foi fundada em 1986, em Volta Redonda, porém, a história da emissora
-              começou, de fato, em primeiro de agosto de 1994, quando passou a ser administrada pelo
-              então operador de áudio Edson Albertassi, se tornou genuinamente evangélica e passou a
-              transmitir canções e palavras de amor e paz. Em 30 anos de existência, a emissora
-              cresceu, conquistando a maior audiência do Sul do Estado. A 88 FM é hoje referência em
-              qualidade de programação e responsabilidade social.
+              A Rádio 88 FM existe desde 1986, mas o grande marco da sua história veio a partir de
+              primeiro de agosto de 1994, quando o então operador de áudio Edson Albertassi a
+              transformou em uma emissora cristã, hoje administrada por sua família. A partir dali, a
+              88 FM firmou uma programação genuinamente evangélica, somada ao jornalismo e à
+              prestação de serviço à população, e se tornou a mais ouvida no Sul do Estado do Rio de
+              Janeiro, com 34,6% da audiência.
             </p>
           </div>
         </div>
