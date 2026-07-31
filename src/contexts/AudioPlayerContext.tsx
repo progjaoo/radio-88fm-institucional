@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import type { StreamData } from "@/types/stream";
 import { Analytics } from "@/services/analytics/analytics";
+import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
 
 const STREAM_URL = "https://stm39.srvstm.com:9776/stream";
 const API_URL = "https://radiovox.conectastm.com/api-json/VkRGU2FrMHdOVzVRVkRBOStS";
@@ -112,6 +113,26 @@ export const AudioPlayerProvider = ({ children }: AudioPlayerProviderProps) => {
       window.clearInterval(interval);
     };
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !("mediaSession" in navigator)) {
+      return;
+    }
+
+    const streamTitle = streamData?.musica?.trim();
+    const streamArtist = streamData?.cantor?.trim();
+    const pageTitle = "Rádio 88 FM | O Som do Céu";
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: streamTitle || pageTitle,
+      artist: streamArtist || "Rádio 88 FM",
+      album: pageTitle,
+      artwork: [
+        { src: logoHeaderColor, type: "image/svg+xml" },
+        { src: `${window.location.origin}/logo-88fm.png`, sizes: "108x108", type: "image/png" },
+      ],
+    });
+  }, [streamData]);
 
   const pause = useCallback(() => {
     const audio = getAudio();
