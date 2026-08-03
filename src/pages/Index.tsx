@@ -84,8 +84,8 @@ interface ProgramaCard {
 
 const locutores = [
   { image: uelison, name: "Uelisson", program: "Programa Cristo em Nós" },
-  { image: jose, name: "Geraldo e José", program: "Programa Raízes" },
-  { image: jose2, name: "Geraldo e José", program: "Programa Raízes" },
+  { image: jose, name: "José", program: "Programa Raízes" },
+  { image: jose2, name: "Geraldo", program: "Programa Raízes" },
   { image: favorito, name: "Cintia", program: "Programa Favorito" },
   { image: favorito2, name: "Régis", program: "Programa Favorito" },
   { image: leandro, name: "Leandro Batista", program: "Programa Fato Popular" },
