@@ -6,6 +6,11 @@
       "permanent": true
     },
     {
+      "source": "/site/pages/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/site/pages/home/:path*",
       "destination": "/",
       "permanent": true

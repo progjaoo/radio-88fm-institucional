@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
+import { SITE_ORIGIN } from "../src/config/site";
 import { INDEXABLE_ROUTE_PATHS } from "../src/services/seo/seoConfig";
 
-const SITE_URL = "https://www.radio88fm.com";
+const SITE_URL = SITE_ORIGIN;
 
 function requireFile(relativePath: string) {
   const absolutePath = path.resolve(relativePath);
