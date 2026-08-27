@@ -504,11 +504,18 @@ const Index = () => {
               className="mx-auto w-full"
               aria-label="Carrossel principal da Rádio 88 FM"
             >
-              <CarouselContent className="-ml-4 md:-ml-8 lg:-ml-12 xl:-ml-14">
+              <CarouselContent
+                className={heroSlides.length > 1 ? "-ml-4 md:-ml-8 lg:-ml-12 xl:-ml-14" : "ml-0"}
+                style={heroSlides.length === 1 ? { marginLeft: 0 } : undefined}
+              >
                 {heroSlides.map((slide) => (
                   <CarouselItem
                     key={slide.type === "static" ? slide.id : slide.id}
-                    className="basis-[92%] pl-4 sm:basis-[88%] md:pl-8 lg:basis-[76%] lg:pl-12 xl:basis-[72%] xl:pl-14 2xl:basis-[68%]"
+                    className={
+                      heroSlides.length === 1
+                        ? "basis-full pl-0"
+                        : "basis-[92%] pl-4 sm:basis-[88%] md:pl-8 lg:basis-[76%] lg:pl-12 xl:basis-[72%] xl:pl-14 2xl:basis-[68%]"
+                    }
                   >
                     <div
                       className={`h-[360px] overflow-hidden rounded-[18px] shadow-sm sm:h-[420px] md:h-[540px] ${
