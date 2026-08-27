@@ -230,7 +230,10 @@ const Index = () => {
 
   // const formatarHora = (hora: string) => hora?.substring(0, 5) || "--:--";
   const promotionalBanners = useMemo<BannerInstitucional[]>(() => {
-    if (bannersLoading || bannersFailed || managedBanners.length === 0) return staticHeroBanners;
+    // Lista vazia e carregamento concluido mantem somente o Hero branco fixo.
+    // Os banners locais sao fallback apenas quando a API esta indisponivel.
+    if (bannersFailed) return staticHeroBanners;
+    if (bannersLoading || managedBanners.length === 0) return [];
     return managedBanners.map((banner) => ({
       id: banner.id,
       titulo: banner.title,
@@ -250,6 +253,14 @@ const Index = () => {
     ],
     [promotionalBanners],
   );
+
+  useEffect(() => {
+    if (activeBanner < heroSlides.length) return;
+
+    setActiveBanner(0);
+    activeBannerRef.current = 0;
+    heroApi?.scrollTo(0, true);
+  }, [activeBanner, heroApi, heroSlides.length]);
 
   // Integração legada PortalGtf/CMS preservada somente para consulta histórica.
   // A fonte de verdade atual é a API do GestaoOuvintes com armazenamento R2.
