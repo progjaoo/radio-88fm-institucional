@@ -43,8 +43,7 @@ import fato2 from "@/assets/locutores-atual/vogel.png";
 import fato3 from "@/assets/locutores-atual/teko.png";
 import fato4 from "@/assets/locutores-atual/marli.png";
 import hero88Gif from "@/assets/logoheadsvgcolor.svg";
-import banner001 from "@/assets/banner001.svg";
-import banner002 from "@/assets/banner002.svg";
+
 
 interface PostDestaque {
   id: number;
@@ -116,29 +115,6 @@ const HERO_DEFAULT_DWELL_SECONDS = 4;
 const HERO_WHITE_DWELL_SECONDS = 4;
 
 const secondsToMilliseconds = (seconds: number) => Math.round(seconds * 1000);
-
-const staticHeroBanners: BannerInstitucional[] = [
-  {
-    id: 1,
-    titulo: "Banner institucional 1",
-    midiaUrl: banner001,
-    actionType: "none",
-    linkUrl: "",
-    novaAba: false,
-    posicao: "home",
-    ordem: 1,
-  },
-  {
-    id: 2,
-    titulo: "Banner institucional 2",
-    midiaUrl: banner002,
-    actionType: "none",
-    linkUrl: "",
-    novaAba: false,
-    posicao: "home",
-    ordem: 2,
-  }
-];
 
 const Hero88Mark = () => {
   if (!hero88GifSrc) {
@@ -230,9 +206,8 @@ const Index = () => {
 
   // const formatarHora = (hora: string) => hora?.substring(0, 5) || "--:--";
   const promotionalBanners = useMemo<BannerInstitucional[]>(() => {
-    // Lista vazia e carregamento concluido mantem somente o Hero branco fixo.
-    // Os banners locais sao fallback apenas quando a API esta indisponivel.
-    if (bannersFailed) return staticHeroBanners;
+    // Enquanto a fonte oficial estiver pausada, o Hero branco permanece como unica opcao.
+    if (bannersFailed) return [];
     if (bannersLoading || managedBanners.length === 0) return [];
     return managedBanners.map((banner) => ({
       id: banner.id,
