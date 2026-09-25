@@ -2,12 +2,20 @@ import { useEffect, useState } from "react";
 import { fetchInstitutionalBanners } from "@/services/institutional-banners/api";
 import type { PublicInstitutionalBanner } from "@/services/institutional-banners/types";
 
+const institutionalBannersEnabled =
+  import.meta.env.VITE_INSTITUTIONAL_BANNERS_ENABLED === "true";
+
 export function useInstitutionalBanners() {
   const [banners, setBanners] = useState<PublicInstitutionalBanner[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(institutionalBannersEnabled);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
+    if (!institutionalBannersEnabled) {
+      setLoading(false);
+      return;
+    }
+
     const controller = new AbortController();
 
     fetchInstitutionalBanners(controller.signal)
