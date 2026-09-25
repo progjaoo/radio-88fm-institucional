@@ -1,4 +1,5 @@
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import TrackArtwork from "@/components/TrackArtwork";
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { getDisplayName } from "@/lib/streamUtils";
 
@@ -12,17 +13,12 @@ const Ouvir = () => {
         <h1 className="sr-only">Ouvir Rádio 88 FM ao vivo</h1>
         {/* Album art */}
         <div className="relative w-64 h-64 mx-auto mb-8 rounded-2xl overflow-hidden shadow-2xl">
-          {streamData?.capa_musica ? (
-            <img
-              src={streamData.capa_musica}
-              alt="Capa"
-              className={`w-full h-full object-cover ${isPlaying ? "animate-pulse" : ""}`}
-            />
-          ) : (
-            <div className="w-full h-full radio-gradient flex items-center justify-center">
-              <span className="font-display text-6xl font-extrabold text-white">88</span>
-            </div>
-          )}
+          <TrackArtwork
+            src={streamData?.capa_musica}
+            className={isPlaying ? "animate-pulse" : undefined}
+            imageClassName="object-cover"
+            fallbackClassName="object-contain p-10"
+          />
           {isPlaying && (
             <div className="absolute inset-0 border-4 border-radio-yellow rounded-2xl animate-pulse" />
           )}
@@ -56,8 +52,6 @@ const Ouvir = () => {
 
           <div className="w-6" /> {/* spacer */}
         </div>
-
-        
       </div>
     </div>
   );

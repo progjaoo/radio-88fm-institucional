@@ -1,5 +1,6 @@
 import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import TrackArtwork from "@/components/TrackArtwork";
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { getDisplayName } from "@/lib/streamUtils";
 
@@ -20,13 +21,11 @@ const MiniPlayer = () => {
     >
       <div className="flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left">
         <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-2xl bg-white/10">
-          {streamData?.capa_musica ? (
-            <img src={streamData.capa_musica} alt="Capa" className="h-full w-full object-cover" />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center bg-white/10">
-              <span className="font-display text-xl font-extrabold text-white">88</span>
-            </div>
-          )}
+          <TrackArtwork
+            src={streamData?.capa_musica}
+            imageClassName="object-cover"
+            fallbackClassName="object-contain p-2"
+          />
         </div>
 
         <div className="min-w-0 flex-1">
