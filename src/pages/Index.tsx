@@ -336,12 +336,12 @@ const Index = () => {
   const renderHeroSlide = (slide: HeroSlide) => {
     if (slide.type === "static") {
       return (
-        <div className="relative h-full bg-white px-3 py-4 sm:px-5 sm:py-7 md:px-12 md:py-14 lg:px-20">
-          <div className="relative mx-auto flex h-full max-w-4xl flex-col items-center justify-center text-center">
-            <p className="font-display text-[clamp(1.45rem,8vw,2.25rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground md:text-[clamp(2.1rem,12vw,4.8rem)]">
+        <div className="relative flex flex-1 bg-white px-3 py-4 [container-type:inline-size] sm:px-5 sm:py-7 md:px-12 md:py-14 lg:px-20">
+          <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center justify-center text-center">
+            <p className="font-display text-[clamp(1.45rem,8vw,2.25rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground md:text-[clamp(2.1rem,7.4cqw,4.8rem)]">
               VOCÊ ESTÁ NA <Hero88Mark />,
             </p>
-            <p className="mt-1.5 font-display text-[clamp(1.6rem,8.8vw,2.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground md:mt-2 md:text-[clamp(2.15rem,12.5vw,5.2rem)]">
+            <p className="mt-1.5 font-display text-[clamp(1.6rem,8.8vw,2.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground md:mt-2 md:text-[clamp(2.15rem,8.2cqw,5.2rem)]">
               A RÁDIO QUE TOCA
               <br />
               O SOM DO CÉU!
@@ -404,11 +404,11 @@ const Index = () => {
     }
 
     const bannerImage = (
-      <div className="relative h-full bg-radio-brand-blue">
+      <div className="flex w-full flex-1 items-center justify-center bg-white">
         <img
           src={slide.midiaUrl || podcastBanner}
           alt={slide.titulo || "Carrossel institucional"}
-          className="absolute inset-0 h-full w-full object-contain md:object-cover"
+          className="block h-auto w-full rounded-[10px] object-contain"
         />
       </div>
     );
@@ -428,7 +428,7 @@ const Index = () => {
               modal_opened: opened,
             });
           }}
-          className="block h-full w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-radio-blue/70 focus-visible:ring-inset"
+          className="flex w-full flex-1 cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-radio-blue/70 focus-visible:ring-inset"
           aria-label={`${slide.titulo || "Banner institucional"}: abrir cadastro do sorteio`}
         >
           {bannerImage}
@@ -449,7 +449,7 @@ const Index = () => {
               action: "external_url",
             })
           }
-          className="block h-full w-full"
+          className="flex w-full flex-1"
           aria-label={slide.titulo || "Banner institucional"}
         >
           {bannerImage}
@@ -494,14 +494,12 @@ const Index = () => {
                     key={slide.type === "static" ? slide.id : slide.id}
                     className={
                       heroSlides.length === 1
-                        ? "basis-full pl-0"
-                        : "basis-[92%] pl-4 sm:basis-[88%] md:pl-8 lg:basis-[76%] lg:pl-12 xl:basis-[72%] xl:pl-14 2xl:basis-[68%]"
+                        ? "flex basis-full pl-0"
+                        : "flex basis-[92%] pl-4 sm:basis-[88%] md:pl-8 lg:basis-[76%] lg:pl-12 xl:basis-[72%] xl:pl-14 2xl:basis-[68%]"
                     }
                   >
                     <div
-                      className={`h-[360px] overflow-hidden rounded-[18px] shadow-sm sm:h-[420px] md:h-[540px] ${
-                        slide.type === "static" ? "bg-white" : "bg-radio-brand-blue"
-                      }`}
+                      className="flex min-h-[360px] w-full flex-col overflow-hidden rounded-[10px] bg-white shadow-sm sm:min-h-[420px] md:min-h-[540px]"
                     >
                       {renderHeroSlide(slide)}
                     </div>
@@ -528,8 +526,9 @@ const Index = () => {
                 - Transicao: HERO_TRANSITION_SECONDS.
                 - Largura do current/previews: basis-* em CarouselItem.
                 - Espacamento entre slides: -ml-* em CarouselContent e pl-* em CarouselItem.
-                - Altura mobile: h-[360px] no wrapper de cada slide.
-                - Fit mobile dos banners: object-contain; desktop: md:object-cover.
+                - Altura: min-h-* preserva o espaco minimo sem cortar o conteudo.
+                - Tipografia desktop: cqw acompanha a largura util do card.
+                - Banners: altura natural e object-contain preservam toda a arte.
                 - Posicao das setas: wrapper `mt-5 flex justify-center` abaixo do CarouselContent. */}
           </div>
         </div>
