@@ -38,20 +38,28 @@ const activeSession = {
   dismissedUntil: null,
 };
 
+const activePlacement = {
+  placement: "institutional_modal",
+  version: 1,
+  campaign: activeSession.campaign,
+};
+
 describe("useListenerRegistrationCampaign", () => {
   beforeEach(() => {
     vi.stubEnv("VITE_LISTENER_REGISTRATION_ENABLED", "true");
     vi.stubEnv("VITE_LISTENER_REGISTRATION_API_URL", "http://localhost:3010");
     vi.stubEnv("VITE_LISTENER_REGISTRATION_PLACEMENT", "institutional_modal");
     vi.stubEnv("VITE_LISTENER_REGISTRATION_OPEN_DELAY_MS", "0");
-    vi.spyOn(globalThis, "fetch").mockImplementation(() =>
-      Promise.resolve(
-        new Response(JSON.stringify(activeSession), {
+    vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
+      const url = String(input);
+      const body = url.includes("/placements/") ? activePlacement : activeSession;
+      return Promise.resolve(
+        new Response(JSON.stringify(body), {
           status: 200,
           headers: { "Content-Type": "application/json" },
         }),
-      ),
-    );
+      );
+    });
   });
 
   afterEach(() => {
@@ -104,6 +112,33 @@ describe("useListenerRegistrationCampaign", () => {
 
     expect(opened).toBe(true);
     expect(hook.result.current.open).toBe(true);
-    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(fetch).toHaveBeenCalledTimes(4);
+    expect(
+      vi.mocked(fetch).mock.calls.some(([url]) => String(url).includes("/events")),
+    ).toBe(false);
+  });
+
+  it("nao resolve sessao nem abre eventos quando nao ha campanha publicada", async () => {
+    vi.mocked(fetch).mockImplementation(() =>
+      Promise.resolve(
+        new Response(
+          JSON.stringify({ placement: "institutional_modal", version: 0, campaign: null }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        ),
+      ),
+    );
+
+    const hook = renderHook(() => useListenerRegistrationCampaign(), {
+      wrapper: createWrapper(),
+    });
+
+    await waitFor(() =>
+      expect(hook.result.current.experience).toBe("campaign_unavailable"),
+    );
+    await new Promise((resolve) => setTimeout(resolve, 80));
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(String(vi.mocked(fetch).mock.calls[0]?.[0])).toContain("/placements/");
+    expect(String(vi.mocked(fetch).mock.calls[0]?.[0])).not.toContain("/events");
   });
 });

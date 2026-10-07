@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
-  getListenerRegistrationEventsUrl,
   getListenerRegistrationOpenDelayMs,
   getListenerRegistrationPlacement,
   isListenerRegistrationEnabled,
   resolveListenerRegistrationSession,
 } from "@/services/listener-registration/api";
+import { fetchListenerRegistrationPlacement } from "@/services/listener-registration/placement";
 import {
   markListenerRegistrationCompleted,
   getOrCreateDeviceToken,
@@ -25,11 +25,25 @@ export function useListenerRegistrationCampaign() {
 
   const query = useQuery({
     queryKey: ["listener-registration-session", placement],
-    queryFn: () => resolveListenerRegistrationSession(deviceToken),
+    queryFn: async () => {
+      const availability = await fetchListenerRegistrationPlacement(placement);
+      if (!availability.campaign) {
+        return {
+          placement,
+          placementVersion: availability.version,
+          campaign: null,
+          listenerState: "anonymous" as const,
+          experience: "campaign_unavailable" as const,
+          participation: null,
+          dismissedUntil: null,
+        };
+      }
+
+      return resolveListenerRegistrationSession(deviceToken);
+    },
     enabled,
-    staleTime: 0,
-    refetchInterval: enabled ? 30_000 : false,
-    refetchIntervalInBackground: false,
+    staleTime: 60_000,
+    refetchInterval: false,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
     retry: false,
@@ -52,40 +66,6 @@ export function useListenerRegistrationCampaign() {
       setClosedCampaignSlug(null);
     }
   }, [campaign, closedCampaignSlug]);
-
-  useEffect(() => {
-    if (!enabled || typeof document === "undefined") return;
-
-    const handleVisibility = () => {
-      if (document.visibilityState === "visible") {
-        void refetchSession();
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibility);
-    return () => document.removeEventListener("visibilitychange", handleVisibility);
-  }, [enabled, refetchSession]);
-
-  useEffect(() => {
-    if (!enabled || typeof window === "undefined" || !("EventSource" in window)) return;
-
-    let eventSource: EventSource | null = null;
-    try {
-      eventSource = new EventSource(getListenerRegistrationEventsUrl());
-    } catch {
-      return;
-    }
-
-    const handleChange = () => {
-      void refetchSession();
-    };
-
-    eventSource.addEventListener("campaign.changed", handleChange);
-    return () => {
-      eventSource?.removeEventListener("campaign.changed", handleChange);
-      eventSource?.close();
-    };
-  }, [enabled, refetchSession]);
 
   useEffect(() => {
     if (!canShow) return;
