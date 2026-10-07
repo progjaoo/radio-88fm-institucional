@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { fetchInstitutionalBanners } from "@/services/institutional-banners/api";
 import type { PublicInstitutionalBanner } from "@/services/institutional-banners/types";
 
-const institutionalBannersEnabled =
-  import.meta.env.VITE_INSTITUTIONAL_BANNERS_ENABLED === "true";
-
 export function useInstitutionalBanners() {
+  const institutionalBannersEnabled =
+    import.meta.env.VITE_INSTITUTIONAL_BANNERS_ENABLED !== "false";
   const [banners, setBanners] = useState<PublicInstitutionalBanner[]>([]);
   const [loading, setLoading] = useState(institutionalBannersEnabled);
   const [failed, setFailed] = useState(false);
@@ -32,7 +31,7 @@ export function useInstitutionalBanners() {
       });
 
     return () => controller.abort();
-  }, []);
+  }, [institutionalBannersEnabled]);
 
   return { banners, loading, failed };
 }

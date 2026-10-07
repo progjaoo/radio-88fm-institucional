@@ -270,8 +270,13 @@ const Index = () => {
   }, [activeBanner]);
 
   const advanceHero = useCallback(() => {
-    if (heroSlides.length <= 1) return;
-    heroApi?.scrollNext();
+    if (!heroApi || heroSlides.length <= 1) return;
+    if (heroApi.canScrollNext()) {
+      heroApi.scrollNext();
+      return;
+    }
+    // Embla pode desativar o loop quando ha poucos slides para preencher a tela.
+    heroApi.scrollTo(0);
   }, [heroApi, heroSlides.length]);
 
   useEffect(() => {
@@ -471,6 +476,7 @@ const Index = () => {
             <Carousel
               opts={{
                 align: "center",
+                containScroll: false,
                 loop: heroSlides.length > 1,
                 duration: Math.round(HERO_TRANSITION_SECONDS * 34),
                 startIndex: 0,
