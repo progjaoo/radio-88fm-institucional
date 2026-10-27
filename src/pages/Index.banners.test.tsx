@@ -142,14 +142,21 @@ describe("Index - banners gerenciados", () => {
     expect(hero.querySelector('img[src*="banner001"], img[src*="banner002"]')).toBeNull();
   });
 
-  it("abre no principal sem branco e preserva um unico slide estatico", () => {
-    const hero = renderHero([{ ...banner(1), isPrimary: true }]);
-    expect(within(hero).getAllByRole("group")).toHaveLength(1);
-    expect(hero).not.toHaveTextContent("A RÁDIO QUE TOCA");
-    expect(within(hero).getByRole("img")).toHaveAttribute("loading", "eager");
-    expect(within(hero).queryByRole("button", { name: "Mostrar próximo banner" })).toBeNull();
-    act(() => vi.advanceTimersByTime(12_000));
-    expect(heroApi.scrollNext).not.toHaveBeenCalled();
+  it("abre no principal, mostra o branco em seguida e preserva os demais banners", () => {
+    const hero = renderHero([
+      { ...banner(2), isPrimary: true },
+      banner(1),
+      banner(3),
+    ]);
+    const slides = within(hero).getAllByRole("group");
+
+    expect(slides).toHaveLength(4);
+    expect(within(slides[0]).getByRole("img", { name: "Banner publicado 2" }))
+      .toHaveAttribute("loading", "eager");
+    expect(slides[1]).toHaveTextContent("A RÁDIO QUE TOCA");
+    expect(within(slides[2]).getByRole("img", { name: "Banner publicado 1" })).toBeInTheDocument();
+    expect(within(slides[3]).getByRole("img", { name: "Banner publicado 3" })).toBeInTheDocument();
+    expect(within(hero).getByRole("button", { name: "Mostrar próximo banner" })).toBeInTheDocument();
   });
 
   it("restaura o branco se a imagem principal falhar", () => {

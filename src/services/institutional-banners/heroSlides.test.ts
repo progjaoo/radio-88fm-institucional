@@ -13,9 +13,9 @@ describe("composicao editorial do hero", () => {
       .toEqual(["hero-static", "a", "b"]);
   });
 
-  it("substitui o branco pelo principal sem duplicar ou renumerar banners", () => {
+  it("coloca o principal primeiro, o branco em seguida e os demais na ordem comum", () => {
     const result = buildHeroSlides([banner("a", 1), banner("festa", 3, true), banner("b", 2)]);
-    expect(result.map(s => s.id)).toEqual(["festa", "a", "b"]);
+    expect(result.map(s => s.id)).toEqual(["festa", "hero-static", "a", "b"]);
     expect(result[0]).toMatchObject({ order: 3, type: "banner" });
   });
 
@@ -30,8 +30,9 @@ describe("composicao editorial do hero", () => {
       .toEqual(["hero-static", "a", "b"]);
   });
 
-  it("gera um unico slide quando so existe um principal", () => {
-    expect(buildHeroSlides([banner("festa", 1, true)]).map(s => s.id)).toEqual(["festa"]);
+  it("mantem o branco como segundo slide mesmo quando so existe um principal", () => {
+    expect(buildHeroSlides([banner("festa", 1, true)]).map(s => s.id))
+      .toEqual(["festa", "hero-static"]);
   });
 
   it("restaura o branco ao desmarcar o destaque mantendo sua ordem comum", () => {
@@ -42,7 +43,8 @@ describe("composicao editorial do hero", () => {
   it("aceita uma imagem nova para o mesmo banner que havia falhado", () => {
     const old = banner("festa", 1, true);
     const replacement = { ...old, imageUrl: "https://media.example/new.webp" };
-    expect(buildHeroSlides([replacement], new Set([bannerImageKey(old)])).map(s => s.id)).toEqual(["festa"]);
+    expect(buildHeroSlides([replacement], new Set([bannerImageKey(old)])).map(s => s.id))
+      .toEqual(["festa", "hero-static"]);
   });
 
   it("descarta URLs vazias e IDs duplicados", () => {

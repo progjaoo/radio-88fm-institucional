@@ -26,6 +26,7 @@ export function buildHeroSlides(
   if (!primary) return [{ type: "static", id: "hero-static" }, ...slides];
   return [
     { ...primary, type: "banner" },
+    { type: "static", id: "hero-static" },
     ...slides.filter((banner) => banner.id !== primary.id),
   ];
 }
