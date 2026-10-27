@@ -12,6 +12,7 @@ export interface PublicInstitutionalBanner {
   destinationUrl: string | null;
   openInNewTab: boolean;
   order: number;
+  isPrimary?: boolean;
 }
 
 export interface PublicInstitutionalBannersResponse {

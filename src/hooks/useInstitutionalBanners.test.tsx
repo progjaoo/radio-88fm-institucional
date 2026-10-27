@@ -102,4 +102,14 @@ describe("useInstitutionalBanners", () => {
 
     expect(signal?.aborted).toBe(true);
   });
+
+  it("encerra carregamento lento para permitir o fallback branco", async () => {
+    vi.useFakeTimers();
+    vi.mocked(fetchInstitutionalBanners).mockReturnValue(new Promise(() => {}));
+    const hook = renderHook(() => useInstitutionalBanners());
+    expect(hook.result.current.loading).toBe(true);
+    await act(async () => vi.advanceTimersByTime(5_000));
+    expect(hook.result.current).toEqual({ banners: [], loading: false, failed: true });
+    expect(vi.mocked(fetchInstitutionalBanners).mock.calls[0]?.[0]?.aborted).toBe(true);
+  });
 });

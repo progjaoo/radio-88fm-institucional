@@ -16,9 +16,16 @@ export function useInstitutionalBanners() {
     }
 
     const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+      controller.abort();
+      setBanners([]);
+      setFailed(true);
+      setLoading(false);
+    }, 5_000);
 
     fetchInstitutionalBanners(controller.signal)
       .then(({ items }) => {
+        if (controller.signal.aborted) return;
         setBanners(items);
         setFailed(false);
       })
@@ -27,10 +34,14 @@ export function useInstitutionalBanners() {
         setFailed(true);
       })
       .finally(() => {
+        window.clearTimeout(timeout);
         if (!controller.signal.aborted) setLoading(false);
       });
 
-    return () => controller.abort();
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
   }, [institutionalBannersEnabled]);
 
   return { banners, loading, failed };

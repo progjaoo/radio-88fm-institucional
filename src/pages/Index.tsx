@@ -20,10 +20,9 @@ import { useListenerRegistration } from "@/hooks/useListenerRegistration";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Analytics } from "@/services/analytics/analytics";
 import { resolvePublicInstitutionalBannerAction } from "@/services/institutional-banners/action";
-import type { InstitutionalBannerActionType } from "@/services/institutional-banners/types";
+import { bannerImageKey, buildHeroSlides, type HeroSlide } from "@/services/institutional-banners/heroSlides";
 import podcastbanner from "@/assets/podcastbanner.png";
 import podcastBannerMobile from "@/assets/podcastbannermobile.png";
-import podcastBanner from "@/assets/podcastbanner.jpg";
 import programacaoImg from "@/assets/programacao.png";
 import programacaoMobileImg from "@/assets/programacaomobile.png";
 import uelison from "@/assets/locutores-atual/uelison.png";
@@ -53,21 +52,6 @@ interface PostDestaque {
   imagemCapaUrl: string;
   link?: string;
 }
-
-interface BannerInstitucional {
-  id: string | number;
-  titulo: string;
-  midiaUrl: string;
-  actionType: InstitutionalBannerActionType;
-  linkUrl: string;
-  novaAba: boolean;
-  posicao: string;
-  ordem: number;
-}
-
-type HeroSlide =
-  | { type: "static"; id: "hero-static" }
-  | ({ type: "banner" } & BannerInstitucional);
 
 interface ProgramaCard {
   id: number;
@@ -187,6 +171,7 @@ const Index = () => {
   const [activeBanner, setActiveBanner] = useState(0);
   const activeBannerRef = useRef(0);
   const [heroApi, setHeroApi] = useState<CarouselApi>();
+  const [failedBannerImages, setFailedBannerImages] = useState<Set<string>>(() => new Set());
   const [isHeroInteractionPaused, setIsHeroInteractionPaused] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(() =>
     typeof document === "undefined" ? true : document.visibilityState === "visible"
@@ -205,37 +190,23 @@ const Index = () => {
   } = useYoutubeContent(6);
 
   // const formatarHora = (hora: string) => hora?.substring(0, 5) || "--:--";
-  const promotionalBanners = useMemo<BannerInstitucional[]>(() => {
-    // Enquanto a fonte oficial estiver pausada, o Hero branco permanece como unica opcao.
-    if (bannersFailed) return [];
-    if (bannersLoading || managedBanners.length === 0) return [];
-    return managedBanners.map((banner) => ({
-      id: banner.id,
-      titulo: banner.title,
-      midiaUrl: banner.imageUrl,
-      actionType: resolvePublicInstitutionalBannerAction(banner),
-      linkUrl: banner.destinationUrl ?? "",
-      novaAba: banner.openInNewTab,
-      posicao: "home",
-      ordem: banner.order,
-    }));
-  }, [bannersFailed, bannersLoading, managedBanners]);
-
   const heroSlides = useMemo<HeroSlide[]>(
-    () => [
-      { type: "static", id: "hero-static" },
-      ...promotionalBanners.map((banner) => ({ ...banner, type: "banner" as const })),
-    ],
-    [promotionalBanners],
+    () => bannersLoading ? [] : buildHeroSlides(bannersFailed ? [] : managedBanners, failedBannerImages),
+    [bannersLoading, bannersFailed, managedBanners, failedBannerImages],
   );
+  const heroSlideKey = heroSlides.map((slide) => slide.type === "static" ? slide.id : bannerImageKey(slide)).join("|");
 
   useEffect(() => {
-    if (activeBanner < heroSlides.length) return;
-
     setActiveBanner(0);
     activeBannerRef.current = 0;
     heroApi?.scrollTo(0, true);
-  }, [activeBanner, heroApi, heroSlides.length]);
+  }, [heroApi, heroSlideKey]);
+
+  useEffect(() => {
+    if (managedBanners.filter((banner) => banner.isPrimary === true).length > 1) {
+      console.warn("Configuracao de banners com mais de um principal; abertura institucional restaurada.");
+    }
+  }, [managedBanners]);
 
   // Integração legada PortalGtf/CMS preservada somente para consulta histórica.
   // A fonte de verdade atual é a API do GestaoOuvintes com armazenamento R2.
@@ -406,14 +377,17 @@ const Index = () => {
     const bannerImage = (
       <div className="flex w-full flex-1 items-center justify-center bg-white">
         <img
-          src={slide.midiaUrl || podcastBanner}
-          alt={slide.titulo || "Carrossel institucional"}
+          src={slide.imageUrl}
+          alt={slide.altText || slide.title || "Carrossel institucional"}
+          loading={heroSlides[0]?.id === slide.id ? "eager" : "lazy"}
+          {...{ fetchpriority: heroSlides[0]?.id === slide.id ? "high" : "auto" }}
+          onError={() => setFailedBannerImages((previous) => new Set(previous).add(bannerImageKey(slide)))}
           className="block h-auto w-full rounded-[10px] object-contain"
         />
       </div>
     );
 
-    if (slide.actionType === "listener_registration_modal") {
+    if (resolvePublicInstitutionalBannerAction(slide) === "listener_registration_modal") {
       return (
         <button
           type="button"
@@ -423,34 +397,34 @@ const Index = () => {
             );
             Analytics.track("hero_banner_click", {
               banner_id: slide.id,
-              banner_title: slide.titulo,
+              banner_title: slide.title,
               action: "listener_registration_modal",
               modal_opened: opened,
             });
           }}
           className="flex w-full flex-1 cursor-pointer text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-radio-blue/70 focus-visible:ring-inset"
-          aria-label={`${slide.titulo || "Banner institucional"}: abrir cadastro do sorteio`}
+          aria-label={`${slide.title || "Banner institucional"}: abrir cadastro do sorteio`}
         >
           {bannerImage}
         </button>
       );
     }
 
-    if (slide.actionType === "external_url" && slide.linkUrl) {
+    if (resolvePublicInstitutionalBannerAction(slide) === "external_url" && slide.destinationUrl) {
       return (
         <a
-          href={slide.linkUrl}
-          target={slide.novaAba ? "_blank" : "_self"}
+          href={slide.destinationUrl}
+          target={slide.openInNewTab ? "_blank" : "_self"}
           rel="noreferrer"
           onClick={() =>
             Analytics.track("hero_banner_click", {
               banner_id: slide.id,
-              banner_title: slide.titulo,
+              banner_title: slide.title,
               action: "external_url",
             })
           }
           className="flex w-full flex-1"
-          aria-label={slide.titulo || "Banner institucional"}
+          aria-label={slide.title || "Banner institucional"}
         >
           {bannerImage}
         </a>
@@ -473,7 +447,12 @@ const Index = () => {
             onFocusCapture={() => setIsHeroInteractionPaused(true)}
             onBlurCapture={handleHeroBlur}
           >
-            <Carousel
+            {bannersLoading ? (
+              <div role="status" aria-label="Carregando banners" className="mx-auto min-h-[360px] w-[92%] rounded-[10px] bg-white sm:min-h-[420px] md:min-h-[540px] lg:w-[76%] xl:w-[72%] 2xl:w-[68%]">
+                <span className="sr-only">Carregando destaque da Rádio 88 FM...</span>
+              </div>
+            ) : <Carousel
+              key={heroSlideKey}
               opts={{
                 align: "center",
                 containScroll: false,
@@ -482,7 +461,9 @@ const Index = () => {
                 startIndex: 0,
               }}
               setApi={setHeroApi}
-              className="mx-auto w-full"
+              className={heroSlides.length === 1 && heroSlides[0].type === "banner"
+                ? "mx-auto w-[92%] sm:w-[88%] lg:w-[76%] xl:w-[72%] 2xl:w-[68%]"
+                : "mx-auto w-full"}
               aria-label="Carrossel principal da Rádio 88 FM"
             >
               <CarouselContent
@@ -519,7 +500,7 @@ const Index = () => {
                   />
                 </div>
               )}
-            </Carousel>
+            </Carousel>}
 
             {/* Ajustes manuais:
                 - Permanencia: HERO_WHITE_DWELL_SECONDS e HERO_DEFAULT_DWELL_SECONDS.

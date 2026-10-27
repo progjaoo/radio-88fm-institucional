@@ -92,9 +92,9 @@ describe("Index - banners gerenciados", () => {
 
     expect(slides).toHaveLength(3);
     expect(slides[0]).toHaveTextContent("A RÁDIO QUE TOCA");
-    expect(within(slides[1]).getByRole("img", { name: "Banner 1" }))
+    expect(within(slides[1]).getByRole("img", { name: "Banner publicado 1" }))
       .toHaveAttribute("src", "https://media.example/banner-1.webp");
-    expect(within(slides[2]).getByRole("img", { name: "Banner 2" }))
+    expect(within(slides[2]).getByRole("img", { name: "Banner publicado 2" }))
       .toHaveAttribute("src", "https://media.example/banner-2.webp");
     expect(vi.mocked(useEmblaCarousel).mock.lastCall?.[0]).toMatchObject({
       containScroll: false,
@@ -140,5 +140,44 @@ describe("Index - banners gerenciados", () => {
     expect(hero).toHaveTextContent("A RÁDIO QUE TOCA");
     expect(within(hero).queryByRole("button", { name: "Mostrar próximo banner" })).toBeNull();
     expect(hero.querySelector('img[src*="banner001"], img[src*="banner002"]')).toBeNull();
+  });
+
+  it("abre no principal sem branco e preserva um unico slide estatico", () => {
+    const hero = renderHero([{ ...banner(1), isPrimary: true }]);
+    expect(within(hero).getAllByRole("group")).toHaveLength(1);
+    expect(hero).not.toHaveTextContent("A RÁDIO QUE TOCA");
+    expect(within(hero).getByRole("img")).toHaveAttribute("loading", "eager");
+    expect(within(hero).queryByRole("button", { name: "Mostrar próximo banner" })).toBeNull();
+    act(() => vi.advanceTimersByTime(12_000));
+    expect(heroApi.scrollNext).not.toHaveBeenCalled();
+  });
+
+  it("restaura o branco se a imagem principal falhar", () => {
+    const hero = renderHero([{ ...banner(1), isPrimary: true }, banner(2)]);
+    fireEvent.error(within(hero).getByRole("img", { name: "Banner publicado 1" }));
+    const current = screen.getByRole("region", { name: "Carrossel principal da Rádio 88 FM" });
+    expect(current).toHaveTextContent("A RÁDIO QUE TOCA");
+    expect(within(current).queryByRole("img", { name: "Banner publicado 1" })).toBeNull();
+    expect(within(current).getByRole("img", { name: "Banner publicado 2" })).toBeInTheDocument();
+  });
+
+  it("reseta a selecao quando o destaque muda sem mudar a quantidade de slides", () => {
+    vi.mocked(useInstitutionalBanners).mockReturnValue({ banners: [{ ...banner(1), isPrimary: true }, banner(2)], loading: false, failed: false });
+    const view = render(<MemoryRouter><Index /></MemoryRouter>);
+    heroApi.scrollTo.mockClear();
+    vi.mocked(useInstitutionalBanners).mockReturnValue({ banners: [banner(1), { ...banner(2), isPrimary: true }], loading: false, failed: false });
+    view.rerender(<MemoryRouter><Index /></MemoryRouter>);
+    expect(heroApi.scrollTo).toHaveBeenCalledWith(0, true);
+    const hero = screen.getByRole("region", { name: "Carrossel principal da Rádio 88 FM" });
+    expect(within(within(hero).getAllByRole("group")[0]).getByRole("img")).toHaveAttribute("src", "https://media.example/banner-2.webp");
+  });
+
+  it("aguarda a configuracao sem exibir o branco nem iniciar autoplay", () => {
+    vi.mocked(useInstitutionalBanners).mockReturnValue({ banners: [], loading: true, failed: false });
+    render(<MemoryRouter><Index /></MemoryRouter>);
+    expect(screen.getByRole("status", { name: "Carregando banners" })).toBeInTheDocument();
+    expect(screen.queryByText("A RÁDIO QUE TOCA")).toBeNull();
+    act(() => vi.advanceTimersByTime(12_000));
+    expect(heroApi.scrollNext).not.toHaveBeenCalled();
   });
 });

@@ -15,6 +15,7 @@ describe("Analytics", () => {
     vi.resetModules();
     vi.clearAllMocks();
     vi.stubEnv("VITE_GA_ENABLED", "true");
+    vi.stubEnv("VITE_GA_REQUIRE_CONSENT", "true");
     vi.stubEnv("VITE_GA_MEASUREMENT_ID", "G-TEST123");
   });
 
