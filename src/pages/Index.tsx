@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { FocusEvent } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Facebook, Instagram, Youtube, Radio, Video } from "lucide-react";
 import { Link } from "react-router-dom";
 import TikTokIcon from "@/components/icons/TikTokIcon";
@@ -17,7 +16,6 @@ import fundolocutores from "@/assets/fundolocutores.png";
 import { useYoutubeContent } from "@/hooks/useYoutubeContent";
 import { useInstitutionalBanners } from "@/hooks/useInstitutionalBanners";
 import { useListenerRegistration } from "@/hooks/useListenerRegistration";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Analytics } from "@/services/analytics/analytics";
 import { resolvePublicInstitutionalBannerAction } from "@/services/institutional-banners/action";
 import { bannerImageKey, buildHeroSlides, type HeroSlide } from "@/services/institutional-banners/heroSlides";
@@ -95,10 +93,6 @@ const socialLinks = [
 // Exemplo: import hero88Gif from "@/assets/hero-88fm-color.gif"; const hero88GifSrc = hero88Gif;
 const hero88GifSrc = hero88Gif;
 const HERO_TRANSITION_SECONDS = 0.95;
-const HERO_DEFAULT_DWELL_SECONDS = 4;
-const HERO_WHITE_DWELL_SECONDS = 4;
-
-const secondsToMilliseconds = (seconds: number) => Math.round(seconds * 1000);
 
 const Hero88Mark = () => {
   if (!hero88GifSrc) {
@@ -168,15 +162,8 @@ const Index = () => {
   // const [banners, setBanners] = useState<BannerInstitucional[]>([]);
   // Programacao dinamica preservada para rollback futuro da secao via API.
   // const [programas, setProgramas] = useState<ProgramaCard[]>([]);
-  const [activeBanner, setActiveBanner] = useState(0);
-  const activeBannerRef = useRef(0);
   const [heroApi, setHeroApi] = useState<CarouselApi>();
   const [failedBannerImages, setFailedBannerImages] = useState<Set<string>>(() => new Set());
-  const [isHeroInteractionPaused, setIsHeroInteractionPaused] = useState(false);
-  const [isPageVisible, setIsPageVisible] = useState(() =>
-    typeof document === "undefined" ? true : document.visibilityState === "visible"
-  );
-  const shouldReduceMotion = usePrefersReducedMotion();
   const { requestOpen: requestListenerRegistrationOpen } =
     useListenerRegistration();
   const { banners: managedBanners, loading: bannersLoading, failed: bannersFailed } =
@@ -197,8 +184,6 @@ const Index = () => {
   const heroSlideKey = heroSlides.map((slide) => slide.type === "static" ? slide.id : bannerImageKey(slide)).join("|");
 
   useEffect(() => {
-    setActiveBanner(0);
-    activeBannerRef.current = 0;
     heroApi?.scrollTo(0, true);
   }, [heroApi, heroSlideKey]);
 
@@ -235,74 +220,6 @@ const Index = () => {
       console.warn("Erro ao carregar vídeos do YouTube:", youtubeError);
     }
   }, [youtubeError]);
-
-  useEffect(() => {
-    activeBannerRef.current = activeBanner;
-  }, [activeBanner]);
-
-  const advanceHero = useCallback(() => {
-    if (!heroApi || heroSlides.length <= 1) return;
-    if (heroApi.canScrollNext()) {
-      heroApi.scrollNext();
-      return;
-    }
-    // Embla pode desativar o loop quando ha poucos slides para preencher a tela.
-    heroApi.scrollTo(0);
-  }, [heroApi, heroSlides.length]);
-
-  useEffect(() => {
-    if (!heroApi) return;
-
-    const syncActiveBanner = () => {
-      const selected = heroApi.selectedScrollSnap();
-      setActiveBanner(selected);
-      activeBannerRef.current = selected;
-    };
-
-    syncActiveBanner();
-    heroApi.on("select", syncActiveBanner);
-    heroApi.on("reInit", syncActiveBanner);
-
-    return () => {
-      heroApi.off("select", syncActiveBanner);
-      heroApi.off("reInit", syncActiveBanner);
-    };
-  }, [heroApi]);
-
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      const visible = document.visibilityState === "visible";
-      setIsPageVisible(visible);
-
-      if (visible) {
-        heroApi?.scrollTo(activeBannerRef.current, true);
-      }
-    };
-
-    handleVisibilityChange();
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, [heroApi]);
-
-  useEffect(() => {
-    if (!heroApi || heroSlides.length <= 1 || isHeroInteractionPaused || !isPageVisible || shouldReduceMotion) return;
-
-    const currentSlide = heroSlides[activeBanner];
-    const dwellTime =
-      currentSlide?.type === "static"
-        ? secondsToMilliseconds(HERO_WHITE_DWELL_SECONDS)
-        : secondsToMilliseconds(HERO_DEFAULT_DWELL_SECONDS);
-    const timeoutId = window.setTimeout(advanceHero, dwellTime);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [activeBanner, advanceHero, heroApi, heroSlides, isHeroInteractionPaused, isPageVisible, shouldReduceMotion]);
-
-  const handleHeroBlur = (event: FocusEvent<HTMLDivElement>) => {
-    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-      setIsHeroInteractionPaused(false);
-    }
-  };
 
   const renderHeroSlide = (slide: HeroSlide) => {
     if (slide.type === "static") {
@@ -440,13 +357,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="overflow-x-hidden bg-background py-4 md:py-8">
         <div className="mx-auto w-full max-w-[2400px] px-0">
-          <div
-            className="relative"
-            onMouseEnter={() => setIsHeroInteractionPaused(true)}
-            onMouseLeave={() => setIsHeroInteractionPaused(false)}
-            onFocusCapture={() => setIsHeroInteractionPaused(true)}
-            onBlurCapture={handleHeroBlur}
-          >
+          <div className="relative">
             {bannersLoading ? (
               <div role="status" aria-label="Carregando banners" className="mx-auto min-h-[360px] w-[92%] rounded-[10px] bg-white sm:min-h-[420px] md:min-h-[540px] lg:w-[76%] xl:w-[72%] 2xl:w-[68%]">
                 <span className="sr-only">Carregando destaque da Rádio 88 FM...</span>
@@ -459,6 +370,7 @@ const Index = () => {
                 loop: heroSlides.length > 1,
                 duration: Math.round(HERO_TRANSITION_SECONDS * 34),
                 startIndex: 0,
+                watchDrag: false,
               }}
               setApi={setHeroApi}
               className={heroSlides.length === 1 && heroSlides[0].type === "banner"
@@ -503,7 +415,7 @@ const Index = () => {
             </Carousel>}
 
             {/* Ajustes manuais:
-                - Permanencia: HERO_WHITE_DWELL_SECONDS e HERO_DEFAULT_DWELL_SECONDS.
+                - Navegacao pelos banners: exclusivamente pelas setas abaixo do carrossel.
                 - Transicao: HERO_TRANSITION_SECONDS.
                 - Largura do current/previews: basis-* em CarouselItem.
                 - Espacamento entre slides: -ml-* em CarouselContent e pl-* em CarouselItem.

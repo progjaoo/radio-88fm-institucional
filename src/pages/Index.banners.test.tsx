@@ -60,7 +60,6 @@ describe("Index - banners gerenciados", () => {
     vi.clearAllMocks();
     heroApi.canScrollNext.mockReturnValue(true);
     vi.useFakeTimers();
-    vi.spyOn(document, "visibilityState", "get").mockReturnValue("visible");
   });
 
   afterEach(() => {
@@ -103,17 +102,9 @@ describe("Index - banners gerenciados", () => {
     });
   });
 
-  it("preserva a rotacao automatica existente a cada quatro segundos", () => {
-    renderHero([banner(1)]);
-
-    act(() => vi.advanceTimersByTime(3_999));
-    expect(heroApi.scrollNext).not.toHaveBeenCalled();
-    act(() => vi.advanceTimersByTime(1));
-    expect(heroApi.scrollNext).toHaveBeenCalledTimes(1);
-  });
-
-  it("preserva as setas para navegar pelos banners publicados", () => {
+  it("so permite navegar pelas setas e desativa arraste por mouse ou toque", () => {
     const hero = renderHero([banner(1)]);
+    expect(vi.mocked(useEmblaCarousel).mock.lastCall?.[0]).toMatchObject({ watchDrag: false });
 
     fireEvent.click(within(hero).getByRole("button", { name: "Mostrar próximo banner" }));
     fireEvent.click(within(hero).getByRole("button", { name: "Mostrar banner anterior" }));
@@ -122,15 +113,13 @@ describe("Index - banners gerenciados", () => {
     expect(heroApi.scrollPrev).toHaveBeenCalledTimes(1);
   });
 
-  it("volta ao branco quando ha poucos slides para o loop nativo", () => {
-    heroApi.canScrollNext.mockReturnValue(false);
-    renderHero([banner(1)]);
-    heroApi.scrollTo.mockClear();
+  it("nao avanca por tempo nem quando o cursor passa sobre o banner", () => {
+    const hero = renderHero([banner(1)]);
 
-    act(() => vi.advanceTimersByTime(4_000));
+    fireEvent.mouseEnter(hero);
+    act(() => vi.advanceTimersByTime(30_000));
 
     expect(heroApi.scrollNext).not.toHaveBeenCalled();
-    expect(heroApi.scrollTo).toHaveBeenCalledWith(0);
   });
 
   it("nao restaura banners locais antigos quando a API falha", () => {
@@ -179,7 +168,7 @@ describe("Index - banners gerenciados", () => {
     expect(within(within(hero).getAllByRole("group")[0]).getByRole("img")).toHaveAttribute("src", "https://media.example/banner-2.webp");
   });
 
-  it("aguarda a configuracao sem exibir o branco nem iniciar autoplay", () => {
+  it("aguarda a configuracao sem exibir o branco enquanto carrega", () => {
     vi.mocked(useInstitutionalBanners).mockReturnValue({ banners: [], loading: true, failed: false });
     render(<MemoryRouter><Index /></MemoryRouter>);
     expect(screen.getByRole("status", { name: "Carregando banners" })).toBeInTheDocument();
