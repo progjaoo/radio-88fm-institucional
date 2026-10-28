@@ -1,4 +1,4 @@
-export type SeoSchemaType = "WebPage" | "AboutPage" | "ContactPage";
+export type SeoSchemaType = "WebPage" | "AboutPage" | "ContactPage" | "Article";
 
 export interface RouteSeoConfig {
   path: string;
@@ -10,4 +10,6 @@ export interface RouteSeoConfig {
   imagePath: string;
   imageAlt: string;
   schemaType: SeoSchemaType;
+  publishedTime?: string;
+  modifiedTime?: string;
 }

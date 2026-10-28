@@ -1,4 +1,9 @@
 {
+  "headers": [
+    { "source": "/feed/posts/:path*", "headers": [{ "key": "Cache-Control", "value": "no-store" }] },
+    { "source": "/feed/index.json", "headers": [{ "key": "Cache-Control", "value": "no-store" }] },
+    { "source": "/feed/release.json", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
+  ],
   "redirects": [
     {
       "source": "/site/pages/home",

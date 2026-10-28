@@ -4,6 +4,7 @@ import { StaticRouter } from "react-router-dom/server";
 import { AppContent } from "./App";
 import { getRouteSeoConfig, notFoundSeoConfig } from "./services/seo/seoConfig";
 import { normalizePathname } from "./services/seo/url";
+import type { FeedPostDocument } from "./services/feed/feed.types";
 
 export interface RenderResult {
   appHtml: string;
@@ -21,7 +22,7 @@ type HelmetContext = {
   };
 };
 
-export function render(url: string): RenderResult {
+export function render(url: string, initialFeedPosts: Record<string, FeedPostDocument> = {}): RenderResult {
   const pathname = normalizePathname(url);
   const route = getRouteSeoConfig(pathname);
   const helmetContext: HelmetContext = {};
@@ -29,7 +30,7 @@ export function render(url: string): RenderResult {
   HelmetProvider.canUseDOM = false;
   const appHtml = renderToString(
     <StaticRouter location={pathname}>
-      <AppContent helmetContext={helmetContext as Record<string, unknown>} />
+      <AppContent helmetContext={helmetContext as Record<string, unknown>} initialFeedPosts={initialFeedPosts} />
     </StaticRouter>,
   );
   HelmetProvider.canUseDOM = previousCanUseDom;

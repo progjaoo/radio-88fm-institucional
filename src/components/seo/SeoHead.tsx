@@ -27,7 +27,7 @@ const SeoHead = ({ config, pathname }: SeoHeadProps) => {
 
         <meta property="og:title" content={config.title} />
         <meta property="og:description" content={config.description} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={config.schemaType === "Article" ? "article" : "website"} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:locale" content={SITE_LOCALE} />
@@ -42,6 +42,8 @@ const SeoHead = ({ config, pathname }: SeoHeadProps) => {
         <meta name="twitter:description" content={config.description} />
         <meta name="twitter:image" content={socialImageUrl} />
         <meta name="twitter:image:alt" content={config.imageAlt} />
+        {config.publishedTime && <meta property="article:published_time" content={config.publishedTime} />}
+        {config.modifiedTime && <meta property="article:modified_time" content={config.modifiedTime} />}
       </Helmet>
       <StructuredData route={config} canonicalUrl={canonicalUrl} />
     </>

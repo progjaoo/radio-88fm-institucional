@@ -21,12 +21,16 @@ import AnalyticsRouteTracker from "./services/analytics/AnalyticsRouteTracker";
 import AnalyticsErrorTracker from "./services/analytics/AnalyticsErrorTracker";
 import ScrollToTop from "./components/ScrollToTop";
 import { Analytics } from "@vercel/analytics/react";
+import Feed from "./pages/Feed";
+import FeedPostPage, { type FeedPostDocument } from "./pages/FeedPost";
+import { FeedProvider } from "./services/feed/feed-data";
 
 interface AppContentProps {
   helmetContext?: Record<string, unknown>;
+  initialFeedPosts?: Record<string, FeedPostDocument>;
 }
 
-export const AppContent = ({ helmetContext }: AppContentProps) => {
+export const AppContent = ({ helmetContext, initialFeedPosts }: AppContentProps) => {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
@@ -39,6 +43,7 @@ export const AppContent = ({ helmetContext }: AppContentProps) => {
             <ScrollToTop />
             <AnalyticsRouteTracker />
             <AnalyticsErrorTracker />
+            <FeedProvider initialPosts={initialFeedPosts}>
             <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<Index />} />
@@ -49,9 +54,13 @@ export const AppContent = ({ helmetContext }: AppContentProps) => {
                 <Route path="/ouvir" element={<Ouvir />} />
                 <Route path="/assistir" element={<Assistir />} />
                 <Route path="/privacidade" element={<Privacidade />} />
+                <Route path="/feed" element={<Feed />} />
+                <Route path="/feed/pagina/:page" element={<Feed />} />
+                <Route path="/feed/:slug" element={<FeedPostPage />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
+            </FeedProvider>
             <Analytics />
             <FloatingWhatsAppButton />
           </AudioPlayerProvider>

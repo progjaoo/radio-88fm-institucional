@@ -1,13 +1,15 @@
 import { SITE_SOCIAL_IMAGE_ALT, SITE_SOCIAL_IMAGE_PATH } from "@/config/site";
 import type { RouteSeoConfig } from "./seo.types";
 import { normalizePathname } from "./url";
+import feedIndexData from "@/data/feed-index.json";
+import type { FeedIndex } from "@/services/feed/feed.types";
 
 const socialImage = {
   imagePath: SITE_SOCIAL_IMAGE_PATH,
   imageAlt: SITE_SOCIAL_IMAGE_ALT,
 } as const;
 
-export const routeSeoConfigs: RouteSeoConfig[] = [
+const baseRouteSeoConfigs: RouteSeoConfig[] = [
   {
     path: "/",
     title: "Rádio 88 FM | O Som do Céu em Volta Redonda",
@@ -96,6 +98,48 @@ export const routeSeoConfigs: RouteSeoConfig[] = [
     schemaType: "WebPage",
   },
 ];
+
+const feedIndex = feedIndexData as FeedIndex;
+const feedSeoConfigs: RouteSeoConfig[] = [
+  {
+    path: "/feed",
+    title: "Feed | Rádio 88 FM",
+    analyticsTitle: "Feed | Rádio 88 FM",
+    pageName: "feed",
+    description: "Acompanhe festas, bastidores e momentos da Rádio 88 FM.",
+    indexable: feedIndex.posts.length > 0,
+    ...socialImage,
+    schemaType: "WebPage",
+  },
+  ...Array.from({ length: Math.max(0, Math.ceil(feedIndex.posts.length / 12) - 1) }, (_, index) => {
+    const page = index + 2;
+    return {
+      path: `/feed/pagina/${page}`,
+      title: `Feed | Página ${page} | Rádio 88 FM`,
+      analyticsTitle: `Feed | Página ${page} | Rádio 88 FM`,
+      pageName: "feed",
+      description: `Mais momentos e histórias da Rádio 88 FM, página ${page}.`,
+      indexable: true,
+      ...socialImage,
+      schemaType: "WebPage" as const,
+    };
+  }),
+  ...feedIndex.posts.map((post) => ({
+    path: `/feed/${post.slug}`,
+    title: `${post.title} | Rádio 88 FM`,
+    analyticsTitle: `${post.title} | Rádio 88 FM`,
+    pageName: "feed_article",
+    description: post.excerpt,
+    indexable: true,
+    imagePath: post.cover.url,
+    imageAlt: post.cover.alt,
+    schemaType: "Article" as const,
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt,
+  })),
+];
+
+export const routeSeoConfigs: RouteSeoConfig[] = [...baseRouteSeoConfigs, ...feedSeoConfigs];
 
 export const notFoundSeoConfig: RouteSeoConfig = {
   path: "/404",

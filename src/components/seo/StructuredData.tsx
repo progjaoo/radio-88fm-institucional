@@ -75,6 +75,12 @@ export function buildStructuredDataGraph(route: RouteSeoConfig, canonicalUrl: st
         "@type": "ImageObject",
         url: buildAbsoluteAssetUrl(route.imagePath),
       },
+      ...(route.schemaType === "Article" && {
+        headline: route.title.split(" | ")[0],
+        ...(route.publishedTime && { datePublished: route.publishedTime }),
+        ...(route.modifiedTime && { dateModified: route.modifiedTime }),
+        author: { "@type": "Organization", name: SITE_NAME },
+      }),
     },
   ];
 

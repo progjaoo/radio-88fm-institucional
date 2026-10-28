@@ -3,7 +3,8 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { routeSeoConfigs } from "../src/services/seo/seoConfig";
 
-type Render = (url: string) => {
+type FeedPostDocument = { post: { slug: string } };
+type Render = (url: string, feedPosts?: Record<string, FeedPostDocument>) => {
   appHtml: string;
   headHtml: string;
   statusCode: 200 | 404;
@@ -16,7 +17,13 @@ const template = fs.readFileSync(templatePath, "utf8");
 const { render } = (await import(pathToFileURL(serverEntry).href)) as { render: Render };
 
 function createHtml(url: string) {
-  const result = render(url);
+  const route = routeSeoConfigs.find((item) => item.path === url);
+  const slug = route?.schemaType === "Article" ? url.slice("/feed/".length) : undefined;
+  const postPath = slug ? path.join(distDir, "feed/posts", `${slug}.json`) : "";
+  const feedPosts = slug && fs.existsSync(postPath)
+    ? { [slug]: JSON.parse(fs.readFileSync(postPath, "utf8")) as FeedPostDocument }
+    : {};
+  const result = render(url, feedPosts);
   return template
     .replace(/<!--seo-head-start-->[\s\S]*?<!--seo-head-end-->/, `<!--seo-head-start-->\n${result.headHtml}\n    <!--seo-head-end-->`)
     .replace('<div id="root"></div>', `<div id="root">${result.appHtml}</div>`);

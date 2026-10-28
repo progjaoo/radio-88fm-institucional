@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, Video, X } from "lucide-react";
 import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
 import logoHeaderwhite from "@/assets/logoheadsvg.svg";
 import { Analytics } from "@/services/analytics/analytics";
@@ -15,14 +15,15 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { label: "INÍCIO", path: "/" },
+  { label: "FEED", path: "/feed" },
   { label: "NOSSA RÁDIO", path: "/nossa-radio" },
   { label: "EQUIPE", path: "/equipe" },
+  { label: "ANUNCIE", path: "/anuncie" },
 
 /*   { label: "PROGRAMAÇÃO", path: "/programacao" },
  */  
 /* { label: "NOTÍCIAS", path: NEWS_URL, external: true }, */
   
-  { label: "ANUNCIE", path: "/anuncie" },
 ];
 
 const Header = () => {
@@ -151,7 +152,7 @@ const Header = () => {
             onClick={(event) => handleInternalNavigation(event, "/assistir", "Assistir Ao Vivo")}
             className="bg-radio-yellow font-display font-bold text-sm px-4 py-2 rounded-md text-black flex items-center gap-1.5 hover:opacity-90 transition-opacity"
           >
-            🎥 ASSISTIR
+            <Video className="h-4 w-4 shrink-0" aria-hidden="true" /> ASSISTIR
           </Link>
         </div>
 
@@ -208,10 +209,10 @@ const Header = () => {
               </Link>
               <Link
                 to="/assistir"
-                className="flex w-full items-center justify-center rounded-md bg-radio-yellow px-3 py-2 font-display text-xs font-bold text-black"
+                className="flex w-full items-center justify-center gap-1.5 rounded-md bg-radio-yellow px-3 py-2 font-display text-xs font-bold text-black"
                 onClick={(event) => handleInternalNavigation(event, "/assistir", "Assistir Ao Vivo", true)}
               >
-                🎥 Assistir
+                <Video className="h-4 w-4 shrink-0" aria-hidden="true" /> Assistir
               </Link>
             </div>
           </nav>

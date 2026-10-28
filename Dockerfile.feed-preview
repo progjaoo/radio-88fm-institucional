@@ -1,0 +1,26 @@
+FROM node:22-alpine AS build
+WORKDIR /app
+ARG FEED_RELEASE_BASE_URL
+ARG FEED_NAMESPACE=preview/radio-88
+ARG FEED_PREVIEW_IMAGE_ID=local
+ENV FEED_RELEASE_BASE_URL=${FEED_RELEASE_BASE_URL} \
+    FEED_NAMESPACE=${FEED_NAMESPACE} \
+    FEED_PREVIEW_IMAGE_ID=${FEED_PREVIEW_IMAGE_ID}
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM node:22-alpine AS runtime
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=build /app ./
+COPY scripts/feed-preview-server.mjs /app/feed-preview-server.mjs
+ENV NODE_ENV=production
+RUN mkdir -p /data/releases /work \
+  && chown -R node:node /app /data /work
+USER node
+EXPOSE 8080
+HEALTHCHECK --interval=15s --timeout=5s --retries=10 \
+  CMD node -e "fetch('http://127.0.0.1:8080/__preview/healthz').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+CMD ["node", "/app/feed-preview-server.mjs"]
