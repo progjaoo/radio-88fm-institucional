@@ -189,7 +189,7 @@ describe("Feed editorial estático", () => {
     expect(pauseRadio).toHaveBeenCalledOnce();
   });
 
-  it("does not animate a GIF before explicit playback when it has no poster", async () => {
+  it("animates a GIF automatically without a playback button", async () => {
     const documentWithGif: FeedPostDocument = {
       ...postDocument,
       post: {
@@ -208,8 +208,30 @@ describe("Feed editorial estático", () => {
       </HelmetProvider>,
     );
 
-    expect(await screen.findByRole("button", { name: "Reproduzir animação" })).toBeInTheDocument();
-    expect(document.querySelector('img[src="https://media.example.test/animated.gif"]')).not.toBeInTheDocument();
-    expect(screen.getByText("GIF pronto para reprodução")).toBeInTheDocument();
+    expect(await screen.findByRole("img", { name: "Equipe nos bastidores" })).toHaveAttribute("src", "https://media.example.test/animated.gif");
+    expect(screen.queryByRole("button", { name: "Reproduzir animação" })).not.toBeInTheDocument();
+  });
+
+  it("keeps the GIF poster when the device requests reduced motion", async () => {
+    const preference = vi.spyOn(window, "matchMedia").mockImplementation(() => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() } as unknown as MediaQueryList));
+    const gif: FeedPostDocument = { ...postDocument, post: { ...postDocument.post, blocks: [{ id: "gif", type: "gif", assetId: "gif", alt: "Animação da festa" }], media: { gif: { url: "/animated.gif", posterUrl: "/poster.webp" } } } };
+    render(<HelmetProvider><MemoryRouter initialEntries={["/feed/bastidores-88"]}><FeedProvider initialIndex={index} initialPosts={{ "bastidores-88": gif }}><Routes><Route path="/feed/:slug" element={<FeedPostPage />} /></Routes></FeedProvider></MemoryRouter></HelmetProvider>);
+    expect(await screen.findByRole("img", { name: "Animação da festa" })).toHaveAttribute("src", "/poster.webp");
+    expect(document.querySelector('img[src="/animated.gif"]')).toBeNull();
+    preference.mockRestore();
+  });
+
+  it("navigates adjacent published posts in event order without querying the API", async () => {
+    const feed: FeedIndex = { ...index, posts: [
+      { ...index.posts[0], slug: "antiga", title: "Festa anterior", eventDate: "2025-01-01" },
+      { ...index.posts[0], eventDate: "2026-01-01" },
+      { ...index.posts[0], slug: "recente", title: "Festa recente", eventDate: "2026-10-01" },
+    ] };
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+    render(<HelmetProvider><MemoryRouter initialEntries={["/feed/bastidores-88"]}><FeedProvider initialIndex={feed} initialPosts={{ "bastidores-88": postDocument }}><Routes><Route path="/feed/:slug" element={<FeedPostPage />} /></Routes></FeedProvider></MemoryRouter></HelmetProvider>);
+    expect(await screen.findByRole("link", { name: /Post Anterior/ })).toHaveAttribute("href", "/feed/recente");
+    expect(screen.getByRole("link", { name: /Próximo Post/ })).toHaveAttribute("href", "/feed/antiga");
+    expect(fetchSpy).not.toHaveBeenCalled();
+    fetchSpy.mockRestore();
   });
 });

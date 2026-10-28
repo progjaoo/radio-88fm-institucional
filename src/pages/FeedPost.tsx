@@ -1,17 +1,18 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, Copy, Share2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Copy, Share2 } from "lucide-react";
 import SeoHead from "@/components/seo/SeoHead";
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import NotFound from "@/pages/NotFound";
 import { getRouteSeoConfig } from "@/services/seo/seoConfig";
-import { useFeedPost } from "@/services/feed/feed-data";
+import { useFeed, useFeedPost } from "@/services/feed/feed-data";
 import type { FeedBlock, FeedPost, FeedPostDocument } from "@/services/feed/feed.types";
-import { formatEventDate } from "@/services/feed/feed-events";
+import { formatEventDate, sortByEventDate } from "@/services/feed/feed-events";
 
 export default function FeedPostPage() {
   const { slug } = useParams();
   const { document, loading, error } = useFeedPost(slug);
+  const { index } = useFeed();
   const [copied, setCopied] = useState(false);
 
   if (loading) return <div role="status" className="mx-auto max-w-4xl px-5 py-24 text-center text-neutral-600">Carregando publicação…</div>;
@@ -20,6 +21,10 @@ export default function FeedPostPage() {
   const opening = post.opening ?? post.cover;
   const config = getRouteSeoConfig(`/feed/${slug}`);
   const eventDateLabel = formatEventDate(post.eventDate);
+  const ordered = sortByEventDate(index.posts);
+  const position = ordered.findIndex((item) => item.slug === slug);
+  const previous = position > 0 ? ordered[position - 1] : undefined;
+  const next = position >= 0 ? ordered[position + 1] : undefined;
 
   const share = async () => {
     if (navigator.share) {
@@ -56,7 +61,11 @@ export default function FeedPostPage() {
       <div className="mx-auto flex max-w-5xl flex-col gap-8 px-5">
         {post.blocks.map((block) => <BlockRenderer key={block.id} block={block} post={post} />)}
       </div>
-      <div className="mx-auto mt-12 max-w-3xl px-5"><Link to="/feed" className="inline-flex min-h-11 items-center gap-2 rounded bg-neutral-950 px-5 text-sm font-bold text-white hover:bg-neutral-800"><ArrowLeft size={16} />Todas as publicações</Link></div>
+      <nav aria-label="Navegação entre publicações" className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-4 border-t border-neutral-200 px-5 pt-6">
+        {previous ? <Link to={`/feed/${previous.slug}`} rel="prev" className="min-w-0 rounded-md p-3 text-left hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-radio-blue"><span className="flex min-h-11 items-center gap-2 text-sm font-bold"><ArrowLeft size={18} />Post Anterior</span><span className="block truncate text-sm text-neutral-500">{previous.title}</span></Link> : <button type="button" disabled className="flex min-h-11 items-center gap-2 p-3 text-left text-sm font-bold text-neutral-400"><ArrowLeft size={18} />Post Anterior</button>}
+        {next ? <Link to={`/feed/${next.slug}`} rel="next" className="min-w-0 rounded-md p-3 text-right hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-radio-blue"><span className="flex min-h-11 items-center justify-end gap-2 text-sm font-bold">Próximo Post<ArrowRight size={18} /></span><span className="block truncate text-sm text-neutral-500">{next.title}</span></Link> : <button type="button" disabled className="flex min-h-11 items-center justify-end gap-2 p-3 text-right text-sm font-bold text-neutral-400">Próximo Post<ArrowRight size={18} /></button>}
+      </nav>
+      <div className="mx-auto mt-8 max-w-3xl px-5"><Link to="/feed" className="inline-flex min-h-11 items-center gap-2 rounded bg-neutral-950 px-5 text-sm font-bold text-white hover:bg-neutral-800"><ArrowLeft size={16} />Todas as publicações</Link></div>
     </article>
   );
 }
@@ -84,25 +93,21 @@ function BlockRenderer({ block, post }: { block: FeedBlock; post: FeedPost }) {
 }
 
 function GifBlock({ block, media }: { block: FeedBlock; media: FeedPost["media"][string] }) {
-  const [playing, setPlaying] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [preferenceReady, setPreferenceReady] = useState(false);
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(preference.matches);
+    const update = () => { setReducedMotion(preference.matches); setPreferenceReady(true); };
     update();
     preference.addEventListener("change", update);
     return () => preference.removeEventListener("change", update);
   }, []);
-  const isAnimated = playing && !reducedMotion;
+  const isAnimated = preferenceReady && !reducedMotion;
   const poster = media.posterUrl;
   return <figure className="mx-auto w-full max-w-5xl">
     {poster || isAnimated
       ? <img src={isAnimated ? media.url : poster!} alt={String(block.alt ?? "")} loading="lazy" className="mx-auto h-auto max-h-[78vh] w-full rounded-sm bg-neutral-50 object-contain" />
-      : <div role="img" aria-label={String(block.alt ?? "GIF pronto para reprodução")} className="mx-auto grid aspect-video w-full max-w-5xl place-items-center rounded-sm bg-neutral-100 text-sm text-neutral-600">GIF pronto para reprodução</div>}
-    <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-      <button type="button" aria-pressed={isAnimated} disabled={reducedMotion} onClick={() => setPlaying((value) => !value)} className="min-h-10 rounded-full border border-neutral-300 px-4 text-sm font-semibold text-neutral-800 hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-radio-blue disabled:cursor-not-allowed disabled:opacity-50">{isAnimated ? "Pausar animação" : "Reproduzir animação"}</button>
-      {reducedMotion && <span className="text-xs text-neutral-500">Movimento reduzido está ativo no seu dispositivo.</span>}
-    </div>
+      : <div role="img" aria-label={String(block.alt ?? "Animação da Rádio 88 FM")} className="mx-auto grid aspect-video w-full max-w-5xl place-items-center rounded-sm bg-neutral-100 text-sm text-neutral-600">{reducedMotion ? "Animação desativada pela preferência de movimento reduzido do dispositivo." : "Carregando animação…"}</div>}
     {block.caption && <figcaption className="mt-2 text-center text-sm text-neutral-500">{String(block.caption)}</figcaption>}
   </figure>;
 }
