@@ -70,9 +70,9 @@ export const AppContent = ({ helmetContext, initialFeedPosts }: AppContentProps)
   );
 };
 
-const App = () => (
+const App = ({ initialFeedPosts }: Pick<AppContentProps, "initialFeedPosts"> = {}) => (
   <BrowserRouter>
-    <AppContent />
+    <AppContent initialFeedPosts={initialFeedPosts} />
   </BrowserRouter>
 );
 

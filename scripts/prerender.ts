@@ -2,8 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { routeSeoConfigs } from "../src/services/seo/seoConfig";
+import { FEED_BOOTSTRAP_ID, serializeFeedBootstrap } from "../src/services/feed/feed-bootstrap";
+import type { FeedPostDocument } from "../src/services/feed/feed.types";
 
-type FeedPostDocument = { post: { slug: string } };
 type Render = (url: string, feedPosts?: Record<string, FeedPostDocument>) => {
   appHtml: string;
   headHtml: string;
@@ -24,9 +25,12 @@ function createHtml(url: string) {
     ? { [slug]: JSON.parse(fs.readFileSync(postPath, "utf8")) as FeedPostDocument }
     : {};
   const result = render(url, feedPosts);
+  const bootstrap = Object.keys(feedPosts).length
+    ? `<script id="${FEED_BOOTSTRAP_ID}" type="application/json">${serializeFeedBootstrap(feedPosts)}</script>`
+    : "";
   return template
     .replace(/<!--seo-head-start-->[\s\S]*?<!--seo-head-end-->/, `<!--seo-head-start-->\n${result.headHtml}\n    <!--seo-head-end-->`)
-    .replace('<div id="root"></div>', `<div id="root">${result.appHtml}</div>`);
+    .replace('<div id="root"></div>', `<div id="root">${result.appHtml}</div>${bootstrap}`);
 }
 
 for (const route of routeSeoConfigs) {
