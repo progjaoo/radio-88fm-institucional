@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { Facebook, Instagram, Youtube, Radio, Video } from "lucide-react";
+import { Facebook, Instagram, Youtube, Radio, Video, Pause, Play } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Link } from "react-router-dom";
 import TikTokIcon from "@/components/icons/TikTokIcon";
 import LocutorCard from "@/components/LocutorCard";
@@ -13,6 +15,8 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import fundolocutores from "@/assets/fundolocutores.png";
+import programacaoImg from "@/assets/programacao.png";
+import programacaoMobileImg from "@/assets/programacaomobile.png";
 import { useYoutubeContent } from "@/hooks/useYoutubeContent";
 import { useInstitutionalBanners } from "@/hooks/useInstitutionalBanners";
 import { useListenerRegistration } from "@/hooks/useListenerRegistration";
@@ -161,6 +165,11 @@ const Index = () => {
   // Programacao dinamica preservada para rollback futuro da secao via API.
   // const [programas, setProgramas] = useState<ProgramaCard[]>([]);
   const [heroApi, setHeroApi] = useState<CarouselApi>();
+  const [heroIndex, setHeroIndex] = useState(0);
+  const [rotationPaused, setRotationPaused] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
+  const autoplay = useMemo(() => Autoplay({ delay: 4000, playOnInit: false, stopOnInteraction: false, stopOnMouseEnter: false, stopOnFocusIn: true }), []);
+  const heroPlugins = useMemo(() => [autoplay], [autoplay]);
   const [failedBannerImages, setFailedBannerImages] = useState<Set<string>>(() => new Set());
   const { requestOpen: requestListenerRegistrationOpen } =
     useListenerRegistration();
@@ -180,6 +189,16 @@ const Index = () => {
     [bannersLoading, bannersFailed, managedBanners, failedBannerImages],
   );
   const heroSlideKey = heroSlides.map((slide) => slide.type === "static" ? slide.id : bannerImageKey(slide)).join("|");
+
+  useEffect(() => {
+    if (!heroApi) return;
+    const select = () => setHeroIndex(heroApi.selectedScrollSnap());
+    select();
+    heroApi.on("select", select);
+    if (heroSlides.length > 1 && !rotationPaused && !reducedMotion) autoplay.play();
+    else autoplay.stop();
+    return () => { heroApi.off("select", select); autoplay.stop(); };
+  }, [heroApi, heroSlides.length, autoplay, rotationPaused, reducedMotion]);
 
   useEffect(() => {
     heroApi?.scrollTo(0, true);
@@ -290,14 +309,15 @@ const Index = () => {
     }
 
     const bannerImage = (
-      <div className="flex w-full flex-1 items-center justify-center bg-white">
+      <div className="relative w-full flex-1 bg-white">
         <img
           src={slide.imageUrl}
+          draggable={false}
           alt={slide.altText || slide.title || "Carrossel institucional"}
           loading={heroSlides[0]?.id === slide.id ? "eager" : "lazy"}
           {...{ fetchpriority: heroSlides[0]?.id === slide.id ? "high" : "auto" }}
           onError={() => setFailedBannerImages((previous) => new Set(previous).add(bannerImageKey(slide)))}
-          className="home-banner-image block h-auto w-full rounded-[10px] object-contain"
+          className="home-banner-image absolute inset-0 block h-full w-full rounded-[10px] object-cover"
         />
       </div>
     );
@@ -369,9 +389,11 @@ const Index = () => {
                 loop: heroSlides.length > 1,
                 duration: Math.round(HERO_TRANSITION_SECONDS * 34),
                 startIndex: 0,
-                watchDrag: false,
+                watchDrag: true,
               }}
               setApi={setHeroApi}
+              plugins={heroPlugins}
+              data-hero-index={heroIndex}
               className={heroSlides.length === 1 && heroSlides[0].type === "banner"
                 ? "mx-auto w-[92%] sm:w-[88%] lg:w-[76%] xl:w-[72%] 2xl:w-[68%]"
                 : "mx-auto w-full"}
@@ -409,18 +431,19 @@ const Index = () => {
                     className="static h-10 w-10 translate-y-0 border border-border bg-white text-radio-dark shadow-sm transition-colors hover:border-radio-blue hover:bg-radio-blue hover:text-white"
                     aria-label="Mostrar próximo banner"
                   />
+                  {!reducedMotion && <button type="button" onClick={() => setRotationPaused((value) => !value)} aria-label={rotationPaused ? "Retomar rotação dos banners" : "Pausar rotação dos banners"} aria-pressed={rotationPaused} className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-radio-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-radio-blue">{rotationPaused ? <Play size={16} /> : <Pause size={16} />}</button>}
                 </div>
               )}
             </Carousel>}
 
             {/* Ajustes manuais:
-                - Navegacao pelos banners: exclusivamente pelas setas abaixo do carrossel.
+                - Navegacao: setas, arraste e autoplay de 4s, com pausa explicita/acessivel.
                 - Transicao: HERO_TRANSITION_SECONDS.
                 - Largura do current/previews: basis-* em CarouselItem.
                 - Espacamento entre slides: -ml-* em CarouselContent e pl-* em CarouselItem.
                 - Altura: min-h-* preserva o espaco minimo sem cortar o conteudo.
                 - Tipografia desktop: cqw acompanha a largura util do card.
-                - Banners: altura natural e object-contain preservam toda a arte.
+                - Banners: object-cover preenche o card sem distorcer; manter arte na area segura.
                 - Posicao das setas: wrapper `mt-5 flex justify-center` abaixo do CarouselContent. */}
           </div>
         </div>
@@ -437,6 +460,13 @@ const Index = () => {
       </section>
 
       </div>
+
+      <section className="py-4 md:py-1" aria-label="Programação da Rádio 88 FM">
+        <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10 xl:px-12">
+          <img src={programacaoImg} alt="Programacao o dia todo para estar sempre com voce" className="hidden h-auto w-full rounded-[28px] object-cover sm:block" loading="lazy" />
+          <img src={programacaoMobileImg} alt="Programacao o dia todo para estar sempre com voce" className="h-auto w-full rounded-[18px] object-cover sm:hidden" loading="lazy" />
+        </div>
+      </section>
 
       {/* Programming Section dinamica preservada para rollback.
           Foi substituida temporariamente por imagem estatica do Designer.

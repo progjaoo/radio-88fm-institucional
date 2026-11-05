@@ -132,7 +132,6 @@
     }
     .home-opening .home-hero-card,
     .home-opening .home-hero-placeholder { min-height: var(--home-hero-height); }
-    .home-banner-image { max-height: var(--home-hero-height); }
     .home-team { margin-top: auto; }
   }
 
