@@ -36,6 +36,7 @@ const LocutorCard = ({ image, name, program }: LocutorCardProps) => {
         </motion.div>
       </TooltipTrigger>
       <TooltipPortal>
+      <div className="pointer-events-none">
       <TooltipContent
         side="top"
         sideOffset={-150}
@@ -44,6 +45,7 @@ const LocutorCard = ({ image, name, program }: LocutorCardProps) => {
         <p className="font-display text-sm font-extrabold leading-none">{name}</p>
         <p className="mt-1 text-xs font-semibold text-white/70">{program}</p>
       </TooltipContent>
+      </div>
       </TooltipPortal>
     </Tooltip>
   );

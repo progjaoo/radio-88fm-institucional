@@ -23,6 +23,7 @@ describe("LocutorCard original composition", () => {
     expect(tooltip).toHaveTextContent("Programa");
     expect(container).not.toContainElement(tooltip);
     expect(document.querySelector('[data-radix-popper-content-wrapper] .pointer-events-none')).toHaveClass("z-50");
+    expect(document.querySelector('[data-radix-popper-content-wrapper]')?.parentElement).toHaveClass("pointer-events-none");
   });
   it("uses the exact original card and portrait dimensions", () => {
     render(<TooltipProvider><LocutorCard image="/foto.png" name="Locutor" program="Programa" /></TooltipProvider>);
