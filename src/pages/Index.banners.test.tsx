@@ -109,6 +109,7 @@ describe("Index - banners gerenciados", () => {
 
   it("permite setas e arraste por mouse ou toque", () => {
     const hero = renderHero([banner(1)]);
+    expect(hero).toHaveClass("z-20");
     expect(vi.mocked(useEmblaCarousel).mock.lastCall?.[0]).toMatchObject({ watchDrag: true });
 
     fireEvent.click(within(hero).getByRole("button", { name: "Mostrar próximo banner" }));

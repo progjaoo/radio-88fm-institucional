@@ -385,8 +385,8 @@ const Index = () => {
               setApi={setHeroApi}
               data-hero-index={heroIndex}
               className={heroSlides.length === 1 && heroSlides[0].type === "banner"
-                ? "mx-auto w-[92%] sm:w-[88%] lg:w-[76%] xl:w-[72%] 2xl:w-[68%]"
-                : "mx-auto w-full"}
+                ? "z-20 mx-auto w-[92%] sm:w-[88%] lg:w-[76%] xl:w-[72%] 2xl:w-[68%]"
+                : "z-20 mx-auto w-full"}
               aria-label="Carrossel principal da Rádio 88 FM"
             >
               <CarouselContent
