@@ -1,49 +1,35 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import LocutorCard from "./LocutorCard";
 
-const { captured } = vi.hoisted(() => ({ captured: { target: {} as Record<string, unknown>, transition: {} as Record<string, unknown> } }));
+const { captured } = vi.hoisted(() => ({ captured: { hover: {} as Record<string, unknown>, focus: {} as Record<string, unknown> } }));
 vi.mock("@/hooks/usePrefersReducedMotion", () => ({ usePrefersReducedMotion: vi.fn(() => false) }));
 vi.mock("framer-motion", async () => {
   const React = await import("react");
-  type Props = React.HTMLAttributes<HTMLDivElement> & { animate: Record<string, unknown>; transition: Record<string, unknown> };
-  return { motion: { div: React.forwardRef<HTMLDivElement, Props>(({ animate, transition, ...props }, ref) => {
-    captured.target = animate;
-    captured.transition = transition;
+  type Props = React.HTMLAttributes<HTMLDivElement> & { whileHover: Record<string, unknown>; whileFocus: Record<string, unknown>; transition: unknown };
+  return { motion: { div: React.forwardRef<HTMLDivElement, Props>(({ whileHover, whileFocus, transition: _transition, ...props }, ref) => {
+    captured.hover = whileHover;
+    captured.focus = whileFocus;
     return <div ref={ref} {...props} />;
   }) } };
 });
 
-function setup() {
-  render(<TooltipProvider><LocutorCard image="/foto.png" name="Locutor" program="Programa" compact /></TooltipProvider>);
-  return screen.getByRole("group", { name: "Locutor - Programa" });
-}
-describe("Locutor hover", () => {
+describe("LocutorCard restored baseline", () => {
   afterEach(() => vi.mocked(usePrefersReducedMotion).mockReturnValue(false));
-  it("lifts the image from a stationary hit area and restores it on leave", () => {
-    const trigger = setup();
-    expect(captured.target).toEqual({ scale: 1, y: 0 });
-    fireEvent.mouseEnter(trigger);
-    expect(captured.target).toEqual({ scale: 1.4, y: -40 });
-    expect(captured.transition).toMatchObject({ type: "spring", stiffness: 300, damping: 20 });
-    expect(trigger).not.toHaveAttribute("style");
+  it("preserves the compact effect from before the animation request", () => {
+    render(<TooltipProvider><LocutorCard image="/foto.png" name="Locutor" program="Programa" compact /></TooltipProvider>);
+    expect(captured.hover).toMatchObject({ scale: 1.08, y: -4 });
+    expect(captured.focus).toMatchObject({ scale: 1.08, y: -4 });
     expect(screen.getByRole("img")).toHaveClass("h-[clamp(5rem,12vw,9rem)]");
-    fireEvent.mouseLeave(trigger);
-    expect(captured.target).toEqual({ scale: 1, y: 0 });
   });
-  it("keeps the deliberate hover response instant for reduced motion", () => {
+  it("preserves the original noncompact behavior", () => {
+    render(<TooltipProvider><LocutorCard image="/foto.png" name="Locutor" program="Programa" /></TooltipProvider>);
+    expect(captured.hover).toMatchObject({ scale: 1.4, y: -40 });
+  });
+  it("preserves the original reduced-motion behavior", () => {
     vi.mocked(usePrefersReducedMotion).mockReturnValue(true);
-    const trigger = setup();
-    fireEvent.mouseEnter(trigger);
-    expect(captured.target).toEqual({ scale: 1.4, y: -40 });
-    expect(captured.transition).toEqual({ duration: 0 });
-  });
-  it("supports keyboard focus without pointer movement", () => {
-    const trigger = setup();
-    fireEvent.focus(trigger);
-    expect(captured.target).toEqual({ scale: 1.18, y: -4 });
-    fireEvent.blur(trigger);
-    expect(captured.target).toEqual({ scale: 1, y: 0 });
+    render(<TooltipProvider><LocutorCard image="/foto.png" name="Locutor" program="Programa" compact /></TooltipProvider>);
+    expect(captured.hover).toMatchObject({ scale: 1, y: 0 });
   });
 });
