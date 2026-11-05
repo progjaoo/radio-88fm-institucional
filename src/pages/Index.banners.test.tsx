@@ -1,6 +1,8 @@
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useInstitutionalBanners } from "@/hooks/useInstitutionalBanners";
 import type { PublicInstitutionalBanner } from "@/services/institutional-banners/types";
@@ -23,6 +25,8 @@ const { heroApi, carouselRef } = vi.hoisted(() => ({
 vi.mock("embla-carousel-react", () => ({
   default: vi.fn(() => [carouselRef, heroApi]),
 }));
+vi.mock("embla-carousel-autoplay", () => ({ default: vi.fn(() => ({ name: "autoplay", play: vi.fn(), stop: vi.fn() })) }));
+vi.mock("@/hooks/usePrefersReducedMotion", () => ({ usePrefersReducedMotion: vi.fn(() => false) }));
 vi.mock("@/hooks/useInstitutionalBanners", () => ({
   useInstitutionalBanners: vi.fn(),
 }));
@@ -58,6 +62,7 @@ function renderHero(banners: PublicInstitutionalBanner[] = [], failed = false) {
 describe("Index - banners gerenciados", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.mocked(usePrefersReducedMotion).mockReturnValue(false);
     heroApi.canScrollNext.mockReturnValue(true);
     vi.useFakeTimers();
   });
@@ -102,9 +107,9 @@ describe("Index - banners gerenciados", () => {
     });
   });
 
-  it("so permite navegar pelas setas e desativa arraste por mouse ou toque", () => {
+  it("permite setas e arraste por mouse ou toque", () => {
     const hero = renderHero([banner(1)]);
-    expect(vi.mocked(useEmblaCarousel).mock.lastCall?.[0]).toMatchObject({ watchDrag: false });
+    expect(vi.mocked(useEmblaCarousel).mock.lastCall?.[0]).toMatchObject({ watchDrag: true });
 
     fireEvent.click(within(hero).getByRole("button", { name: "Mostrar próximo banner" }));
     fireEvent.click(within(hero).getByRole("button", { name: "Mostrar banner anterior" }));
@@ -113,13 +118,29 @@ describe("Index - banners gerenciados", () => {
     expect(heroApi.scrollPrev).toHaveBeenCalledTimes(1);
   });
 
-  it("nao avanca por tempo nem quando o cursor passa sobre o banner", () => {
+  it("ativa autoplay sem pausa por hover e oferece pausa explicita", () => {
     const hero = renderHero([banner(1)]);
-
+    const plugin = vi.mocked(Autoplay).mock.results.at(-1)!.value;
+    expect(Autoplay).toHaveBeenLastCalledWith(expect.objectContaining({ delay: 4000, stopOnMouseEnter: false, stopOnInteraction: false }));
+    expect(plugin.play).toHaveBeenCalled();
     fireEvent.mouseEnter(hero);
-    act(() => vi.advanceTimersByTime(30_000));
+    fireEvent.click(within(hero).getByRole("button", { name: "Pausar rotação dos banners" }));
+    expect(plugin.stop).toHaveBeenCalled();
+    expect(within(hero).getByRole("button", { name: "Retomar rotação dos banners" })).toBeInTheDocument();
+  });
 
-    expect(heroApi.scrollNext).not.toHaveBeenCalled();
+  it("mantem autoplay desativado com movimento reduzido", () => {
+    vi.mocked(usePrefersReducedMotion).mockReturnValue(true);
+    const hero = renderHero([banner(1)]);
+    expect(vi.mocked(Autoplay).mock.results.at(-1)!.value.play).not.toHaveBeenCalled();
+    expect(within(hero).queryByRole("button", { name: "Pausar rotação dos banners" })).toBeNull();
+  });
+
+  it("mantem a programacao apos a abertura e preenche a arte do banner", () => {
+    const hero = renderHero([banner(1)]);
+    expect(within(hero).getByRole("img", { name: "Banner publicado 1" })).toHaveClass("object-cover", "h-full", "w-full");
+    const section = screen.getByRole("region", { name: "Programação da Rádio 88 FM" });
+    expect(document.querySelector('.home-opening')!.compareDocumentPosition(section) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it("nao restaura banners locais antigos quando a API falha", () => {
