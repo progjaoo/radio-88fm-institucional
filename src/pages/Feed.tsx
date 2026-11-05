@@ -56,10 +56,11 @@ export default function Feed() {
         <h2 className="font-display text-xl font-bold">Novidades em breve</h2><p className="mt-2 text-sm text-neutral-600">Estamos preparando os próximos momentos da Rádio 88 FM para compartilhar com você.</p>
       </div> : <div className="grid grid-cols-3 gap-1 sm:gap-1.5 lg:grid-cols-4 lg:gap-2">
         {posts.map((post, position) => <article key={post.id} className="min-w-0">
-          <Link to={`/feed/${post.slug}`} className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 focus-visible:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-radio-blue">
-            <FeedCover post={post} sizes="(min-width: 1440px) 340px, (min-width: 1024px) 25vw, 33vw" eager={position < 4} />
+          <Link to={`/feed/${post.slug}`} className="feed-grid-card group relative block aspect-[3/4] overflow-hidden rounded-sm bg-neutral-100 focus-visible:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-radio-blue">
+            <div className="feed-grid-card-media h-full w-full"><FeedCover post={post} sizes="(min-width: 1440px) 340px, (min-width: 1024px) 25vw, 33vw" eager={position < 4} /></div>
+            <div aria-hidden="true" className="feed-grid-card-shade pointer-events-none absolute inset-0 bg-black" />
             <h2 className="sr-only">{post.title}</h2>
-            <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-black/85 to-transparent px-3 pb-3 pt-10 text-sm font-bold leading-snug text-white transition-transform duration-200 group-hover:translate-y-0 group-focus-visible:translate-y-0 motion-reduce:transition-none"><span className="line-clamp-3">{post.title}</span></span>
+            <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/55 to-transparent px-3 pb-3 pt-12 text-base font-bold leading-snug text-white sm:text-lg"><span className="line-clamp-3">{post.title}</span></span>
           </Link>
         </article>)}
       </div>}
