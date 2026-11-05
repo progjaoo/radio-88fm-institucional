@@ -123,6 +123,10 @@
   .radio-player { padding-bottom: env(safe-area-inset-bottom, 0px); }
   .radio-player-controls { height: calc(var(--player-height) - 1px); }
 
+  @media (min-width: 1024px) {
+    .home-banner-image { max-height: 460px; }
+  }
+
   @media (min-width: 1024px) and (min-height: 1000px) {
     .feed-recent { position: sticky; top: calc(var(--header-height) + 1.5rem); }
   }
