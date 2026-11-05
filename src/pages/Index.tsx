@@ -21,8 +21,6 @@ import { resolvePublicInstitutionalBannerAction } from "@/services/institutional
 import { bannerImageKey, buildHeroSlides, type HeroSlide } from "@/services/institutional-banners/heroSlides";
 import podcastbanner from "@/assets/podcastbanner.png";
 import podcastBannerMobile from "@/assets/podcastbannermobile.png";
-import programacaoImg from "@/assets/programacao.png";
-import programacaoMobileImg from "@/assets/programacaomobile.png";
 import uelison from "@/assets/locutores-atual/uelison.png";
 import jose from "@/assets/locutores-atual/geraldojose1.png";
 import jose2 from "@/assets/locutores-atual/geraldojose2.png";
@@ -355,7 +353,8 @@ const Index = () => {
     <div className="overflow-x-hidden">
       <h1 className="sr-only">Você está na Rádio 88 FM, a rádio que toca o som do céu</h1>
       {/* Hero Section */}
-      <section className="overflow-x-clip bg-background py-4">
+      <div className="home-opening">
+      <section className="home-hero-section overflow-x-clip bg-background py-4">
         <div className="mx-auto w-full max-w-[2400px] px-0">
           <div className="relative">
             {bannersLoading ? (
@@ -401,7 +400,7 @@ const Index = () => {
               </CarouselContent>
 
               {heroSlides.length > 1 && (
-                <div className="mt-5 flex items-center justify-center gap-3">
+                <div className="home-hero-arrows mt-5 flex items-center justify-center gap-3">
                   <CarouselPrevious
                     className="static h-10 w-10 translate-y-0 border border-border bg-white text-radio-dark shadow-sm transition-colors hover:border-radio-blue hover:bg-radio-blue hover:text-white"
                     aria-label="Mostrar banner anterior"
@@ -428,7 +427,7 @@ const Index = () => {
       </section>
 
       {/* The grid overlay reserves the portraits' height instead of using negative offsets. */}
-      <section className="home-team bg-background px-4 pb-6 pt-2 sm:px-6" aria-label="Equipe da Rádio 88 FM">
+      <section className="home-team hidden bg-background px-4 pb-6 pt-2 sm:px-6 lg:block" aria-label="Equipe da Rádio 88 FM">
         <div className="mx-auto grid max-w-[1280px] grid-cols-1">
           <img src={fundolocutores} alt="" aria-hidden="true" className="col-start-1 row-start-1 w-full self-end object-contain" />
           <div className="home-team-portraits col-start-1 row-start-1 flex min-w-0 items-end pl-[1.5%] pr-[8%]">
@@ -437,23 +436,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Programming Section - substituida por imagem estatica do Designer */}
-      <section className="py-4 md:py-1">
-        <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10 xl:px-12">
-          <img
-            src={programacaoImg}
-            alt="Programacao o dia todo para estar sempre com voce"
-            className="hidden h-auto w-full rounded-[28px] object-cover sm:block"
-            loading="lazy"
-          />
-          <img
-            src={programacaoMobileImg}
-            alt="Programacao o dia todo para estar sempre com voce"
-            className="h-auto w-full rounded-[18px] object-cover sm:hidden"
-            loading="lazy"
-          />
-        </div>
-      </section>
+      </div>
 
       {/* Programming Section dinamica preservada para rollback.
           Foi substituida temporariamente por imagem estatica do Designer.
