@@ -63,7 +63,13 @@ describe("Feed editorial estático", () => {
     );
 
     expect(screen.getByRole("heading", { name: "Feed 88 FM" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Bastidores da Rádio 88/i })).toHaveAttribute("href", "/feed/bastidores-88");
+    const postLink = screen.getByRole("link", { name: /Bastidores da Rádio 88/i });
+    expect(postLink).toHaveAttribute("href", "/feed/bastidores-88");
+    expect(postLink).toHaveClass("feed-grid-card");
+    expect(postLink.querySelector(".feed-grid-card-media img")).toBeInTheDocument();
+    expect(postLink.querySelector(".feed-grid-card-shade")).toHaveAttribute("aria-hidden", "true");
+    expect(postLink.querySelector("span")?.className).toContain("text-base");
+    expect(postLink.querySelector("span")?.className).not.toContain("translate-y-full");
     expect(document.querySelector("main time, section time")).toBeNull();
   });
 
