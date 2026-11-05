@@ -1,11 +1,8 @@
 import { useLocation } from "react-router-dom";
-import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { Analytics } from "@/services/analytics/analytics";
 
 const FloatingWhatsAppButton = () => {
-  const { isPlaying } = useAudioPlayer();
   const location = useLocation();
-  const hasMiniPlayer = isPlaying && location.pathname !== "/ouvir" && location.pathname !== "/assistir";
 
   return (
     <a
@@ -18,9 +15,7 @@ const FloatingWhatsAppButton = () => {
           current_page: location.pathname,
         })
       }
-      className={`fixed right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-[#20ba58] ${
-        hasMiniPlayer ? "bottom-24" : "bottom-6"
-      }`}
+      className="fixed bottom-[calc(var(--player-space)+1rem)] right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-colors hover:bg-[#20ba58] sm:right-6 sm:h-14 sm:w-14"
       aria-label="Fale conosco no WhatsApp"
     >
       <svg 

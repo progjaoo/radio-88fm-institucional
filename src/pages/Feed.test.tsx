@@ -1,6 +1,7 @@
 import { HelmetProvider } from "react-helmet-async";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
+import { RADIO_PLAY_REQUEST } from "@/lib/mediaPlayback";
 import { FeedProvider } from "@/services/feed/feed-data";
 import type { FeedIndex, FeedPostDocument } from "@/services/feed/feed.types";
 import Feed from "./Feed";
@@ -44,6 +45,11 @@ const index: FeedIndex = {
   }],
 };
 
+function RouteLocation() {
+  const location = useLocation();
+  return <output data-testid="route-location">{location.pathname}{location.search}</output>;
+}
+
 describe("Feed editorial estático", () => {
   it("renders the published grid entry and local article link", () => {
     render(
@@ -69,22 +75,61 @@ describe("Feed editorial estático", () => {
     ]};
     render(<HelmetProvider><MemoryRouter><FeedProvider initialIndex={datedIndex}><Feed /></FeedProvider></MemoryRouter></HelmetProvider>);
     expect(screen.getAllByRole("heading",{level:2}).map((heading)=>heading.textContent)).toEqual(["Festa em 2026","Festa em 2025","Memória sem data"]);
-    fireEvent.click(screen.getByRole("button",{name:"2025",exact:true}));
+    fireEvent.click(screen.getByRole("button",{name:"2025"}));
     expect(screen.getByRole("heading",{name:"Festa em 2025"})).toBeInTheDocument();
     expect(screen.queryByRole("heading",{name:"Festa em 2026"})).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button",{name:"Sem data",exact:true}));
-    expect(screen.getByRole("heading",{name:"Memória sem data"})).toBeInTheDocument();
-    expect(screen.queryByRole("heading",{name:"Festa em 2025"})).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button",{name:"Todos",exact:true}));
-    fireEvent.change(screen.getByRole("combobox",{name:"Ordenar pelo acontecimento"}),{target:{value:"antigas"}});
-    expect(screen.getAllByRole("heading",{level:2}).map((heading)=>heading.textContent)).toEqual(["Festa em 2025","Festa em 2026","Memória sem data"]);
+    expect(screen.queryByRole("button",{name:"Sem data"})).not.toBeInTheDocument();
+    expect(screen.queryByRole("combobox",{name:"Ordenar pelo acontecimento"})).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button",{name:"Todos"}));
+    expect(screen.getAllByRole("heading",{level:2}).map((heading)=>heading.textContent)).toEqual(["Festa em 2026","Festa em 2025","Memória sem data"]);
     expect(document.querySelector("time")).toBeNull();
   });
 
   it("retains the selected year when paginating", () => {
     const many: FeedIndex = {...index,posts:Array.from({length:13},(_,at)=>({...index.posts[0],id:String(at),slug:`festa-${at}`,title:`Festa ${at}`,eventDate:"2025-01-01"}))};
     render(<HelmetProvider><MemoryRouter initialEntries={["/feed?ano=2025&ordem=antigas"]}><FeedProvider initialIndex={many}><Feed /></FeedProvider></MemoryRouter></HelmetProvider>);
-    expect(screen.getByRole("link",{name:"Próxima",exact:true})).toHaveAttribute("href","/feed/pagina/2?ano=2025&ordem=antigas");
+    expect(screen.getByRole("link",{name:"Próxima"})).toHaveAttribute("href","/feed/pagina/2?ano=2025");
+  });
+
+  it.each(["sem-data", "1900"])("normalizes obsolete year %s without losing unrelated query values", async (year) => {
+    render(<HelmetProvider><MemoryRouter initialEntries={[`/feed?ano=${year}&ordem=antigas&utm_source=teste`]}><FeedProvider initialIndex={index}><Feed /><RouteLocation /></FeedProvider></MemoryRouter></HelmetProvider>);
+    await waitFor(() => expect(screen.getByTestId("route-location")).toHaveTextContent("/feed?utm_source=teste"));
+    expect(screen.getByRole("button", { name: "Todos" })).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("resets to page one when a year filter is selected", async () => {
+    const many: FeedIndex = { ...index, posts: Array.from({ length: 13 }, (_, at) => ({ ...index.posts[0], id: String(at), slug: `festa-${at}`, title: `Festa ${at}`, eventDate: at ? "2026-01-01" : "2025-01-01" })) };
+    render(<HelmetProvider><MemoryRouter initialEntries={["/feed/pagina/2"]}><FeedProvider initialIndex={many}><RouteLocation /><Routes><Route path="/feed" element={<Feed />} /><Route path="/feed/pagina/:page" element={<Feed />} /></Routes></FeedProvider></MemoryRouter></HelmetProvider>);
+    fireEvent.click(screen.getByRole("button", { name: "2025" }));
+    await waitFor(() => expect(screen.getByTestId("route-location")).toHaveTextContent("/feed?ano=2025"));
+    expect(screen.getByRole("heading", { name: "Festa 0" })).toBeInTheDocument();
+  });
+
+  it("shows a real not-found screen for a slug absent from the release without fetching", () => {
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+    render(<HelmetProvider><MemoryRouter initialEntries={["/feed/removido"]}><FeedProvider initialIndex={index}><Routes><Route path="/feed/:slug" element={<FeedPostPage />} /></Routes></FeedProvider></MemoryRouter></HelmetProvider>);
+    expect(screen.getByRole("heading", { name: "Página não encontrada" })).toBeInTheDocument();
+    expect(fetchSpy).not.toHaveBeenCalled();
+    fetchSpy.mockRestore();
+  });
+
+  it("treats a missing JSON for a known slug as temporary and retries manually", async () => {
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(new Response("", { status: 404 })).mockResolvedValueOnce(new Response(JSON.stringify(postDocument), { status: 200 }));
+    render(<HelmetProvider><MemoryRouter initialEntries={["/feed/bastidores-88"]}><FeedProvider initialIndex={index}><Routes><Route path="/feed/:slug" element={<FeedPostPage />} /></Routes></FeedProvider></MemoryRouter></HelmetProvider>);
+    expect(await screen.findByRole("heading", { name: "Publicação temporariamente indisponível" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Página não encontrada" })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Tentar novamente" }));
+    expect(await screen.findByText("Conteúdo renderizado sem consulta à API.")).toBeInTheDocument();
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
+    fetchSpy.mockRestore();
+  });
+
+  it("places recent posts after the article, excludes current and uses event order", () => {
+    const recentIndex: FeedIndex = { ...index, posts: [...index.posts, ...[2024, 2026, 2025, 2023].map((year) => ({ ...index.posts[0], id: String(year), slug: `festa-${year}`, title: `Festa ${year}`, eventDate: `${year}-01-01` }))] };
+    render(<HelmetProvider><MemoryRouter initialEntries={["/feed/bastidores-88"]}><FeedProvider initialIndex={recentIndex} initialPosts={{ "bastidores-88": postDocument }}><Routes><Route path="/feed/:slug" element={<FeedPostPage />} /></Routes></FeedProvider></MemoryRouter></HelmetProvider>);
+    const aside = screen.getByRole("complementary");
+    expect(within(aside).getAllByRole("link").map((link) => link.getAttribute("href"))).toEqual(["/feed/festa-2026", "/feed/festa-2025", "/feed/festa-2024"]);
+    expect(screen.getByText("Conteúdo renderizado sem consulta à API.").compareDocumentPosition(aside) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it("renders the server-provided article without a public API request", async () => {
@@ -134,7 +179,7 @@ describe("Feed editorial estático", () => {
       </HelmetProvider>,
     );
 
-    expect(await screen.findByRole("heading", { name: "Página não encontrada" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Publicação temporariamente indisponível" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: postDocument.post.title })).not.toBeInTheDocument();
     fetchSpy.mockRestore();
   });
@@ -162,6 +207,9 @@ describe("Feed editorial estático", () => {
 
     expect(pauseRadio).toHaveBeenCalledOnce();
     expect(await screen.findByTitle("Vídeo dos bastidores")).toHaveAttribute("src", expect.stringContaining("youtube-nocookie.com/embed/abcdefghijk"));
+    act(() => window.dispatchEvent(new Event(RADIO_PLAY_REQUEST)));
+    expect(screen.queryByTitle("Vídeo dos bastidores")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reproduzir vídeo: Vídeo dos bastidores" })).toBeInTheDocument();
   });
 
   it("pauses the radio when a local MP4 starts playing", async () => {
@@ -187,6 +235,10 @@ describe("Feed editorial estático", () => {
     fireEvent.play(await screen.findByLabelText("Vídeo local"));
 
     expect(pauseRadio).toHaveBeenCalledOnce();
+    const pauseMedia = vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
+    act(() => window.dispatchEvent(new Event(RADIO_PLAY_REQUEST)));
+    expect(pauseMedia).toHaveBeenCalledOnce();
+    pauseMedia.mockRestore();
   });
 
   it("animates a GIF automatically without a playback button", async () => {

@@ -95,7 +95,7 @@ const Header = () => {
   return (
     <header
       ref={headerRef}
-      className="fixed left-3 right-3 top-0 z-40 mx-auto max-w-[2400px] rounded-b-[16px] border border-white/20 bg-black shadow-lg backdrop-blur-md sm:left-4 sm:right-4 sm:rounded-b-[20px]"
+      className="fixed left-3 right-3 top-0 z-50 mx-auto max-w-[2400px] rounded-b-[16px] border border-white/20 bg-black shadow-lg backdrop-blur-md sm:left-4 sm:right-4 sm:rounded-b-[20px]"
     >
       <div className="mx-auto grid h-16 w-full max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2 justify-self-start" onClick={handleLogoClick}>
@@ -129,7 +129,7 @@ const Header = () => {
                 to={item.path}
                 onClick={(event) => handleInternalNavigation(event, item.path, item.label)}
                 className={`font-display text-sm font-semibold tracking-wide transition-colors ${
-                  location.pathname === item.path ? "text-primary" : "text-white hover:text-primary"
+                  (location.pathname === item.path || (item.path === "/feed" && location.pathname.startsWith("/feed/"))) ? "text-primary" : "text-white hover:text-primary"
                 }`}
               >
                 {item.label}

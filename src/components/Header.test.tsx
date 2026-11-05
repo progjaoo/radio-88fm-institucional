@@ -13,6 +13,10 @@ const emptyFeedIndex: FeedIndex = {
 };
 
 describe("Header", () => {
+  it("keeps Feed active inside an article", () => {
+    render(<MemoryRouter initialEntries={["/feed/materia"]}><Header /></MemoryRouter>);
+    expect(screen.getByRole("link", { name: "FEED" })).toHaveClass("text-primary");
+  });
   beforeEach(() => { vi.spyOn(window, "scrollTo").mockImplementation(() => undefined); });
   afterEach(() => vi.restoreAllMocks());
 
@@ -48,13 +52,13 @@ describe("Header", () => {
 
     expect(screen.getByRole("link", { name: "FEED" })).toHaveAttribute("href", "/feed");
     expect(within(screen.getByRole("navigation")).getAllByRole("link").map((link) => link.textContent)).toEqual(["INÍCIO", "FEED", "NOSSA RÁDIO", "EQUIPE", "ANUNCIE"]);
-    const watch = screen.getByRole("link", { name: "ASSISTIR", exact: true });
+    const watch = screen.getByRole("link", { name: "ASSISTIR" });
     expect(watch.querySelector("svg.lucide-video")).not.toBeNull();
     expect(watch).not.toHaveTextContent("🎥");
 
     fireEvent.click(screen.getByRole("button", { name: "Abrir menu" }));
     const mobile = screen.getAllByRole("navigation")[1];
     expect(within(mobile).getAllByRole("link").slice(0, 5).map((link) => link.textContent)).toEqual(["INÍCIO", "FEED", "NOSSA RÁDIO", "EQUIPE", "ANUNCIE"]);
-    expect(within(mobile).getByRole("link", { name: "Assistir", exact: true }).querySelector("svg.lucide-video")).not.toBeNull();
+    expect(within(mobile).getByRole("link", { name: "Assistir" }).querySelector("svg.lucide-video")).not.toBeNull();
   });
 });

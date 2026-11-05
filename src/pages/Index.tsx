@@ -106,7 +106,7 @@ const Hero88Mark = () => {
         src={hero88GifSrc}
         alt=""
         aria-hidden="true"
-        className="inline-block h-[1.02em] w-auto translate-y-[0.10em] object-contain md:h-[1.70em]"
+        className="inline-block h-[1.02em] w-auto translate-y-[0.10em] object-contain md:h-[1.2em]"
       />
     </span>
   );
@@ -224,18 +224,18 @@ const Index = () => {
   const renderHeroSlide = (slide: HeroSlide) => {
     if (slide.type === "static") {
       return (
-        <div className="relative flex flex-1 bg-white px-3 py-4 [container-type:inline-size] sm:px-5 sm:py-7 md:px-12 md:py-14 lg:px-20">
+        <div className="home-hero-static relative flex flex-1 bg-white px-3 py-4 [container-type:inline-size] sm:px-5 sm:py-6 md:px-10 md:py-5 lg:px-16">
           <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center justify-center text-center">
-            <p className="font-display text-[clamp(1.45rem,8vw,2.25rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground md:text-[clamp(2.1rem,7.4cqw,4.8rem)]">
+            <p className="hero-greeting font-display text-[clamp(1.45rem,8vw,2.25rem)] font-light uppercase leading-[0.95] tracking-[-0.04em] text-foreground md:text-[clamp(2.1rem,6cqw,3.5rem)]">
               VOCÊ ESTÁ NA <Hero88Mark />,
             </p>
-            <p className="mt-1.5 font-display text-[clamp(1.6rem,8.8vw,2.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground md:mt-2 md:text-[clamp(2.15rem,8.2cqw,5.2rem)]">
+            <p className="hero-message mt-1.5 font-display text-[clamp(1.6rem,8.8vw,2.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.05em] text-foreground md:mt-2 md:text-[clamp(2.4rem,7cqw,4rem)]">
               A RÁDIO QUE TOCA
               <br />
               O SOM DO CÉU!
             </p>
 
-            <div className="mt-4 grid w-full max-w-sm grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:w-auto sm:max-w-none md:mt-8 md:flex md:gap-4">
+            <div className="mt-4 grid w-full max-w-sm grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:w-auto sm:max-w-none md:mt-6 md:flex md:gap-4">
               <Link
                 to="/ouvir"
                 className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-radio-red px-3 py-2 font-display text-[11px] font-extrabold uppercase tracking-wide text-white transition-transform hover:scale-[1.02] sm:px-4 sm:text-xs md:w-auto md:gap-3 md:px-7 md:py-3 md:text-sm"
@@ -252,7 +252,7 @@ const Index = () => {
               </Link>
             </div>
 
-            <p className="mt-4 text-xs leading-5 text-foreground/85 sm:text-sm md:mt-10 md:text-xl">
+            <p className="mt-4 text-xs leading-5 text-foreground/85 sm:text-sm md:mt-5 md:text-lg">
               Ou baixe nosso App para{" "}
               <a
                 href="https://play.google.com/store/apps/details?id=com.sentinel4.radio88&hl=pt_BR"
@@ -272,7 +272,7 @@ const Index = () => {
               </a>
             </p>
 
-            <div className="mt-3 flex items-center gap-2 md:mt-6 md:gap-4">
+            <div className="mt-3 flex items-center gap-2 md:mt-4 md:gap-4">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -299,7 +299,7 @@ const Index = () => {
           loading={heroSlides[0]?.id === slide.id ? "eager" : "lazy"}
           {...{ fetchpriority: heroSlides[0]?.id === slide.id ? "high" : "auto" }}
           onError={() => setFailedBannerImages((previous) => new Set(previous).add(bannerImageKey(slide)))}
-          className="block h-auto w-full rounded-[10px] object-contain"
+          className="home-banner-image block h-auto w-full rounded-[10px] object-contain"
         />
       </div>
     );
@@ -355,11 +355,11 @@ const Index = () => {
     <div className="overflow-x-hidden">
       <h1 className="sr-only">Você está na Rádio 88 FM, a rádio que toca o som do céu</h1>
       {/* Hero Section */}
-      <section className="overflow-x-hidden bg-background py-4 md:py-8">
+      <section className="overflow-x-clip bg-background py-4">
         <div className="mx-auto w-full max-w-[2400px] px-0">
           <div className="relative">
             {bannersLoading ? (
-              <div role="status" aria-label="Carregando banners" className="mx-auto min-h-[360px] w-[92%] rounded-[10px] bg-white sm:min-h-[420px] md:min-h-[540px] lg:w-[76%] xl:w-[72%] 2xl:w-[68%]">
+              <div role="status" aria-label="Carregando banners" className="home-hero-placeholder mx-auto min-h-[360px] w-[92%] rounded-[10px] bg-white sm:min-h-[420px] md:min-h-[460px] lg:w-[76%] xl:w-[72%] 2xl:w-[68%]">
                 <span className="sr-only">Carregando destaque da Rádio 88 FM...</span>
               </div>
             ) : <Carousel
@@ -392,7 +392,7 @@ const Index = () => {
                     }
                   >
                     <div
-                      className="flex min-h-[360px] w-full flex-col overflow-hidden rounded-[10px] bg-white shadow-sm sm:min-h-[420px] md:min-h-[540px]"
+                      className="home-hero-card flex min-h-[360px] w-full flex-col overflow-hidden rounded-[10px] bg-white shadow-sm sm:min-h-[420px] md:min-h-[460px]"
                     >
                       {renderHeroSlide(slide)}
                     </div>
@@ -427,25 +427,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Locutores */}
-      <section className="hidden bg-background py-20 lg:block">
-        <div className="container">
-          <div className="relative">
-            <div className="absolute -top-[145px] -right-[10px] w-full z-10">
-              <div className="flex items-end justify-start overflow-hidden -space-x-11"> 
-                {locutores.map((loc, i) => (
-                  <LocutorCard
-                    key={`${loc.name}-${i}`}
-                    image={loc.image}
-                    name={loc.name}
-                    program={loc.program}
-                  />
-                ))}
-              </div>
-            </div> 
-            <div className="relative mt-10">
-              <img src={fundolocutores} alt="88FM" className="w-full object-contain" />
-            </div>
+      {/* The grid overlay reserves the portraits' height instead of using negative offsets. */}
+      <section className="home-team bg-background px-4 pb-6 pt-2 sm:px-6" aria-label="Equipe da Rádio 88 FM">
+        <div className="mx-auto grid max-w-[1280px] grid-cols-1">
+          <img src={fundolocutores} alt="" aria-hidden="true" className="col-start-1 row-start-1 w-full self-end object-contain" />
+          <div className="home-team-portraits col-start-1 row-start-1 flex min-w-0 items-end pl-[1.5%] pr-[8%]">
+            {locutores.map((loc, i) => <LocutorCard key={`${loc.name}-${i}`} image={loc.image} name={loc.name} program={loc.program} compact />)}
           </div>
         </div>
       </section>

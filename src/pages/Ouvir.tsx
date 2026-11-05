@@ -1,14 +1,14 @@
-import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { LoaderCircle, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import TrackArtwork from "@/components/TrackArtwork";
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { getDisplayName } from "@/lib/streamUtils";
 
 const Ouvir = () => {
-  const { isPlaying, isMuted, streamData, togglePlay, toggleMute } = useAudioPlayer();
+  const { isPlaying, isLoading, isMuted, streamData, togglePlay, toggleMute } = useAudioPlayer();
   const displayName = getDisplayName(streamData?.musica_atual);
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-radio-brand-blue">
+    <div className="min-h-[calc(100svh-var(--header-height)-var(--player-space))] py-8 flex items-center justify-center bg-radio-brand-blue">
       <div className="container max-w-md text-center">
         <h1 className="sr-only">Ouvir Rádio 88 FM ao vivo</h1>
         {/* Album art */}
@@ -45,9 +45,9 @@ const Ouvir = () => {
           <button
             onClick={togglePlay}
             className="w-20 h-20 rounded-full radio-gradient-accent flex items-center justify-center text-white hover:opacity-90 transition-opacity shadow-lg"
-            aria-label={isPlaying ? "Pausar" : "Reproduzir"}
+            aria-label={isLoading ? "Cancelar carregamento" : isPlaying ? "Pausar" : "Reproduzir"}
           >
-            {isPlaying ? <Pause size={32} /> : <Play size={32} className="ml-1" />}
+            {isLoading ? <LoaderCircle size={32} className="motion-safe:animate-spin" /> : isPlaying ? <Pause size={32} /> : <Play size={32} className="ml-1" />}
           </button>
 
           <div className="w-6" /> {/* spacer */}

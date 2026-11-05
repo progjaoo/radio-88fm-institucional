@@ -24,9 +24,9 @@ const Layout = () => {
 
   return (
     <ListenerRegistrationProvider>
-      <div className={`min-h-screen flex flex-col ${isLivePage ? "bg-radio-brand-blue" : "bg-background"}`}>
+      <div className={`radio-shell min-h-screen flex flex-col ${isLivePage ? "bg-radio-brand-blue" : "bg-background"}`}>
         <Header />
-        <main className={`flex-1 pt-16 ${isLivePage ? "bg-radio-brand-blue" : ""}`}>
+        <main id="main-content" className={`flex-1 pt-[var(--header-height)] ${isLivePage ? "bg-radio-brand-blue" : ""}`}>
           <Outlet />
         </main>
         <Footer />

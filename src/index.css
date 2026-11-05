@@ -6,6 +6,9 @@
 
 @layer base {
   :root {
+    --header-height: 64px;
+    --player-height: 72px;
+    --player-space: calc(var(--player-height) + env(safe-area-inset-bottom, 0px));
     --background: 0 0% 100%;
     --foreground: 0 0% 10%;
 
@@ -100,7 +103,49 @@
   html,
   body,
   #root {
-    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  html {
+    scrollbar-color: hsl(var(--radio-blue)) hsl(var(--muted));
+    scrollbar-width: thin;
+    scroll-padding-top: calc(var(--header-height) + 1rem);
+    scroll-padding-bottom: calc(var(--player-space) + 1rem);
+  }
+
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--muted)); }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--radio-blue)); border: 3px solid hsl(var(--muted)); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:active { background: hsl(var(--radio-blue-dark)); }
+
+  .radio-shell { padding-bottom: var(--player-space); }
+  .radio-player { padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .radio-player-controls { height: calc(var(--player-height) - 1px); }
+
+  @media (min-width: 1024px) and (min-height: 1000px) {
+    .feed-recent { position: sticky; top: calc(var(--header-height) + 1.5rem); }
+  }
+
+  @media (min-width: 1024px) and (max-height: 900px) {
+    .home-hero-static .hero-greeting { font-size: clamp(2.1rem, 4cqw, 3.2rem); }
+    .home-hero-static .hero-message { font-size: clamp(2.4rem, 6cqw, 3.7rem); }
+    .home-team-portraits img { height: 120px; }
+  }
+
+  @media (min-width: 1024px) and (max-height: 850px) {
+    .home-hero-card,
+    .home-hero-placeholder { min-height: 400px; }
+    .home-banner-image { max-height: 400px; }
+  }
+
+  @media (min-width: 768px) {
+    :root { --player-height: 80px; }
+  }
+
+  @media (forced-colors: active) {
+    html { scrollbar-color: auto; }
+    ::-webkit-scrollbar-thumb { background: CanvasText; }
   }
 
   h1, h2, h3, h4, h5, h6 {

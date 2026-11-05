@@ -27,3 +27,12 @@ export function formatEventDate(value: string | null | undefined): string | null
   const day = getEventDay(value);
   return day ? new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${day}T00:00:00Z`)) : null;
 }
+
+export function getRecentFeedPosts(posts: FeedIndexPost[], currentSlug: string, limit = 3) {
+  const seen = new Set([currentSlug]);
+  return sortByEventDate(posts).filter((post) => {
+    if (!post.slug || seen.has(post.slug)) return false;
+    seen.add(post.slug);
+    return true;
+  }).slice(0, Math.max(0, limit));
+}

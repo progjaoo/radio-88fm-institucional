@@ -3,21 +3,7 @@ import radioLogoWhite from "@/assets/logoheadsvg.svg";
 import { AudioPlayerProvider } from "@/contexts/AudioPlayerContext";
 import Ouvir from "./Ouvir";
 
-class MockAudio {
-  static instances: MockAudio[] = [];
-
-  src: string;
-  muted = false;
-  play = vi.fn().mockResolvedValue(undefined);
-  pause = vi.fn();
-  addEventListener = vi.fn();
-  removeEventListener = vi.fn();
-
-  constructor(src = "") {
-    this.src = src;
-    MockAudio.instances.push(this);
-  }
-}
+import { MockAudio } from "@/test/MockAudio";
 
 const renderOuvir = () =>
   render(
@@ -54,6 +40,7 @@ describe("Ouvir", () => {
 
   it("loads stream metadata and normalizes the station name", async () => {
     renderOuvir();
+    fireEvent.click(screen.getByRole("button", { name: "Reproduzir" }));
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledTimes(1);
@@ -71,6 +58,7 @@ describe("Ouvir", () => {
       status: "online",
     });
     renderOuvir();
+    fireEvent.click(screen.getByRole("button", { name: "Reproduzir" }));
 
     const artwork = await screen.findByRole("img", { name: "Logo Rádio 88 FM" });
     expect(artwork).toHaveAttribute("src", radioLogoWhite);

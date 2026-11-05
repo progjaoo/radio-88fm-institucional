@@ -249,7 +249,7 @@ export default function ListenerRegistrationModal() {
             {knownParticipationMutation.error && (
               <div className="flex items-start gap-3 rounded-2xl border border-destructive/20 bg-destructive/10 p-4 text-sm text-destructive">
                 <XCircle className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
-                <p>{getErrorMessage(knownParticipationMutation.error)}</p>
+                <p>{getListenerRegistrationErrorMessage(knownParticipationMutation.error)}</p>
               </div>
             )}
 

@@ -57,8 +57,8 @@ export const AppContent = ({ helmetContext, initialFeedPosts }: AppContentProps)
                 <Route path="/feed" element={<Feed />} />
                 <Route path="/feed/pagina/:page" element={<Feed />} />
                 <Route path="/feed/:slug" element={<FeedPostPage />} />
+                <Route path="*" element={<NotFound />} />
               </Route>
-              <Route path="*" element={<NotFound />} />
             </Routes>
             </FeedProvider>
             <Analytics />

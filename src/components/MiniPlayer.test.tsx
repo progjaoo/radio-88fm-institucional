@@ -4,18 +4,7 @@ import radioLogoWhite from "@/assets/logoheadsvg.svg";
 import { AudioPlayerProvider, useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import MiniPlayer from "./MiniPlayer";
 
-class MockAudio {
-  src: string;
-  muted = false;
-  play = vi.fn().mockResolvedValue(undefined);
-  pause = vi.fn();
-  addEventListener = vi.fn();
-  removeEventListener = vi.fn();
-
-  constructor(src = "") {
-    this.src = src;
-  }
-}
+import { MockAudio } from "@/test/MockAudio";
 
 const MiniPlayerHarness = () => {
   const location = useLocation();
@@ -34,6 +23,7 @@ const MiniPlayerHarness = () => {
 
 describe("MiniPlayer", () => {
   beforeEach(() => {
+    MockAudio.instances = [];
     vi.stubGlobal("Audio", MockAudio);
     vi.stubGlobal(
       "fetch",
@@ -46,6 +36,20 @@ describe("MiniPlayer", () => {
         }),
       })
     );
+  });
+
+  it.each(["/", "/feed", "/ouvir", "/inexistente"])("shows a paused player immediately at %s", (route) => {
+    render(<MemoryRouter initialEntries={[route]}><AudioPlayerProvider><MiniPlayer /></AudioPlayerProvider></MemoryRouter>);
+    expect(screen.getByRole("region", { name: "Player da Rádio 88 FM" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reproduzir" })).toBeInTheDocument();
+    expect(fetch).not.toHaveBeenCalled();
+    expect(MockAudio.instances[0].play).not.toHaveBeenCalled();
+  });
+
+  it("links to the radio page instead of playing under the video route", () => {
+    render(<MemoryRouter initialEntries={["/assistir"]}><AudioPlayerProvider><MiniPlayer /></AudioPlayerProvider></MemoryRouter>);
+    expect(screen.getByRole("link", { name: "Ouvir rádio" })).toHaveAttribute("href", "/ouvir");
+    expect(screen.queryByRole("button", { name: "Reproduzir" })).not.toBeInTheDocument();
   });
 
   afterEach(() => {
@@ -68,6 +72,9 @@ describe("MiniPlayer", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Mudar de tela" }));
     await waitFor(() => expect(screen.getByTestId("current-route")).toHaveTextContent("/noticias"));
+    expect(MockAudio.instances).toHaveLength(1);
+    expect(MockAudio.instances[0].play).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole("button", { name: "Pausar" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Logo Rádio 88 FM" })).toHaveAttribute("src", radioLogoWhite);
   });
 });

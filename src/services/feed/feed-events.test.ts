@@ -1,4 +1,4 @@
-import { formatEventDate, getEventDay, getEventYear, sortByEventDate } from "./feed-events";
+import { formatEventDate, getEventDay, getEventYear, getRecentFeedPosts, sortByEventDate } from "./feed-events";
 import type { FeedIndexPost } from "./feed.types";
 
 const post = (slug: string, eventDate?: string | null): FeedIndexPost => ({
@@ -23,5 +23,14 @@ describe("Datas de acontecimentos do Feed", () => {
 
   it("orders oldest first without moving undated posts to the front", () => {
     expect(sortByEventDate([post("undated"), post("newer","2026-01-01"), post("older","2025-03-01")],true).map((item) => item.slug)).toEqual(["older","newer","undated"]);
+  });
+
+  it("derives three unique recent posts without mutating the full archive", () => {
+    const archive = [post("undated"), post("current", "2026-11-05"), post("older", "2025-01-01"), post("newer", "2026-01-01"), post("newer", "2026-01-01"), post("last", "2024-01-01")];
+    const original = [...archive];
+    expect(getRecentFeedPosts(archive, "current").map((item) => item.slug)).toEqual(["newer", "older", "last"]);
+    expect(archive).toEqual(original);
+    expect(getRecentFeedPosts([post("current")], "current")).toEqual([]);
+    expect(getRecentFeedPosts(archive, "current", 0)).toEqual([]);
   });
 });

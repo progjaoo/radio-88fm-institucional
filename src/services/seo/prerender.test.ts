@@ -15,5 +15,8 @@ describe("server rendering", () => {
     const result = render("/rota-inexistente");
     expect(result.statusCode).toBe(404);
     expect(result.headHtml).toContain("noindex,follow");
+    expect(result.appHtml.match(/<main\b/g)).toHaveLength(1);
+    expect(result.appHtml).toContain("Player da Rádio 88 FM");
+    expect(result.appHtml).toContain('aria-label="Reproduzir"');
   });
 });
