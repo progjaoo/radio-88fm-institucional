@@ -193,11 +193,15 @@ const Index = () => {
   useEffect(() => {
     if (!heroApi) return;
     const select = () => setHeroIndex(heroApi.selectedScrollSnap());
+    const syncPlayback = () => {
+      if (heroSlides.length > 1 && !rotationPaused && !reducedMotion) autoplay.play();
+      else autoplay.stop();
+    };
     select();
     heroApi.on("select", select);
-    if (heroSlides.length > 1 && !rotationPaused && !reducedMotion) autoplay.play();
-    else autoplay.stop();
-    return () => { heroApi.off("select", select); autoplay.stop(); };
+    heroApi.on("reInit", syncPlayback);
+    syncPlayback();
+    return () => { heroApi.off("select", select); heroApi.off("reInit", syncPlayback); autoplay.stop(); };
   }, [heroApi, heroSlides.length, autoplay, rotationPaused, reducedMotion]);
 
   useEffect(() => {
