@@ -309,7 +309,7 @@ const Index = () => {
           loading={heroSlides[0]?.id === slide.id ? "eager" : "lazy"}
           {...{ fetchpriority: heroSlides[0]?.id === slide.id ? "high" : "auto" }}
           onError={() => setFailedBannerImages((previous) => new Set(previous).add(bannerImageKey(slide)))}
-          className="home-banner-image absolute inset-0 block h-full w-full rounded-[10px] object-cover"
+          className="home-banner-image absolute inset-0 block h-full w-full rounded-[10px] object-contain lg:object-cover"
         />
       </div>
     );

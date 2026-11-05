@@ -136,7 +136,7 @@ describe("Index - banners gerenciados", () => {
 
   it("mantem a programacao apos a abertura e preenche a arte do banner", () => {
     const hero = renderHero([banner(1)]);
-    expect(within(hero).getByRole("img", { name: "Banner publicado 1" })).toHaveClass("object-cover", "h-full", "w-full");
+    expect(within(hero).getByRole("img", { name: "Banner publicado 1" })).toHaveClass("object-contain", "lg:object-cover", "h-full", "w-full");
     const section = screen.getByRole("region", { name: "Programação da Rádio 88 FM" });
     expect(document.querySelector('.home-opening')!.compareDocumentPosition(section) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
