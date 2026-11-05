@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Facebook, Instagram, Youtube, Radio, Video } from "lucide-react";
 import { Link } from "react-router-dom";
 import TikTokIcon from "@/components/icons/TikTokIcon";
-import LocutorCard from "@/components/LocutorCard";
+import LocutoresSection from "@/components/LocutoresSection";
 import YoutubeSection from "@/components/YoutubeSection";
 import {
   Carousel,
@@ -12,7 +12,6 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import fundolocutores from "@/assets/fundolocutores.png";
 import programacaoImg from "@/assets/programacao.png";
 import programacaoMobileImg from "@/assets/programacaomobile.png";
 import { useYoutubeContent } from "@/hooks/useYoutubeContent";
@@ -439,15 +438,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* The grid overlay reserves the portraits' height instead of using negative offsets. */}
-      <section className="home-team hidden bg-background px-4 pb-6 pt-2 sm:px-6 lg:block" aria-label="Equipe da Rádio 88 FM">
-        <div className="mx-auto grid max-w-[1280px] grid-cols-1">
-          <img src={fundolocutores} alt="" aria-hidden="true" className="col-start-1 row-start-1 w-full self-end object-contain" />
-          <div className="home-team-portraits col-start-1 row-start-1 flex min-w-0 items-end pl-[1.5%] pr-[8%]">
-            {locutores.map((loc, i) => <LocutorCard key={`${loc.name}-${i}`} image={loc.image} name={loc.name} program={loc.program} compact />)}
-          </div>
-        </div>
-      </section>
+      <LocutoresSection locutores={locutores} />
 
       </div>
 

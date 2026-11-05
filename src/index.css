@@ -133,6 +133,7 @@
     .home-opening .home-hero-card,
     .home-opening .home-hero-placeholder { min-height: var(--home-hero-height); }
     .home-team { margin-top: auto; }
+    .home-team-stage { min-height: 144px; }
   }
 
   @media (min-width: 1024px) and (min-height: 1000px) {
@@ -142,7 +143,7 @@
   @media (min-width: 1024px) and (max-height: 900px) {
     .home-hero-static .hero-greeting { font-size: clamp(2.1rem, 4cqw, 3.2rem); }
     .home-hero-static .hero-message { font-size: clamp(2.4rem, 6cqw, 3.7rem); }
-    .home-team-portraits img { height: 120px; }
+    .home-team-stage { min-height: 120px; }
   }
 
 
