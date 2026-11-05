@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipPortal } from "@/components/ui/tooltip";
 
 interface LocutorCardProps {
   image: string;
@@ -35,14 +35,16 @@ const LocutorCard = ({ image, name, program }: LocutorCardProps) => {
           />
         </motion.div>
       </TooltipTrigger>
+      <TooltipPortal>
       <TooltipContent
         side="top"
         sideOffset={-150}
-        className="border-white/10 bg-black px-4 py-3 text-center text-white shadow-xl"
+        className="pointer-events-none border-white/10 bg-black px-4 py-3 text-center text-white shadow-xl"
       >
         <p className="font-display text-sm font-extrabold leading-none">{name}</p>
         <p className="mt-1 text-xs font-semibold text-white/70">{program}</p>
       </TooltipContent>
+      </TooltipPortal>
     </Tooltip>
   );
 };

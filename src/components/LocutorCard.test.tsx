@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import LocutorCard from "./LocutorCard";
 
@@ -15,6 +15,15 @@ vi.mock("framer-motion", async () => {
 });
 
 describe("LocutorCard original composition", () => {
+  it("renders the tooltip outside the clipped team layer without intercepting clicks", async () => {
+    const { container } = render(<TooltipProvider><div style={{ overflow: "hidden", transform: "scale(1)" }}><LocutorCard image="/foto.png" name="Locutor" program="Programa" /></div></TooltipProvider>);
+    fireEvent.focus(screen.getByRole("group"));
+    const tooltip = await screen.findByRole("tooltip");
+    expect(tooltip).toHaveTextContent("Locutor");
+    expect(tooltip).toHaveTextContent("Programa");
+    expect(container).not.toContainElement(tooltip);
+    expect(document.querySelector('[data-radix-popper-content-wrapper] .pointer-events-none')).toHaveClass("z-50");
+  });
   it("uses the exact original card and portrait dimensions", () => {
     render(<TooltipProvider><LocutorCard image="/foto.png" name="Locutor" program="Programa" /></TooltipProvider>);
     expect(screen.getByRole("group")).toHaveClass("w-[113px]", "flex-shrink-0");
