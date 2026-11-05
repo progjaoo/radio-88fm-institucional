@@ -118,21 +118,19 @@ describe("Index - banners gerenciados", () => {
     expect(heroApi.scrollPrev).toHaveBeenCalledTimes(1);
   });
 
-  it("ativa autoplay sem pausa por hover e oferece pausa explicita", () => {
+  it("nao inicia autoplay nem movimenta o banner por tempo ou hover", () => {
     const hero = renderHero([banner(1)]);
-    const plugin = vi.mocked(Autoplay).mock.results.at(-1)!.value;
-    expect(Autoplay).toHaveBeenLastCalledWith(expect.objectContaining({ delay: 4000, stopOnMouseEnter: false, stopOnInteraction: false }));
-    expect(plugin.play).toHaveBeenCalled();
+    expect(Autoplay).not.toHaveBeenCalled();
     fireEvent.mouseEnter(hero);
-    fireEvent.click(within(hero).getByRole("button", { name: "Pausar rotação dos banners" }));
-    expect(plugin.stop).toHaveBeenCalled();
-    expect(within(hero).getByRole("button", { name: "Retomar rotação dos banners" })).toBeInTheDocument();
+    act(() => vi.advanceTimersByTime(30000));
+    expect(heroApi.scrollNext).not.toHaveBeenCalled();
+    expect(within(hero).queryByRole("button", { name: "Pausar rotação dos banners" })).toBeNull();
   });
 
   it("mantem autoplay desativado com movimento reduzido", () => {
     vi.mocked(usePrefersReducedMotion).mockReturnValue(true);
     const hero = renderHero([banner(1)]);
-    expect(vi.mocked(Autoplay).mock.results.at(-1)!.value.play).not.toHaveBeenCalled();
+    expect(Autoplay).not.toHaveBeenCalled();
     expect(within(hero).queryByRole("button", { name: "Pausar rotação dos banners" })).toBeNull();
   });
 

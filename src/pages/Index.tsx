@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Facebook, Instagram, Youtube, Radio, Video, Pause, Play } from "lucide-react";
-import Autoplay from "embla-carousel-autoplay";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { Facebook, Instagram, Youtube, Radio, Video } from "lucide-react";
 import { Link } from "react-router-dom";
 import TikTokIcon from "@/components/icons/TikTokIcon";
 import LocutorCard from "@/components/LocutorCard";
@@ -166,10 +164,6 @@ const Index = () => {
   // const [programas, setProgramas] = useState<ProgramaCard[]>([]);
   const [heroApi, setHeroApi] = useState<CarouselApi>();
   const [heroIndex, setHeroIndex] = useState(0);
-  const [rotationPaused, setRotationPaused] = useState(false);
-  const reducedMotion = usePrefersReducedMotion();
-  const autoplay = useMemo(() => Autoplay({ delay: 4000, playOnInit: false, stopOnInteraction: false, stopOnMouseEnter: false, stopOnFocusIn: true }), []);
-  const heroPlugins = useMemo(() => [autoplay], [autoplay]);
   const [failedBannerImages, setFailedBannerImages] = useState<Set<string>>(() => new Set());
   const { requestOpen: requestListenerRegistrationOpen } =
     useListenerRegistration();
@@ -193,16 +187,10 @@ const Index = () => {
   useEffect(() => {
     if (!heroApi) return;
     const select = () => setHeroIndex(heroApi.selectedScrollSnap());
-    const syncPlayback = () => {
-      if (heroSlides.length > 1 && !rotationPaused && !reducedMotion) autoplay.play();
-      else autoplay.stop();
-    };
     select();
     heroApi.on("select", select);
-    heroApi.on("reInit", syncPlayback);
-    syncPlayback();
-    return () => { heroApi.off("select", select); heroApi.off("reInit", syncPlayback); autoplay.stop(); };
-  }, [heroApi, heroSlides.length, autoplay, rotationPaused, reducedMotion]);
+    return () => { heroApi.off("select", select); };
+  }, [heroApi]);
 
   useEffect(() => {
     heroApi?.scrollTo(0, true);
@@ -396,7 +384,6 @@ const Index = () => {
                 watchDrag: true,
               }}
               setApi={setHeroApi}
-              plugins={heroPlugins}
               data-hero-index={heroIndex}
               className={heroSlides.length === 1 && heroSlides[0].type === "banner"
                 ? "mx-auto w-[92%] sm:w-[88%] lg:w-[76%] xl:w-[72%] 2xl:w-[68%]"
@@ -435,13 +422,12 @@ const Index = () => {
                     className="static h-10 w-10 translate-y-0 border border-border bg-white text-radio-dark shadow-sm transition-colors hover:border-radio-blue hover:bg-radio-blue hover:text-white"
                     aria-label="Mostrar próximo banner"
                   />
-                  {!reducedMotion && <button type="button" onClick={() => setRotationPaused((value) => !value)} aria-label={rotationPaused ? "Retomar rotação dos banners" : "Pausar rotação dos banners"} aria-pressed={rotationPaused} className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-radio-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-radio-blue">{rotationPaused ? <Play size={16} /> : <Pause size={16} />}</button>}
                 </div>
               )}
             </Carousel>}
 
             {/* Ajustes manuais:
-                - Navegacao: setas, arraste e autoplay de 4s, com pausa explicita/acessivel.
+                - Navegacao: setas e arraste de mouse/toque, sem autoplay.
                 - Transicao: HERO_TRANSITION_SECONDS.
                 - Largura do current/previews: basis-* em CarouselItem.
                 - Espacamento entre slides: -ml-* em CarouselContent e pl-* em CarouselItem.

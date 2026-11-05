@@ -20,12 +20,12 @@ const LocutorCard = ({ image, name, program, compact = false }: LocutorCardProps
           tabIndex={0}
           aria-label={`${name} - ${program}`}
           whileHover={{
-            scale: reducedMotion ? 1 : compact ? 1.08 : 1.4,
-            y: reducedMotion ? 0 : compact ? -4 : -40,
+            scale: reducedMotion ? 1 : 1.4,
+            y: reducedMotion ? 0 : -40,
             zIndex: 4,
           }}
           whileFocus={{
-            scale: reducedMotion ? 1 : 1.08,
+            scale: reducedMotion ? 1 : 1.18,
             y: reducedMotion ? 0 : -4,
             zIndex: 4,
           }}
