@@ -30,6 +30,9 @@ export default function FeedPostPage() {
   const position = ordered.findIndex((item) => item.slug === slug);
   const previous = position > 0 ? ordered[position - 1] : undefined;
   const next = position >= 0 ? ordered[position + 1] : undefined;
+  const promoCtaUrl = post.promoCtaUrl || "/anuncie";
+  const promoCtaText = post.promoCtaText || "Anuncie sua marca na Rádio 88 FM";
+  const promoCtaClassName = "mt-4 flex min-h-14 items-center justify-center rounded-lg bg-radio-blue px-5 py-4 text-center font-display text-base font-bold leading-snug text-white transition-colors hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-radio-blue";
 
   const share = async () => {
     if (navigator.share) {
@@ -72,7 +75,7 @@ export default function FeedPostPage() {
         {next ? <Link to={`/feed/${next.slug}`} rel="next" className="min-w-0 rounded-md p-3 text-right hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-radio-blue"><span className="flex min-h-11 items-center justify-end gap-2 text-sm font-bold">Próximo Post<ArrowRight size={18} /></span><span className="block truncate text-sm text-neutral-500">{next.title}</span></Link> : <button type="button" disabled className="flex min-h-11 items-center justify-end gap-2 p-3 text-right text-sm font-bold text-neutral-400">Próximo Post<ArrowRight size={18} /></button>}
       </nav>
       <div className="mt-8"><Link to="/feed" className="inline-flex min-h-11 items-center gap-2 rounded bg-neutral-950 px-5 text-sm font-bold text-white hover:bg-neutral-800"><ArrowLeft size={16} />Todas as publicações</Link></div>
-      </div><RecentFeedPosts posts={recent} /></div>
+      </div><div className="min-w-0 self-start lg:sticky lg:top-24"><RecentFeedPosts posts={recent} />{promoCtaUrl.startsWith("/") ? <Link to={promoCtaUrl} className={promoCtaClassName}>{promoCtaText}</Link> : <a href={promoCtaUrl} className={promoCtaClassName}>{promoCtaText}</a>}</div></div>
     </article>
   );
 }

@@ -18,7 +18,6 @@ const navItems: NavItem[] = [
   { label: "FEED", path: "/feed" },
   { label: "NOSSA RÁDIO", path: "/nossa-radio" },
   { label: "EQUIPE", path: "/equipe" },
-  { label: "ANUNCIE", path: "/anuncie" },
 
 /*   { label: "PROGRAMAÇÃO", path: "/programacao" },
  */  
@@ -139,6 +138,7 @@ const Header = () => {
         </nav>
 
         <div className="hidden items-center justify-end gap-4 justify-self-end lg:flex">
+          <Link to="/anuncie" onClick={(event) => handleInternalNavigation(event, "/anuncie", "Anuncie")} className="rounded-md bg-radio-blue px-4 py-2 font-display text-sm font-bold text-white transition-colors hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-radio-blue">ANUNCIE</Link>
           <Link
             to="/ouvir"
             onClick={(event) => handleInternalNavigation(event, "/ouvir", "Ouvir Ao Vivo")}
@@ -200,6 +200,7 @@ const Header = () => {
               )
             )}
             <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <Link to="/anuncie" className="flex w-full items-center justify-center rounded-md bg-radio-blue px-3 py-2 font-display text-xs font-bold text-white" onClick={(event) => handleInternalNavigation(event, "/anuncie", "Anuncie", true)}>ANUNCIE</Link>
               <Link
                 to="/ouvir"
                 className="flex w-full items-center justify-center rounded-md bg-radio-red px-3 py-2 font-display text-xs font-bold text-white"

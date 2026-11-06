@@ -135,7 +135,18 @@ describe("Feed editorial estático", () => {
     render(<HelmetProvider><MemoryRouter initialEntries={["/feed/bastidores-88"]}><FeedProvider initialIndex={recentIndex} initialPosts={{ "bastidores-88": postDocument }}><Routes><Route path="/feed/:slug" element={<FeedPostPage />} /></Routes></FeedProvider></MemoryRouter></HelmetProvider>);
     const aside = screen.getByRole("complementary");
     expect(within(aside).getAllByRole("link").map((link) => link.getAttribute("href"))).toEqual(["/feed/festa-2026", "/feed/festa-2025", "/feed/festa-2024"]);
+    expect(screen.getByRole("link", { name: "Anuncie sua marca na Rádio 88 FM" })).toHaveAttribute("href", "/anuncie");
+    expect(screen.getByRole("link", { name: "Anuncie sua marca na Rádio 88 FM" }).parentElement).toHaveClass("lg:sticky");
     expect(screen.getByText("Conteúdo renderizado sem consulta à API.").compareDocumentPosition(aside) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it("renders the per-post commercial CTA text and destination from the static release", () => {
+    const customized: FeedPostDocument = {
+      ...postDocument,
+      post: { ...postDocument.post, promoCtaText: "Fale com nosso comercial", promoCtaUrl: "https://example.com/comercial" },
+    };
+    render(<HelmetProvider><MemoryRouter initialEntries={["/feed/bastidores-88"]}><FeedProvider initialIndex={index} initialPosts={{ "bastidores-88": customized }}><Routes><Route path="/feed/:slug" element={<FeedPostPage />} /></Routes></FeedProvider></MemoryRouter></HelmetProvider>);
+    expect(screen.getByRole("link", { name: "Fale com nosso comercial" })).toHaveAttribute("href", "https://example.com/comercial");
   });
 
   it("renders the server-provided article without a public API request", async () => {

@@ -47,6 +47,8 @@ export interface FeedPost {
   seoDescription: string;
   eventDate?: string | null;
   publicCredits?: string;
+  promoCtaText?: string;
+  promoCtaUrl?: string;
   publishedAt: string;
   updatedAt?: string;
 }

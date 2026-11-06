@@ -51,14 +51,16 @@ describe("Header", () => {
     );
 
     expect(screen.getByRole("link", { name: "FEED" })).toHaveAttribute("href", "/feed");
-    expect(within(screen.getByRole("navigation")).getAllByRole("link").map((link) => link.textContent)).toEqual(["INÍCIO", "FEED", "NOSSA RÁDIO", "EQUIPE", "ANUNCIE"]);
+    expect(within(screen.getByRole("navigation")).getAllByRole("link").map((link) => link.textContent)).toEqual(["INÍCIO", "FEED", "NOSSA RÁDIO", "EQUIPE"]);
+    expect(screen.getByRole("link", { name: "ANUNCIE" })).toHaveAttribute("href", "/anuncie");
     const watch = screen.getByRole("link", { name: "ASSISTIR" });
     expect(watch.querySelector("svg.lucide-video")).not.toBeNull();
     expect(watch).not.toHaveTextContent("🎥");
 
     fireEvent.click(screen.getByRole("button", { name: "Abrir menu" }));
     const mobile = screen.getAllByRole("navigation")[1];
-    expect(within(mobile).getAllByRole("link").slice(0, 5).map((link) => link.textContent)).toEqual(["INÍCIO", "FEED", "NOSSA RÁDIO", "EQUIPE", "ANUNCIE"]);
+    expect(within(mobile).getAllByRole("link").slice(0, 4).map((link) => link.textContent)).toEqual(["INÍCIO", "FEED", "NOSSA RÁDIO", "EQUIPE"]);
+    expect(within(mobile).getByRole("link", { name: "ANUNCIE" })).toHaveAttribute("href", "/anuncie");
     expect(within(mobile).getByRole("link", { name: "Assistir" }).querySelector("svg.lucide-video")).not.toBeNull();
   });
 });

@@ -4,7 +4,7 @@ import FeedCover from "./FeedCover";
 
 export default function RecentFeedPosts({ posts }: { posts: FeedIndexPost[] }) {
   if (!posts.length) return null;
-  return <aside aria-labelledby="recent-feed-title" className="feed-recent min-w-0 self-start rounded-xl border border-neutral-200 bg-white p-4 sm:p-5">
+  return <aside aria-labelledby="recent-feed-title" className="feed-recent min-w-0 rounded-xl border border-neutral-200 bg-white p-4 sm:p-5">
     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-radio-blue">Continue por aqui</p>
     <h2 id="recent-feed-title" className="mt-2 font-display text-lg font-bold leading-tight">Mais acontecimentos da 88</h2>
     <div className="mt-5 grid gap-5 sm:grid-cols-3 lg:grid-cols-1">
