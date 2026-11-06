@@ -92,7 +92,7 @@ export default function ListenerRegistrationModal() {
     useListenerRegistration();
   const [submitted, setSubmitted] = useState(false);
 
-  const form = useForm<ListenerRegistrationFormValues>({
+  const form = useForm<z.input<typeof listenerRegistrationSchema>, unknown, ListenerRegistrationFormValues>({
     resolver: zodResolver(listenerRegistrationSchema),
     defaultValues,
     mode: "onSubmit",
