@@ -200,3 +200,8 @@ Identidade do programa a esquerda; horario com icone e locutores a direita, sepa
 - Complemento hover validado no Docker: quatro servicos radio88-feed saudaveis; borda rgb(3,137,226), sombra suave e nenhum deslocamento/transicao com prefers-reduced-motion ativo. Testes finais 237/237, typecheck e build/prerender/SEO de Production aprovados. Controle de audio oficial reproduziu e pausou a mesma transmissao; titulo Protetor - Rebeca Carvalho mantido apos pausa.
 - Complemento 5f1820e confirmado Production READY no deploy CAUcQHYb4MZ43Xy7ZdcggaqqFSjw, associado a www.radio88fm.com. Pagina publica recebeu os seis program-card; conferencia em viewport de 440px sem overflow e sem vigencia, preservando o carrossel. Docker local tambem atualizado.
 - Pendencia independente identificada no deploy automatico de Preview: FEED_NAMESPACE nao corresponde a VERCEL_ENV=preview, e o guardrail correto bloqueou o build DujgXuGrd1UrgJ4aiT65PqiRmvnx. Production concluiu normalmente. Ajustar futuramente as variaveis exclusivas de Preview para preview/radio-88 e seu bucket, sem remover a validacao nem misturar dados de producao/homologacao. Configuracoes Preview nao foram alteradas neste complemento visual.
+
+### Card No Ar: alinhamento mobile
+
+- Horario (com icone) e nome dos locutores centralizados acima dos botoes em telas abaixo de 640px. Disposicao desktop em duas colunas, cores das capas, altura e espacamento dos botoes preservados.
+- Docker local reconstruido sem recriar API/painel/banco. BrowserOS conferiu em largura de 330px: text-align e justify-content center, informacoes acima dos botoes e sem overflow horizontal. 237 testes e typecheck aprovados; build/prerender/SEO no Docker aprovado. Nenhuma alteracao nas enquetes ou nos dados da grade.
