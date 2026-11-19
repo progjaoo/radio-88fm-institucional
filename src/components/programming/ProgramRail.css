@@ -9,9 +9,18 @@
 .program-rail-track:focus-visible { outline: 2px solid hsl(var(--radio-blue)); outline-offset: 3px; border-radius: .75rem; }
 .program-rail-item { min-width: 0; scroll-snap-align: start; }
 .program-rail-item > article { height: 100%; overflow-wrap: anywhere; }
+.program-card { transition: transform 180ms ease-out; }
+.program-card:focus-within { border-color: hsl(var(--radio-blue)); box-shadow: 0 6px 20px hsl(var(--radio-blue) / .12); }
+@media (hover: hover) and (pointer: fine) {
+  .program-card:hover { transform: translateY(-3px); border-color: hsl(var(--radio-blue)); box-shadow: 0 8px 24px hsl(var(--radio-blue) / .14); }
+}
 @media (min-width: 640px) {
   .program-rail-controls { display: none; }
   .program-rail-track { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; overflow: visible; scroll-snap-type: none; }
 }
 @media (min-width: 1024px) { .program-rail-track { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (prefers-reduced-motion: reduce) { .program-rail-track { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) {
+  .program-rail-track { scroll-behavior: auto; }
+  .program-card { transition: none; }
+  .program-card:hover { transform: none; }
+}

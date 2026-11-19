@@ -19,7 +19,7 @@ export default function Programacao() {
     if (!program) return [];
     return [{
       id: slot.id,
-      content: <article className="overflow-hidden rounded-xl border bg-white">
+      content: <article className="program-card overflow-hidden rounded-xl border bg-white">
         <img src={program.imageUrl ?? logo} alt={program.name} width={1920} height={1080}
           className="aspect-video w-full bg-neutral-50 object-contain" loading="lazy" />
         <div className="p-4 sm:p-5">

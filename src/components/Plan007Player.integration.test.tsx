@@ -94,7 +94,8 @@ it("filters the weekly schedule through accessible day tabs", async () => {
   expect(monday).toHaveAttribute("aria-selected", "true");
   fireEvent.mouseDown(thursday, { button: 0 });
   expect(thursday).toHaveAttribute("aria-selected", "true");
-  expect(await within(screen.getByRole("tabpanel", { name: "Quinta" })).findByRole("heading", { name: "Favorito" })).toBeInTheDocument();
+  const heading = await within(screen.getByRole("tabpanel", { name: "Quinta" })).findByRole("heading", { name: "Favorito" });
+  expect(heading.closest("article")).toHaveClass("program-card");
   expect(screen.queryByText(/Vigência:/)).not.toBeInTheDocument();
   expect(screen.queryByText(/America\/Sao_Paulo/)).not.toBeInTheDocument();
 });

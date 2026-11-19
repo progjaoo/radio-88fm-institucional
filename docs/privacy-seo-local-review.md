@@ -89,3 +89,9 @@ O unico noindex do relatorio e /privacidade (corrigido localmente); os tres desc
 ### Fechamento da conferencia da grade
 
 Apos login do titular, grade local publicada pela interface na revisao 53 (namespace preview/radio-88). Snapshot publico HTTP 200 com 11 programas/37 horarios e cores publicadas. Na home Docker, Temperatura Gospel apresentou #FFB900 na borda e fundo suave derivado, imagem carregada e altura 370px; logo da radio preservada na barra. Bom Dia 88 publicado com #E73C24. Sem enquete ativa retornada pelos endpoints desses dois programas, sem CTA de participacao. Nao houve criacao de respostas nem alteracao de enquetes/Production. Pendencia anterior da publicacao local resolvida.
+
+### Publicacao autorizada em 19/11/2026
+
+O titular aprovou explicitamente todo o conjunto. Institucional a0b5d67 publicado no deploy CNNCDKsiJY17sNQVGcaj696X6W8c, com status success. /privacidade publica e indexavel, canonical correto e presente no sitemap; /index.php retornou HTTP 410 no BrowserOS. Programacao oficial sem datas de vigencia/texto tecnico, mantendo horarios dos programas. Grade de Production publicada na revisao 10 com seis cores reais, apos backup Neon e migracao 0030 da API. Nada foi escrito na agenda Google e nenhuma enquete foi reaberta.
+
+Gate automatizado final do conjunto: 237 testes frontend, 29 servidor, typecheck/build/SEO aprovados; lint 0 erros e 16 avisos legados. A verificacao fisica da logo/controles na tela bloqueada do Safari/iPhone permanece externa a este ambiente. Search Console ainda pode mostrar estados historicos e pedidos PHP em processamento; nao houve promessa de indexacao ou ranking.
