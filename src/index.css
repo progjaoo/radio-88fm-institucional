@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --header-height: 64px;
+    --header-height: calc(64px + env(safe-area-inset-top, 0px));
     --player-height: 120px;
     --player-space: calc(var(--player-height) + env(safe-area-inset-bottom, 0px));
     --background: 0 0% 100%;
@@ -100,10 +100,9 @@
     @apply bg-background text-foreground font-body;
   }
 
-  html,
-  body,
-  #root {
-    overflow-x: clip;
+  html:has(.radio-shell[data-browser-chrome-theme="broadcast"]),
+  body:has(.radio-shell[data-browser-chrome-theme="broadcast"]) {
+    background-color: var(--radio-brand-blue);
   }
 
   html {
@@ -119,7 +118,9 @@
   ::-webkit-scrollbar-thumb:hover,
   ::-webkit-scrollbar-thumb:active { background: hsl(var(--radio-blue-dark)); }
 
-  .radio-shell { padding-bottom: var(--player-space); }
+  .radio-shell { min-height: 100vh; min-height: 100svh; padding-bottom: var(--player-space); }
+  .site-header { top: env(safe-area-inset-top, 0px); }
+  .safari-chrome-edge { display: none; }
   .radio-player { padding-bottom: env(safe-area-inset-bottom, 0px); }
   .radio-player-controls { height: calc(var(--player-height) - 1px); }
 
@@ -193,6 +194,28 @@
   }
   @media (min-width: 1280px) {
     .mini-player-download-intro, .mini-player-volume-range { display: block; }
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    :root { --header-height: calc(64px + max(12px, env(safe-area-inset-top, 0px))); }
+    .site-header { top: max(12px, env(safe-area-inset-top, 0px)); }
+    .radio-shell[data-browser-chrome-theme="broadcast"] .safari-chrome-edge {
+      position: fixed;
+      z-index: 60;
+      right: 0;
+      left: 0;
+      display: block;
+      background-color: var(--radio-brand-blue);
+      pointer-events: none;
+    }
+    .radio-shell[data-browser-chrome-theme="broadcast"] .safari-chrome-edge-top {
+      top: 0;
+      height: max(12px, env(safe-area-inset-top, 0px));
+    }
+    .radio-shell[data-browser-chrome-theme="broadcast"] .safari-chrome-edge-bottom {
+      bottom: 0;
+      height: max(12px, env(safe-area-inset-bottom, 0px));
+    }
   }
 
   @media (min-width: 1024px) {

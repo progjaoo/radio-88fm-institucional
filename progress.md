@@ -2,6 +2,35 @@
 
 Registro contínuo solicitado pelo usuário. Atualizar a cada etapa, separando planejamento, implementação, validação e publicação. Não registrar segredos nem declarar integração/deploy sem evidência.
 
+## 19/11/2026 - Mini player no azul da tela Ouvir ao Vivo
+
+- O fundo do mini player foi alterado do gradiente azul-escuro para o azul sólido institucional `#1360E8`, igual ao fundo das páginas `/ouvir` e `/assistir`. Controles, layout, safe area e conteúdo permanecem inalterados.
+- Docker: somente o serviço Institucional foi reconstruído e recriado; `radio88-feed-institutional-1` está `Healthy`, e API, painel, Postgres e volumes foram preservados. Imagem anterior preservada em `radio88-feed-institutional:before-mini-player-live-blue`.
+- BrowserOS em `http://127.0.0.1:8086/ouvir` confirmou por estilo computado que a tela e o mini player renderizam ambos `rgb(19, 96, 232)`; a captura visual também mostra o mesmo azul contínuo.
+- Suíte completa: 238 testes/52 arquivos passaram; `npx tsc --noEmit` e `git diff --check` passaram. Build completo do container, SSR, prerender e validação SEO aprovados, com avisos preexistentes de Browserslist, PostCSS e tamanho de chunks.
+- Nenhuma publicação em produção.
+
+## 19/11/2026 - Safari iPhone: cor das safe areas (local)
+
+- Diagnóstico: o fundo azul no shell, `body` azul e `viewport-fit=cover` não bastaram no iOS 26.1; a primeira captura continuou com as barras brancas.
+- Implementação final local: documento azul apenas em `/ouvir` e `/assistir`, `theme-color` sincronizado com a rota, cabeçalho abaixo da safe area e faixas fixas opacas nas bordas para o Safari iOS amostrar a cor. Mini player mantém o preenchimento inferior seguro.
+- Validação visual: captura do iPhone 17 Pro Max Simulator com Safari iOS 26.1 após recarregar `/ouvir` mostra status bar sobre fundo azul e barra inferior Safari azulada, não branca. A barra inferior fica em tom mais claro pelo efeito do próprio Safari. Captura da sessão em `/tmp/radio88-safari-safe-area-v2.png`.
+- BrowserOS `8086`: `/` permaneceu branco; `/ouvir` reportou `rgb(19, 96, 232)`, meta azul e tema `broadcast`. As faixas ficam ocultas no Chromium.
+- Docker: build completo, prerender e SEO aprovados; somente `institutional` recriado e `Healthy`. API, painel, Postgres e volumes preservados. Imagem anterior guardada em `radio88-feed-institutional:before-ios-edge-strips`.
+- Validação de código: 238 testes/52 arquivos, `npx tsc --noEmit`, build Docker e `git diff --check` passaram. Permanecem avisos existentes de Browserslist, PostCSS, chunks e dependências.
+- Limites: nenhuma publicação de produção. O logo no Now Playing continua sem validação positiva no Simulator; é independente da cor das barras e precisa de conferência em iPhone físico. WebKit registra caso de artwork ausente no Simulator apesar de funcionar em aparelho real ([bug 247043](https://bugs.webkit.org/show_bug.cgi?id=247043)). A regressão atual de viewport do Safari 26 consta no [bug 301108](https://bugs.webkit.org/show_bug.cgi?id=301108). Não foi possível automatizar gesto de rolagem porque o CUA falha ao iniciar (`failed to write kernel assets`).
+
+## 19/11/2026 - Safari iPhone: arte Now Playing e rolagem (local)
+
+- Titular testou no iOS Simulator e informou que o nome da musica apareceu no Now Playing, mas a logo da Radio 88 nao. O arquivo de arte e PNG colorido valido (512x512); o BrowserOS verificou resposta 200 e decodificacao tanto local quanto na URL HTTPS oficial.
+- Media Session atualizada para publicar a logo colorida em uma unica URL HTTPS versionada e para definir `playing` sincronicamente no gesto do play, antes de iniciar a instancia existente de audio. Reaplicacao cobre play/playing, dados carregados, pause, retorno de aba e pageshow; sem segundo player ou autoplay.
+- Rolagem: removido `overflow-x: clip` global de `html`, `body` e `#root`; recorte horizontal agora fica no conteudo principal. O shell usa altura minima do small viewport (`100svh`) com fallback, sem `height` fixa nem `overflow-y` global.
+- Testes dirigidos do player 12/12 e suite completa 238/238 (52 arquivos), `tsc --noEmit` e builds cliente/SSR/prerender/SEO aprovados. Alertas legados de Browserslist/PostCSS/chunks permanecem.
+- Docker atualizado apenas no servico `institutional`, com imagem anterior preservada em `radio88-feed-institutional:before-ios-safari-fix`; container reportou `Healthy`. API, painel, banco e volumes nao foram reiniciados.
+- BrowserOS em `8086/ouvir`: Media Session mostra a musica atual, estado `playing` e a URL PNG HTTPS unica; documento tem 405 px de faixa vertical, e `html`, `body` e `#root` permanecem com overflow visivel. A imagem remota oficial decodifica em 512x512.
+- `simctl` abriu a pagina local no Safari do iPhone 17 Pro Max e capturou a tela mobile com o titulo da musica e os controles. O CUA falhou ao inicializar (`failed to write kernel assets`); portanto nao foi possivel enviar toque no Play, ir ao background/Ilha Dinamica ou executar gesto de scroll via automacao. Arte no controle nativo e scroll no Safari Simulator continuam pendentes de confirmacao manual. Nenhuma publicacao em producao.
+- Nova tentativa: o runtime CUA foi reiniciado, mas manteve a mesma falha. Safari foi reaberto em `/ouvir`; captura mostra a barra de rolagem vertical e o player pausado. Isso confirma que a pagina esta acessivel e com conteudo que ultrapassa o viewport, mas nao substitui o gesto de scroll nem valida a arte no Now Playing. Aguardando toque manual em Play/background para o aceite final.
+
 ## 18/11/2026 - Capas dos programas e card No Ar
 
 - Ajuste de alinhamento: o card usa as mesmas margens e largura dos blocos adjacentes na Home. A arte ocupa 52% no desktop, define a altura pela proporção 16:9 e encosta na base sem recorte.
