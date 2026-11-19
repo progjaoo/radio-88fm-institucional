@@ -30,6 +30,10 @@ function notifyConsentChanged() {
 
 export function setAnalyticsConsent(value: Exclude<AnalyticsConsentState, "unknown">) {
   if (hasStorage()) window.localStorage.setItem(STORAGE_KEY, value);
+  const id = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim();
+  if (typeof window !== "undefined" && id) {
+    (window as unknown as Record<string, unknown>)[`ga-disable-${id}`] = value === "denied";
+  }
   notifyConsentChanged();
 }
 

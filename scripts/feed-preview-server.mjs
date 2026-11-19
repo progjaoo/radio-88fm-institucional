@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
 import { artworkHandler } from "./server/music-artwork.mjs";
+import { isRetiredPhpPage, legacyGoneHandler, legacyPageRedirect } from "./server/legacy-pages.mjs";
 import { debatesHandler, videoContentsHandler, youtubeContentHandler } from "./server/youtube.mjs";
 
 const port = Number(process.env.PORT || 8080);
@@ -144,6 +145,16 @@ const server = http.createServer((request, response) => {
   response.setHeader("X-Content-Type-Options", "nosniff");
   response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   response.setHeader("X-Frame-Options", "DENY");
+  const legacyDestination = legacyPageRedirect(pathname);
+  if ((request.method === "GET" || request.method === "HEAD") && legacyDestination) {
+    response.writeHead(308, { Location: legacyDestination });
+    response.end();
+    return;
+  }
+  if ((request.method === "GET" || request.method === "HEAD") && isRetiredPhpPage(pathname)) {
+    legacyGoneHandler(request, response);
+    return;
+  }
   if (pathname === "/api/music/artwork") {
     void artworkHandler(request, response);
     return;

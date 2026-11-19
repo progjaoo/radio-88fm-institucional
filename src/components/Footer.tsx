@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import TikTokIcon from "@/components/icons/TikTokIcon";
 import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
 import logoHeaderwhite from "@/assets/logoheadsvg.svg";
@@ -106,6 +107,7 @@ const Footer = () => {
       </div>
       <div className="border-t border-muted/20 py-4 text-center text-xs text-muted-foreground">
         © {new Date().getFullYear()} Rádio 88 FM - Todos os direitos reservados.
+        <Link to="/privacidade" className="mx-auto mt-1 flex min-h-11 w-fit items-center px-3 text-xs text-white/75 underline underline-offset-4 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-radio-blue">Política de Privacidade</Link>
       </div>
     </footer>
   );

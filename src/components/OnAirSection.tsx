@@ -6,6 +6,7 @@ import {useProgramming} from '@/services/programming/ProgrammingProvider';
 import logo from '@/assets/logoheadsvgcolor.svg';
 import './OnAirSection.css';
 
+// Compatibility for snapshots published before imageEdgeColor was available.
 const existingArtworkColors: Record<string, string> = {
  '35ef3fa5-ffef-47f7-b12a-28e514ee34f3.webp': '#D26F01',
  '4a66e70a-a51b-435e-9616-6b9639daf8e8.webp': '#FFB904',

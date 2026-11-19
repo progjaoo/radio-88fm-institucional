@@ -22,6 +22,7 @@ import AnalyticsRouteTracker from "./services/analytics/AnalyticsRouteTracker";
 import AnalyticsErrorTracker from "./services/analytics/AnalyticsErrorTracker";
 import ScrollToTop from "./components/ScrollToTop";
 import { Analytics } from "@vercel/analytics/react";
+import { filterVercelAnalytics } from "./services/analytics/vercel-consent";
 import Feed from "./pages/Feed";
 import PollParticipation from "./pages/PollParticipation";
 import FeedPostPage, { type FeedPostDocument } from "./pages/FeedPost";
@@ -69,7 +70,7 @@ export const AppContent = ({ helmetContext, initialFeedPosts }: AppContentProps)
               </Route>
             </Routes>
             </FeedProvider>
-            <Analytics />
+            <Analytics beforeSend={filterVercelAnalytics} />
             <FloatingWhatsAppButton />
           </ProgrammingProvider>
           </AudioPlayerProvider>

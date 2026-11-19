@@ -34,3 +34,9 @@ docker compose --env-file "$GESTAO_PREVIEW_COMPOSE_ENV" -f compose.institutional
 2. Use a definição Compose do Institucional acima, com os mesmos valores de Preview e sem versionar segredos. Antes de substituir a imagem em execução, identifique a versão anterior para retorno e valide o release candidato do Feed.
 3. Para mudanças só no Institucional, atualize apenas esse serviço e preserve o painel, a API local e os volumes. Não use `docker compose down -v`. Na sequência, confira saúde e navegação em `8086`; valide também as integrações atingidas pela mudança, como feed, No Ar, enquetes ou player.
 4. Trate a publicação como etapa separada: somente após aprovação no ambiente local, revisão das variáveis de produção e validação com os dados e serviços corretos. Não promova o container de homologação nem seus dados de teste.
+
+## Homologacao de privacidade e mobile em 19/11/2026
+
+Branch local codex/programacao-mobile-privacidade-local. Imagem institucional reproduzivel radio88-feed-institutional:privacy-mobile, tambem :local, com API local 3012 no build. Atualizacao apenas do servico institutional, preservando volume/rede/ambiente; sem publicar na Vercel. Politica em /privacidade e carrossel de programas para telas abaixo de 640px. Processo e limites em [revisao de privacidade/SEO](privacy-seo-local-review.md).
+
+A API local recebeu a migracao 0030 e o calculo de cores de capas (branch separada do Gestao); sete assets preenchidos de forma idempotente. Publicar a grade pelo painel autorizado para expor a nova revisao. Nao copiar esses dados/IDs para Production.

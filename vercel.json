@@ -5,6 +5,11 @@
     { "source": "/feed/release.json", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
   ],
   "redirects": [
+    {"source":"/politica-de-privacidade.html","destination":"/privacidade","permanent":true},
+    {"source":"/site/pages/player-audio","destination":"/ouvir","permanent":true},
+    {"source":"/site/pages/player-audio/","destination":"/ouvir","permanent":true},
+    {"source":"/site/pages/player-video","destination":"/assistir","permanent":true},
+    {"source":"/site/pages/player-video/","destination":"/assistir","permanent":true},
     {
       "source": "/debates",
       "destination": "/conteudos?categoria=debate-88",
@@ -27,6 +32,7 @@
     }
   ],
   "rewrites": [
+    {"source":"/:legacy(.*\\.php)","destination":"/api/legacy-gone"},
     { "source": "/enquetes/:slug", "destination": "/index.html" },
     { "source": "/conteudos", "destination": "/conteudos/index.html" },
     { "source": "/nossa-radio", "destination": "/nossa-radio/index.html" },

@@ -95,4 +95,6 @@ it("filters the weekly schedule through accessible day tabs", async () => {
   fireEvent.mouseDown(thursday, { button: 0 });
   expect(thursday).toHaveAttribute("aria-selected", "true");
   expect(await within(screen.getByRole("tabpanel", { name: "Quinta" })).findByRole("heading", { name: "Favorito" })).toBeInTheDocument();
+  expect(screen.queryByText(/Vigência:/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/America\/Sao_Paulo/)).not.toBeInTheDocument();
 });

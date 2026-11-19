@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import type { StreamData } from "@/types/stream";
 import { Analytics } from "@/services/analytics/analytics";
-import logoHeaderColor from "@/assets/logoheadsvgcolor.svg";
+import { getMediaTitle, STATION_NAME, STATION_MEDIA_TITLE } from "@/lib/streamUtils";
 import { RADIO_PLAY_REQUEST } from "@/lib/mediaPlayback";
 
 const STREAM_URL = "https://stm39.srvstm.com:9776/stream";
@@ -130,18 +130,36 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (!("mediaSession" in navigator) || typeof MediaMetadata === "undefined") return;
-    const pageTitle = "Rádio 88 FM | O Som do Céu";
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: streamData?.musica_atual?.trim() || pageTitle,
-      artist: "Rádio 88 FM",
-      album: pageTitle,
-      artwork: [
-        { src: logoHeaderColor, type: "image/svg+xml" },
-        { src: `${window.location.origin}/logo-88fm-color.png`, sizes: "512x512", type: "image/png" },
-      ],
-    });
-    navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
-  }, [streamData, isPlaying]);
+    const update = () => {
+      try {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: getMediaTitle(streamData?.musica_atual),
+          artist: STATION_NAME,
+          album: STATION_MEDIA_TITLE,
+          // Raster artwork with explicit dimensions is shared by Safari and Chrome.
+          artwork: [
+            { src: new URL("/logo-88fm-color.png", window.location.origin).href, sizes: "512x512", type: "image/png" },
+            { src: new URL("/radio88-192.png", window.location.origin).href, sizes: "192x192", type: "image/png" },
+            { src: new URL("/apple-touch-icon.png", window.location.origin).href, sizes: "180x180", type: "image/png" },
+          ],
+        });
+        navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
+      } catch { /* Optional OS controls must never interrupt streaming. */ }
+    };
+    const visible = () => { if (!document.hidden) update(); };
+    const audio = getAudio();
+    update();
+    audio.addEventListener("loadedmetadata", update);
+    audio.addEventListener("playing", update);
+    document.addEventListener("visibilitychange", visible);
+    window.addEventListener("pageshow", update);
+    return () => {
+      audio.removeEventListener("loadedmetadata", update);
+      audio.removeEventListener("playing", update);
+      document.removeEventListener("visibilitychange", visible);
+      window.removeEventListener("pageshow", update);
+    };
+  }, [streamData, isPlaying, getAudio]);
 
   const pause = useCallback(() => {
     attemptRef.current += 1;
@@ -150,8 +168,8 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(false);
   }, []);
 
-  const togglePlay = useCallback(() => {
-    if (isPlaying || isLoading) { pause(); return; }
+  const play = useCallback(() => {
+    if (playingRef.current) return;
     const audio = getAudio();
     const attempt = ++attemptRef.current;
     setPlaybackError(null);
@@ -164,7 +182,27 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
       setIsPlaying(false);
       setPlaybackError("Não foi possível reproduzir. Tente novamente.");
     });
-  }, [getAudio, isPlaying, isLoading, pause]);
+  }, [getAudio]);
+
+  const togglePlay = useCallback(() => {
+    if (isPlaying || isLoading) pause();
+    else play();
+  }, [isPlaying, isLoading, pause, play]);
+
+  useEffect(() => {
+    if (!("mediaSession" in navigator) || typeof navigator.mediaSession.setActionHandler !== "function") return;
+    const handlers = { play, pause, stop: pause };
+    for (const [action, handler] of Object.entries(handlers)) {
+      try { navigator.mediaSession.setActionHandler(action as MediaSessionAction, handler); }
+      catch { /* Supported actions vary across browsers. */ }
+    }
+    return () => {
+      for (const action of Object.keys(handlers)) {
+        try { navigator.mediaSession.setActionHandler(action as MediaSessionAction, null); }
+        catch { /* Unsupported actions need no cleanup. */ }
+      }
+    };
+  }, [play, pause]);
 
   const toggleMute = useCallback(() => {
     const audio = getAudio();

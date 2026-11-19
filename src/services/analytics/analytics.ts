@@ -39,8 +39,8 @@ function canCollect() {
 
 export const Analytics = {
   init() {
-    if (initialized) return true;
     if (!canCollect()) return false;
+    if (initialized) return true;
 
     const measurementId = getMeasurementId();
     if (!measurementId) {

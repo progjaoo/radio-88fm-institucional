@@ -124,3 +124,62 @@ describe("Audio lifecycle", () => {
     expect(Analytics.track).not.toHaveBeenCalled();
   });
 });
+
+describe("OS media controls", () => {
+  let originalSession: PropertyDescriptor | undefined;
+  let session: { metadata: MediaMetadata | null; playbackState: string; setActionHandler: ReturnType<typeof vi.fn> };
+  let actions: Map<string, (() => void) | null>;
+  beforeEach(() => {
+    MockAudio.instances = [];
+    vi.stubGlobal("Audio", MockAudio);
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({ musica_atual: "Radio Fm 88,7 - Volta Redonda" }) }));
+    vi.stubGlobal("MediaMetadata", class { constructor(value: MediaMetadataInit) { Object.assign(this, value); } });
+    actions = new Map();
+    session = { metadata: null, playbackState: "none", setActionHandler: vi.fn((name, handler) => actions.set(name, handler)) };
+    originalSession = Object.getOwnPropertyDescriptor(navigator, "mediaSession");
+    Object.defineProperty(navigator, "mediaSession", { configurable: true, value: session });
+  });
+  afterEach(() => {
+    if (originalSession) Object.defineProperty(navigator, "mediaSession", originalSession);
+    else Reflect.deleteProperty(navigator, "mediaSession");
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
+  it("provides raster station artwork and a clean title before the first play", async () => {
+    render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);
+    await act(async () => {});
+    expect(session.metadata?.title).toBe("Rádio 88 FM - O Som do Céu!");
+    expect(session.metadata?.artwork.map(image => image.type)).toEqual(["image/png", "image/png", "image/png"]);
+    expect(session.metadata?.artwork[0]).toMatchObject({ sizes: "512x512", src: `${window.location.origin}/logo-88fm-color.png` });
+    expect(session.playbackState).toBe("paused");
+    expect(MockAudio.instances[0].play).not.toHaveBeenCalled();
+  });
+  it("connects native play/pause to the existing player and refreshes metadata after loading", async () => {
+    const { unmount } = render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);
+    await act(async () => actions.get("play")?.());
+    expect(MockAudio.instances).toHaveLength(1);
+    expect(session.playbackState).toBe("playing");
+    session.metadata = null;
+    act(() => MockAudio.instances[0].dispatchEvent(new Event("loadedmetadata")));
+    expect(session.metadata?.title).toBe("Rádio 88 FM - O Som do Céu!");
+    act(() => actions.get("pause")?.());
+    expect(session.playbackState).toBe("paused");
+    unmount();
+    expect(actions.get("play")).toBeNull();
+    expect(actions.get("pause")).toBeNull();
+  });
+  it("keeps song metadata even when audio is paused", async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: true, json: async () => ({ musica_atual: "Videira - Fernanda Brum" }) } as Response);
+    render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);
+    await act(async () => {});
+    expect(session.metadata?.title).toBe("Videira - Fernanda Brum");
+    expect(session.playbackState).toBe("paused");
+  });
+  it("does not break playback when native metadata or an action is unsupported", async () => {
+    vi.stubGlobal("MediaMetadata", class { constructor() { throw new Error("unsupported"); } });
+    session.setActionHandler.mockImplementation(() => { throw new Error("unsupported action"); });
+    render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);
+    await act(async () => fireEvent.click(screen.getByText("Toggle")));
+    expect(screen.getByText("playing")).toBeInTheDocument();
+  });
+});

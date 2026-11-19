@@ -60,7 +60,7 @@ for (const attributeSet of [
   }
 }
 
-for (const noindexFile of ["dist/privacidade/index.html", "dist/404.html"]) {
+for (const noindexFile of ["dist/404.html"]) {
   const html = requireFile(noindexFile);
   if (!hasTagWithAttributes(html, "meta", ['name="robots"', 'noindex'])) {
     throw new Error(`Página que não deve ser indexada está sem noindex: ${noindexFile}`);

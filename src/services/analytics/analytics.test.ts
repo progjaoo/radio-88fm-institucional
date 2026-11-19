@@ -49,4 +49,15 @@ describe("Analytics", () => {
     expect(Analytics.init()).toBe(false);
     expect(reactGaMock.initialize).not.toHaveBeenCalled();
   });
+
+  it("blocks events after an initialized visitor refuses analytics", async () => {
+    const { setAnalyticsConsent } = await import("./consent");
+    setAnalyticsConsent("granted");
+    const { Analytics } = await import("./analytics");
+    expect(Analytics.init()).toBe(true);
+    setAnalyticsConsent("denied");
+    expect(Analytics.track("radio_play")).toBe(false);
+    expect(reactGaMock.event).not.toHaveBeenCalled();
+    expect((window as unknown as Record<string, unknown>)["ga-disable-G-TEST123"]).toBe(true);
+  });
 });

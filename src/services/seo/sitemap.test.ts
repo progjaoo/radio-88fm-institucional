@@ -8,7 +8,7 @@ describe("generateSitemap", () => {
 
     expect(xml).toContain("<loc>https://www.radio88fm.com/</loc>");
     expect(xml).toContain("<loc>https://www.radio88fm.com/nossa-radio</loc>");
-    expect(xml).not.toContain("/privacidade</loc>");
+    expect(xml).toContain("/privacidade</loc>");
     expect(xml).not.toContain("vercel.app");
     expect(xml).not.toContain("<lastmod>");
   });

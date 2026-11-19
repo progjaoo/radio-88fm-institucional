@@ -38,8 +38,8 @@ describe("route SEO configuration", () => {
     }
   });
 
-  it("excludes functional privacy content from the sitemap", () => {
-    expect(INDEXABLE_ROUTE_PATHS).not.toContain("/privacidade");
+  it("includes the public privacy policy in the sitemap", () => {
+    expect(INDEXABLE_ROUTE_PATHS).toContain("/privacidade");
     expect(INDEXABLE_ROUTE_PATHS).toContain("/nossa-radio");
     expect(INDEXABLE_ROUTE_PATHS.includes("/feed")).toBe(feedIndex.posts.length > 0);
     for (const post of feedIndex.posts) {

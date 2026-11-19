@@ -152,3 +152,39 @@ Identidade do programa a esquerda; horario com icone e locutores a direita, sepa
 - Merge fast-forward aprovado pelo titular e concluido: institucional main 861a999; Gestao main 91b439a. Branches de trabalho preservadas. Institucional main em Production READY: 91fydZumWk5uc44AMN6KPXxyPKMm; API main READY: 6D484gHiyFxis3cKBTTojDuUtDKc; painel main READY: 5hbzT8hmx7bA4As6kjdoSaYMw5nC. Hooks continuam acompanhando main com o codigo novo.
 - Logo colorida enviada tambem ao avatar do projeto Vercel. As capas musicais carregaram no ouvir oficial durante a conferencia; sem envio de votos/cadastros artificiais em Producao.
 - Segredos temporarios de banco/OAuth/sessao removidos de /tmp. Senha raiz alterada pelo titular via recuperacao, revogando a sessao temporaria conforme esperado. Nao houve alteracao das senhas dos usuarios legados.
+
+## 19/11/2026 - Privacidade e programacao mobile (somente local)
+
+- Branch codex/programacao-mobile-privacidade-local, sem publicacao: politica completa em /privacidade com CNPJ 31.232.747/0001-07 e comercial@grupogtf.com.br, confirmados pelo titular. Alexa descrita apenas como reproducao ao vivo. Publicidade limitada ao paragrafo solicitado. Revisao final pelo responsavel/juridico antes de producao.
+- Link discreto no footer, sumario, metadados, prerender e inclusao no sitemap. Mantidos noindex/exclusoes de URLs funcionais e privadas; sem prometer indexacao de todas as paginas ou ranking.
+- Correcao da recusa de metricas: persiste denied, bloqueia eventos posteriores do GA e do Vercel Analytics. Padrao legado de coleta sem escolha nao foi alterado silenciosamente.
+- Programacao usa carrossel nativo no mobile com gesto, setas, contador, teclado e movimento reduzido; grade desktop preservada, troca de dia reinicia a lista.
+- Auditoria somente leitura do Search Console: sitemap Success, 7 indexadas/25 nao indexadas, incluindo 6 exemplos 403 e 6 exemplos 404 a investigar; sete URLs mobile precisam melhorar CWV. Nenhum pedido de indexacao enviado antes da publicacao aprovada.
+- Detalhes, limites, fontes oficiais e checklist de publicacao: docs/privacy-seo-local-review.md.
+- Detalhamento dos 403 identificou somente URLs PHP legadas; redirects permanentes especificos preparados para index.php/principal.php (home) e fatopopular_principal.php (grade). Efeito no firewall/Google so podera ser confirmado depois de publicar; producao nao alterada.
+
+### Complemento solicitado: card No Ar e retirada de PHP
+
+- Causa das cores encontrada: mapa de nomes de arquivos do Preview sem cor publicada pela API. Gestao na branch codex/program-image-edge-color-local ganhou migracao 0030, extracao Sharp no upload e imageEdgeColor por asset/snapshot. Sete assets locais preenchidos, repeticao zero; 272 testes unitarios API aprovados. Nenhum deploy ou migracao em Production.
+- Compatibilidade dos snapshots antigos preservada. A cor publicada tem prioridade no Institucional; ausencia/erro mantem fallback, mini player continua com logo e a retirada de enquete continua respeitada.
+- Titular solicitou remover PHP: pedidos Search Console enviados para index.php, principal.php e fatopopular_principal.php (prefixos especificos com variantes HTTP/HTTPS/www). Estado observado Processing request. Nao existe exclusao instantanea do historico de Pages. Preparado 410 Gone/noindex no site, substituindo a proposta anterior de redirects PHP; publicacao depende da aprovacao local.
+- Enderecos antigos de privacidade e players receberam redirects especificos para as paginas equivalentes atuais. Nenhum bloqueio do dominio raiz.
+- QA: 217 testes frontend, 29 servidor, typecheck/build/SEO aprovados; 272 unitarios API. Layout em 390px sem overflow e com contador/setas/troca de dia. Lint 0 erros/16 avisos preexistentes. Novas telas permanecem locais.
+- Conferencia final HTTP no Docker: /privacidade e /programacao 200; PHP 410/noindex; aliases antigos de privacidade/audio/video 308 para equivalentes; rota inexistente segue 404. Quatro servicos saudaveis. Artefatos QA removidos e servidor temporario encerrado. Publicacao local das cores aguarda login do titular no painel; nova revisao 52 pendente, sem reabrir enquetes. Nao houve commit, push ou deploy desta entrega.
+
+### Conferencia apos login e publicacao da grade local
+
+- Login realizado pelo titular no BrowserOS; Publicar grade executado somente em http://127.0.0.1:5181/programas. Revisao 53 publicada no namespace preview/radio-88: 11 programas reais e 37 horarios, com imageEdgeColor nas seis capas de programas ativos. Programa de homologacao inativo ficou fora do snapshot publico.
+- BrowserOS conferiu a home Docker: Temperatura Gospel com imagem carregada, cor recebida #FFB900, borda rgb(255,185,0), fundo derivado suave e altura 370px. Mini player preserva Logo Radio 88 FM. Bom Dia 88 tambem consta no snapshot com #E73C24, sem depender do nome/UUID do arquivo.
+- GET local de enquete ativa para Bom Dia 88 e Temperatura Gospel retornou poll:null; CTA da home permanece OUVIR AO VIVO. Nenhuma enquete foi reaberta e nenhum voto/cadastro foi criado. Isto nao altera nem valida novamente o estado de uma enquete em Production.
+- Pendencia de login/publicacao local encerrada. Nenhum commit, push, deploy, migracao de producao ou alteracao no Google Agenda realizado nesta conferencia.
+
+## 19/11/2026 - Ajustes finais e publicacao autorizada
+
+- Titular autorizou publicar os ajustes apos conferencia local. Programacao passa a ocultar o texto tecnico de fuso/vigencia e as datas de vigencia dos cards; horarios reais e regras da grade permanecem no backend.
+- Media Session passa a oferecer somente PNGs da logo colorida (512/192/180), com URLs absolutas, reaplicacao no carregamento/reproducao/retorno da pagina e handlers de play/pause/stop no mesmo audio. Sem autoplay nem segunda instancia de streaming.
+- Identificadores VOX da emissora, incluindo Radio Fm 88,7 - Volta Redonda, viram Radio 88 FM - O Som do Ceu! nos controles do sistema. Musica/artista continuam visiveis mesmo com audio pausado; fallback curto do mini player preservado.
+- Testes novos de identificadores, metadata, PNGs, controles nativos e API indisponivel; conferencia fisica no Safari/iPhone segue necessaria, pois BrowserOS nao emula o painel de audio do iOS. Nao declarar compatibilidade fisica validada apenas por teste unitario.
+- Rollout coordenado: backup/migracao 0030 e API de cores antes de publicar grade Production; depois Institucional com privacidade, SEO/410 PHP, carrossel e Media Session. Manter main como fonte de producao, sem copiar dados de Preview.
+- Gate final: 237 testes frontend e 29 de servidor institucional aprovados; typecheck e build/prerender/SEO com Feed production/radio-88 aprovados, somente os dois artigos reais. Lint sem erros (16 avisos legados). API de cores commit 1b8c6d5 em Production READY (9559w9vQEaTTByFDsEo1wP1241zm); migracao/backfill Production concluidos com backup. Publicacao do snapshot oficial em conferencia.
+- Confirmacao explicita adicional do titular recebida: publicar em Production todo o conjunto (programacao/audio, privacidade, SEO/410 PHP, recusa de metricas e carrossel) e Publicar grade oficial, sem reabrir enquetes. Bloqueio de confirmacao anterior resolvido; retomar somente essas operacoes autorizadas.
