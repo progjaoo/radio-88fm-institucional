@@ -25,7 +25,7 @@ export function buildStructuredDataGraph(route: RouteSeoConfig, canonicalUrl: st
       url: SITE_ORIGIN,
       logo: {
         "@type": "ImageObject",
-        url: buildAbsoluteAssetUrl("/logo-88fm.png"),
+        url: buildAbsoluteAssetUrl("/logo-88fm-color.png"),
         width: 512,
         height: 512,
       },
