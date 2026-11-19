@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import radioLogoWhite from "@/assets/logoheadsvg.svg";
 import { AudioPlayerProvider } from "@/contexts/AudioPlayerContext";
 import Ouvir from "./Ouvir";
@@ -12,12 +12,13 @@ const renderOuvir = () =>
     </AudioPlayerProvider>
   );
 
-const mockStreamResponse = (data: Record<string, string>) => {
+const mockStreamResponse = (data: Record<string, string>, artworkResponse: object | null = null) => {
   vi.stubGlobal(
     "fetch",
-    vi.fn().mockResolvedValue({
-      json: vi.fn().mockResolvedValue(data),
-    })
+    vi.fn(async (url: string) => ({
+      ok: true,
+      json: async () => url === "/api/music/artwork" ? artworkResponse : data,
+    })),
   );
 };
 
@@ -38,16 +39,32 @@ describe("Ouvir", () => {
     vi.clearAllMocks();
   });
 
-  it("loads stream metadata and normalizes the station name", async () => {
+  it("normalizes the station name and ignores unverified VOX covers", async () => {
     renderOuvir();
-    fireEvent.click(screen.getByRole("button", { name: "Reproduzir" }));
-
-    await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledTimes(1);
-    });
 
     expect(await screen.findByRole("heading", { name: "Rádio 88 FM" })).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: /capa/i })).toHaveAttribute("src", "https://example.com/capa.jpg");
+    expect(screen.getByRole("img", { name: "Logo Rádio 88 FM" })).toHaveAttribute("src", radioLogoWhite);
+  });
+
+  it("shows the verified iTunes cover for Eu Cuido de Ti before playback", async () => {
+    const base = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/16/c7/63/16c7632d-e697-3b62-4ef8-c420bf51dae3/0.jpg";
+    mockStreamResponse({ musica_atual: "Eu Cuido De Ti - Cancao & Louvor" }, {
+      status: "matched",
+      trackKey: "eu cuido de ti cancao louvor",
+      artwork: {
+        source: "itunes",
+        imageUrl: `${base}/600x600bb.jpg`,
+        fallbackImageUrl: `${base}/100x100bb.jpg`,
+        trackName: "Eu Cuido de Ti",
+        artistName: "Canção e Louvor",
+        albumName: "Eu Cuido de Ti - EP",
+      },
+    });
+    renderOuvir();
+
+    expect(await screen.findByRole("img", { name: "Capa da música atual" })).toHaveAttribute("src", `${base}/600x600bb.jpg`);
+    expect(screen.getByRole("heading", { name: "Eu Cuido De Ti - Cancao & Louvor" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reproduzir" })).toBeInTheDocument();
   });
 
   it("shows the station logo when the API returns its generic cover during a track", async () => {

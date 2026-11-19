@@ -16,6 +16,7 @@ describe("route SEO configuration", () => {
       "/nossa-radio",
       "/equipe",
       "/programacao",
+      "/conteudos",
       "/anuncie",
       "/ouvir",
       "/assistir",
@@ -30,8 +31,11 @@ describe("route SEO configuration", () => {
     expect(new Set(descriptions).size).toBe(descriptions.length);
   });
 
-  it("uses the requested Radio 88 FM logo for every social preview", () => {
-    expect(routeSeoConfigs.every((route) => route.imagePath === "/logo-88fm.png")).toBe(true);
+  it("uses the station logo on institutional pages and the article cover on posts", () => {
+    const posts = new Map(feedIndex.posts.map(post => [`/feed/${post.slug}`, post.cover.url]));
+    for (const route of routeSeoConfigs) {
+      expect(route.imagePath).toBe(posts.get(route.path) ?? "/logo-88fm-color.png");
+    }
   });
 
   it("excludes functional privacy content from the sitemap", () => {

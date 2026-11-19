@@ -36,6 +36,7 @@ Em produção, configure `VITE_GESTAO_OUVINTES_API_URL=https://gestaoouvintes88f
 /
 /nossa-radio
 /programacao
+/conteudos
 /anuncie
 /ouvir
 /assistir
@@ -65,6 +66,8 @@ src/
 
 ## Documentação
 
+- [Base de homologação local no Docker](docs/local-docker-baseline.md)
+- [Catálogo de Conteúdos e YouTube](docs/integrations/conteudos-youtube.md)
 - [Documentação central](../docs/README.md)
 - [Guia específico do institucional](../docs/radio-88-fm-institucional.md)
 - [Deploy](../docs/deploy.md)

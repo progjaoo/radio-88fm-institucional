@@ -6,6 +6,11 @@
   ],
   "redirects": [
     {
+      "source": "/debates",
+      "destination": "/conteudos?categoria=debate-88",
+      "permanent": true
+    },
+    {
       "source": "/site/pages/home",
       "destination": "/",
       "permanent": true
@@ -22,6 +27,8 @@
     }
   ],
   "rewrites": [
+    { "source": "/enquetes/:slug", "destination": "/index.html" },
+    { "source": "/conteudos", "destination": "/conteudos/index.html" },
     { "source": "/nossa-radio", "destination": "/nossa-radio/index.html" },
     { "source": "/equipe", "destination": "/equipe/index.html" },
     { "source": "/programacao", "destination": "/programacao/index.html" },

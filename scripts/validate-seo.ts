@@ -41,7 +41,7 @@ function validateIndexableRoute(route: string) {
 const indexHtml = requireFile("dist/index.html");
 const sitemap = requireFile("dist/sitemap.xml");
 const robots = requireFile("dist/robots.txt");
-requireFile("dist/logo-88fm.png");
+requireFile("dist/logo-88fm-color.png");
 
 for (const route of INDEXABLE_ROUTE_PATHS) {
   validateIndexableRoute(route);
@@ -52,8 +52,8 @@ for (const route of INDEXABLE_ROUTE_PATHS) {
 }
 
 for (const attributeSet of [
-  ['property="og:image"', `content="${SITE_URL}/logo-88fm.png"`],
-  ['name="twitter:image"', `content="${SITE_URL}/logo-88fm.png"`],
+  ['property="og:image"', `content="${SITE_URL}/logo-88fm-color.png"`],
+  ['name="twitter:image"', `content="${SITE_URL}/logo-88fm-color.png"`],
 ]) {
   if (!hasTagWithAttributes(indexHtml, "meta", attributeSet)) {
     throw new Error(`Metadado social ausente: ${attributeSet.join(" + ")}`);

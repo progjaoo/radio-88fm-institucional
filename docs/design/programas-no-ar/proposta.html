@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capas dos programas · Rádio 88 FM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{font:16px Archivo,sans-serif;color:#16191e;background:#f4f6f8;--blue:#2883d8;--red:#e21e24;--display:Montserrat,sans-serif}
+    *{box-sizing:border-box}
+    body,p,h1,h2{margin:0}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,input:focus-visible{outline:3px solid #0058ae;outline-offset:3px}
+    .review{max-width:1200px;margin:auto;padding:34px 32px 30px}
+    .eyebrow,.on-air{font:800 .7rem var(--display);text-transform:uppercase;letter-spacing:.15em}
+    .eyebrow{color:#165b9b}
+    h1{font:800 clamp(1.8rem,4vw,2.85rem)/1.07 var(--display);letter-spacing:-.045em;margin:8px 0 10px}
+    .intro,.detail,.foot{color:#55606e;line-height:1.45}
+    .choices{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 16px}
+    .choices button{min-height:44px;border:1px solid #dae1e9;background:#fff;color:#263442;border-radius:8px;padding:7px 13px;font-size:.875rem;font-weight:700}
+    .choices [aria-pressed="true"]{background:#125eaa;border-color:#125eaa;color:#fff}
+    .viewport{border:1px solid #dbe2e9;border-radius:17px;background:#fff;overflow:hidden}
+    .stage{padding:42px 34px}
+    .card{--edge:#ffb900;--surface:#fff8e2;display:grid;grid-template-columns:minmax(0,44%) minmax(0,1fr);max-width:960px;margin-inline:auto;border:1px solid var(--edge);border-radius:15px;overflow:hidden;background:var(--surface)}
+    .media{margin:0;display:grid;align-content:center;background:var(--edge);min-width:0}
+    .art{display:block;width:100%;aspect-ratio:16/9;object-fit:contain}
+    .card[data-logo] .media{background:#fff;place-items:center;min-height:200px}
+    .card[data-logo] .art{width:96px;aspect-ratio:1}
+    .copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:20px 24px;min-width:0}
+    .on-air{color:#1b61a3}
+    h2{font:800 clamp(1.5rem,3vw,2.125rem)/1.12 var(--display);letter-spacing:-.04em;margin:6px 0 8px}
+    .time{font-weight:700}
+    .presenters{margin-top:5px;color:#4e5359;line-height:1.35}
+    .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;width:100%}
+    .cta{min-height:44px;border:0;border-radius:7px;padding:9px 12px;color:white;background:#176cb9;font:800 .76rem var(--display);display:inline-flex;align-items:center;justify-content:center;gap:7px}
+    .cta.live{background:#ce1b22}
+    .icon{width:17px;height:17px;flex:none;vertical-align:middle}
+    .player{color:#fff;background:linear-gradient(112deg,#2b83d9,#1e5488);display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:14px;padding:10px 17px}
+    .identity,.stores,.controls{display:flex;align-items:center;gap:11px;min-width:0}
+    .indicator{display:grid;justify-items:center;gap:4px;padding-right:10px;border-right:1px solid #ffffff42;flex:none;font:800 .55rem var(--display)}
+    .mic,.play{display:grid;place-items:center;background:#fff;border:0;border-radius:50%;color:#1d6cbc}
+    .mic{width:31px;height:31px;color:#dd1d2b}
+    .play,.volume{width:44px;height:44px;flex:none}
+    .volume{border:0;border-radius:50%;background:#ffffff19;color:#fff}
+    .player button:focus-visible,.player input:focus-visible{outline-color:#fff}
+    .brand{background:white;border-radius:9px;width:49px;height:49px;padding:5px;flex:none}
+    .program-name{font:800 .9rem var(--display);line-height:1.15}
+    .player-time{display:block;font-size:.7rem;margin-top:4px}
+    .store{background:#092238;border:1px solid #ffffff5c;border-radius:7px;padding:6px 10px;display:grid;gap:1px;min-width:96px}
+    .store small{font-size:.48rem;text-transform:uppercase}
+    .store strong{font-size:.8rem;font-weight:700}
+    .controls{justify-content:flex-end}
+    .station{font-size:.75rem;font-weight:700}
+    input{max-width:70px;accent-color:#fff}
+    .detail{margin:12px 2px 0;font-size:.85rem;display:flex;gap:8px;align-items:center}
+    .dot{display:inline-block;width:13px;height:13px;border-radius:50%;background:#ffb900;box-shadow:inset 0 0 0 1px #0002;flex:none}
+    .foot{font-size:.81rem;margin-top:14px}
+    @media(max-width:900px){.player{grid-template-columns:minmax(0,1fr) auto}.stores{grid-row:2;grid-column:1/-1;justify-content:center;padding-top:7px;border-top:1px solid #ffffff34}.station,input{display:none}}
+    @media(max-width:620px){
+      .review{padding:21px 12px}.stage{padding:12px}.card{grid-template-columns:minmax(0,1fr)}
+      .card[data-logo] .media{min-height:126px}.card[data-logo] .art{width:70px}
+      .copy{padding:15px 14px}.actions .cta{flex:1 1 auto}.player{gap:8px;padding:8px 9px}
+      .identity,.controls{gap:5px}.brand{width:34px;height:34px;padding:3px}.indicator{padding-right:5px}
+      .mic{width:24px;height:24px}.program-name{font-size:.72rem}.player-time{font-size:.64rem}
+    }
+  </style>
+</head>
+<body>
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <symbol id="play-icon" viewBox="0 0 24 24"><path fill="currentColor" d="m7 4 14 8-14 8z"/></symbol>
+    <symbol id="calendar-icon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18m-13 5h1m3 0h1m3 0h1"/></g></symbol>
+    <symbol id="mic-icon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></g></symbol>
+    <symbol id="volume-icon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4zM16 9a4 4 0 0 1 0 6m2-9a8 8 0 0 1 0 12"/></g></symbol>
+  </svg>
+  <main class="review">
+    <p class="eyebrow">Rádio 88 FM · Proposta visual</p>
+    <h1>No Ar com a identidade do programa</h1>
+    <p class="intro">A capa ocupa toda a área da imagem. O mini player mantém a marca da Rádio 88 FM.</p>
+    <div class="choices" role="group" aria-label="Escolher programa para a prévia">
+      <button aria-pressed="true" data-program="altar">Altar 88</button>
+      <button aria-pressed="false" data-program="temperatura">Temperatura Gospel</button>
+      <button aria-pressed="false" data-program="favorito">Favorito · sem capa</button>
+    </div>
+    <div class="viewport">
+      <div class="stage">
+        <section class="card" aria-labelledby="program-title">
+          <figure class="media"><img class="art" alt=""></figure>
+          <div class="copy">
+            <p class="on-air">No Ar · Rádio 88 FM</p>
+            <h2 id="program-title"></h2>
+            <p class="time"></p>
+            <p class="presenters"></p>
+            <div class="actions">
+              <button class="cta live" type="button"><svg class="icon" aria-hidden="true"><use href="#play-icon"/></svg> OUVIR AO VIVO</button>
+              <button class="cta" type="button"><svg class="icon" aria-hidden="true"><use href="#calendar-icon"/></svg> Ver programação</button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="player" aria-label="Prévia do mini player">
+        <div class="identity">
+          <span class="indicator">NO AR<span class="mic"><svg class="icon" aria-hidden="true"><use href="#mic-icon"/></svg></span></span>
+          <img class="brand" src="../../../src/assets/logoheadsvgcolor.svg" alt="Rádio 88 FM">
+          <div><div class="program-name"></div><span class="player-time"></span></div>
+        </div>
+        <div class="stores">
+          <span class="store"><small>Disponível no</small><strong>Google Play</strong></span>
+          <span class="store"><small>Baixe na</small><strong>App Store</strong></span>
+        </div>
+        <div class="controls">
+          <span class="station">Rádio 88 FM</span>
+          <button class="play" type="button" aria-label="Reproduzir (demonstração)"><svg class="icon" aria-hidden="true"><use href="#play-icon"/></svg></button>
+          <button class="volume" type="button" aria-label="Volume (demonstração)"><svg class="icon" aria-hidden="true"><use href="#volume-icon"/></svg></button>
+          <input type="range" value="80" aria-label="Volume de demonstração">
+        </div>
+      </div>
+    </div>
+    <p class="detail" aria-live="polite"><span class="dot" aria-hidden="true"></span><span id="art-note"></span></p>
+    <p class="foot">Artes reais do cadastro local. Prévia isolada: os controles não iniciam a transmissão nem alteram a grade.</p>
+  </main>
+  <script>
+    const logo = document.querySelector('.brand').getAttribute('src');
+    const base = 'https://pub-58e780e8ca9c4ee492ec7e8862515bb0.r2.dev/programs/preview/radio-88/';
+    const programs = {
+      altar: { name: 'Altar 88', time: '12:00 às 13:00', presenters: 'Pr. Dário Ferreira', cover: base + '736d5e43-98d9-4e66-b73f-2a274da632a5.webp', edge: '#ffb900', surface: '#fff8e2' },
+      temperatura: { name: 'Temperatura Gospel', time: '13:00 às 15:00', presenters: 'Luciana Alves', cover: base + '4a66e70a-a51b-435e-9616-6b9639daf8e8.webp', edge: '#feb900', surface: '#fff8e3' },
+      favorito: { name: 'Favorito', time: '15:00 às 17:00', presenters: 'Régis Oliveira e Cíntia Miranda' },
+    };
+    const card = document.querySelector('.card');
+    const art = document.querySelector('.art');
+    let activeProgram;
+    function showArtwork(available) {
+      const program = programs[activeProgram];
+      const edge = available ? program.edge : '#c9dced';
+      card.toggleAttribute('data-logo', !available);
+      card.style.setProperty('--edge', edge);
+      card.style.setProperty('--surface', available ? program.surface : '#eef5fd');
+      document.querySelector('.dot').style.background = edge;
+      document.querySelector('#art-note').textContent = available
+        ? 'Capa real · 1920 × 1080 · Cor da borda: ' + edge.toUpperCase()
+        : program.cover ? 'Capa indisponível · Logo e cores da Rádio 88 FM' : 'Sem capa cadastrada · Logo e cores da Rádio 88 FM';
+      art.src = available ? program.cover : logo;
+      art.alt = available ? 'Capa de ' + program.name : 'Logo da Rádio 88 FM';
+    }
+    art.addEventListener('error', () => { if (!card.hasAttribute('data-logo')) showArtwork(false); });
+    function show(programKey) {
+      activeProgram = programKey;
+      const program = programs[programKey];
+      document.querySelectorAll('[data-program]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.program === programKey)));
+      for (const [selector, value] of [
+        ['#program-title', program.name], ['.program-name', program.name],
+        ['.time', program.time], ['.player-time', program.time], ['.presenters', program.presenters],
+      ]) document.querySelector(selector).textContent = value;
+      showArtwork(Boolean(program.cover));
+    }
+    document.querySelectorAll('[data-program]').forEach(button => button.addEventListener('click', () => show(button.dataset.program)));
+    show('altar');
+  </script>
+</body>
+</html>

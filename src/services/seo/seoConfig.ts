@@ -55,6 +55,16 @@ const baseRouteSeoConfigs: RouteSeoConfig[] = [
     schemaType: "WebPage",
   },
   {
+    path: "/conteudos",
+    title: "Conteúdos da Rádio 88 FM | Vídeos e Programas",
+    analyticsTitle: "Conteúdos | Rádio 88 FM",
+    pageName: "conteudos",
+    description: "Assista ao Debate 88, Altar 88, Encerramento de Enquete e Cristo em Nós. Encontre vídeos por tema ou data.",
+    indexable: true,
+    ...socialImage,
+    schemaType: "WebPage",
+  },
+  {
     path: "/anuncie",
     title: "Anuncie na Rádio 88 FM | Volta Redonda e Região",
     analyticsTitle: "Anuncie | Rádio 88 FM",

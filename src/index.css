@@ -7,7 +7,7 @@
 @layer base {
   :root {
     --header-height: 64px;
-    --player-height: 72px;
+    --player-height: 120px;
     --player-space: calc(var(--player-height) + env(safe-area-inset-bottom, 0px));
     --background: 0 0% 100%;
     --foreground: 0 0% 10%;
@@ -123,6 +123,78 @@
   .radio-player { padding-bottom: env(safe-area-inset-bottom, 0px); }
   .radio-player-controls { height: calc(var(--player-height) - 1px); }
 
+  .mini-player-layout { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-content: center; align-items: center; gap: 9px 8px; padding: 8px 12px; }
+  .mini-player-program { display: flex; min-width: 0; align-items: center; gap: 10px; }
+  .mini-player-live { --mini-player-live-red: #ff172b; display: flex; flex: none; width: 41px; height: 44px; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding-right: 8px; border-right: 1px solid rgb(255 255 255 / 24%); }
+  .mini-player-live > span { font-family: Montserrat, sans-serif; font-size: 8px; font-weight: 800; letter-spacing: .04em; white-space: nowrap; }
+  .mini-player-mic-disc { display: grid; width: 29px; height: 29px; place-items: center; border-radius: 50%; background: white; box-shadow: 0 0 0 3px rgb(255 255 255 / 10%); }
+  .mini-player-mic { width: 20px; height: 20px; color: hsl(var(--radio-blue)); }
+  .mini-player-live[data-on-air="true"] .mini-player-mic { animation: radio-on-air 1.4s ease-in-out infinite; }
+  .mini-player-identity { min-width: 0; }
+  .mini-player-program-link { display: flex; min-width: 0; align-items: center; gap: 9px; border-radius: 8px; }
+  .mini-player-artwork { width: 42px; height: 42px; flex: none; border-radius: 8px; object-fit: contain; background: white; padding: 4px; }
+  .mini-player-program-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: Montserrat, sans-serif; font-size: 12px; line-height: 1.3; font-weight: 800; }
+  .mini-player-program-time { overflow: hidden; text-overflow: ellipsis; margin-top: 3px; font-size: 10px; color: rgb(255 255 255 / 85%); white-space: nowrap; }
+  .mini-player-downloads { display: flex; grid-column: 1 / -1; grid-row: 2; align-items: center; justify-content: center; gap: 8px; padding-top: 8px; border-top: 1px solid rgb(255 255 255 / 16%); }
+  .mini-player-download-intro { display: none; font-size: 11px; line-height: 1.35; color: rgb(255 255 255 / 85%); }
+  .mini-player-download-intro strong { display: block; color: white; font-size: 13px; }
+  .mini-player-store { display: flex; height: 31px; min-width: 115px; align-items: center; gap: 7px; padding: 3px 9px; color: white; background: #071f35; border: 1px solid rgb(255 255 255 / 35%); border-radius: 7px; transition: background .2s; }
+  .mini-player-store:hover { background: #102e48; }
+  .mini-player-store svg { width: 19px; height: 21px; flex: none; }
+  .mini-player-store small { display: block; font-size: 6px; line-height: 1.1; }
+  .mini-player-store strong { display: block; font-size: 12px; font-weight: 500; line-height: 1.15; letter-spacing: -.02em; }
+  .mini-player-actions { display: flex; min-width: 0; max-width: 100%; justify-self: end; align-items: center; gap: 4px; }
+  .mini-player-status { display: block; width: clamp(68px, 18vw, 180px); min-width: 0; max-width: 300px; text-align: right; font-size: 10px; line-height: 1.4; color: rgb(255 255 255 / 85%); }
+  .mini-player-status strong { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; font-size: 11px; color: white; }
+  .mini-player-volume { display: flex; flex: none; align-items: center; gap: 8px; }
+  .mini-player-mute { display: grid; width: 44px; height: 44px; flex: none; place-items: center; border-radius: 50%; background: rgb(255 255 255 / 8%); }
+  .mini-player-mute:hover { background: rgb(255 255 255 / 18%); }
+  .mini-player-volume-range { display: none; width: 74px; height: 44px; cursor: pointer; accent-color: white; }
+  .radio-player :is(a, button, input):focus-visible { outline: 2px solid white; outline-offset: 3px; }
+  @keyframes radio-on-air {
+    0%, 100% { color: var(--mini-player-live-red); opacity: 1; }
+    35%, 85% { opacity: .65; }
+    50% { color: hsl(var(--radio-blue)); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mini-player-live[data-on-air="true"] .mini-player-mic { animation: radio-on-air-colors 2.8s ease-in-out infinite; }
+  }
+  @keyframes radio-on-air-colors {
+    0%, 100% { color: var(--mini-player-live-red); }
+    50% { color: hsl(var(--radio-blue)); }
+  }
+  @media (max-width: 479px) {
+    .mini-player-program { gap: 6px; }
+    .mini-player-live { width: 33px; padding-right: 4px; }
+    .mini-player-program-link { gap: 6px; }
+    .mini-player-artwork { width: 32px; height: 32px; padding: 3px; }
+    .mini-player-program-name { font-size: 11px; }
+    .mini-player-program-time { font-size: 9px; }
+  }
+  @media (min-width: 1024px) {
+    .mini-player-layout { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 18px; padding: 10px 20px; }
+    .mini-player-program { gap: 16px; }
+    .mini-player-live { width: 62px; height: 56px; padding-right: 14px; gap: 5px; }
+    .mini-player-live > span { font-size: 10px; }
+    .mini-player-mic-disc { width: 35px; height: 35px; }
+    .mini-player-mic { width: 24px; height: 24px; }
+    .mini-player-artwork { width: 54px; height: 54px; border-radius: 10px; padding: 6px; }
+    .mini-player-program-link { gap: 14px; }
+    .mini-player-status { width: auto; }
+    .mini-player-status strong { display: block; white-space: nowrap; text-overflow: ellipsis; font-size: 12px; }
+    .mini-player-program-name { font-size: 16px; }
+    .mini-player-program-time { font-size: 12px; }
+    .mini-player-downloads { grid-column: 2; grid-row: 1; padding: 0; border: 0; gap: 10px; }
+    .mini-player-store { height: 39px; min-width: 127px; padding: 5px 10px; gap: 8px; }
+    .mini-player-store svg { width: 23px; height: 25px; }
+    .mini-player-store small { font-size: 8px; }
+    .mini-player-store strong { font-size: 15px; }
+    .mini-player-actions { gap: 12px; }
+  }
+  @media (min-width: 1280px) {
+    .mini-player-download-intro, .mini-player-volume-range { display: block; }
+  }
+
   @media (min-width: 1024px) {
     .home-opening {
       --home-hero-height: max(400px, calc(100svh - var(--header-height) - var(--player-space) - 244px));
@@ -147,7 +219,7 @@
   }
 
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     :root { --player-height: 80px; }
   }
 

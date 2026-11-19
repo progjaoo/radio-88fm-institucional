@@ -8,7 +8,7 @@ vi.mock("@/services/analytics/analytics", () => ({ Analytics: { track: vi.fn() }
 
 function Controls() {
   const player = useAudioPlayer();
-  return <><button onClick={player.togglePlay}>Toggle</button><button onClick={player.toggleMute}>Mute</button><output>{player.isLoading ? "loading" : player.isPlaying ? "playing" : "paused"}</output>{player.playbackError && <p role="alert">{player.playbackError}</p>}</>;
+  return <><button onClick={player.togglePlay}>Toggle</button><button onClick={player.toggleMute}>Mute</button><output>{player.isLoading ? "loading" : player.isPlaying ? "playing" : "paused"}</output><output data-testid="metadata">{player.streamData?.musica_atual}</output>{player.playbackError && <p role="alert">{player.playbackError}</p>}</>;
 }
 
 describe("Audio lifecycle", () => {
@@ -19,16 +19,16 @@ describe("Audio lifecycle", () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({ musica_atual: "Rádio 88 FM" }) }));
     vi.mocked(Analytics.track).mockClear();
   });
-  afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
+  afterEach(async () => { await act(async () => {}); vi.useRealTimers(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
-  it("starts paused without metadata, stream playback or analytics", () => {
+  it("starts paused without playback or analytics, but keeps public metadata current", () => {
     const { unmount } = render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);
     expect(screen.getByText("paused")).toBeInTheDocument();
     expect(MockAudio.instances).toHaveLength(1);
     expect(MockAudio.instances[0].preload).toBe("none");
     expect(MockAudio.instances[0].play).not.toHaveBeenCalled();
     act(() => vi.advanceTimersByTime(60000));
-    expect(fetch).not.toHaveBeenCalled();
+    expect(fetch).toHaveBeenCalledTimes(5);
     expect(Analytics.track).not.toHaveBeenCalled();
     unmount();
     expect(Analytics.track).not.toHaveBeenCalled();
@@ -42,7 +42,7 @@ describe("Audio lifecycle", () => {
     await act(async () => fireEvent.click(screen.getByText("Toggle")));
     expect(screen.getByRole("alert")).toHaveTextContent("Tente novamente");
     expect(screen.getByText("paused")).toBeInTheDocument();
-    expect(fetch).not.toHaveBeenCalled();
+    expect(fetch).toHaveBeenCalledTimes(1);
     expect(Analytics.track).not.toHaveBeenCalled();
     await act(async () => fireEvent.click(screen.getByText("Toggle")));
     expect(screen.getByText("playing")).toBeInTheDocument();
@@ -75,7 +75,7 @@ describe("Audio lifecycle", () => {
     await act(async () => fireEvent.click(screen.getByText("Toggle")));
     const requests = vi.mocked(fetch).mock.calls.length;
     act(() => vi.advanceTimersByTime(60000));
-    expect(fetch).toHaveBeenCalledTimes(requests);
+    expect(fetch).toHaveBeenCalledTimes(requests + 4);
     expect(vi.mocked(Analytics.track).mock.calls.filter(([event]) => event === "radio_pause")).toHaveLength(1);
     unmount();
     expect(vi.getTimerCount()).toBe(0);
@@ -95,5 +95,32 @@ describe("Audio lifecycle", () => {
     expect(MockAudio.instances[0].play).not.toHaveBeenCalled();
     await act(async () => fireEvent.click(screen.getByText("Toggle")));
     window.removeEventListener(RADIO_PLAY_REQUEST, stop);
+  });
+
+  it("skips public metadata polling while the tab is hidden and refreshes on return", () => {
+    const { unmount } = render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);
+    expect(fetch).toHaveBeenCalledTimes(1);
+    const hidden = vi.spyOn(document, "hidden", "get").mockReturnValue(true);
+    act(() => { document.dispatchEvent(new Event("visibilitychange")); vi.advanceTimersByTime(30000); });
+    expect(fetch).toHaveBeenCalledTimes(1);
+    hidden.mockReturnValue(false);
+    act(() => document.dispatchEvent(new Event("visibilitychange")));
+    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(MockAudio.instances[0].play).not.toHaveBeenCalled();
+    unmount();
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it("updates the song as it changes without the listener ever pressing play", async () => {
+    vi.mocked(fetch)
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ musica_atual: "Primeira música - Cantora" }) } as Response)
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ musica_atual: "Próxima música - Cantor" }) } as Response);
+    render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);
+    await act(async () => {});
+    expect(screen.getByTestId("metadata")).toHaveTextContent("Primeira música - Cantora");
+    await act(async () => { vi.advanceTimersByTime(15000); });
+    expect(screen.getByTestId("metadata")).toHaveTextContent("Próxima música - Cantor");
+    expect(MockAudio.instances[0].play).not.toHaveBeenCalled();
+    expect(Analytics.track).not.toHaveBeenCalled();
   });
 });

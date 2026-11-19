@@ -1,0 +1,53 @@
+.social-rail {
+  --social-surface: #fff;
+  --social-ink: #20252b;
+  --social-border: #e2e7ed;
+  --social-facebook: #0866ff;
+  --social-youtube: #ff0000;
+  --social-tiktok: #111;
+  --social-instagram: linear-gradient(135deg, #7638ca, #c12579, #d04c25);
+  position: fixed;
+  right: 18px;
+  top: calc(var(--header-height) + (100svh - var(--header-height) - var(--player-space) - 96px) / 2);
+  transform: translateY(-50%);
+  z-index: 30;
+  font-family: Montserrat, sans-serif;
+}
+.social-rail-links { display: grid; gap: 8px; padding: 8px; border: 1px solid var(--social-border); border-radius: 18px; background: var(--social-surface); box-shadow: 0 8px 25px #19395412; }
+.social-rail-link { position: relative; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; color: var(--social-ink); background: var(--social-surface); transition: background-color 200ms, color 200ms, transform 200ms; }
+.social-rail-icon { display: block; width: 23px; height: 23px; background: currentColor; mask-position: center; mask-size: contain; mask-repeat: no-repeat; -webkit-mask-position: center; -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; }
+.social-rail-link:is(:hover, :focus-visible) { color: white; transform: translateX(-3px); }
+.social-rail-facebook:is(:hover, :focus-visible) { background: var(--social-facebook); }
+.social-rail-instagram:is(:hover, :focus-visible) { background: var(--social-instagram); }
+.social-rail-youtube:is(:hover, :focus-visible) { background: var(--social-youtube); }
+.social-rail-tiktok:is(:hover, :focus-visible) { background: var(--social-tiktok); }
+.social-rail :is(a, button):focus-visible { outline: 3px solid hsl(var(--radio-blue-dark)); outline-offset: 3px; }
+.social-rail-tooltip { position: absolute; right: calc(100% + 10px); padding: 7px 10px; border-radius: 7px; color: white; background: #151a23; font-size: 12px; font-weight: 600; line-height: 1.4; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 150ms; }
+.social-rail-link:is(:hover, :focus-visible) .social-rail-tooltip { opacity: 1; }
+.social-rail-toggle { display: none; }
+/* Portalled dialogs must remain the only interactive layer. */
+body:has([role="dialog"][data-state="open"], [role="alertdialog"][data-state="open"], dialog[open]) .social-rail { visibility: hidden; pointer-events: none; }
+@media (max-width: 1279px), (max-height: 639px) {
+  .social-rail { top: auto; right: 16px; bottom: calc(var(--player-space) + 5.5rem); transform: none; }
+  .social-rail-toggle { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; width: 48px; height: 48px; border: 1px solid var(--social-border); border-radius: 14px; background: var(--social-surface); color: var(--social-ink); box-shadow: 0 5px 20px #19395418; font-size: 9px; font-weight: 700; }
+  .social-rail-links { display: none; position: absolute; right: 0; bottom: calc(100% + 8px); gap: 4px; padding: 5px; border-radius: 14px; }
+  .social-rail[data-open="true"] .social-rail-links { display: grid; }
+  .social-rail-link { width: 44px; height: 44px; }
+  .social-rail-icon { width: 21px; height: 21px; }
+}
+@media (max-height: 539px) {
+  .social-rail { right: 84px; bottom: calc(var(--player-space) + 1rem); }
+  .social-rail[data-open="true"] .social-rail-links { grid-template-columns: repeat(2, 44px); }
+}
+@media (max-height: 399px) {
+  .social-rail[data-open="true"] .social-rail-links { grid-template-columns: repeat(4, 44px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .social-rail-link, .social-rail-tooltip { transition: none; }
+  .social-rail-link:is(:hover, :focus-visible) { transform: none; }
+}
+@media (forced-colors: active) {
+  .social-rail-links, .social-rail-toggle, .social-rail-link { border: 1px solid ButtonText; }
+  .social-rail-icon { background: LinkText; }
+}
+@media print { .social-rail { display: none; } }

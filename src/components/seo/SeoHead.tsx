@@ -33,8 +33,8 @@ const SeoHead = ({ config, pathname }: SeoHeadProps) => {
         <meta property="og:locale" content={SITE_LOCALE} />
         <meta property="og:image" content={socialImageUrl} />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="108" />
-        <meta property="og:image:height" content="108" />
+        <meta property="og:image:width" content="512" />
+        <meta property="og:image:height" content="512" />
         <meta property="og:image:alt" content={config.imageAlt} />
 
         <meta name="twitter:card" content="summary_large_image" />

@@ -1,0 +1,17 @@
+# Conteúdos e YouTube
+
+Em 18/11/2026, a proposta visual do Plano 012 foi incorporada ao Institucional em `/conteudos`, com navegação desktop/mobile, filtros, destaque, grade e player sob demanda. A rota legada `/debates` direciona ao Debate 88; Docker e React preservam busca e datas. Os contratos `/api/debates` e `/api/youtube/content` continuam disponíveis para compatibilidade.
+
+## Fonte e operação
+
+- `GET /api/public/video-contents` serve o catálogo no Docker e tem entrada serverless para uso posterior. A allowlist compartilhada é `src/config/content-playlists.json`. O servidor confirma o canal e a propriedade das quatro playlists pela [YouTube Data API v3](https://developers.google.com/youtube/v3/docs/playlists/list), pagina os [itens das playlists](https://developers.google.com/youtube/v3/docs/playlistItems/list) e consulta detalhes dos vídeos em lotes. Apenas vídeos públicos da rádio e fora do estado ao vivo/agendado entram no catálogo. A data civil usa `America/Sao_Paulo`.
+- A resposta reúne `items`, `coverage` por categoria e `lastSyncedAt`. Um mesmo vídeo só aparece uma vez em Todos, com suas associações preservadas. O navegador filtra a seleção já recebida e grava categoria, busca, ano, mês e dia na URL, sem disparar consultas Google a cada tecla.
+- Este incremento usa até **250 itens por playlist** em cada atualização, com limite de 14 segundos e cache em memória por processo por 15 minutos, além do cache HTTP. Retém dados já verificados por até um dia se houver falha e sinaliza acervo parcial ou desatualizado. Não é um acervo histórico completo; o sincronizador persistente e o catálogo do Gestão continuam no plano, sem alteração de banco nesta etapa.
+- Apenas `YOUTUBE_DATA_API_KEY` com acesso permitido ao runtime deve ser configurada no Docker/hosting. O segredo não participa do build Vite. A chave legada local devolveu HTTP `403 ACCESS_DENIED` em uma leitura na API. Nenhuma restrição foi alterada. Sem uma chave compatível, o endpoint retorna `503` e a página indica a indisponibilidade, com link para a playlist oficial.
+
+## Validação e limites
+
+- Abaixo de 640 px o seletor **Programa** substitui as abas e mantém os outros filtros na URL. Em **Mais de…**, até seis vídeos podem ser percorridos com um deslize do dedo ou com as setas. A faixa usa rolagem nativa com posições de encaixe, não toca nem avança sozinha, respeita movimento reduzido e não cria rolagem horizontal no restante da página. Tablet e desktop mantêm a grade.
+- Homologação responsiva com os [Web Interface Guidelines](https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md): BrowserOS em 390 px conferiu alvos de 44 px, a prévia do próximo card, seis vídeos e a seleção por teclado; 768 px preservou abas e duas colunas. Testes automatizados cobrem os extremos e a preservação dos filtros. A largura foi simulada no navegador, não em aparelho físico.
+- O site local está em [Conteúdos no Docker](http://127.0.0.1:8086/conteudos). A camada visual foi testada com dados controlados, incluindo um destaque e seis recentes em cada categoria. As amostras do protótipo não estão ligadas ao catálogo em execução.
+- Antes de publicar, validar a chave server-side, as quatro playlists com respostas reais e o player incorporado. Rever também os alertas do audit emitido pelo build Docker e a falha preexistente em `Ouvir.test.tsx`. Sem deploy ou mudança no Google Cloud nesta etapa.

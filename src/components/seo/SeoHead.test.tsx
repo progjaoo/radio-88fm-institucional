@@ -19,7 +19,7 @@ describe("SeoHead", () => {
       "https://www.radio88fm.com/nossa-radio",
     );
     expect(document.querySelector('meta[property="og:image"]')?.getAttribute("content")).toBe(
-      "https://www.radio88fm.com/logo-88fm.png",
+      "https://www.radio88fm.com/logo-88fm-color.png",
     );
     expect(document.querySelector('meta[property="og:site_name"]')?.getAttribute("content")).toBe(
       "Rádio 88 FM",

@@ -1,5 +1,9 @@
 FROM node:22-alpine AS build
 WORKDIR /app
+ARG VITE_ON_AIR_ENABLED=false
+ARG VITE_PROGRAMMING_API_URL
+ARG VITE_GESTAO_OUVINTES_API_URL=http://127.0.0.1:3010
+ENV VITE_ON_AIR_ENABLED=$VITE_ON_AIR_ENABLED VITE_PROGRAMMING_API_URL=$VITE_PROGRAMMING_API_URL VITE_GESTAO_OUVINTES_API_URL=$VITE_GESTAO_OUVINTES_API_URL
 ARG FEED_RELEASE_BASE_URL
 ARG FEED_NAMESPACE=preview/radio-88
 ARG FEED_PREVIEW_IMAGE_ID=local
@@ -14,11 +18,11 @@ RUN npm run build
 FROM node:22-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=build /app ./
-COPY scripts/feed-preview-server.mjs /app/feed-preview-server.mjs
+COPY --from=build --chown=node:node /app ./
+COPY --chown=node:node scripts/feed-preview-server.mjs /app/feed-preview-server.mjs
 ENV NODE_ENV=production
 RUN mkdir -p /data/releases /work \
-  && chown -R node:node /app /data /work
+  && chown -R node:node /data /work
 USER node
 EXPOSE 8080
 HEALTHCHECK --interval=15s --timeout=5s --retries=10 \

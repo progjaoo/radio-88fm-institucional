@@ -1,0 +1,16 @@
+# Merge only into radio88-feed's local Compose, never into a hosted environment.
+services:
+  institutional:
+    build:
+      context: ${INSTITUTIONAL_PLAN007_SOURCE:?set the current institutional checkout}
+      dockerfile: Dockerfile.feed-preview
+      args:
+        VITE_ON_AIR_ENABLED: "true"
+        VITE_PROGRAMMING_API_URL: http://127.0.0.1:3012
+        FEED_PREVIEW_IMAGE_ID: local-plan007-mini-player-20261112
+    environment:
+      VITE_ON_AIR_ENABLED: "true"
+      VITE_PROGRAMMING_API_URL: http://127.0.0.1:3012
+      FEED_PREVIEW_IMAGE_ID: local-plan007-mini-player-20261112
+      YOUTUBE_DATA_API_KEY: ${YOUTUBE_DATA_API_KEY:-${VITE_YOUTUBE_API_KEY:-}}
+      YOUTUBE_CHANNEL_HANDLE: ${YOUTUBE_CHANNEL_HANDLE:-@radio88oficial}

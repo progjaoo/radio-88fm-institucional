@@ -1,3 +1,4 @@
+import OnAirSection from "@/components/OnAirSection";
 import { useEffect, useMemo, useState } from "react";
 import { Facebook, Instagram, Youtube, Radio, Video } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -448,6 +449,8 @@ const Index = () => {
           <img src={programacaoMobileImg} alt="Programacao o dia todo para estar sempre com voce" className="h-auto w-full rounded-[18px] object-cover sm:hidden" loading="lazy" />
         </div>
       </section>
+
+      <OnAirSection />
 
       {/* Programming Section dinamica preservada para rollback.
           Foi substituida temporariamente por imagem estatica do Designer.

@@ -1,0 +1,11 @@
+  PASS  15.43:1  ink                      on surface              ui
+  PASS   4.82:1  on-brand                 on facebook             ui
+  PASS   4.00:1  on-brand                 on youtube              ui
+  PASS  18.88:1  on-brand                 on tiktok               ui
+  PASS   6.59:1  on-brand                 on instagram-start      ui
+  PASS   5.51:1  on-brand                 on instagram-middle     ui
+  PASS   4.43:1  on-brand                 on instagram-end        ui
+  AAA   17.44:1  on-brand                 on tooltip              
+  PASS   7.02:1  focus                    on surface              ui
+
+  9 pairs, 0 failing AA

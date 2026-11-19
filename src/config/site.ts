@@ -12,7 +12,7 @@ export const SITE_LOCALE = "pt_BR";
 export const SITE_LANGUAGE = "pt-BR";
 export const SITE_DESCRIPTION =
   "Ouça e assista à Rádio 88 FM ao vivo e conheça nossa história, equipe e programação em Volta Redonda e no Sul Fluminense.";
-export const SITE_SOCIAL_IMAGE_PATH = "/logo-88fm.png";
+export const SITE_SOCIAL_IMAGE_PATH = "/logo-88fm-color.png";
 export const SITE_SOCIAL_IMAGE_ALT = "Logo oficial da Rádio 88 FM";
 
 export const SITE_CONTACT = {

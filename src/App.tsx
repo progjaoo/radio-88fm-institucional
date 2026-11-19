@@ -1,3 +1,4 @@
+import { ProgrammingProvider } from "@/services/programming/ProgrammingProvider";
 import { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -22,7 +23,10 @@ import AnalyticsErrorTracker from "./services/analytics/AnalyticsErrorTracker";
 import ScrollToTop from "./components/ScrollToTop";
 import { Analytics } from "@vercel/analytics/react";
 import Feed from "./pages/Feed";
+import PollParticipation from "./pages/PollParticipation";
 import FeedPostPage, { type FeedPostDocument } from "./pages/FeedPost";
+import Debates from "./pages/Debates";
+import Contents from "./pages/Contents";
 import { FeedProvider } from "./services/feed/feed-data";
 
 interface AppContentProps {
@@ -40,6 +44,7 @@ export const AppContent = ({ helmetContext, initialFeedPosts }: AppContentProps)
           <Toaster />
           <Sonner />
           <AudioPlayerProvider>
+          <ProgrammingProvider>
             <ScrollToTop />
             <AnalyticsRouteTracker />
             <AnalyticsErrorTracker />
@@ -50,11 +55,14 @@ export const AppContent = ({ helmetContext, initialFeedPosts }: AppContentProps)
                 <Route path="/nossa-radio" element={<NossaRadio />} />
                 <Route path="/equipe" element={<Equipe />} />
                 <Route path="/programacao" element={<Programacao />} />
+                <Route path="/enquetes/:slug" element={<PollParticipation />} />
                 <Route path="/anuncie" element={<Anuncie />} />
                 <Route path="/ouvir" element={<Ouvir />} />
                 <Route path="/assistir" element={<Assistir />} />
                 <Route path="/privacidade" element={<Privacidade />} />
                 <Route path="/feed" element={<Feed />} />
+                <Route path="/debates" element={<Debates />} />
+                <Route path="/conteudos" element={<Contents />} />
                 <Route path="/feed/pagina/:page" element={<Feed />} />
                 <Route path="/feed/:slug" element={<FeedPostPage />} />
                 <Route path="*" element={<NotFound />} />
@@ -63,6 +71,7 @@ export const AppContent = ({ helmetContext, initialFeedPosts }: AppContentProps)
             </FeedProvider>
             <Analytics />
             <FloatingWhatsAppButton />
+          </ProgrammingProvider>
           </AudioPlayerProvider>
         </TooltipProvider>
       </HelmetProvider>

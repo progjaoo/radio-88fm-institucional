@@ -13,6 +13,8 @@ interface AudioPlayerContextValue {
   isLoading: boolean;
   playbackError: string | null;
   isMuted: boolean;
+  volume: number;
+  setVolume: (volume: number) => void;
   streamData: StreamData | null;
   togglePlay: () => void;
   toggleMute: () => void;
@@ -30,6 +32,8 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [playbackError, setPlaybackError] = useState<string | null>(null);
   const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolumeState] = useState(1);
+  const lastAudibleVolumeRef = useRef(1);
   const [streamData, setStreamData] = useState<StreamData | null>(null);
 
   const getAudio = useCallback(() => {
@@ -70,6 +74,11 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
       stopTimer();
     };
     const handleWaiting = () => { setIsLoading(true); stopTimer(); };
+    const handleVolumeChange = () => {
+      setVolumeState(audio.volume);
+      setIsMuted(audio.muted);
+      if (audio.volume > 0) lastAudibleVolumeRef.current = audio.volume;
+    };
     const handleError = () => {
       attemptRef.current += 1;
       handlePause();
@@ -80,6 +89,7 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
     audio.addEventListener("ended", handlePause);
     audio.addEventListener("waiting", handleWaiting);
     audio.addEventListener("error", handleError);
+    audio.addEventListener("volumechange", handleVolumeChange);
     return () => {
       attemptRef.current += 1;
       audio.removeEventListener("playing", handlePlaying);
@@ -87,6 +97,7 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
       audio.removeEventListener("ended", handlePause);
       audio.removeEventListener("waiting", handleWaiting);
       audio.removeEventListener("error", handleError);
+      audio.removeEventListener("volumechange", handleVolumeChange);
       audio.pause();
       playingRef.current = false;
       stopTimer();
@@ -94,7 +105,6 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
   }, [getAudio]);
 
   useEffect(() => {
-    if (!isPlaying) return;
     let controller: AbortController | undefined;
     const fetchData = () => {
       if (document.hidden) return;
@@ -108,13 +118,15 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
     };
     fetchData();
     const interval = window.setInterval(fetchData, 15000);
-    document.addEventListener("visibilitychange", fetchData);
+    // Public stream metadata is independent of listening; never poll a hidden tab.
+    const visibility = () => { if (document.hidden) controller?.abort(); else fetchData(); };
+    document.addEventListener("visibilitychange", visibility);
     return () => {
       controller?.abort();
       window.clearInterval(interval);
-      document.removeEventListener("visibilitychange", fetchData);
+      document.removeEventListener("visibilitychange", visibility);
     };
-  }, [isPlaying]);
+  }, []);
 
   useEffect(() => {
     if (!("mediaSession" in navigator) || typeof MediaMetadata === "undefined") return;
@@ -125,7 +137,7 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
       album: pageTitle,
       artwork: [
         { src: logoHeaderColor, type: "image/svg+xml" },
-        { src: `${window.location.origin}/logo-88fm.png`, sizes: "108x108", type: "image/png" },
+        { src: `${window.location.origin}/logo-88fm-color.png`, sizes: "512x512", type: "image/png" },
       ],
     });
     navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
@@ -156,12 +168,30 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
 
   const toggleMute = useCallback(() => {
     const audio = getAudio();
-    audio.muted = !audio.muted;
+    if (audio.volume === 0) {
+      audio.volume = lastAudibleVolumeRef.current;
+      setVolumeState(audio.volume);
+      audio.muted = false;
+    } else {
+      audio.muted = !audio.muted;
+    }
     setIsMuted(audio.muted);
   }, [getAudio]);
 
-  const value = useMemo(() => ({ isPlaying, isLoading, playbackError, isMuted, streamData, togglePlay, toggleMute, pause }),
-    [isPlaying, isLoading, playbackError, isMuted, streamData, togglePlay, toggleMute, pause]);
+  const setVolume = useCallback((next: number) => {
+    if (!Number.isFinite(next)) return;
+    const audio = getAudio();
+    audio.volume = Math.max(0, Math.min(1, next));
+    if (audio.volume > 0) {
+      lastAudibleVolumeRef.current = audio.volume;
+      audio.muted = false;
+    }
+    setVolumeState(audio.volume);
+    setIsMuted(audio.muted);
+  }, [getAudio]);
+
+  const value = useMemo(() => ({ isPlaying, isLoading, playbackError, isMuted, volume, setVolume, streamData, togglePlay, toggleMute, pause }),
+    [isPlaying, isLoading, playbackError, isMuted, volume, setVolume, streamData, togglePlay, toggleMute, pause]);
   return <AudioPlayerContext.Provider value={value}>{children}</AudioPlayerContext.Provider>;
 };
 

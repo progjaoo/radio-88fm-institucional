@@ -13,6 +13,9 @@
     <loc>https://www.radio88fm.com/programacao</loc>
   </url>
   <url>
+    <loc>https://www.radio88fm.com/conteudos</loc>
+  </url>
+  <url>
     <loc>https://www.radio88fm.com/anuncie</loc>
   </url>
   <url>
@@ -20,5 +23,14 @@
   </url>
   <url>
     <loc>https://www.radio88fm.com/assistir</loc>
+  </url>
+  <url>
+    <loc>https://www.radio88fm.com/feed</loc>
+  </url>
+  <url>
+    <loc>https://www.radio88fm.com/feed/aniversario-de-32-anos-da-radio-88-fm</loc>
+  </url>
+  <url>
+    <loc>https://www.radio88fm.com/feed/corrida-da-fe</loc>
   </url>
 </urlset>

@@ -1,0 +1,44 @@
+# Only the site is managed here. The other radio88-feed services keep their
+# original Compose definitions and volumes.
+name: radio88-feed
+
+services:
+  institutional:
+    image: radio88-feed-institutional:local
+    build:
+      context: .
+      dockerfile: Dockerfile.feed-preview
+      args:
+        FEED_RELEASE_BASE_URL: ${R2_PUBLIC_BASE_URL:?set the Preview R2 public base URL}
+        FEED_NAMESPACE: ${FEED_NAMESPACE:-preview/radio-88}
+        FEED_PREVIEW_IMAGE_ID: ${INSTITUTIONAL_LOCAL_BUILD_ID:-local-conteudos}
+        VITE_ON_AIR_ENABLED: "true"
+        VITE_PROGRAMMING_API_URL: http://127.0.0.1:3012
+        VITE_GESTAO_OUVINTES_API_URL: http://127.0.0.1:3012
+    restart: unless-stopped
+    env_file:
+      - ${INSTITUTIONAL_LOCAL_ENV_FILE:?set the path to the local site env file}
+    environment:
+      PORT: "8080"
+      FEED_RELEASE_BASE_URL: ${R2_PUBLIC_BASE_URL:?set the Preview R2 public base URL}
+      FEED_NAMESPACE: ${FEED_NAMESPACE:-preview/radio-88}
+      FEED_PREVIEW_IMAGE_ID: ${INSTITUTIONAL_LOCAL_BUILD_ID:-local-conteudos}
+      VITE_ON_AIR_ENABLED: "true"
+      VITE_PROGRAMMING_API_URL: http://127.0.0.1:3012
+      VITE_GESTAO_OUVINTES_API_URL: http://127.0.0.1:3012
+      YOUTUBE_DATA_API_KEY: ${YOUTUBE_DATA_API_KEY:-}
+      YOUTUBE_CHANNEL_HANDLE: "@radio88oficial"
+    ports:
+      - "127.0.0.1:8086:8080"
+    volumes:
+      - site-data:/data
+
+volumes:
+  site-data:
+    external: true
+    name: radio88-feed_feed-preview-site-data
+
+networks:
+  default:
+    external: true
+    name: radio88-feed_default

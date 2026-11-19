@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:plan007": "vite --config vite.plan007-local.config.ts",
     "dev:feed": "FEED_LOCAL_FIXTURE_PATH=local-dev/feed-release.preview.json npm run feed:sync && vite",
     "build": "npm run feed:sync && npm run seo:generate && npm run build:client && npm run build:ssr && npm run prerender && npm run seo:validate",
     "build:dev": "vite build --mode development",

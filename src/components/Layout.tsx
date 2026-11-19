@@ -5,6 +5,7 @@ import MiniPlayer from "./MiniPlayer";
 import ListenerRegistrationModal from "./listener-registration/ListenerRegistrationModal";
 import { ListenerRegistrationProvider } from "./listener-registration/ListenerRegistrationProvider";
 import ClientOnly from "./ClientOnly";
+import SocialRail from "./SocialRail";
 
 /*
  * Banner de consentimento do Analytics preservado para reativacao futura.
@@ -31,6 +32,7 @@ const Layout = () => {
         </main>
         <Footer />
         <MiniPlayer />
+        <SocialRail key={location.pathname} />
         <ClientOnly>
           <ListenerRegistrationModal />
           {/* <PrivacyLayer /> */}

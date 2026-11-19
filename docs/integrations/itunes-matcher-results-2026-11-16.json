@@ -1,0 +1,198 @@
+{
+  "executedAt": "2026-11-16T12:48:26.314Z",
+  "input": "itunes-deezer-gospel-results-2026-11-16.json",
+  "results": [
+    {
+      "title": "A mão de Deus",
+      "artist": "Marcus Salles",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/ba/e3/8abae3bd-55d6-bb9b-0526-4b08a44517fa/7898556808347.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/ba/e3/8abae3bd-55d6-bb9b-0526-4b08a44517fa/7898556808347.jpg/100x100bb.jpg",
+        "trackName": "A Mão de Deus",
+        "artistName": "Marcus Salles",
+        "albumName": "Acoustic Session"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "Um novo dia",
+      "artist": "Get Worship",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/46/3c/27463c96-3bcc-da3f-1c17-196084383442/5063831205179_cover.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/46/3c/27463c96-3bcc-da3f-1c17-196084383442/5063831205179_cover.jpg/100x100bb.jpg",
+        "trackName": "Um novo dia (Live)",
+        "artistName": "Get Worship",
+        "albumName": "Um novo dia (Live) - Single"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "Ah, Jesus / Coração Igual ao Teu",
+      "artist": "Julliany Souza",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3c/aa/14/3caa1400-3764-5bc6-428c-c00b72365f02/8718521271329.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3c/aa/14/3caa1400-3764-5bc6-428c-c00b72365f02/8718521271329.jpg/100x100bb.jpg",
+        "trackName": "AH, JESUS / CORAÇÃO IGUAL AO TEU",
+        "artistName": "Julliany Souza",
+        "albumName": "AH, JESUS / CORAÇÃO IGUAL AO TEU"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "Quem É Esse?",
+      "artist": "Julliany Souza",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d9/b7/d0/d9b7d02b-09ec-2d0d-1732-1a4986e728a3/5034644596297.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d9/b7/d0/d9b7d02b-09ec-2d0d-1732-1a4986e728a3/5034644596297.jpg/100x100bb.jpg",
+        "trackName": "Quem É Esse?",
+        "artistName": "Julliany Souza",
+        "albumName": "Deus É Quem Me Fortalece - Single"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "A Casa É Sua",
+      "artist": "Casa Worship",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/1f/8d/511f8d4b-a424-12e8-1ed9-bb1f82f327dc/859750556547.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/1f/8d/511f8d4b-a424-12e8-1ed9-bb1f82f327dc/859750556547.jpg/100x100bb.jpg",
+        "trackName": "A Casa É Sua",
+        "artistName": "Casa Worship",
+        "albumName": "A Casa É Sua"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "Bondade de Deus",
+      "artist": "Isaias Saad",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ac/d0/79/acd07998-0ad9-4e34-5986-a81890a705d7/7898556798082.png/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ac/d0/79/acd07998-0ad9-4e34-5986-a81890a705d7/7898556798082.png/100x100bb.jpg",
+        "trackName": "Bondade de Deus",
+        "artistName": "Isaias Saad",
+        "albumName": "Bondade de Deus (Acústico) - Single"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+      "artist": "Isadora Pompeo",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a2/92/12/a2921245-82be-b2e4-5aa2-20c0c932b0bb/196871586658.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a2/92/12/a2921245-82be-b2e4-5aa2-20c0c932b0bb/196871586658.jpg/100x100bb.jpg",
+        "trackName": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+        "artistName": "Isadora Pompeo",
+        "albumName": "Bênçãos Que Não Têm Fim (Counting My Blessings) - Single"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "É Tudo Sobre Você / Ser Mudado",
+      "artist": "Morada",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/49/4d/d6/494dd63f-f849-e79a-5240-c8cfb25ea678/7898556764728.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/49/4d/d6/494dd63f-f849-e79a-5240-c8cfb25ea678/7898556764728.jpg/100x100bb.jpg",
+        "trackName": "É Tudo Sobre Você / Ser Mudado (Ao Vivo)",
+        "artistName": "MORADA",
+        "albumName": "Uma Só Voz - Vol. 01 (Ao Vivo)"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "Santo Pra Sempre",
+      "artist": "Fernandinho",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/be/97/83be9776-ff08-804f-4972-938584ba753c/199066928004.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/be/97/83be9776-ff08-804f-4972-938584ba753c/199066928004.jpg/100x100bb.jpg",
+        "trackName": "Santo Pra Sempre (Ao Vivo no Mineirão)",
+        "artistName": "Fernandinho",
+        "albumName": "Santo Pra Sempre (Ao Vivo no Mineirão) - Single"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "Tu És + Águas Purificadoras (Ao Vivo)",
+      "artist": "fhop music",
+      "candidateCount": 2,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9e/2a/3b/9e2a3b2f-81a2-4094-165a-61e04dbebda2/85365276529.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9e/2a/3b/9e2a3b2f-81a2-4094-165a-61e04dbebda2/85365276529.jpg/100x100bb.jpg",
+        "trackName": "Tu és + Águas Purificadoras - Ao Vivo",
+        "artistName": "fhop music & Hamilton Rabelo",
+        "albumName": "A Boa Parte (Ao Vivo)"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "Deus de Obras Completas",
+      "artist": "Kemilly Santos",
+      "candidateCount": 9,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8c/1a/82/8c1a8266-ed1e-ce32-777b-ff54f554dcf9/0.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8c/1a/82/8c1a8266-ed1e-ce32-777b-ff54f554dcf9/0.jpg/100x100bb.jpg",
+        "trackName": "Deus de Obras Completas (Ao Vivo)",
+        "artistName": "Kemilly Santos",
+        "albumName": "Deus de Obras Completas (Ao Vivo) - Single"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    },
+    {
+      "title": "Terra Seca",
+      "artist": "Fraternidade São João Paulo II",
+      "candidateCount": 10,
+      "selected": {
+        "source": "itunes",
+        "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/eb/4d/2eeb4d8a-d729-76ea-0dfe-0f8db26d20cc/0.jpg/600x600bb.jpg",
+        "fallbackImageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/eb/4d/2eeb4d8a-d729-76ea-0dfe-0f8db26d20cc/0.jpg/100x100bb.jpg",
+        "trackName": "Terra Seca",
+        "artistName": "Fraternidade São João Paulo II",
+        "albumName": "Terra Seca (Especial 12 Anos Fsjpii) - EP"
+      },
+      "imageCheck": {
+        "checked": false
+      }
+    }
+  ]
+}

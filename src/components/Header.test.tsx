@@ -17,8 +17,11 @@ describe("Header", () => {
     render(<MemoryRouter initialEntries={["/feed/materia"]}><Header /></MemoryRouter>);
     expect(screen.getByRole("link", { name: "FEED" })).toHaveClass("text-primary");
   });
-  beforeEach(() => { vi.spyOn(window, "scrollTo").mockImplementation(() => undefined); });
-  afterEach(() => vi.restoreAllMocks());
+  beforeEach(() => {
+    vi.spyOn(window, "scrollTo").mockImplementation(() => undefined);
+    vi.stubGlobal("ResizeObserver", class { observe() {} unobserve() {} disconnect() {} });
+  });
+  afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
   it("closes the mobile menu when the user clicks outside", () => {
     render(<MemoryRouter><Header /></MemoryRouter>);
@@ -51,15 +54,20 @@ describe("Header", () => {
     );
 
     expect(screen.getByRole("link", { name: "FEED" })).toHaveAttribute("href", "/feed");
-    expect(within(screen.getByRole("navigation")).getAllByRole("link").map((link) => link.textContent)).toEqual(["INÍCIO", "FEED", "NOSSA RÁDIO", "EQUIPE"]);
+    const desktop = within(screen.getByRole("navigation", { name: "Navegação principal" }));
+    expect(desktop.getAllByRole("link").map((link) => link.textContent)).toEqual(["INÍCIO", "NOSSA RÁDIO", "FEED", "EQUIPE"]);
+    fireEvent.click(desktop.getByRole("button", { name: "CONTEÚDOS" }));
+    expect(desktop.getByRole("link", { name: /Debate 88 Para mais de 1 milhão de amigos/ })).toHaveAttribute("href", "/conteudos?categoria=debate-88");
     expect(screen.getByRole("link", { name: "ANUNCIE" })).toHaveAttribute("href", "/anuncie");
     const watch = screen.getByRole("link", { name: "ASSISTIR" });
     expect(watch.querySelector("svg.lucide-video")).not.toBeNull();
     expect(watch).not.toHaveTextContent("🎥");
 
     fireEvent.click(screen.getByRole("button", { name: "Abrir menu" }));
-    const mobile = screen.getAllByRole("navigation")[1];
-    expect(within(mobile).getAllByRole("link").slice(0, 4).map((link) => link.textContent)).toEqual(["INÍCIO", "FEED", "NOSSA RÁDIO", "EQUIPE"]);
+    const mobile = screen.getByRole("navigation", { name: "Navegação mobile" });
+    expect(within(mobile).getAllByRole("link").slice(0, 4).map((link) => link.textContent)).toEqual(["INÍCIO", "NOSSA RÁDIO", "FEED", "EQUIPE"]);
+    fireEvent.click(within(mobile).getByRole("button", { name: "CONTEÚDOS" }));
+    expect(within(mobile).getByRole("link", { name: /Cristo em Nós/ })).toHaveAttribute("href", "/conteudos?categoria=cristo-em-nos");
     expect(within(mobile).getByRole("link", { name: "ANUNCIE" })).toHaveAttribute("href", "/anuncie");
     expect(within(mobile).getByRole("link", { name: "Assistir" }).querySelector("svg.lucide-video")).not.toBeNull();
   });

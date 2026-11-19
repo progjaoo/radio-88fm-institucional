@@ -1,91 +1,13 @@
-import { Clock, Mic } from "lucide-react";
-import { useEffect, useState } from "react";
-
-interface Programa {
-  id?: number;
-  nomePrograma: string;
-  apresentador: string;
-  descricao: string;
-  horaInicio: string;
-  horaFim: string;
-  diaSemana?: number;
-  imagem?: string;
-  ativo?: boolean;
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
+import {useProgramming,formatMinute} from '@/services/programming/ProgrammingProvider';
+import {Tabs,TabsList,TabsTrigger,TabsContent} from '@/components/ui/tabs';
+import '@/components/ui/category-tabs.css';
+import logo from '@/assets/logoheadsvgcolor.svg';
+const days=['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+export default function Programacao(){
+ const {snapshot,status,enabled,current}=useProgramming(),[day,setDay]=useState(1);
+ const slots=snapshot?.slots.filter(s=>s.weekday===day).sort((a,b)=>a.startMinute-b.startMinute||a.validFrom.localeCompare(b.validFrom))??[];
+ return <section className="container max-w-6xl py-10 md:py-16"><p className="text-sm font-bold uppercase tracking-widest text-radio-blue">Rádio 88 FM</p><h1 className="mt-3 font-display text-4xl font-extrabold">Nossa programação</h1><p className="mt-3 text-muted-foreground">Horários de Brasília · America/Sao_Paulo. Consulte a vigência de cada horário.</p><Tabs value={String(day)} onValueChange={value=>setDay(Number(value))} activationMode="manual" className="mt-7"><TabsList aria-label="Dia da semana" className="category-tabs">{days.map((name,index)=><TabsTrigger key={name} value={String(index)} className="category-tab font-body">{name}</TabsTrigger>)}</TabsList>{days.map((name,index)=><TabsContent key={name} value={String(index)} className="mt-0">{index===day&&<>
+ {!enabled||status==='unavailable'?<p role="status">Programação temporariamente indisponível. <Link to="/ouvir" className="text-radio-blue underline">Continue ouvindo ao vivo.</Link></p>:status==='loading'?<p role="status">Carregando programação…</p>:slots.length===0?<p>Nenhum programa cadastrado para esse dia.</p>:<div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{slots.map(slot=>{const program=snapshot!.programs.find(p=>p.id===slot.programId)!;return <article key={slot.id} className="overflow-hidden rounded-xl border bg-white"><img src={program.imageUrl??logo} alt={program.name} className="aspect-video w-full bg-neutral-50 object-contain" loading="lazy"/><div className="p-5"><p className="text-sm font-bold text-radio-blue">{formatMinute(slot.startMinute)}–{formatMinute(slot.endMinute)} {slot.endMinute<slot.startMinute&&'· termina no dia seguinte'}</p><h2 className="mt-2 font-display text-xl font-extrabold">{program.name}</h2><p className="mt-1 font-semibold text-muted-foreground">{program.presenters.join(' · ')}</p><p className="mt-2 text-sm text-muted-foreground">{program.description}</p><p className="mt-3 text-xs text-muted-foreground">Vigência: {slot.validFrom}{slot.validUntil?' até '+slot.validUntil:' em diante'}</p>{current?.source==='weekly'&&current.sourceId===slot.id&&<span className="mt-3 inline-block rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-red-700">No ar agora</span>}</div></article>;})}</div>}</>}</TabsContent>)}</Tabs></section>;
 }
-
-// Defina a base URL aqui para facilitar a manutenção
-const API_BASE_URL = "http://localhost:5091"; 
-const API_ENDPOINT = `${API_BASE_URL}/api/programacao/emissora/1/buscarTodos`;
-
-const Programacao = () => {
-  const [programas, setProgramas] = useState<Programa[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const formatarHora = (hora: string) => hora.substring(0, 5);
-  useEffect(() => {
-    const fetchProgramas = async () => {
-      try {
-        const res = await fetch(API_ENDPOINT);
-        if (!res.ok) throw new Error("Erro na resposta da API");
-        
-        const data: Programa[] = await res.json();
-        // Filtra ativos e atualiza o estado
-        setProgramas(data.filter(p => p.ativo !== false));
-      } catch (error) {
-        console.error("Erro ao buscar programação:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProgramas();
-  }, []);
-
-  return (
-    <div className="min-h-screen bg-background">
-      {/* ... seu header ... */}
-      <section className="py-12">
-        <div className="container max-w-4xl">
-          <h1 className="mb-8 font-display text-3xl font-extrabold text-foreground md:text-4xl">
-            Programação da Rádio 88 FM
-          </h1>
-          {loading ? (
-            <div className="text-center text-muted-foreground py-10">Carregando programação...</div>
-          ) : (
-            <div className="space-y-4">
-              {programas.map((prog, index) => (
-            <div
-              key={prog.id || index}
-              className="bg-card rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow border border-border flex flex-col md:flex-row md:items-center gap-4"
-            >
-              <div className="flex items-center gap-2 text-primary shrink-0">
-                <Clock size={18} />
-                <span className="font-display font-bold text-sm">
-                  {formatarHora(prog.horaInicio)} - {formatarHora(prog.horaFim)}
-                </span>
-              </div>
-
-              <div className="flex-1">
-                <h3 className="font-display text-lg font-bold text-foreground">
-                  {prog.nomePrograma}
-                </h3>
-                <p className="text-muted-foreground text-sm mt-1">
-                  {prog.descricao}
-                </p>
-                <div className="flex items-center gap-1 mt-2">
-                  <Mic size={14} className="text-primary" />
-                  <span className="text-primary text-xs font-semibold">
-                    {prog.apresentador}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-            </div>
-          )}
-        </div>
-      </section>
-    </div>
-  );
-};
-export default Programacao;

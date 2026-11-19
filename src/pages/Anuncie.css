@@ -1,0 +1,72 @@
+.anuncie-page {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.anuncie-wrap { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: clamp(20px, 4vw, 48px); }
+.anuncie-section { padding-block: clamp(48px, 6vw, 80px); }
+.anuncie-page h1, .anuncie-page h2, .anuncie-page h3 { font-family: Montserrat, sans-serif; font-weight: 800; letter-spacing: -.04em; text-wrap: balance; }
+.anuncie-page h1 { margin-block: 18px 24px; font-size: clamp(36px, 4.1vw, 58px); line-height: 1.08; }
+.anuncie-page h1 span { color: var(--radio-brand-blue); }
+.anuncie-page h2 { margin-block: 14px 24px; font-size: clamp(28px, 3vw, 42px); line-height: 1.12; }
+.anuncie-page h3 { font-size: 20px; line-height: 1.3; margin-bottom: 12px; letter-spacing: -.025em; }
+.anuncie-page p { color: hsl(var(--muted-foreground)); line-height: 1.75; margin-bottom: 20px; max-width: 65ch; }
+.anuncie-page .anuncie-eyebrow { margin-bottom: 0; color: var(--radio-brand-blue); font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.anuncie-page .anuncie-lead { font-size: 18px; }
+.anuncie-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: center; padding-block: clamp(48px, 6vw, 80px); }
+.anuncie-hero > *, .anuncie-region > *, .anuncie-digital > *, .anuncie-studio > *, .anuncie-contact > * { min-width: 0; }
+.anuncie-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.anuncie-page .anuncie-button { height: auto; min-height: 48px; padding: 14px 20px; white-space: normal; text-align: center; font-family: Montserrat, sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; border-radius: 8px; }
+.anuncie-page .anuncie-button-primary { color: white; background: var(--radio-brand-blue); }
+.anuncie-page .anuncie-button-primary:hover { background: #0e4dbf; }
+.anuncie-page .anuncie-button-outline { background: hsl(var(--background)); border-color: hsl(var(--border)); }
+.anuncie-page .anuncie-button-outline:hover { background: hsl(var(--muted)); }
+.anuncie-page .anuncie-button-yellow { background: hsl(var(--radio-yellow)); color: #171717; border-color: transparent; }
+.anuncie-page .anuncie-button-yellow:hover { background: #ffda42; }
+.anuncie-page .anuncie-file-info, .anuncie-page .anuncie-caption { font-size: 12px; line-height: 1.6; }
+.anuncie-page .anuncie-file-info { margin-top: 16px; margin-bottom: 0; }
+.anuncie-kit-preview { display: block; padding: clamp(20px, 3vw, 32px); background: linear-gradient(145deg, #edf4ff, #f5f9ff); border-radius: 20px; transform: rotate(-2deg); text-decoration: none; }
+.anuncie-kit-preview img { display: block; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 18px 40px #14336d26; }
+.anuncie-kit-preview > span { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 20px; color: #24446e; font-size: 12px; font-weight: 600; }
+.anuncie-kit-preview svg { flex-shrink: 0; }
+.anuncie-page a:focus-visible { outline: 3px solid var(--radio-brand-blue); outline-offset: 5px; }
+.anuncie-download a:focus-visible { outline-color: hsl(var(--radio-yellow)); }
+.anuncie-region, .anuncie-digital { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.anuncie-cities { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin-block: 0 20px; }
+.anuncie-cities li { padding: 9px 14px; border: 1px solid hsl(var(--border)); border-radius: 999px; font-size: 13px; }
+.anuncie-muted-section { background: hsl(var(--muted)); }
+.anuncie-formats { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; margin-top: 32px; }
+.anuncie-formats article { border-top: 1px solid hsl(var(--border)); padding-block: 28px 12px; }
+.anuncie-page .anuncie-channel-list { font-weight: 600; color: var(--radio-brand-blue); }
+.anuncie-studio { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-top: 0; }
+.anuncie-studio img { width: 100%; height: auto; border-radius: 12px; }
+.anuncie-text-link { display: inline-flex; gap: 8px; align-items: center; color: var(--radio-brand-blue); font-weight: 600; text-underline-offset: 4px; }
+.anuncie-text-link:hover { text-decoration: underline; }
+.anuncie-steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 40px; }
+.anuncie-step-number { display: block; color: var(--radio-brand-blue); font-family: Montserrat, sans-serif; font-weight: 800; font-size: 28px; margin-bottom: 20px; }
+.anuncie-download { display: flex; align-items: center; justify-content: space-between; gap: 36px; background: var(--radio-brand-blue); border-radius: 16px; padding: clamp(24px, 4vw, 48px); color: white; }
+.anuncie-download h2 { color: white; margin-top: 0; }
+.anuncie-download p { color: #fff; }
+.anuncie-download .anuncie-button { flex-shrink: 0; }
+.anuncie-contact { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; padding-top: 0; scroll-margin-top: calc(var(--header-height) + 24px); }
+.anuncie-contact-details { font-style: normal; align-self: center; border-left: 1px solid hsl(var(--border)); padding-left: 36px; }
+.anuncie-contact-details p { color: hsl(var(--foreground)); font-weight: 700; }
+.anuncie-contact-details a { display: flex; align-items: center; gap: 12px; min-height: 44px; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.anuncie-contact-details svg { flex-shrink: 0; }
+.anuncie-contact-details a span { overflow-wrap: anywhere; }
+
+@media (max-width: 800px) {
+  .anuncie-hero, .anuncie-region, .anuncie-digital, .anuncie-studio, .anuncie-contact { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .anuncie-kit-preview { width: 100%; max-width: 560px; margin-inline: auto; transform: none; }
+  .anuncie-formats { column-gap: 28px; }
+  .anuncie-steps { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .anuncie-step-number { margin-bottom: 8px; }
+  .anuncie-download { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .anuncie-contact-details { border-left: 0; border-top: 1px solid hsl(var(--border)); padding-left: 0; padding-top: 24px; }
+}
+
+@media (max-width: 480px) {
+  .anuncie-formats { grid-template-columns: minmax(0, 1fr); }
+  .anuncie-actions { flex-direction: column; align-items: stretch; }
+  .anuncie-download .anuncie-button { width: 100%; }
+}

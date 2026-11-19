@@ -1,0 +1,717 @@
+{
+  "source": "https://radoxo.com/brazil/radio-88-fm/playlist",
+  "method": "Rank prefixes of live limit=50, with explicit limit=10 and 25 controls and verification of every baseline miss. Recovered results replayed with live iTunes and image HEAD, station metadata supplied as fixture.",
+  "stats": {
+    "sample": 50,
+    "control10": 33,
+    "control25": 33,
+    "control50": 33,
+    "refined": 38
+  },
+  "rows": [
+    {
+      "raw": "Pregadores De Rosas - Junior",
+      "source": "vox",
+      "observedAt": "2026-11-18T14:28:12.728Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Eu Cuido de Ti - Cancao e Louvor",
+      "source": "stream-history",
+      "observedAt": "2026-11-18T14:28:13.350Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Castelo Forte - Fernandinho",
+      "source": "stream-history",
+      "observedAt": "2026-11-18T14:28:13.351Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Acima das Estrelas (Antiga) - Shirley Carvalhaes",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T13:45:12.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 17,
+      "result": "matched",
+      "verified": {
+        "title": "Acima das Estrelas",
+        "artist": "Shirley Carvalhaes",
+        "imageHttp": [
+          200,
+          200
+        ],
+        "requests": 1
+      }
+    },
+    {
+      "raw": "Sou Grato Por Seu Amor - Get Worship",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T13:26:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Ungido de Deus - Rose Nascimento",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T13:23:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Reacende a Chama - Sued Silva",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T13:04:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched",
+      "verified": {
+        "title": "Reacende a Chama (Ao Vivo)",
+        "artist": "Sued Silva",
+        "imageHttp": [
+          200,
+          200
+        ],
+        "requests": 1
+      }
+    },
+    {
+      "raw": "Todos Os Dias (A Bencao) - O Canto das Igrejas",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T12:38:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Pentecostes - Sarah Beatriz",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T08:00:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "O Fogo Ardera - Alexsander Lucio",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:56:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Tudo e Teu - Drops",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:49:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 25,
+      "result": "not_found"
+    },
+    {
+      "raw": "Calma, Por Favor (Ao Vivo) - Eyshila",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:45:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Amo o Senhor (Marcus Salles) - Felipe Rodrigues",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:41:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 25,
+      "result": "matched",
+      "verified": {
+        "title": "Amo o Senhor (Ao Vivo)",
+        "artist": "Felipe Rodrigues & Marcus Salles",
+        "imageHttp": [
+          200,
+          200
+        ],
+        "requests": 1
+      }
+    },
+    {
+      "raw": "Abro Mao - Min. Toque No Altar",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:36:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 25,
+      "result": "not_found"
+    },
+    {
+      "raw": "Ah Jesus (Coracao Igual ao Teu) - Julliany Souza",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:29:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "A Promessa Esta de Pe (Midian Lima) - Samuel Messias",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:24:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 2,
+      "result": "matched",
+      "verified": {
+        "title": "A Promessa Está de Pé (Ao Vivo)",
+        "artist": "Samuel Messias & Midian Lima",
+        "imageHttp": [
+          200,
+          200
+        ],
+        "requests": 1
+      }
+    },
+    {
+      "raw": "Um Novo Dia (MAIS TOCADA EM 2025) - Get Worship",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:19:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 25,
+      "result": "matched",
+      "verified": {
+        "title": "Um novo dia (Live)",
+        "artist": "Get Worship",
+        "imageHttp": [
+          200,
+          200
+        ],
+        "requests": 1
+      }
+    },
+    {
+      "raw": "Respira - Samuel Mariano",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:12:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Rompendo Em Fe - Gabriela Rocha",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:08:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "A Fe (Ao Vivo) - Na Graca",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T07:02:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Arvore Cortada - Valesca Mayssa",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T06:51:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Teus Altares (Morada) - Poiema Music",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T06:46:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 4,
+      "result": "matched",
+      "verified": {
+        "title": "Teus Altares (Ao Vivo)",
+        "artist": "Poiema Music, André Brisa & MORADA",
+        "imageHttp": [
+          200,
+          200
+        ],
+        "requests": 1
+      }
+    },
+    {
+      "raw": "Como Nao Te Adorar - Kellen Byanca",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T06:40:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Aguas Cristalinas - Marquinhos Gomes",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T06:34:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Digno e o cordeiro - Casa de Davi",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T06:26:12.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 25,
+      "result": "not_found"
+    },
+    {
+      "raw": "Consagracao (MAIS TOCADA EM 1994) - Aline barros",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T06:19:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 12,
+      "result": "not_found"
+    },
+    {
+      "raw": "Jireh - Guilherme Galdino",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T06:12:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 0,
+      "result": "not_found"
+    },
+    {
+      "raw": "Muda Minha Vida - Alex e Alex",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T06:06:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Poderoso Deus - Soraya Moraes",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T05:59:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Ousado Amor / Deus E Tao Bom - Gabriel Guedes",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T05:49:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 25,
+      "result": "not_found"
+    },
+    {
+      "raw": "Deus Provera - Gabriela Gomes",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T05:43:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Oh! Se Fendesses - Morada",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T05:35:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Sou Teu Deus - Midian Lima",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T05:30:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Me Leva pra Casa - Israel Subira",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T05:25:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Rei Da Gloria - Livres Para Adorar",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T05:17:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 25,
+      "result": "not_found"
+    },
+    {
+      "raw": "Ressuscita O Meu Sonho - Regis Danese",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T05:11:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Os Sonhos De Deus - Ludmila Ferber",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T05:03:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Caminho no Deserto - Viva Adoracao",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:53:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 25,
+      "result": "not_found"
+    },
+    {
+      "raw": "Thalles - Deus Do Impossivel",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:45:11.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 23,
+      "result": "not_found"
+    },
+    {
+      "raw": "Sempre Fiel - Rose Nascimento",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:41:10.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Promessa (Nova Versao) - Renascer Praise",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:34:12.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 10,
+      "result": "not_found"
+    },
+    {
+      "raw": "Promessa (Vou Voar) - Marco Aurelio",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:28:12.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 7,
+      "result": "not_found"
+    },
+    {
+      "raw": "Romanos 826 (Ao Vivo) - Fernanda Brum",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:24:12.000Z",
+      "control": {
+        "10": false,
+        "25": false,
+        "50": false
+      },
+      "explicitLimits10And25": true,
+      "baseQueryCandidateCount": 21,
+      "result": "not_found"
+    },
+    {
+      "raw": "Me Ouve - Projeto Norte",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:19:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Passa La em Casa Jesus - Kailane Frauches",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:14:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Toda dor e por enquanto - Marcos Almeida",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:10:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Vento Impetuoso - Ministerio Atitude",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T04:04:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "A Tua Mesa Cura - Thamires Garcia",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T03:59:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Amanhecer - Melk Villar",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T03:54:11.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    },
+    {
+      "raw": "Nao Vai Falhar (Ao Vivo) - Preto no Branco",
+      "source": "station-public-history-mirror",
+      "observedAt": "2026-11-18T03:50:12.000Z",
+      "control": {
+        "10": true,
+        "25": true,
+        "50": true
+      },
+      "explicitLimits10And25": false,
+      "baseQueryCandidateCount": null,
+      "result": "matched"
+    }
+  ]
+}

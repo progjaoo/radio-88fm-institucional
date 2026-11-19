@@ -1,7 +1,56 @@
 {
   "schemaVersion": 1,
-  "namespace": "development/radio-88",
-  "releaseId": "empty",
-  "generatedAt": "",
-  "posts": []
+  "namespace": "production/radio-88",
+  "releaseId": "231a7b4a-36c6-4682-b64b-2f0501019ab8",
+  "generatedAt": "2026-11-09T11:16:02.629Z",
+  "posts": [
+    {
+      "id": "dadb333a-ba46-4d71-9860-b1038a96822d",
+      "slug": "aniversario-de-32-anos-da-radio-88-fm",
+      "title": "Aniversário de 32 anos da Rádio 88 FM",
+      "excerpt": "Confira como foi nosso culto de adoração ao Senhor no nosso aniversário de 32 anos de vitórias",
+      "cover": {
+        "url": "https://pub-d9c3f2ecb5ec4d21846215ee6c91d3de.r2.dev/feed-media/production/radio-88/231a7b4a-36c6-4682-b64b-2f0501019ab8/7b9f2482-034f-40b7-a9b6-d37ea035d52d/source.w640.webp",
+        "srcSet": "https://pub-d9c3f2ecb5ec4d21846215ee6c91d3de.r2.dev/feed-media/production/radio-88/231a7b4a-36c6-4682-b64b-2f0501019ab8/7b9f2482-034f-40b7-a9b6-d37ea035d52d/source.w640.webp 640w",
+        "mimeType": "image/webp",
+        "byteSize": 48254,
+        "alt": "Aniversário de 32 anos da Rádio 88 FM",
+        "focusX": 50,
+        "focusY": 50
+      },
+      "category": {
+        "id": "a46d07c4-be9e-4db5-9caf-fd3c536f0e9f",
+        "name": "Eventos",
+        "slug": "eventos"
+      },
+      "publishedAt": "2026-11-06T19:40:13.227Z",
+      "eventDate": "2026-08-01",
+      "postKey": "feed/production/radio-88/releases/231a7b4a-36c6-4682-b64b-2f0501019ab8/posts/aniversario-de-32-anos-da-radio-88-fm.json",
+      "postSha256": "ef12cef284ad7d39668d4f65dbabaf00d85701314532770aa4ef55ca3d2fbf21"
+    },
+    {
+      "id": "bed8c597-c276-4b02-ac7b-40a90d9ca473",
+      "slug": "corrida-da-fe",
+      "title": "Corrida da Fé",
+      "excerpt": "Veja como foi nossa primeira edição da Corrida e Caminhada da Fé",
+      "cover": {
+        "url": "https://pub-d9c3f2ecb5ec4d21846215ee6c91d3de.r2.dev/feed-media/production/radio-88/231a7b4a-36c6-4682-b64b-2f0501019ab8/33af457c-040a-439c-bee5-c5e47a96d878/source.w640.webp",
+        "srcSet": "https://pub-d9c3f2ecb5ec4d21846215ee6c91d3de.r2.dev/feed-media/production/radio-88/231a7b4a-36c6-4682-b64b-2f0501019ab8/33af457c-040a-439c-bee5-c5e47a96d878/source.w640.webp 640w",
+        "mimeType": "image/webp",
+        "byteSize": 43720,
+        "alt": "Corrida da Fé",
+        "focusX": 50,
+        "focusY": 50
+      },
+      "category": {
+        "id": "a46d07c4-be9e-4db5-9caf-fd3c536f0e9f",
+        "name": "Eventos",
+        "slug": "eventos"
+      },
+      "publishedAt": "2026-11-06T19:33:03.529Z",
+      "eventDate": "2026-05-17",
+      "postKey": "feed/production/radio-88/releases/231a7b4a-36c6-4682-b64b-2f0501019ab8/posts/corrida-da-fe.json",
+      "postSha256": "bf7c32f0d631e2159874cb6419d271c23dcf3f74da4623008c1cfe7f3f7ceb42"
+    }
+  ]
 }

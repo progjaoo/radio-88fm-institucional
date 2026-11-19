@@ -1,0 +1,2082 @@
+{
+  "executedAt": "2026-11-16T12:18:39.237Z",
+  "source": "https://billboard.com.br/gospel-10-musicas-mais-ouvidas-nesta-semana/",
+  "results": [
+    {
+      "title": "A mão de Deus",
+      "artist": "Marcus Salles",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Marcus+Salles+A+m%C3%A3o+de+Deus&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 559,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 6815819081,
+              "title": "A Mão de Deus",
+              "artist": "Marcus Salles",
+              "album": "Faz Mais Uma Vez",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e4/b4/f4/e4b4f414-561f-e1d4-a196-8b8ddacafc34/7898556746779.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-m%C3%A3o-de-deus/6815818881?i=6815819081&uo=4"
+            },
+            {
+              "id": 6815759859,
+              "title": "A Mão de Deus",
+              "artist": "Marcus Salles",
+              "album": "Acoustic Session",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/ba/e3/8abae3bd-55d6-bb9b-0526-4b08a44517fa/7898556808347.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-m%C3%A3o-de-deus/6815759441?i=6815759859&uo=4"
+            },
+            {
+              "id": 6815831417,
+              "title": "A mão de Deus (Ao Vivo)",
+              "artist": "Marcus Salles & Samuel Messias",
+              "album": "A mão de Deus (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b5/5f/0b/b55f0b84-b99a-4ece-a7e2-02d9b124e280/7898556800921.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-m%C3%A3o-de-deus-ao-vivo/6815831413?i=6815831417&uo=4"
+            },
+            {
+              "id": 6815829254,
+              "title": "Abra a Sua Boca e Profetiza (Ao Vivo)",
+              "artist": "Marcus Salles",
+              "album": "Abra a Sua Boca e Profetiza (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/74/1c/62/741c626d-1619-beff-2e37-e97105ae83eb/7898556742931.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/abra-a-sua-boca-e-profetiza-ao-vivo/6815828754?i=6815829254&uo=4"
+            },
+            {
+              "id": 6815746912,
+              "title": "Até que Ele venha / Rendido Estou / Sou Casa (Ao Vivo)",
+              "artist": "Marcus Salles",
+              "album": "Até que Ele venha / Rendido Estou / Sou Casa (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b1/01/d0/b101d055-2f14-5914-c09f-fa7efa3004e8/7898556803120.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/at%C3%A9-que-ele-venha-rendido-estou-sou-casa-ao-vivo/6815746657?i=6815746912&uo=4"
+            },
+            {
+              "id": 6815759840,
+              "title": "Um Chamado",
+              "artist": "Marcus Salles",
+              "album": "Acoustic Session",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/ba/e3/8abae3bd-55d6-bb9b-0526-4b08a44517fa/7898556808347.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/um-chamado/6815759441?i=6815759840&uo=4"
+            },
+            {
+              "id": 1565003794,
+              "title": "Flecha na Mão do Valente (Ao Vivo)",
+              "artist": "Marcus Salles",
+              "album": "Estamos de Pé (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d3/bb/3e/d3bb3e9d-a881-9591-dfc8-74cd033ca630/7898556764025.png/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/flecha-na-m%C3%A3o-do-valente-ao-vivo/1565003786?i=1565003794&uo=4"
+            },
+            {
+              "id": 6815777714,
+              "title": "Um Chamado (Ao Vivo)",
+              "artist": "Marcus Salles",
+              "album": "Um Chamado (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6d/eb/44/6deb442b-d3bb-e65c-30d3-61d116a09845/7898566943809.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/um-chamado-ao-vivo/6815777712?i=6815777714&uo=4"
+            },
+            {
+              "id": 1565003791,
+              "title": "Ministração / Tudo Entregarei (feat. Munique Salles) [Ao Vivo]",
+              "artist": "Marcus Salles",
+              "album": "Estamos de Pé (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d3/bb/3e/d3bb3e9d-a881-9591-dfc8-74cd033ca630/7898556764025.png/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/ministra%C3%A7%C3%A3o-tudo-entregarei-feat-munique-salles-ao-vivo/1565003786?i=1565003791&uo=4"
+            },
+            {
+              "id": 522971778,
+              "title": "Vem Senhor Jesus",
+              "artist": "Marcus Salles",
+              "album": "Ao vivo na Igreja",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/64/0b/58/640b5898-bd59-00e2-a5a5-0abe20026b13/886443346628.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/vem-senhor-jesus/522971244?i=522971778&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 6815819081,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e4/b4/f4/e4b4f414-561f-e1d4-a196-8b8ddacafc34/7898556746779.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Marcus+Salles%22+track%3A%22A+m%C3%A3o+de+Deus%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 431,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Marcus+Salles+A+m%C3%A3o+de+Deus&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 386,
+          "total": 3,
+          "error": null,
+          "candidates": [
+            {
+              "id": 4304463372,
+              "title": "A mão de Deus (Ao Vivo)",
+              "titleShort": "A mão de Deus",
+              "version": "(Ao Vivo)",
+              "artist": "Marcus Salles",
+              "album": "A mão de Deus (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/e6ee5074cc26ad92fec22717cb77e1d3/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4304463372"
+            },
+            {
+              "id": 4304444172,
+              "title": "A Mão de Deus",
+              "titleShort": "A Mão de Deus",
+              "version": "",
+              "artist": "Marcus Salles",
+              "album": "Faz Mais Uma Vez",
+              "image": "https://cdn-images.dzcdn.net/images/cover/5284e2b93f9cb9371e544dcd5dfce532/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4304444172"
+            },
+            {
+              "id": 4304119732,
+              "title": "A Mão de Deus",
+              "titleShort": "A Mão de Deus",
+              "version": "",
+              "artist": "Marcus Salles",
+              "album": "Acoustic Session",
+              "image": "https://cdn-images.dzcdn.net/images/cover/2f52022efea9eba8d4ac7f450bf6faaa/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4304119732"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 4304444172,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/5284e2b93f9cb9371e544dcd5dfce532/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "Um novo dia",
+      "artist": "Get Worship",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Get+Worship+Um+novo+dia&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 357,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1846381392,
+              "title": "Um novo dia (Live)",
+              "artist": "Get Worship",
+              "album": "Um novo dia (Live) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/46/3c/27463c96-3bcc-da3f-1c17-196084383442/5063831205179_cover.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/um-novo-dia-live/1846381391?i=1846381392&uo=4"
+            },
+            {
+              "id": 1822797900,
+              "title": "Um Novo Dia (Ao Vivo) [Ao Vivo]",
+              "artist": "Get Worship, Get Records, Melk Villar & Vinicius Cruz",
+              "album": "Um Novo Dia (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e8/8d/e0/e88de020-227d-5ad0-7c0d-8c4cc8d9fa4c/ticket.agwgzrwg.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/um-novo-dia-ao-vivo-ao-vivo/1822797897?i=1822797900&uo=4"
+            },
+            {
+              "id": 6763691011,
+              "title": "Um Novo Dia (Session)",
+              "artist": "Get Worship, Ericka Nascimento, Lavinnia & Get Records",
+              "album": "Um Novo Dia (Session) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/02/9b/bd/029bbde3-960a-979e-4234-64ac99c0f8be/8718521238766.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/um-novo-dia-session/1895440196?i=6763691011&uo=4"
+            },
+            {
+              "id": 6769179443,
+              "title": "Um Novo Dia (Ao Vivo)",
+              "artist": "Get Worship, Get Records, Melk Villar & Vinicius Cruz",
+              "album": "Um Novo Dia",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/20/a1/3a20a198-959a-71d7-e192-d1e872a37c5a/8718521342203.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/um-novo-dia-ao-vivo/6769179442?i=6769179443&uo=4"
+            },
+            {
+              "id": 6769179657,
+              "title": "Sou Grato Por Seu Amor",
+              "artist": "Get Worship, Get Records & Vinicius Cruz",
+              "album": "Um Novo Dia",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/20/a1/3a20a198-959a-71d7-e192-d1e872a37c5a/8718521342203.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/sou-grato-por-seu-amor/6769179442?i=6769179657&uo=4"
+            },
+            {
+              "id": 6769179663,
+              "title": "Meu Mestre",
+              "artist": "Get Worship, Get Records & Vinicius Cruz",
+              "album": "Um Novo Dia",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/20/a1/3a20a198-959a-71d7-e192-d1e872a37c5a/8718521342203.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/meu-mestre/6769179442?i=6769179663&uo=4"
+            },
+            {
+              "id": 1853531987,
+              "title": "Um Novo Dia (Cover)",
+              "artist": "Attos 2 Worship",
+              "album": "Um Novo Dia (Cover) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9b/48/f4/9b48f413-2a13-893f-d397-bca26c400dd4/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/um-novo-dia-cover/1853531982?i=1853531987&uo=4"
+            },
+            {
+              "id": 1843878181,
+              "title": "Um Novo Dia (One More Day - Groove Worship)",
+              "artist": "Black Music Gospel BR, FLOW RECORDS & Lab do Groove",
+              "album": "Um Novo Dia (One More Day) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/31/c6/92/31c69271-a003-c3f5-7efb-fcf529432866/8447536524174.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/um-novo-dia-one-more-day-groove-worship/1843878179?i=1843878181&uo=4"
+            },
+            {
+              "id": 1843878182,
+              "title": "Um Novo Dia - Vers. 2 (One More Day - Groove Worship)",
+              "artist": "Black Music Gospel BR, FLOW RECORDS & Lab do Groove",
+              "album": "Um Novo Dia (One More Day) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/31/c6/92/31c69271-a003-c3f5-7efb-fcf529432866/8447536524174.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/um-novo-dia-vers-2-one-more-day-groove-worship/1843878179?i=1843878182&uo=4"
+            },
+            {
+              "id": 1747327075,
+              "title": "Novo Dia",
+              "artist": "Somos Vibe",
+              "album": "Novo Dia - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/37/1d/81/371d8182-b430-570e-0392-9d0d343b3053/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/novo-dia/1747327072?i=1747327075&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 1846381392,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/46/3c/27463c96-3bcc-da3f-1c17-196084383442/5063831205179_cover.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Get+Worship%22+track%3A%22Um+novo+dia%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 223,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Get+Worship+Um+novo+dia&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 296,
+          "total": 12,
+          "error": null,
+          "candidates": [
+            {
+              "id": 3429968981,
+              "title": "Um Novo Dia (Ao Vivo)",
+              "titleShort": "Um Novo Dia",
+              "version": "(Ao Vivo)",
+              "artist": "Get Worship",
+              "album": "Um Novo Dia (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/7321b7270e4d8d359a0103f95ded9be4/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3429968981"
+            },
+            {
+              "id": 3603853232,
+              "title": "Um novo dia (Live)",
+              "titleShort": "Um novo dia",
+              "version": "(Live)",
+              "artist": "Get Worship",
+              "album": "Um novo dia (Live)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/666c6fde2ecbcd19bf62107e5dea9189/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3603853232"
+            },
+            {
+              "id": 4046587661,
+              "title": "Um Novo Dia (Session)",
+              "titleShort": "Um Novo Dia",
+              "version": "(Session)",
+              "artist": "Get Worship",
+              "album": "Worship Session GW",
+              "image": "https://cdn-images.dzcdn.net/images/cover/1afd483299b161aff592b2bdd58de475/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4046587661"
+            },
+            {
+              "id": 4020438681,
+              "title": "Ele Aqui Está (Ao Vivo)",
+              "titleShort": "Ele Aqui Está",
+              "version": "(Ao Vivo)",
+              "artist": "Get Worship",
+              "album": "Um Novo Dia",
+              "image": "https://cdn-images.dzcdn.net/images/cover/379fbf025f36320f61c4e1f2c0b98fe9/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4020438681"
+            },
+            {
+              "id": 4020438691,
+              "title": "Derramo Meu Perfume (Ao Vivo)",
+              "titleShort": "Derramo Meu Perfume",
+              "version": "(Ao Vivo)",
+              "artist": "Get Worship",
+              "album": "Um Novo Dia",
+              "image": "https://cdn-images.dzcdn.net/images/cover/379fbf025f36320f61c4e1f2c0b98fe9/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4020438691"
+            },
+            {
+              "id": 4020438741,
+              "title": "Assim seja, Deus",
+              "titleShort": "Assim seja, Deus",
+              "version": "",
+              "artist": "Get Worship",
+              "album": "Um Novo Dia",
+              "image": "https://cdn-images.dzcdn.net/images/cover/379fbf025f36320f61c4e1f2c0b98fe9/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4020438741"
+            },
+            {
+              "id": 4020438651,
+              "title": "Sou Grato Por Seu Amor",
+              "titleShort": "Sou Grato Por Seu Amor",
+              "version": "",
+              "artist": "Get Worship",
+              "album": "Um Novo Dia",
+              "image": "https://cdn-images.dzcdn.net/images/cover/379fbf025f36320f61c4e1f2c0b98fe9/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4020438651"
+            },
+            {
+              "id": 4020438731,
+              "title": "Teu Toque",
+              "titleShort": "Teu Toque",
+              "version": "",
+              "artist": "Get Worship",
+              "album": "Um Novo Dia",
+              "image": "https://cdn-images.dzcdn.net/images/cover/379fbf025f36320f61c4e1f2c0b98fe9/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4020438731"
+            },
+            {
+              "id": 4020438721,
+              "title": "Que Jesus Seja o Nome",
+              "titleShort": "Que Jesus Seja o Nome",
+              "version": "",
+              "artist": "Get Worship",
+              "album": "Um Novo Dia",
+              "image": "https://cdn-images.dzcdn.net/images/cover/379fbf025f36320f61c4e1f2c0b98fe9/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4020438721"
+            },
+            {
+              "id": 4020438701,
+              "title": "Uma Carta Viva (Ao Vivo)",
+              "titleShort": "Uma Carta Viva",
+              "version": "(Ao Vivo)",
+              "artist": "Get Worship",
+              "album": "Um Novo Dia",
+              "image": "https://cdn-images.dzcdn.net/images/cover/379fbf025f36320f61c4e1f2c0b98fe9/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4020438701"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 3429968981,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/7321b7270e4d8d359a0103f95ded9be4/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "Ah, Jesus / Coração Igual ao Teu",
+      "artist": "Julliany Souza",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Julliany+Souza+Ah%2C+Jesus+%2F+Cora%C3%A7%C3%A3o+Igual+ao+Teu&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 380,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 6765791263,
+              "title": "AH, JESUS / CORAÇÃO IGUAL AO TEU",
+              "artist": "Julliany Souza",
+              "album": "AH, JESUS / CORAÇÃO IGUAL AO TEU",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3c/aa/14/3caa1400-3764-5bc6-428c-c00b72365f02/8718521271329.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/ah-jesus-cora%C3%A7%C3%A3o-igual-ao-teu/6765791255?i=6765791263&uo=4"
+            },
+            {
+              "id": 1722295783,
+              "title": "Lindo Momento (Ao Vivo)",
+              "artist": "Julliany Souza",
+              "album": "Lindo Momento (Ao Vivo) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d9/be/f9/d9bef962-9a1f-49f7-5d21-55389e02bc74/197338147658.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/lindo-momento-ao-vivo/1722295764?i=1722295783&uo=4"
+            },
+            {
+              "id": 1729625304,
+              "title": "Lindo Momento",
+              "artist": "Julliany Souza",
+              "album": "Lindo Momento",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/b9/eb/a6b9ebb1-c9c7-6d88-16a8-c4ff1210058c/197338045237.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/lindo-momento/1729624715?i=1729625304&uo=4"
+            },
+            {
+              "id": 1777271995,
+              "title": "Acalma o Meu Coração",
+              "artist": "Julliany Souza",
+              "album": "Sessão Livre (Vol.3)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7a/ef/22/7aef226b-76e6-0f02-0205-e9880b35dafb/5034644230412.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/acalma-o-meu-cora%C3%A7%C3%A3o/1777271991?i=1777271995&uo=4"
+            },
+            {
+              "id": 6818350302,
+              "title": "JESUS É O CENTRO",
+              "artist": "Julliany Souza & Nívea Soares",
+              "album": "JESUS É O CENTRO - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/01/c8/61/01c86122-69a6-b22c-5408-0c08099c6834/1200220240418.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/jesus-%C3%A9-o-centro/6818350089?i=6818350302&uo=4"
+            },
+            {
+              "id": 1663562488,
+              "title": "Me Derramar",
+              "artist": "Amem & Julliany Souza",
+              "album": "Sessão Livre (Vol. 2) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/2a/20/e5/2a20e5fa-a861-e041-2420-935d8d811b04/197338940563.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/me-derramar/1663562232?i=1663562488&uo=4"
+            },
+            {
+              "id": 1663559055,
+              "title": "Faz Arder + A Terra Clama + Aviva-nos",
+              "artist": "Amem & Julliany Souza",
+              "album": "Sessão Livre (Vol.1)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/f1/f7/ef/f1f7ef46-63f7-0d3d-c6f2-4aa3b2e8d1c8/859763565307.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/faz-arder-a-terra-clama-aviva-nos/1663559029?i=1663559055&uo=4"
+            },
+            {
+              "id": 1624162572,
+              "title": "Atraídos Pelo Fogo",
+              "artist": "Casa Worship, Julliany Souza & Felipe Rodrigues",
+              "album": "Atraídos Pelo Fogo - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/39/35/e6/3935e6c8-3abb-2b95-e70c-2f16329e5670/859735194467.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/atra%C3%ADdos-pelo-fogo/1624162569?i=1624162572&uo=4"
+            },
+            {
+              "id": 1663562821,
+              "title": "Faz Arder",
+              "artist": "Julliany Souza, Amem & Casa Worship",
+              "album": "Momentos (Vol.1)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b5/1c/f5/b51cf597-bafc-dca1-dba2-94ea55f7e146/859741574512.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/faz-arder/1663562815?i=1663562821&uo=4"
+            },
+            {
+              "id": 1663562829,
+              "title": "Preciso De Ti",
+              "artist": "Julliany Souza, Amem & Casa Worship",
+              "album": "Momentos (Vol.1)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b5/1c/f5/b51cf597-bafc-dca1-dba2-94ea55f7e146/859741574512.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/preciso-de-ti/1663562815?i=1663562829&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 6765791263,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3c/aa/14/3caa1400-3764-5bc6-428c-c00b72365f02/8718521271329.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Julliany+Souza%22+track%3A%22Ah%2C+Jesus+%2F+Cora%C3%A7%C3%A3o+Igual+ao+Teu%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 245,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Julliany+Souza+Ah%2C+Jesus+%2F+Cora%C3%A7%C3%A3o+Igual+ao+Teu&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 224,
+          "total": 1,
+          "error": null,
+          "candidates": [
+            {
+              "id": 3997639031,
+              "title": "AH, JESUS / CORAÇÃO IGUAL AO TEU",
+              "titleShort": "AH, JESUS / CORAÇÃO IGUAL AO TEU",
+              "version": "",
+              "artist": "Julliany Souza",
+              "album": "AH, JESUS / CORAÇÃO IGUAL AO TEU",
+              "image": "https://cdn-images.dzcdn.net/images/cover/3ada67b05f133d5120cb1fa389690a45/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3997639031"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 3997639031,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/3ada67b05f133d5120cb1fa389690a45/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "Quem É Esse?",
+      "artist": "Julliany Souza",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Julliany+Souza+Quem+%C3%89+Esse%3F&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 412,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1790495886,
+              "title": "Quem É Esse? (Ao Vivo)",
+              "artist": "Julliany Souza",
+              "album": "Quem É Esse? (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d1/19/45/d11945c8-4216-94c4-6261-37640d9c5158/5034644397870.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/quem-%C3%A9-esse-ao-vivo/1790495885?i=1790495886&uo=4"
+            },
+            {
+              "id": 1813241259,
+              "title": "Quem É Esse?",
+              "artist": "Julliany Souza",
+              "album": "A Maior Honra",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4d/27/14/4d2714cc-882a-cad6-4766-fe54cd050167/5034644675923.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/quem-%C3%A9-esse/1813241257?i=1813241259&uo=4"
+            },
+            {
+              "id": 1806842307,
+              "title": "Quem É Esse?",
+              "artist": "Julliany Souza",
+              "album": "Deus É Quem Me Fortalece - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d9/b7/d0/d9b7d02b-09ec-2d0d-1732-1a4986e728a3/5034644596297.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/quem-%C3%A9-esse/1806842305?i=1806842307&uo=4"
+            },
+            {
+              "id": 1806842306,
+              "title": "Deus É Quem Me Fortalece",
+              "artist": "Julliany Souza & Léo Brandão",
+              "album": "Deus É Quem Me Fortalece - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d9/b7/d0/d9b7d02b-09ec-2d0d-1732-1a4986e728a3/5034644596297.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/deus-%C3%A9-quem-me-fortalece/1806842305?i=1806842306&uo=4"
+            },
+            {
+              "id": 1816085309,
+              "title": "Eu e Minha Casa",
+              "artist": "Julliany Souza & Léo Brandão",
+              "album": "Eu e Minha Casa - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f9/e6/42/f9e6424a-83b6-6a6a-98bb-a3960635dd8d/5034644712734.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/eu-e-minha-casa/1816085291?i=1816085309&uo=4"
+            },
+            {
+              "id": 6765791263,
+              "title": "AH, JESUS / CORAÇÃO IGUAL AO TEU",
+              "artist": "Julliany Souza",
+              "album": "AH, JESUS / CORAÇÃO IGUAL AO TEU",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3c/aa/14/3caa1400-3764-5bc6-428c-c00b72365f02/8718521271329.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/ah-jesus-cora%C3%A7%C3%A3o-igual-ao-teu/6765791255?i=6765791263&uo=4"
+            },
+            {
+              "id": 1722295783,
+              "title": "Lindo Momento (Ao Vivo)",
+              "artist": "Julliany Souza",
+              "album": "Lindo Momento (Ao Vivo) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d9/be/f9/d9bef962-9a1f-49f7-5d21-55389e02bc74/197338147658.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/lindo-momento-ao-vivo/1722295764?i=1722295783&uo=4"
+            },
+            {
+              "id": 1729625003,
+              "title": "Canção Que Não Envelhece",
+              "artist": "Julliany Souza & Lukas Agustinho",
+              "album": "Lindo Momento",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/b9/eb/a6b9ebb1-c9c7-6d88-16a8-c4ff1210058c/197338045237.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/can%C3%A7%C3%A3o-que-n%C3%A3o-envelhece/1729624715?i=1729625003&uo=4"
+            },
+            {
+              "id": 1663562822,
+              "title": "Yeshua",
+              "artist": "Julliany Souza, Amem & Casa Worship",
+              "album": "Momentos (Vol.1)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b5/1c/f5/b51cf597-bafc-dca1-dba2-94ea55f7e146/859741574512.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/yeshua/1663562815?i=1663562822&uo=4"
+            },
+            {
+              "id": 1651502469,
+              "title": "Sinto Fluir (Ao Vivo)",
+              "artist": "Marcelo Markes, Casa Worship & Julliany Souza",
+              "album": "Sinto Fluir (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/83/a0/2e/83a02eaf-faa2-72e9-d374-8e899debc5a4/760655348345.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/sinto-fluir-ao-vivo/1651502466?i=1651502469&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 1813241259,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4d/27/14/4d2714cc-882a-cad6-4766-fe54cd050167/5034644675923.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Julliany+Souza%22+track%3A%22Quem+%C3%89+Esse%3F%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 292,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Julliany+Souza+Quem+%C3%89+Esse%3F&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 272,
+          "total": 2,
+          "error": null,
+          "candidates": [
+            {
+              "id": 3184911081,
+              "title": "Quem É Esse? (Ao Vivo)",
+              "titleShort": "Quem É Esse?",
+              "version": "(Ao Vivo)",
+              "artist": "Julliany Souza",
+              "album": "Quem É Esse? (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/4ce464858a647677b9c19d277e272b6e/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3184911081"
+            },
+            {
+              "id": 3899981091,
+              "title": "Quem Poderá? (Ao Vivo)",
+              "titleShort": "Quem Poderá?",
+              "version": "(Ao Vivo)",
+              "artist": "Valesca Mayssa",
+              "album": "Quem Poderá? (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/fdbc32978eec5802a85c14420a0306a6/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3899981091"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 3184911081,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/4ce464858a647677b9c19d277e272b6e/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "A Casa É Sua",
+      "artist": "Casa Worship",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Casa+Worship+A+Casa+%C3%89+Sua&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 416,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1624166722,
+              "title": "A Casa É Sua",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/1f/8d/511f8d4b-a424-12e8-1ed9-bb1f82f327dc/859750556547.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-casa-%C3%A9-sua/1624166370?i=1624166722&uo=4"
+            },
+            {
+              "id": 1624162776,
+              "title": "A Casa É Sua - Acoustic Session",
+              "artist": "Casa Worship",
+              "album": "Acoustic Session, Vol. 01",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5f/4d/8c/5f4d8c35-58a9-fd2c-91cb-a3e267d6dc62/859737839045.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-casa-e-sua-acoustic-session/1624162543?i=1624162776&uo=4"
+            },
+            {
+              "id": 1624162041,
+              "title": "A Casa É Sua (Ao Vivo)",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6a/b5/e8/6ab5e892-02b1-9afc-01ba-69d14af750b4/859731150771.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-casa-%C3%A9-sua-ao-vivo/1624162039?i=1624162041&uo=4"
+            },
+            {
+              "id": 1624167161,
+              "title": "Era Eu",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/1f/8d/511f8d4b-a424-12e8-1ed9-bb1f82f327dc/859750556547.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/era-eu/1624166370?i=1624167161&uo=4"
+            },
+            {
+              "id": 1624166954,
+              "title": "Eu Te Vejo Em Tudo",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/1f/8d/511f8d4b-a424-12e8-1ed9-bb1f82f327dc/859750556547.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/eu-te-vejo-em-tudo/1624166370?i=1624166954&uo=4"
+            },
+            {
+              "id": 1624167181,
+              "title": "Vento Impetuoso",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/1f/8d/511f8d4b-a424-12e8-1ed9-bb1f82f327dc/859750556547.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/vento-impetuoso/1624166370?i=1624167181&uo=4"
+            },
+            {
+              "id": 1503381233,
+              "title": "A Casa É Sua",
+              "artist": "ICB Worship",
+              "album": "A Casa É Sua - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/92/e9/40/92e940c4-c1d0-3363-7c06-9126ef67bee4/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-casa-%C3%A9-sua/1503381230?i=1503381233&uo=4"
+            },
+            {
+              "id": 6764160652,
+              "title": "A Casa é Sua (Acústico)",
+              "artist": "Felipe Rodrigues",
+              "album": "A Casa é Sua (Acústico) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3c/45/f7/3c45f730-e27a-b7dd-da1b-752fbc384488/8718521246648.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-casa-%C3%A9-sua-ac%C3%BAstico/1895666116?i=6764160652&uo=4"
+            },
+            {
+              "id": 6764161339,
+              "title": "A Casa é Sua (Acústico)",
+              "artist": "Felipe Rodrigues",
+              "album": "A Voz da Noiva (Acústico)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/22/49/41/224941e3-378d-c648-2b8d-87c784dd5fe1/8718521246778.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-casa-%C3%A9-sua-ac%C3%BAstico/1895666203?i=6764161339&uo=4"
+            },
+            {
+              "id": 1544143432,
+              "title": "Tudo a Ver Com Ele / Sou Casa / Ele Vem / Hosana / A Casa É Sua / Tua Presença / Não Pare",
+              "artist": "Nova Essência",
+              "album": "Tudo a Ver Com Ele / Sou Casa / Ele Vem / Hosana / A Casa É Sua / Tua Presença / Não Pare - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c7/8d/17/c78d1767-f1d4-f0d2-766e-674707ee48e1/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/tudo-a-ver-com-ele-sou-casa-ele-vem-hosana-a-casa/1544143431?i=1544143432&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 1624166722,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/1f/8d/511f8d4b-a424-12e8-1ed9-bb1f82f327dc/859750556547.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Casa+Worship%22+track%3A%22A+Casa+%C3%89+Sua%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 220,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Casa+Worship+A+Casa+%C3%89+Sua&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 301,
+          "total": 22,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1751492317,
+              "title": "A Casa É Sua (Ao Vivo)",
+              "titleShort": "A Casa É Sua",
+              "version": "(Ao Vivo)",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua",
+              "image": "https://cdn-images.dzcdn.net/images/cover/9a36085449cb3e9b7b7b10fa9d7f3420/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1751492317"
+            },
+            {
+              "id": 1589515782,
+              "title": "Eu Só Quero Tua Presença (feat. Léo Brandão) (Ao Vivo)",
+              "titleShort": "Eu Só Quero Tua Presença (feat. Léo Brandão)",
+              "version": "(Ao Vivo)",
+              "artist": "Theo Rubia",
+              "album": "Eu Só Quero Tua Presença (feat. Léo Brandão) (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/b5c76c4297215988b76c27379f6cb2e3/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1589515782"
+            },
+            {
+              "id": 1751485337,
+              "title": "A Casa É Sua - Acoustic Session",
+              "titleShort": "A Casa É Sua - Acoustic Session",
+              "version": "",
+              "artist": "Casa Worship",
+              "album": "Acoustic Session, Vol. 01",
+              "image": "https://cdn-images.dzcdn.net/images/cover/6f696ac5b84fe2de49fb92412fa19075/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1751485337"
+            },
+            {
+              "id": 4248470281,
+              "title": "A Casa É Sua",
+              "titleShort": "A Casa É Sua",
+              "version": "",
+              "artist": "Groove Worship",
+              "album": "A Casa É Sua",
+              "image": "https://cdn-images.dzcdn.net/images/cover/320c8c4f539f063c68d58cb4114caa1e/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4248470281"
+            },
+            {
+              "id": 905637832,
+              "title": "A Casa É Sua",
+              "titleShort": "A Casa É Sua",
+              "version": "",
+              "artist": "ICB Worship",
+              "album": "A Casa É Sua",
+              "image": "https://cdn-images.dzcdn.net/images/cover/aa5bb70c105b02bc757352836a0a04a8/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/905637832"
+            },
+            {
+              "id": 1751492337,
+              "title": "Era Eu",
+              "titleShort": "Era Eu",
+              "version": "",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua",
+              "image": "https://cdn-images.dzcdn.net/images/cover/9a36085449cb3e9b7b7b10fa9d7f3420/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1751492337"
+            },
+            {
+              "id": 1751492347,
+              "title": "Vento Impetuoso",
+              "titleShort": "Vento Impetuoso",
+              "version": "",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua",
+              "image": "https://cdn-images.dzcdn.net/images/cover/9a36085449cb3e9b7b7b10fa9d7f3420/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1751492347"
+            },
+            {
+              "id": 1751492357,
+              "title": "Lenha e Fogo",
+              "titleShort": "Lenha e Fogo",
+              "version": "",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua",
+              "image": "https://cdn-images.dzcdn.net/images/cover/9a36085449cb3e9b7b7b10fa9d7f3420/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1751492357"
+            },
+            {
+              "id": 1751491087,
+              "title": "Eu Te Vejo Em Tudo",
+              "titleShort": "Eu Te Vejo Em Tudo",
+              "version": "",
+              "artist": "Casa Worship",
+              "album": "Eu Te Vejo Em Tudo",
+              "image": "https://cdn-images.dzcdn.net/images/cover/549ac110ed0fcd2658fb3457913f68fd/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1751491087"
+            },
+            {
+              "id": 1751492367,
+              "title": "O Céu É O Meu Lugar",
+              "titleShort": "O Céu É O Meu Lugar",
+              "version": "",
+              "artist": "Casa Worship",
+              "album": "A Casa É Sua",
+              "image": "https://cdn-images.dzcdn.net/images/cover/9a36085449cb3e9b7b7b10fa9d7f3420/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1751492367"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 1751492317,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/9a36085449cb3e9b7b7b10fa9d7f3420/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "Bondade de Deus",
+      "artist": "Isaias Saad",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Isaias+Saad+Bondade+de+Deus&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 426,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1677531694,
+              "title": "Bondade de Deus (Acústico)",
+              "artist": "Isaias Saad",
+              "album": "Bondade de Deus (Acústico) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ac/d0/79/acd07998-0ad9-4e34-5986-a81890a705d7/7898556798082.png/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-de-deus-ac%C3%BAstico/1677531693?i=1677531694&uo=4"
+            },
+            {
+              "id": 6820196987,
+              "title": "Bondade de Deus - Com Coral",
+              "artist": "Isaias Saad",
+              "album": "Bondade de Deus - Com Coral - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3b/9d/84/3b9d8466-c700-7fc7-4430-7b09f2c86336/885288742749.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-de-deus-com-coral/6820196986?i=6820196987&uo=4"
+            },
+            {
+              "id": 1677531696,
+              "title": "Bondade de Deus",
+              "artist": "Isaias Saad",
+              "album": "Bondade de Deus (Acústico) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ac/d0/79/acd07998-0ad9-4e34-5986-a81890a705d7/7898556798082.png/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-de-deus/1677531693?i=1677531696&uo=4"
+            },
+            {
+              "id": 6815741046,
+              "title": "Bondade de Deus (En Vivo)",
+              "artist": "Isaias Saad",
+              "album": "Bondade de Deus (En Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/2c/bd/252cbdb2-2bc4-5b55-1caf-a151780ef23e/7898556784719.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-de-deus-en-vivo/6815741043?i=6815741046&uo=4"
+            },
+            {
+              "id": 6817883936,
+              "title": "Bondade de Deus",
+              "artist": "Isaias Saad",
+              "album": "Bondade e Fidelidade (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/df/e6/cf/dfe6cf72-c3fc-97ce-af7c-e03d36eda45e/7898556805414.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-de-deus/6817883926?i=6817883936&uo=4"
+            },
+            {
+              "id": 1756691766,
+              "title": "Bondade de Deus (Remix)",
+              "artist": "DJ PV & Isaias Saad",
+              "album": "Decade",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1b/b0/0a/1bb00a3a-d3e2-8fd9-8565-760a42e3d710/085365182493.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-de-deus-remix/1756691476?i=1756691766&uo=4"
+            },
+            {
+              "id": 1731180172,
+              "title": "Bondade de Deus",
+              "artist": "Isaias Saad & o canto das igrejas",
+              "album": "Isaias Saad Na Casa - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/ea/3c/ad/ea3cad22-516f-e8ad-763c-4d40b27ad424/197338032831.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-de-deus/1731179626?i=1731180172&uo=4"
+            },
+            {
+              "id": 6815818199,
+              "title": "Bondade e Misericórdia",
+              "artist": "Isaias Saad",
+              "album": "Isaias Saad",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4b/48/66/4b48661e-e575-1d22-d868-7bb5e6041593/7898556748544.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-e-miseric%C3%B3rdia/6815818197?i=6815818199&uo=4"
+            },
+            {
+              "id": 1784023190,
+              "title": "Bondade de Deus",
+              "artist": "Padre Diogo Albuquerque",
+              "album": "Bondade de Deus - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/13/e4/05/13e40543-8dbe-a145-bf89-a075584c1538/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-de-deus/1784023189?i=1784023190&uo=4"
+            },
+            {
+              "id": 1746820939,
+              "title": "Bondade de Deus",
+              "artist": "CÂNTICOS VOCAL",
+              "album": "Adoração e Louvor - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0d/8e/9a/0d8e9a35-1820-d655-a9fa-59779f86c759/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bondade-de-deus/1746820577?i=1746820939&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 1677531696,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ac/d0/79/acd07998-0ad9-4e34-5986-a81890a705d7/7898556798082.png/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Isaias+Saad%22+track%3A%22Bondade+de+Deus%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 281,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Isaias+Saad+Bondade+de+Deus&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 291,
+          "total": 7,
+          "error": null,
+          "candidates": [
+            {
+              "id": 4304017522,
+              "title": "Bondade de Deus (En Vivo)",
+              "titleShort": "Bondade de Deus",
+              "version": "(En Vivo)",
+              "artist": "Isaías Saad",
+              "album": "Bondade de Deus (En Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/1a37652c029eb0514d748790c01a474a/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4304017522"
+            },
+            {
+              "id": 2189656367,
+              "title": "Bondade de Deus (Acústico)",
+              "titleShort": "Bondade de Deus",
+              "version": "(Acústico)",
+              "artist": "Isaías Saad",
+              "album": "Bondade de Deus (Acústico)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/bd27512629c06dfad672087760842963/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2189656367"
+            },
+            {
+              "id": 2652911172,
+              "title": "Bondade de Deus",
+              "titleShort": "Bondade de Deus",
+              "version": "",
+              "artist": "Isaías Saad",
+              "album": "Isaias Saad Na Casa",
+              "image": "https://cdn-images.dzcdn.net/images/cover/b1e9ed4ee5a92aeda4bbe5a8c05a8c9f/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2652911172"
+            },
+            {
+              "id": 4334307192,
+              "title": "Bondade de Deus - Com Coral",
+              "titleShort": "Bondade de Deus - Com Coral",
+              "version": "",
+              "artist": "Isaías Saad",
+              "album": "Bondade de Deus - Com Coral",
+              "image": "https://cdn-images.dzcdn.net/images/cover/447cfa35dc16195bae16fea24868449b/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4334307192"
+            },
+            {
+              "id": 2885661552,
+              "title": "Bondade de Deus (Remix)",
+              "titleShort": "Bondade de Deus (Remix)",
+              "version": "",
+              "artist": "DJ PV",
+              "album": "Decade",
+              "image": "https://cdn-images.dzcdn.net/images/cover/fb4a1694a2bb76c16b7f8c76d621c70f/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2885661552"
+            },
+            {
+              "id": 2955166201,
+              "title": "Bondade de Deus | Violin Version (Isaías Saad)",
+              "titleShort": "Bondade de Deus | Violin Version (Isaías Saad)",
+              "version": "",
+              "artist": "Kalvert Richard",
+              "album": "Bondade de Deus | Violin Version (Isaías Saad)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/0add45c0cc8d82d3536dfa1b32545d11/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2955166201"
+            },
+            {
+              "id": 4320587772,
+              "title": "Ruja o Leão / Que Se Abram Os Céus (Ao Vivo)",
+              "titleShort": "Ruja o Leão / Que Se Abram Os Céus",
+              "version": "(Ao Vivo)",
+              "artist": "Isaías Saad",
+              "album": "Bondade e Fidelidade (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/56e76724e7ee528b871f3df078e64d45/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4320587772"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 2652911172,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/b1e9ed4ee5a92aeda4bbe5a8c05a8c9f/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+      "artist": "Isadora Pompeo",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Isadora+Pompeo+B%C3%AAn%C3%A7%C3%A3os+Que+N%C3%A3o+T%C3%AAm+Fim+%28Counting+My+Blessings%29&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 471,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1752209474,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "artist": "Isadora Pompeo",
+              "album": "Bênçãos Que Não Têm Fim (Counting My Blessings) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b8/90/4b/b8904bd0-86e2-94b1-3ac4-ec352bd1312e/196872212389.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings/1752209473?i=1752209474&uo=4"
+            },
+            {
+              "id": 1760640851,
+              "title": "Bênçãos Que Não Têm Fim / Counting My Blessings (Ao Vivo)",
+              "artist": "Isadora Pompeo & Seph Schlueter",
+              "album": "Bênçãos Que Não Têm Fim / Counting My Blessings (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/04/87/57/04875763-e4d7-3144-932c-0900fef57f5e/196872362572.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings-ao-vivo/1760640843?i=1760640851&uo=4"
+            },
+            {
+              "id": 1714365836,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "artist": "Isadora Pompeo",
+              "album": "Bênçãos Que Não Têm Fim (Counting My Blessings) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a2/92/12/a2921245-82be-b2e4-5aa2-20c0c932b0bb/196871586658.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings/1714365830?i=1714365836&uo=4"
+            },
+            {
+              "id": 1761385592,
+              "title": "Bênçãos Que Não Têm Fim / Counting My Blessings (Ao Vivo)",
+              "artist": "Isadora Pompeo & Seph Schlueter",
+              "album": "Tetelestai (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/25/de/1125deff-f56d-af0f-39ed-f863f2584b8b/196872364880.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings-ao-vivo/1761384897?i=1761385592&uo=4"
+            },
+            {
+              "id": 1721672855,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "artist": "Isadora Pompeo",
+              "album": "Bênçãos Que Não Têm Fim",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/68/30/f0/6830f03b-87d8-44a1-3735-213dc9e7140e/196871729239.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings/1721672850?i=1721672855&uo=4"
+            },
+            {
+              "id": 1721604564,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "artist": "Isadora Pompeo",
+              "album": "Louvores 2024",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/4e/67/f1/4e67f1e6-6f39-0a4f-e4fb-2d188f729f1f/196871728423.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings/1721604560?i=1721604564&uo=4"
+            },
+            {
+              "id": 1748204254,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings) [Ao Vivo]",
+              "artist": "Isadora Pompeo",
+              "album": "Ovelhinha (Ao Vivo) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6b/33/51/6b33515a-9b27-9acb-3b3e-01b636671bd6/196872157024.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings-ao-vivo/1748203814?i=1748204254&uo=4"
+            },
+            {
+              "id": 1722145594,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "artist": "Isadora Pompeo",
+              "album": "Gospel 2024",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/17/5a/cb/175acb28-0a30-abd2-fc93-b88c4f7a56c9/196871727785.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings/1722145593?i=1722145594&uo=4"
+            },
+            {
+              "id": 1761385587,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings) [Ao Vivo]",
+              "artist": "Isadora Pompeo",
+              "album": "Tetelestai (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/25/de/1125deff-f56d-af0f-39ed-f863f2584b8b/196872364880.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings-ao-vivo/1761384897?i=1761385587&uo=4"
+            },
+            {
+              "id": 1721659259,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "artist": "Isadora Pompeo",
+              "album": "Deus Eu Tenho Tantas Bênçãos",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5c/f1/a5/5cf1a5be-6dff-a865-416f-3c723a5f9c2a/196871729260.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/b%C3%AAn%C3%A7%C3%A3os-que-n%C3%A3o-t%C3%AAm-fim-counting-my-blessings/1721659258?i=1721659259&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 1752209474,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b8/90/4b/b8904bd0-86e2-94b1-3ac4-ec352bd1312e/196872212389.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Isadora+Pompeo%22+track%3A%22B%C3%AAn%C3%A7%C3%A3os+Que+N%C3%A3o+T%C3%AAm+Fim+%28Counting+My+Blessings%29%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 257,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Isadora+Pompeo+B%C3%AAn%C3%A7%C3%A3os+Que+N%C3%A3o+T%C3%AAm+Fim+%28Counting+My+Blessings%29&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 252,
+          "total": 8,
+          "error": null,
+          "candidates": [
+            {
+              "id": 2521481511,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "titleShort": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "version": "",
+              "artist": "Isadora Pompeo",
+              "album": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/72646c7c887c3c126fdb9003c76fa7e1/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2521481511"
+            },
+            {
+              "id": 2817603702,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings) [Ao Vivo]",
+              "titleShort": "Bênçãos Que Não Têm Fim (Counting My Blessings) [Ao Vivo]",
+              "version": "",
+              "artist": "Isadora Pompeo",
+              "album": "Ovelhinha (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/6436926f6179105575498a4571d406e2/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2817603702"
+            },
+            {
+              "id": 2929545141,
+              "title": "Bênçãos Que Não Têm Fim / Counting My Blessings (Ao Vivo)",
+              "titleShort": "Bênçãos Que Não Têm Fim / Counting My Blessings (Ao Vivo)",
+              "version": "",
+              "artist": "Isadora Pompeo",
+              "album": "Bênçãos Que Não Têm Fim / Counting My Blessings (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/e53584436c951fc0b16a5873e005527b/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2929545141"
+            },
+            {
+              "id": 2847768372,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "titleShort": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "version": "",
+              "artist": "Isadora Pompeo",
+              "album": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/9bb349570c986449d67c913fae341328/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2847768372"
+            },
+            {
+              "id": 3014676541,
+              "title": "Bênçãos Que Não Têm Fim / Counting My Blessings (Ao Vivo) Playback",
+              "titleShort": "Bênçãos Que Não Têm Fim / Counting My Blessings (Ao Vivo)",
+              "version": "Playback",
+              "artist": "Isadora Pompeo",
+              "album": "Tetelestai (Ao Vivo) Playback",
+              "image": "https://cdn-images.dzcdn.net/images/cover/105b18a5cb56f8f7058af4984256493d/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3014676541"
+            },
+            {
+              "id": 2594190242,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings) (8-Bit Isadora Pompeo Emulation)",
+              "titleShort": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "version": "(8-Bit Isadora Pompeo Emulation)",
+              "artist": "8-Bit Arcade",
+              "album": "By Request, Vol. 240",
+              "image": "https://cdn-images.dzcdn.net/images/cover/6df4a31ccdef3fb7ebb6d1186665a7e4/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2594190242"
+            },
+            {
+              "id": 3014676531,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings) [Ao Vivo]",
+              "titleShort": "Bênçãos Que Não Têm Fim (Counting My Blessings) [Ao Vivo]",
+              "version": "",
+              "artist": "Isadora Pompeo",
+              "album": "Tetelestai (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/105b18a5cb56f8f7058af4984256493d/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3014676531"
+            },
+            {
+              "id": 2692787832,
+              "title": "Bênçãos Que Não Têm Fim (Counting My Blessings) (Karaoke Version Originally Performed by Isadora Pompeo)",
+              "titleShort": "Bênçãos Que Não Têm Fim (Counting My Blessings)",
+              "version": "(Karaoke Version Originally Performed by Isadora Pompeo)",
+              "artist": "Backing Business",
+              "album": "Pristine Karaoke, Vol. 131",
+              "image": "https://cdn-images.dzcdn.net/images/cover/fe42a8742bba3731437d72ddfbca727c/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2692787832"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 2521481511,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/72646c7c887c3c126fdb9003c76fa7e1/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "É Tudo Sobre Você / Ser Mudado",
+      "artist": "Morada",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Morada+%C3%89+Tudo+Sobre+Voc%C3%AA+%2F+Ser+Mudado&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 426,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 6815815853,
+              "title": "É Tudo Sobre Você / Ser Mudado (Ao Vivo)",
+              "artist": "MORADA",
+              "album": "Uma Só Voz - Vol. 01 (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/49/4d/d6/494dd63f-f849-e79a-5240-c8cfb25ea678/7898556764728.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/%C3%A9-tudo-sobre-voc%C3%AA-ser-mudado-ao-vivo/6815815479?i=6815815853&uo=4"
+            },
+            {
+              "id": 1622768468,
+              "title": "A Reforma",
+              "artist": "Jessé Aguiar",
+              "album": "A Reforma - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/fc/19/8c/fc198c44-5228-bfdd-ffc7-9bf23fe55036/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-reforma/1622768467?i=1622768468&uo=4"
+            },
+            {
+              "id": 6815833955,
+              "title": "O Mover do Teu Espírito / Renova me / Estrela da Manhã",
+              "artist": "MORADA",
+              "album": "Lembre-se 90's",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/15/da/15/15da151f-8029-b5b9-c4af-cc3181503e7e/7898556791960.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/o-mover-do-teu-esp%C3%ADrito-renova-me-estrela-da-manh%C3%A3/6815833544?i=6815833955&uo=4"
+            },
+            {
+              "id": 1599611542,
+              "title": "A Reforma",
+              "artist": "Jayana Moreira",
+              "album": "A Reforma - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/aa/51/32/aa513242-f82c-7846-ee43-a4170938b182/A_Reforma_Copy.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-reforma/1599611541?i=1599611542&uo=4"
+            },
+            {
+              "id": 6805770404,
+              "title": "Muda-me, Deus",
+              "artist": "Levian & Eu OGringo",
+              "album": "Eis-me Aqui, Senhor",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/75/02/67/7502678e-7c01-02c1-dbd5-d5977b1a0eb3/artwork.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/muda-me-deus/6805770403?i=6805770404&uo=4"
+            },
+            {
+              "id": 1675594219,
+              "title": "A Reforma",
+              "artist": "Stella Laura",
+              "album": "Acústico, Vol. 4",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/3b/85/ab/3b85abd8-1a8b-7c58-1a49-475d69b587e4/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-reforma/1675594218?i=1675594219&uo=4"
+            },
+            {
+              "id": 1693435392,
+              "title": "A Reforma (Ao Vivo)",
+              "artist": "Thalita Roberta",
+              "album": "A Reforma (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/70/dc/85/70dc8504-c17b-bb12-5506-1d14ee631740/A_Reforma_Ao_Vivo_Copy.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-reforma-ao-vivo/1693435385?i=1693435392&uo=4"
+            },
+            {
+              "id": 1600571480,
+              "title": "A Reforma",
+              "artist": "Jayana Moreira",
+              "album": "Vestígios - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/25/58/3b/25583b82-33ce-70aa-42a2-efeea7a0baaa/Vestigios_Copy.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/a-reforma/1600571467?i=1600571480&uo=4"
+            },
+            {
+              "id": 1447953963,
+              "title": "Me Atende Ai (feat. CardioRap & Dj LM)",
+              "artist": "D.Bonny",
+              "album": "Me Atende Ai (feat. CardioRap & Dj LM) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c3/9a/e4/c39ae466-ee6e-e657-b362-db780d9f38df/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/me-atende-ai-feat-cardiorap-dj-lm/1447953956?i=1447953963&uo=4"
+            },
+            {
+              "id": 1621253064,
+              "title": "Bora Dançar (feat. Calebe Kovac & João Marcos)",
+              "artist": "DJ Kovac",
+              "album": "Bora Dançar (feat. Calebe Kovac & João Marcos) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/85/01/d1/8501d1a4-c606-3481-96b4-d2232113fdd3/1963623640413_cover.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/bora-dan%C3%A7ar-feat-calebe-kovac-jo%C3%A3o-marcos/1621253063?i=1621253064&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 6815815853,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/49/4d/d6/494dd63f-f849-e79a-5240-c8cfb25ea678/7898556764728.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Morada%22+track%3A%22%C3%89+Tudo+Sobre+Voc%C3%AA+%2F+Ser+Mudado%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 237,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Morada+%C3%89+Tudo+Sobre+Voc%C3%AA+%2F+Ser+Mudado&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 281,
+          "total": 1,
+          "error": null,
+          "candidates": [
+            {
+              "id": 4304431622,
+              "title": "É Tudo Sobre Você / Ser Mudado (Ao Vivo)",
+              "titleShort": "É Tudo Sobre Você / Ser Mudado",
+              "version": "(Ao Vivo)",
+              "artist": "MORADA",
+              "album": "Uma Só Voz - Vol. 01 (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/fd39d7b20bf32665c6916ac097f383f1/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4304431622"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 4304431622,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/fd39d7b20bf32665c6916ac097f383f1/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "Santo Pra Sempre",
+      "artist": "Fernandinho",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Fernandinho+Santo+Pra+Sempre&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 318,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1798314065,
+              "title": "Santo Pra Sempre (Ao Vivo no Mineirão)",
+              "artist": "Fernandinho",
+              "album": "Santo Pra Sempre (Ao Vivo no Mineirão) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/be/97/83be9776-ff08-804f-4972-938584ba753c/199066928004.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/santo-pra-sempre-ao-vivo-no-mineir%C3%A3o/1798314058?i=1798314065&uo=4"
+            },
+            {
+              "id": 1824278115,
+              "title": "Santo Pra Sempre (Acústico)",
+              "artist": "Fernandinho",
+              "album": "VERSÕES 2: Fernandinho e Paula Santos (Acústico)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a1/6d/87/a16d8719-110e-4385-dee2-dba60535d26b/199350872693.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/santo-pra-sempre-ac%C3%BAstico/1824278106?i=1824278115&uo=4"
+            },
+            {
+              "id": 1798317788,
+              "title": "Santo Pra Sempre (Ao Vivo no Mineirão)",
+              "artist": "Fernandinho",
+              "album": "Fernandinho (Ao Vivo no Mineirão)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/09/6c/80/096c8086-1d22-9b5a-121e-31b9cf8cd187/199066897379.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/santo-pra-sempre-ao-vivo-no-mineir%C3%A3o/1798316814?i=1798317788&uo=4"
+            },
+            {
+              "id": 6815799999,
+              "title": "Santo Pra Sempre (Remix)",
+              "artist": "MËDNA & Fernandinho",
+              "album": "Santo Pra Sempre (Remix) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/35/83/28/358328c8-e2fa-f120-c418-0418a17399f2/7898566567036.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/santo-pra-sempre-remix/6815799988?i=6815799999&uo=4"
+            },
+            {
+              "id": 1468023151,
+              "title": "Jesus, Filho de Deus (Ao Vivo)",
+              "artist": "Fernandinho",
+              "album": "Teus Sonhos (ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/a9/42/19/a9421981-9176-ac32-838a-2c07c7ccb1eb/193483938448.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/jesus-filho-de-deus-ao-vivo/1468023146?i=1468023151&uo=4"
+            },
+            {
+              "id": 1491159007,
+              "title": "Yeshua",
+              "artist": "Heloisa Rosa & Fernandinho",
+              "album": "Yeshua - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fb/d1/8a/fbd18a10-7c43-68de-0cea-6031a9bdb1cf/7892608001861.png/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/yeshua/1491159006?i=1491159007&uo=4"
+            },
+            {
+              "id": 1504798081,
+              "title": "É Tempo de Abrir o Coração (Ao Vivo)",
+              "artist": "Fernandinho",
+              "album": "É Tempo de Abrir o Coração / Santo (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/78/4d/27/784d27c1-fb3d-ec01-3bd4-db6148a6035b/195081402505.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/%C3%A9-tempo-de-abrir-o-cora%C3%A7%C3%A3o-ao-vivo/1504798061?i=1504798081&uo=4"
+            },
+            {
+              "id": 1468023386,
+              "title": "O Hino (Ao Vivo)",
+              "artist": "Fernandinho",
+              "album": "Teus Sonhos (ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/a9/42/19/a9421981-9176-ac32-838a-2c07c7ccb1eb/193483938448.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/o-hino-ao-vivo/1468023146?i=1468023386&uo=4"
+            },
+            {
+              "id": 1468020510,
+              "title": "Tudo o Que Eu Quero (Acústico)",
+              "artist": "Fernandinho",
+              "album": "Acústico",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/9b/1e/8d/9b1e8dab-975d-0a12-59b3-d8ad1f997f89/193483937984.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/tudo-o-que-eu-quero-ac%C3%BAstico/1468020507?i=1468020510&uo=4"
+            },
+            {
+              "id": 1798318298,
+              "title": "Galileu (Ao Vivo no Mineirão)",
+              "artist": "Fernandinho",
+              "album": "Fernandinho (Ao Vivo no Mineirão)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/09/6c/80/096c8086-1d22-9b5a-121e-31b9cf8cd187/199066897379.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/galileu-ao-vivo-no-mineir%C3%A3o/1798316814?i=1798318298&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 1798314065,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/be/97/83be9776-ff08-804f-4972-938584ba753c/199066928004.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Fernandinho%22+track%3A%22Santo+Pra+Sempre%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 293,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Fernandinho+Santo+Pra+Sempre&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 291,
+          "total": 4,
+          "error": null,
+          "candidates": [
+            {
+              "id": 3248820771,
+              "title": "Santo Pra Sempre (Ao Vivo no Mineirão)",
+              "titleShort": "Santo Pra Sempre",
+              "version": "(Ao Vivo no Mineirão)",
+              "artist": "Fernandinho",
+              "album": "Santo Pra Sempre (Ao Vivo no Mineirão)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/750a5d399bca063aafc126d88f1f97ba/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3248820771"
+            },
+            {
+              "id": 3442189601,
+              "title": "Santo Pra Sempre (Acústico)",
+              "titleShort": "Santo Pra Sempre",
+              "version": "(Acústico)",
+              "artist": "Fernandinho",
+              "album": "VERSÕES VOL. 2: Fernandinho e Paula Santos (Acústico)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/b0fd70b72b2b9cf0191d095f24ded4eb/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3442189601"
+            },
+            {
+              "id": 4304397302,
+              "title": "Santo Pra Sempre (Remix)",
+              "titleShort": "Santo Pra Sempre",
+              "version": "(Remix)",
+              "artist": "MeDna",
+              "album": "Santo Pra Sempre (Remix)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/b6f24238cf9df90676a0f0b611096c2d/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4304397302"
+            },
+            {
+              "id": 694749942,
+              "title": "Pra Sempre (Acústico)",
+              "titleShort": "Pra Sempre",
+              "version": "(Acústico)",
+              "artist": "Fernandinho",
+              "album": "Acústico",
+              "image": "https://cdn-images.dzcdn.net/images/cover/8436e336c62900bf03a1e603a890963e/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/694749942"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 3248820771,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/750a5d399bca063aafc126d88f1f97ba/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "Tu És + Águas Purificadoras (Ao Vivo)",
+      "artist": "fhop music",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=fhop+music+Tu+%C3%89s+%2B+%C3%81guas+Purificadoras+%28Ao+Vivo%29&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 308,
+          "total": 2,
+          "error": null,
+          "candidates": [
+            {
+              "id": 6807173205,
+              "title": "Tu és + Águas Purificadoras - Ao Vivo",
+              "artist": "fhop music & Hamilton Rabelo",
+              "album": "A Boa Parte (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9e/2a/3b/9e2a3b2f-81a2-4094-165a-61e04dbebda2/85365276529.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/tu-%C3%A9s-%C3%A1guas-purificadoras-ao-vivo/6807173029?i=6807173205&uo=4"
+            },
+            {
+              "id": 1756691752,
+              "title": "Tu és + Águas Purificadoras (Remix)",
+              "artist": "DJ PV & fhop music",
+              "album": "Decade",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1b/b0/0a/1bb00a3a-d3e2-8fd9-8565-760a42e3d710/085365182493.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/tu-%C3%A9s-%C3%A1guas-purificadoras-remix/1756691476?i=1756691752&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 6807173205,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9e/2a/3b/9e2a3b2f-81a2-4094-165a-61e04dbebda2/85365276529.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22fhop+music%22+track%3A%22Tu+%C3%89s+%2B+%C3%81guas+Purificadoras+%28Ao+Vivo%29%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 254,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=fhop+music+Tu+%C3%89s+%2B+%C3%81guas+Purificadoras+%28Ao+Vivo%29&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 294,
+          "total": 1,
+          "error": null,
+          "candidates": [
+            {
+              "id": 4257142291,
+              "title": "Tu és + Águas Purificadoras - Ao Vivo",
+              "titleShort": "Tu és + Águas Purificadoras - Ao Vivo",
+              "version": "",
+              "artist": "fhop music",
+              "album": "A Boa Parte (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/cae2678ce217b2e68a89325af5ffcead/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/4257142291"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 4257142291,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/cae2678ce217b2e68a89325af5ffcead/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "Deus de Obras Completas",
+      "artist": "Kemilly Santos",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Kemilly+Santos+Deus+de+Obras+Completas&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 292,
+          "total": 9,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1772967815,
+              "title": "Deus de Obras Completas (Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8c/1a/82/8c1a8266-ed1e-ce32-777b-ff54f554dcf9/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/deus-de-obras-completas-ao-vivo/1772967813?i=1772967815&uo=4"
+            },
+            {
+              "id": 1804918605,
+              "title": "Deus de Obras Completas (Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/06/df/70/06df703f-0736-1aa5-12e5-3e07f03aaa7f/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/deus-de-obras-completas-ao-vivo/1804918604?i=1804918605&uo=4"
+            },
+            {
+              "id": 1787031052,
+              "title": "Deus de Obras Completas (Acústico)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Acústico) - Single",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9c/47/c7/9c47c75f-9987-ebad-e14e-1a3253e840bb/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/deus-de-obras-completas-ac%C3%BAstico/1787031051?i=1787031052&uo=4"
+            },
+            {
+              "id": 1804918608,
+              "title": "Deus do Amanhã (Ao Vivo)",
+              "artist": "Kemilly Santos & Pablo Gabriel",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/06/df/70/06df703f-0736-1aa5-12e5-3e07f03aaa7f/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/deus-do-amanh%C3%A3-ao-vivo/1804918604?i=1804918608&uo=4"
+            },
+            {
+              "id": 1804918607,
+              "title": "Eliseu (Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/06/df/70/06df703f-0736-1aa5-12e5-3e07f03aaa7f/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/eliseu-ao-vivo/1804918604?i=1804918607&uo=4"
+            },
+            {
+              "id": 1804918850,
+              "title": "Plano do Senhor (Ao Vivo)",
+              "artist": "Kemilly Santos & Kellen Byanca",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/06/df/70/06df703f-0736-1aa5-12e5-3e07f03aaa7f/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/plano-do-senhor-ao-vivo/1804918604?i=1804918850&uo=4"
+            },
+            {
+              "id": 1804918609,
+              "title": "Cicatrizes (Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/06/df/70/06df703f-0736-1aa5-12e5-3e07f03aaa7f/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/cicatrizes-ao-vivo/1804918604?i=1804918609&uo=4"
+            },
+            {
+              "id": 1804918851,
+              "title": "Contando os Dias (Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/06/df/70/06df703f-0736-1aa5-12e5-3e07f03aaa7f/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/contando-os-dias-ao-vivo/1804918604?i=1804918851&uo=4"
+            },
+            {
+              "id": 1804918606,
+              "title": "Resistência (Ao Vivo)",
+              "artist": "Kemilly Santos & Kailane Frauches",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/06/df/70/06df703f-0736-1aa5-12e5-3e07f03aaa7f/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/resist%C3%AAncia-ao-vivo/1804918604?i=1804918606&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 1772967815,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8c/1a/82/8c1a8266-ed1e-ce32-777b-ff54f554dcf9/0.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Kemilly+Santos%22+track%3A%22Deus+de+Obras+Completas%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 233,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Kemilly+Santos+Deus+de+Obras+Completas&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 340,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 3036659771,
+              "title": "Deus de Obras Completas (Ao Vivo)",
+              "titleShort": "Deus de Obras Completas",
+              "version": "(Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/ced57f94a164c434073d62a48fdea409/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3036659771"
+            },
+            {
+              "id": 3156479151,
+              "title": "Deus de Obras Completas (Acústico)",
+              "titleShort": "Deus de Obras Completas",
+              "version": "(Acústico)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Acústico)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/ff9d4c75fa48fcd2bec11ea550ea55fc/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3156479151"
+            },
+            {
+              "id": 3062173351,
+              "title": "Deus de Obras Completas (Playback)",
+              "titleShort": "Deus de Obras Completas",
+              "version": "(Playback)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Playback)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/08b7504225012f4f567edd7ae518a5a1/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3062173351"
+            },
+            {
+              "id": 3297497801,
+              "title": "Deus do Amanhã (Ao Vivo)",
+              "titleShort": "Deus do Amanhã",
+              "version": "(Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/bbc385fa8e5836b76917ad5b7fb7e371/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3297497801"
+            },
+            {
+              "id": 3824718881,
+              "title": "Deus de Obras Completas (Remix)",
+              "titleShort": "Deus de Obras Completas",
+              "version": "(Remix)",
+              "artist": "DJ JP",
+              "album": "Deus de Obras Completas (Remix)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/722f1c2b9b7275077f05f4b4890dc65f/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3824718881"
+            },
+            {
+              "id": 3297497791,
+              "title": "Eliseu (Ao Vivo)",
+              "titleShort": "Eliseu",
+              "version": "(Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/bbc385fa8e5836b76917ad5b7fb7e371/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3297497791"
+            },
+            {
+              "id": 3297497831,
+              "title": "Contando os Dias (Ao Vivo)",
+              "titleShort": "Contando os Dias",
+              "version": "(Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/bbc385fa8e5836b76917ad5b7fb7e371/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3297497831"
+            },
+            {
+              "id": 3297497781,
+              "title": "Resistência (Ao Vivo)",
+              "titleShort": "Resistência",
+              "version": "(Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/bbc385fa8e5836b76917ad5b7fb7e371/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3297497781"
+            },
+            {
+              "id": 3297497821,
+              "title": "Plano do Senhor (Ao Vivo)",
+              "titleShort": "Plano do Senhor",
+              "version": "(Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/bbc385fa8e5836b76917ad5b7fb7e371/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3297497821"
+            },
+            {
+              "id": 3297497811,
+              "title": "Cicatrizes (Ao Vivo)",
+              "titleShort": "Cicatrizes",
+              "version": "(Ao Vivo)",
+              "artist": "Kemilly Santos",
+              "album": "Deus de Obras Completas (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/bbc385fa8e5836b76917ad5b7fb7e371/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3297497811"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 3036659771,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/ced57f94a164c434073d62a48fdea409/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    },
+    {
+      "title": "Terra Seca",
+      "artist": "Fraternidade São João Paulo II",
+      "providers": {
+        "itunes": {
+          "url": "https://itunes.apple.com/search?term=Fraternidade+S%C3%A3o+Jo%C3%A3o+Paulo+II+Terra+Seca&entity=song&country=BR&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 315,
+          "total": 10,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1563076012,
+              "title": "Terra Seca (feat. Padre Ailton Cardoso) [Ao Vivo]",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Ao Vivo) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/77/17/20/771720e5-f434-80bb-9301-795308a58cda/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/terra-seca-feat-padre-ailton-cardoso-ao-vivo/1563076007?i=1563076012&uo=4"
+            },
+            {
+              "id": 1737829771,
+              "title": "Terra Seca",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Especial 12 Anos Fsjpii) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/eb/4d/2eeb4d8a-d729-76ea-0dfe-0f8db26d20cc/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/terra-seca/1737829769?i=1737829771&uo=4"
+            },
+            {
+              "id": 1760047011,
+              "title": "Terra Seca (Ao Vivo)",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Não Vou Desistir (Ao Vivo)",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/bd/c3/f7/bdc3f73e-66f8-af21-1487-c9fdd7f3fe90/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/terra-seca-ao-vivo/1760046911?i=1760047011&uo=4"
+            },
+            {
+              "id": 1737829772,
+              "title": "Tierra Seca",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Especial 12 Anos Fsjpii) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/eb/4d/2eeb4d8a-d729-76ea-0dfe-0f8db26d20cc/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/tierra-seca/1737829769?i=1737829772&uo=4"
+            },
+            {
+              "id": 1563076010,
+              "title": "Luto Contra Mim (feat. Irmão Samuel Maria) [Ao Vivo]",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Ao Vivo) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/77/17/20/771720e5-f434-80bb-9301-795308a58cda/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/luto-contra-mim-feat-irm%C3%A3o-samuel-maria-ao-vivo/1563076007?i=1563076010&uo=4"
+            },
+            {
+              "id": 1737829773,
+              "title": "Grão de Trigo",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Especial 12 Anos Fsjpii) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/eb/4d/2eeb4d8a-d729-76ea-0dfe-0f8db26d20cc/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/gr%C3%A3o-de-trigo/1737829769?i=1737829773&uo=4"
+            },
+            {
+              "id": 1737829770,
+              "title": "Pra Sempre Teu Serei",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Especial 12 Anos Fsjpii) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/eb/4d/2eeb4d8a-d729-76ea-0dfe-0f8db26d20cc/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/pra-sempre-teu-serei/1737829769?i=1737829770&uo=4"
+            },
+            {
+              "id": 1563076009,
+              "title": "Decisão (feat. Sophia Maria) [Ao Vivo]",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Ao Vivo) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/77/17/20/771720e5-f434-80bb-9301-795308a58cda/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/decis%C3%A3o-feat-sophia-maria-ao-vivo/1563076007?i=1563076009&uo=4"
+            },
+            {
+              "id": 1563076008,
+              "title": "Canto de Louvor (feat. Ir. Samuel Maria) [Ao Vivo]",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Ao Vivo) - EP",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/77/17/20/771720e5-f434-80bb-9301-795308a58cda/0.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/canto-de-louvor-feat-ir-samuel-maria-ao-vivo/1563076007?i=1563076008&uo=4"
+            },
+            {
+              "id": 6803605553,
+              "title": "TERRA SECA",
+              "artist": "MINISTÉRIO SERVOS DE MARIA",
+              "album": "A VERDADEIRA ALEGRIA É JESUS!",
+              "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a0/68/ac/a068ac31-6a9b-61eb-4381-507308860632/4160433.jpg/100x100bb.jpg",
+              "link": "https://music.apple.com/br/album/terra-seca/6803605552?i=6803605553&uo=4"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 1737829771,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/eb/4d/2eeb4d8a-d729-76ea-0dfe-0f8db26d20cc/0.jpg/100x100bb.jpg"
+          }
+        },
+        "deezer": {
+          "url": "https://api.deezer.com/search?q=artist%3A%22Fraternidade+S%C3%A3o+Jo%C3%A3o+Paulo+II%22+track%3A%22Terra+Seca%22&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 273,
+          "total": 0,
+          "error": null,
+          "candidates": []
+        },
+        "deezerText": {
+          "url": "https://api.deezer.com/search?q=Fraternidade+S%C3%A3o+Jo%C3%A3o+Paulo+II+Terra+Seca&limit=10",
+          "httpStatus": 200,
+          "elapsedMs": 235,
+          "total": 9,
+          "error": null,
+          "candidates": [
+            {
+              "id": 1343840652,
+              "title": "Terra Seca (Ao Vivo)",
+              "titleShort": "Terra Seca",
+              "version": "(Ao Vivo)",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/0cf35dbceb58bab3a962552bda73e141/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1343840652"
+            },
+            {
+              "id": 2721724432,
+              "title": "Terra Seca",
+              "titleShort": "Terra Seca",
+              "version": "",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Especial 12 Anos Fsjpii)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/c45ab04595aa1dcc5612ec4d6459c5fb/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2721724432"
+            },
+            {
+              "id": 1343840632,
+              "title": "Decisão (Ao Vivo)",
+              "titleShort": "Decisão",
+              "version": "(Ao Vivo)",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/0cf35dbceb58bab3a962552bda73e141/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1343840632"
+            },
+            {
+              "id": 1343840642,
+              "title": "Luto Contra Mim (Ao Vivo)",
+              "titleShort": "Luto Contra Mim",
+              "version": "(Ao Vivo)",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/0cf35dbceb58bab3a962552bda73e141/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1343840642"
+            },
+            {
+              "id": 1343840622,
+              "title": "Canto de Louvor (Ao Vivo)",
+              "titleShort": "Canto de Louvor",
+              "version": "(Ao Vivo)",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Ao Vivo)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/0cf35dbceb58bab3a962552bda73e141/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/1343840622"
+            },
+            {
+              "id": 2721724442,
+              "title": "Tierra Seca",
+              "titleShort": "Tierra Seca",
+              "version": "",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Especial 12 Anos Fsjpii)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/c45ab04595aa1dcc5612ec4d6459c5fb/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2721724442"
+            },
+            {
+              "id": 2721724422,
+              "title": "Pra Sempre Teu Serei",
+              "titleShort": "Pra Sempre Teu Serei",
+              "version": "",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Especial 12 Anos Fsjpii)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/c45ab04595aa1dcc5612ec4d6459c5fb/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2721724422"
+            },
+            {
+              "id": 2721724452,
+              "title": "Grão de Trigo",
+              "titleShort": "Grão de Trigo",
+              "version": "",
+              "artist": "Fraternidade São João Paulo II",
+              "album": "Terra Seca (Especial 12 Anos Fsjpii)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/c45ab04595aa1dcc5612ec4d6459c5fb/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/2721724452"
+            },
+            {
+              "id": 3564245971,
+              "title": "Terra Seca - Violino instrumental (Fraternidade São João Paulo II)",
+              "titleShort": "Terra Seca - Violino instrumental (Fraternidade São João Paulo II)",
+              "version": "",
+              "artist": "Diogo Conrado Violinista",
+              "album": "Terra Seca - Violino instrumental (Fraternidade São João Paulo II)",
+              "image": "https://cdn-images.dzcdn.net/images/cover/3f3d50b136221fb2270dd4a5cf1e4d56/1000x1000-000000-80-0-0.jpg",
+              "link": "https://www.deezer.com/track/3564245971"
+            }
+          ],
+          "imageCheck": {
+            "candidateId": 2721724432,
+            "httpStatus": 200,
+            "contentType": "image/jpeg",
+            "url": "https://cdn-images.dzcdn.net/images/cover/c45ab04595aa1dcc5612ec4d6459c5fb/1000x1000-000000-80-0-0.jpg"
+          }
+        }
+      }
+    }
+  ]
+}

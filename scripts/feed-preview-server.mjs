@@ -3,6 +3,8 @@ import { spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
+import { artworkHandler } from "./server/music-artwork.mjs";
+import { debatesHandler, videoContentsHandler, youtubeContentHandler } from "./server/youtube.mjs";
 
 const port = Number(process.env.PORT || 8080);
 const dataDir = "/data";
@@ -10,7 +12,7 @@ const releasesDir = path.join(dataDir, "releases");
 const currentFile = path.join(dataDir, "current.json");
 const imageDist = "/app/dist";
 const hookToken = process.env.FEED_PREVIEW_HOOK_TOKEN || "";
-const imageId = process.env.FEED_PREVIEW_IMAGE_ID || "local";
+const imageId = `${process.env.FEED_PREVIEW_IMAGE_ID || "local"}-${createHash("sha256").update(fs.readFileSync(path.join(imageDist, "index.html"))).digest("hex").slice(0, 12)}`;
 let currentRoot = imageDist;
 let activeBuild = null;
 const jobs = new Map();
@@ -112,7 +114,7 @@ function contentType(filePath) {
     ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8",
     ".json": "application/json; charset=utf-8", ".xml": "application/xml; charset=utf-8", ".svg": "image/svg+xml",
     ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp", ".gif": "image/gif",
-    ".mp4": "video/mp4", ".woff": "font/woff", ".woff2": "font/woff2", ".ico": "image/x-icon",
+    ".mp4": "video/mp4", ".woff": "font/woff", ".woff2": "font/woff2", ".ico": "image/x-icon", ".pdf": "application/pdf",
   })[path.extname(filePath).toLowerCase()] || "application/octet-stream";
 }
 
@@ -122,6 +124,9 @@ function staticFile(pathname) {
   if (decoded.includes("\\") || decoded.split("/").includes("..")) return null;
   if (decoded === "/feed/release.json") return path.join(currentRoot, "feed/release.json");
   if (decoded === "/") return path.join(currentRoot, "index.html");
+  if (/^\/enquetes\/[a-z0-9]+(?:-[a-z0-9]+)*$/i.test(decoded)) {
+    return path.join(currentRoot, "index.html");
+  }
   let candidate = path.resolve(currentRoot, `.${decoded}`);
   if (!candidate.startsWith(`${path.resolve(currentRoot)}${path.sep}`) && candidate !== path.resolve(currentRoot, "index.html")) return null;
   if (fs.existsSync(candidate) && fs.statSync(candidate).isDirectory()) candidate = path.join(candidate, "index.html");
@@ -139,7 +144,28 @@ const server = http.createServer((request, response) => {
   response.setHeader("X-Content-Type-Options", "nosniff");
   response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   response.setHeader("X-Frame-Options", "DENY");
-
+  if (pathname === "/api/music/artwork") {
+    void artworkHandler(request, response);
+    return;
+  }
+  if (pathname === "/api/debates") {
+    void debatesHandler(request, response);
+    return;
+  }
+  if (pathname === "/api/youtube/content") {
+    void youtubeContentHandler(request, response);
+    return;
+  }
+  if (pathname === "/api/public/video-contents") {
+    void videoContentsHandler(request, response);
+    return;
+  }
+  if ((request.method === "GET" || request.method === "HEAD") && /^\/debates\/?$/.test(pathname)) {
+    url.searchParams.set("categoria", "debate-88");
+    response.writeHead(308, { Location: "/conteudos" + url.search });
+    response.end();
+    return;
+  }
   if (request.method === "GET" && pathname === "/__preview/healthz") {
     response.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "no-store" });
     response.end(JSON.stringify({ status: activeBuild ? "building" : "ok" }));

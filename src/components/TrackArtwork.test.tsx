@@ -52,4 +52,22 @@ describe("TrackArtwork", () => {
       "https://cdn.example.com/new-cover.webp"
     );
   });
+
+  it("tries the original Apple artwork URL before switching to the station logo", () => {
+    render(
+      <TrackArtwork
+        src="https://is1-ssl.mzstatic.com/image/thumb/cover/600x600bb.jpg"
+        fallbackSrc="https://is1-ssl.mzstatic.com/image/thumb/cover/100x100bb.jpg"
+      />
+    );
+
+    fireEvent.error(screen.getByRole("img", { name: "Capa da música atual" }));
+    expect(screen.getByRole("img", { name: "Capa da música atual" })).toHaveAttribute(
+      "src",
+      "https://is1-ssl.mzstatic.com/image/thumb/cover/100x100bb.jpg"
+    );
+
+    fireEvent.error(screen.getByRole("img", { name: "Capa da música atual" }));
+    expect(screen.getByRole("img", { name: "Logo Rádio 88 FM" })).toHaveAttribute("src", radioLogoWhite);
+  });
 });

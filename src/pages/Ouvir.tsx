@@ -2,10 +2,12 @@ import { LoaderCircle, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import TrackArtwork from "@/components/TrackArtwork";
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { getDisplayName } from "@/lib/streamUtils";
+import { useMusicArtwork } from "@/hooks/useMusicArtwork";
 
 const Ouvir = () => {
   const { isPlaying, isLoading, isMuted, streamData, togglePlay, toggleMute } = useAudioPlayer();
   const displayName = getDisplayName(streamData?.musica_atual);
+  const artwork = useMusicArtwork(streamData?.musica_atual);
 
   return (
     <div className="min-h-[calc(100svh-var(--header-height)-var(--player-space))] py-8 flex items-center justify-center bg-radio-brand-blue">
@@ -14,14 +16,11 @@ const Ouvir = () => {
         {/* Album art */}
         <div className="relative w-64 h-64 mx-auto mb-8 rounded-2xl overflow-hidden shadow-2xl">
           <TrackArtwork
-            src={streamData?.capa_musica}
-            className={isPlaying ? "animate-pulse" : undefined}
+            src={artwork?.imageUrl}
+            fallbackSrc={artwork?.fallbackImageUrl}
             imageClassName="object-cover"
             fallbackClassName="object-contain p-10"
           />
-          {isPlaying && (
-            <div className="absolute inset-0 border-4 border-radio-yellow rounded-2xl animate-pulse" />
-          )}
         </div>
 
         {/* Track info */}
