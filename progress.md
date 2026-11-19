@@ -128,3 +128,14 @@ Identidade do programa a esquerda; horario com icone e locutores a direita, sepa
 - Pendentes: operacao completa dos ouvintes, entrega das participacoes aos locutores, selecao e sorteios; nao estao liberados por esta entrega.
 - Logo colorida do mini player gerou favicon PNG 48px/ICO, touch icon 180px e PNG social/Media Session 512px, com URL nova para caches. Google/mensageiros/Vercel podem reter a miniatura antiga ate nova captura.
 - Gate: API de Producao ainda retorna 404 para programming/config; nao apontar o institucional oficial para Preview. Publicacao coordenada depende da promocao do Gestao/API e credenciais corretas.
+
+### Rollout de producao - 19/11/2026
+
+- Gestao/API publicados pelo commit 91b439a em Production, preservando a branch de Preview e sem merge na main. API health/ready 200. Backup Neon: backup-before-programming-release-20261119 (br-plain-term-axl7fwzd); migracoes 0017-0029 aplicadas pelo runner versionado.
+- Seed real: 11 programas/37 horarios, repeticao com zero duplicacoes. Snapshot R2 production/radio-88 revisao 1 publicado pelo administrador, contrato publico validado e CORS oficial conferido. Capas locais nao foram copiadas entre buckets; usar upload autorizado na Producao.
+- Super Admin provisionado por CLI segura, mantendo as duas contas legadas. E-mail confirmado pelo titular; verificacao e recuperacao entregues via Resend. Calendar read/manage/sync concedidos apenas explicitamente a conta raiz e auditados.
+- OAuth de Producao concluido somente leitura; fonte 88 - ENQUETE ativa com Bom Dia 88. Agenda de origem nunca alterada. App Google ainda nao verificado: concluir publicacao/verificacao do app para evitar expiracao dos tokens em modo Testing.
+- Institucional publicado da nova branch, sem main: primeiro deploy Ai1cS2QVnXc3461BdEhpRuhANBqx (9fa710c). Home oficial mostra programa e CTA da enquete real; formulario abriu sem envio de votos/cadastros de teste. Acao Retirar do ar presente no painel; nao executada em enquete real sem autorizacao especifica.
+- 209 testes frontend + 26 backend institucional aprovados; build completo com feed production/radio-88 e SEO aprovado. Gestao: 38 testes de tela + 77 Calendar/PostgreSQL descartavel aprovados, typecheck/build API e build painel aprovados. Audit institucional: 5 moderados, zero altos/criticos (nao declarar audit zerado).
+- Chave YouTube legada usa HTTP referrers e nao atende o backend. Criada chave separada radio88-institucional-youtube-backend-20261119, restrita somente a YouTube Data API v3; valor apenas em YOUTUBE_DATA_API_KEY, segredo Vercel Production/Preview. Chave antiga preservada. Validacao do canal real HTTP 200. Redeploy e validacao final do catalogo em andamento.
+- Pendente de produto: entrega dos cadastros/participacoes aos locutores, selecao e sorteios. Retirada manual nao desativa automaticamente proximas enquetes e nao apaga historico.
