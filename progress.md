@@ -146,3 +146,9 @@ Identidade do programa a esquerda; horario com icone e locutores a direita, sepa
 - Titular aprovou integrar a nova branch na main e manter main como producao para preservar os hooks do CMS. Integracao somente fast-forward se main for ancestral; nunca force push.
 - Google Agenda conectado em Production com leitura apenas. Fonte ativa 88 - ENQUETE / Bom Dia 88 confirmada; enquetes futuras reais agendadas e enquete atual visivel no CTA do site. Sem importar cadastros/votos ou tokens de Preview.
 - Favicon/ICO/touch icon/Open Graph/Media Session e dados estruturados usam a identidade colorida. Cache de Google, mensageiros e miniaturas do Vercel pode atrasar a atualizacao externa.
+
+### Encerramento do rollout
+
+- Merge fast-forward aprovado pelo titular e concluido: institucional main 861a999; Gestao main 91b439a. Branches de trabalho preservadas. Institucional main em Production READY: 91fydZumWk5uc44AMN6KPXxyPKMm; API main READY: 6D484gHiyFxis3cKBTTojDuUtDKc; painel main READY: 5hbzT8hmx7bA4As6kjdoSaYMw5nC. Hooks continuam acompanhando main com o codigo novo.
+- Logo colorida enviada tambem ao avatar do projeto Vercel. As capas musicais carregaram no ouvir oficial durante a conferencia; sem envio de votos/cadastros artificiais em Producao.
+- Segredos temporarios de banco/OAuth/sessao removidos de /tmp. Senha raiz alterada pelo titular via recuperacao, revogando a sessao temporaria conforme esperado. Nao houve alteracao das senhas dos usuarios legados.
