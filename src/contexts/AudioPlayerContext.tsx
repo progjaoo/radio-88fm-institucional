@@ -6,6 +6,7 @@ import { RADIO_PLAY_REQUEST } from "@/lib/mediaPlayback";
 
 const STREAM_URL = "https://stm39.srvstm.com:9776/stream";
 const API_URL = "https://radiovox.conectastm.com/api-json/VkRGU2FrMHdOVzVRVkRBOStS";
+const MEDIA_SESSION_ARTWORK_URL = "https://www.radio88fm.com/logo-88fm-color.png?media-session=v2";
 const LISTENING_MILESTONES = [30, 60, 300, 600];
 
 interface AudioPlayerContextValue {
@@ -35,6 +36,22 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
   const [volume, setVolumeState] = useState(1);
   const lastAudibleVolumeRef = useRef(1);
   const [streamData, setStreamData] = useState<StreamData | null>(null);
+  const streamDataRef = useRef(streamData);
+  streamDataRef.current = streamData;
+
+  const publishMediaSession = useCallback((playbackState: "playing" | "paused" = playingRef.current ? "playing" : "paused") => {
+    if (!("mediaSession" in navigator) || typeof MediaMetadata === "undefined") return;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: getMediaTitle(streamDataRef.current?.musica_atual),
+        artist: STATION_NAME,
+        album: STATION_MEDIA_TITLE,
+        // A single secure, versioned PNG avoids stale/local artwork in iOS Now Playing.
+        artwork: [{ src: MEDIA_SESSION_ARTWORK_URL, sizes: "512x512", type: "image/png" }],
+      });
+      navigator.mediaSession.playbackState = playbackState;
+    } catch { /* Optional OS controls must never interrupt streaming. */ }
+  }, []);
 
   const getAudio = useCallback(() => {
     if (!audioRef.current) {
@@ -55,6 +72,7 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
       setPlaybackError(null);
       if (!playingRef.current) Analytics.track("radio_play");
       playingRef.current = true;
+      publishMediaSession("playing");
       if (timer !== undefined) return;
       timer = window.setInterval(() => {
         secondsRef.current += 1;
@@ -69,6 +87,7 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
     const handlePause = () => {
       if (playingRef.current) Analytics.track("radio_pause");
       playingRef.current = false;
+      publishMediaSession("paused");
       setIsPlaying(false);
       setIsLoading(false);
       stopTimer();
@@ -102,7 +121,7 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
       playingRef.current = false;
       stopTimer();
     };
-  }, [getAudio]);
+  }, [getAudio, publishMediaSession]);
 
   useEffect(() => {
     let controller: AbortController | undefined;
@@ -129,44 +148,46 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (!("mediaSession" in navigator) || typeof MediaMetadata === "undefined") return;
-    const update = () => {
-      try {
-        navigator.mediaSession.metadata = new MediaMetadata({
-          title: getMediaTitle(streamData?.musica_atual),
-          artist: STATION_NAME,
-          album: STATION_MEDIA_TITLE,
-          // Raster artwork with explicit dimensions is shared by Safari and Chrome.
-          artwork: [
-            { src: new URL("/logo-88fm-color.png", window.location.origin).href, sizes: "512x512", type: "image/png" },
-            { src: new URL("/radio88-192.png", window.location.origin).href, sizes: "192x192", type: "image/png" },
-            { src: new URL("/apple-touch-icon.png", window.location.origin).href, sizes: "180x180", type: "image/png" },
-          ],
-        });
-        navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
-      } catch { /* Optional OS controls must never interrupt streaming. */ }
-    };
+    const update = (state?: "playing" | "paused") => publishMediaSession(state);
     const visible = () => { if (!document.hidden) update(); };
+    const onPlay = () => update("playing");
+    const onPlaying = () => update("playing");
+    const onPause = () => update("paused");
+    const onLoaded = () => update();
+    const onPageShow = () => update();
     const audio = getAudio();
     update();
-    audio.addEventListener("loadedmetadata", update);
-    audio.addEventListener("playing", update);
+    audio.addEventListener("play", onPlay);
+    audio.addEventListener("loadedmetadata", onLoaded);
+    audio.addEventListener("loadeddata", onLoaded);
+    audio.addEventListener("canplay", onLoaded);
+    audio.addEventListener("playing", onPlaying);
+    audio.addEventListener("pause", onPause);
     document.addEventListener("visibilitychange", visible);
-    window.addEventListener("pageshow", update);
+    window.addEventListener("pageshow", onPageShow);
     return () => {
-      audio.removeEventListener("loadedmetadata", update);
-      audio.removeEventListener("playing", update);
+      audio.removeEventListener("play", onPlay);
+      audio.removeEventListener("loadedmetadata", onLoaded);
+      audio.removeEventListener("loadeddata", onLoaded);
+      audio.removeEventListener("canplay", onLoaded);
+      audio.removeEventListener("playing", onPlaying);
+      audio.removeEventListener("pause", onPause);
       document.removeEventListener("visibilitychange", visible);
-      window.removeEventListener("pageshow", update);
+      window.removeEventListener("pageshow", onPageShow);
     };
-  }, [streamData, isPlaying, getAudio]);
+  }, [getAudio, publishMediaSession]);
+
+  useEffect(() => {
+    publishMediaSession();
+  }, [streamData, publishMediaSession]);
 
   const pause = useCallback(() => {
     attemptRef.current += 1;
     audioRef.current?.pause();
+    publishMediaSession("paused");
     setIsPlaying(false);
     setIsLoading(false);
-  }, []);
+  }, [publishMediaSession]);
 
   const play = useCallback(() => {
     if (playingRef.current) return;
@@ -176,13 +197,16 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(true);
     // Registered editorial players stop synchronously before the radio starts.
     window.dispatchEvent(new Event(RADIO_PLAY_REQUEST));
+    // Publish Now Playing in the same user gesture before Safari backgrounds the page.
+    publishMediaSession("playing");
     audio.play().catch(() => {
       if (attempt !== attemptRef.current) return;
+      publishMediaSession("paused");
       setIsLoading(false);
       setIsPlaying(false);
       setPlaybackError("Não foi possível reproduzir. Tente novamente.");
     });
-  }, [getAudio]);
+  }, [getAudio, publishMediaSession]);
 
   const togglePlay = useCallback(() => {
     if (isPlaying || isLoading) pause();

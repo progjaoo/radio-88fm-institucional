@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -21,13 +22,32 @@ import SocialRail from "./SocialRail";
 
 const Layout = () => {
   const location = useLocation();
-  const isLivePage = location.pathname === "/ouvir" || location.pathname === "/assistir" || location.pathname === "/anuncie";
+  const isBroadcastPage = location.pathname === "/ouvir" || location.pathname === "/assistir";
+  const isLivePage = isBroadcastPage || location.pathname === "/anuncie";
+
+  useEffect(() => {
+    const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (!themeColor) return;
+
+    const previousColor = themeColor.content;
+    themeColor.content = isBroadcastPage ? "#1360E8" : "#ffffff";
+    return () => { themeColor.content = previousColor; };
+  }, [isBroadcastPage]);
 
   return (
     <ListenerRegistrationProvider>
-      <div className={`radio-shell min-h-screen flex flex-col ${isLivePage ? "bg-radio-brand-blue" : "bg-background"}`}>
+      <div
+        className={`radio-shell flex flex-col ${isLivePage ? "bg-radio-brand-blue" : "bg-background"}`}
+        data-browser-chrome-theme={isBroadcastPage ? "broadcast" : undefined}
+      >
+        {isBroadcastPage && (
+          <>
+            <div className="safari-chrome-edge safari-chrome-edge-top" aria-hidden="true" />
+            <div className="safari-chrome-edge safari-chrome-edge-bottom" aria-hidden="true" />
+          </>
+        )}
         <Header />
-        <main id="main-content" className={`flex-1 pt-[var(--header-height)] ${isLivePage ? "bg-radio-brand-blue" : ""}`}>
+        <main id="main-content" className={`flex-1 overflow-x-clip pt-[var(--header-height)] ${isLivePage ? "bg-radio-brand-blue" : ""}`}>
           <Outlet />
         </main>
         <Footer />

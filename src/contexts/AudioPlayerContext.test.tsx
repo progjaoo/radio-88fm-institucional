@@ -149,10 +149,25 @@ describe("OS media controls", () => {
     render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);
     await act(async () => {});
     expect(session.metadata?.title).toBe("Rádio 88 FM - O Som do Céu!");
-    expect(session.metadata?.artwork.map(image => image.type)).toEqual(["image/png", "image/png", "image/png"]);
-    expect(session.metadata?.artwork[0]).toMatchObject({ sizes: "512x512", src: `${window.location.origin}/logo-88fm-color.png` });
+    expect(session.metadata?.artwork).toEqual([{
+      sizes: "512x512",
+      src: "https://www.radio88fm.com/logo-88fm-color.png?media-session=v2",
+      type: "image/png",
+    }]);
     expect(session.playbackState).toBe("paused");
     expect(MockAudio.instances[0].play).not.toHaveBeenCalled();
+  });
+  it("publishes secure station artwork synchronously before Safari starts playback", async () => {
+    render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);
+    await act(async () => {});
+    const audio = MockAudio.instances[0];
+    audio.play.mockImplementationOnce(() => {
+      expect(session.playbackState).toBe("playing");
+      expect(session.metadata?.artwork[0]?.src).toBe("https://www.radio88fm.com/logo-88fm-color.png?media-session=v2");
+      return Promise.resolve();
+    });
+    await act(async () => fireEvent.click(screen.getByText("Toggle")));
+    expect(MockAudio.instances).toHaveLength(1);
   });
   it("connects native play/pause to the existing player and refreshes metadata after loading", async () => {
     const { unmount } = render(<AudioPlayerProvider><Controls /></AudioPlayerProvider>);

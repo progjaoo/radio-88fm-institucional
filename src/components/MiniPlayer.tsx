@@ -18,7 +18,7 @@ export default function MiniPlayer() {
   const playbackStatus = isLoading ? "Conectando…" : isPlaying ? "Ouvindo a 88" : "Áudio pausado";
   const trackName = getDisplayName(streamData?.musica_atual?.trim());
   return (
-    <section aria-label="Player da Rádio 88 FM" className="radio-player fixed inset-x-0 bottom-0 z-40 border-t border-white/20 radio-gradient text-white shadow-2xl">
+    <section aria-label="Player da Rádio 88 FM" className="radio-player fixed inset-x-0 bottom-0 z-40 border-t border-white/20 bg-radio-brand-blue text-white shadow-2xl">
       <div className="radio-player-controls mini-player-layout mx-auto w-full max-w-[1920px]">
         <div className="mini-player-program">
           <div className="mini-player-live" data-on-air={!!program}>
