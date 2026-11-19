@@ -139,3 +139,10 @@ Identidade do programa a esquerda; horario com icone e locutores a direita, sepa
 - 209 testes frontend + 26 backend institucional aprovados; build completo com feed production/radio-88 e SEO aprovado. Gestao: 38 testes de tela + 77 Calendar/PostgreSQL descartavel aprovados, typecheck/build API e build painel aprovados. Audit institucional: 5 moderados, zero altos/criticos (nao declarar audit zerado).
 - Chave YouTube legada usa HTTP referrers e nao atende o backend. Criada chave separada radio88-institucional-youtube-backend-20261119, restrita somente a YouTube Data API v3; valor apenas em YOUTUBE_DATA_API_KEY, segredo Vercel Production/Preview. Chave antiga preservada. Validacao do canal real HTTP 200. Redeploy e validacao final do catalogo em andamento.
 - Pendente de produto: entrega dos cadastros/participacoes aos locutores, selecao e sorteios. Retirada manual nao desativa automaticamente proximas enquetes e nao apaga historico.
+
+### Conferencia final do catalogo e estrategia Git
+
+- Redeploy Production 491LW7npNpdg4eEcwCb11iAG2GqG (8f69db4) READY com YOUTUBE_DATA_API_KEY server-side. BrowserOS confirmou catalogo real em /conteudos, destaque mais assistido e seis recentes, alem de /anuncie e formulario real por link direto sem gerar votos de teste.
+- Titular aprovou integrar a nova branch na main e manter main como producao para preservar os hooks do CMS. Integracao somente fast-forward se main for ancestral; nunca force push.
+- Google Agenda conectado em Production com leitura apenas. Fonte ativa 88 - ENQUETE / Bom Dia 88 confirmada; enquetes futuras reais agendadas e enquete atual visivel no CTA do site. Sem importar cadastros/votos ou tokens de Preview.
+- Favicon/ICO/touch icon/Open Graph/Media Session e dados estruturados usam a identidade colorida. Cache de Google, mensageiros e miniaturas do Vercel pode atrasar a atualizacao externa.
